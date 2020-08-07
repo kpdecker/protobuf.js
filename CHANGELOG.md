@@ -1,5 +1,12 @@
 # Changelog
 
+### [6.10.2](https://www.github.com/protobufjs/protobuf.js/compare/v6.10.1...v6.10.2) (2020-08-07)
+
+
+### Bug Fixes
+
+* es6 export enum ([#1446](https://www.github.com/protobufjs/protobuf.js/issues/1446)) ([9f33784](https://www.github.com/protobufjs/protobuf.js/commit/9f33784350b1efc2e774bbfc087cbd2c47828748))
+
 ### [6.10.1](https://www.github.com/protobufjs/protobuf.js/compare/v6.10.0...v6.10.1) (2020-07-16)
 
 
