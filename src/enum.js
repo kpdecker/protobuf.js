@@ -60,9 +60,16 @@ function Enum(name, values, options, comment, comments) {
     // static and reflection code alike instead of emitting generic object definitions.
 
     if (values)
-        for (var keys = Object.keys(values), i = 0; i < keys.length; ++i)
-            if (typeof values[keys[i]] === "number") // use forward entries only
-                this.valuesById[ this.values[keys[i]] = values[keys[i]] ] = keys[i];
+        for (var keys = Object.keys(values), i = 0; i < keys.length; ++i) {
+            var originalKey = keys[i];
+            var key = originalKey;
+            if (key.startsWith(this.name + "_"))
+                key = key.slice(this.name.length + 1);
+
+            if (typeof values[originalKey] === "number") { // use forward entries only
+                this.valuesById[ this.values[key] = values[originalKey] ] = key;
+            }
+        }
 }
 
 /**
@@ -127,6 +134,9 @@ Enum.prototype.add = function add(name, id, comment) {
 
     if (this.isReservedName(name))
         throw Error("name '" + name + "' is reserved in " + this);
+
+    if (name.startsWith(this.name + "_"))
+        name = name.slice(this.name.length + 1);
 
     if (this.valuesById[id] !== undefined) {
         if (!(this.options && this.options.allow_alias))
