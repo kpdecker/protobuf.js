@@ -187,6 +187,17 @@ field3?: boolean;
         toJSON() {
             return Test1.toObject(this, $protobuf.util.toJSONOptions);
         };
+
+        /**
+         * Compares two messages, checking for strict equality.
+         */
+        static equals(a: Test1.ITest1, b: Test1.ITest1): boolean {
+            if (!a || !b)
+                return a === b;
+            if (a === b)
+                return true;
+            return a.field1 === b.field1 && a.field2 === b.field2 && a.field3 === b.field3;
+        }
     }
     $root.Test1 = Test1;
 
@@ -309,6 +320,17 @@ field3?: boolean;
         toJSON() {
             return Test2.toObject(this, $protobuf.util.toJSONOptions);
         };
+
+        /**
+         * Compares two messages, checking for strict equality.
+         */
+        static equals(a: Test2.ITest2, b: Test2.ITest2): boolean {
+            if (!a || !b)
+                return a === b;
+            if (a === b)
+                return true;
+            return true;
+        }
     }
     $root.Test2 = Test2;
 

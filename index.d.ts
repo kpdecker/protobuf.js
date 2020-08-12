@@ -2016,6 +2016,31 @@ export namespace util {
      */
     function newBuffer(sizeOrArray?: (number|number[])): (Uint8Array|Buffer);
 
+    /**
+     * Equality check for byte data fields.
+     * @param [a] Left side
+     * @param [b] Right side
+     * @returns true if equals
+     */
+    function bytesEquals(a?: (Uint8Array|Buffer|number[]|string), b?: (Uint8Array|Buffer|number[]|string)): boolean;
+
+    /**
+     * Equality check for map data fields.
+     * @param a Left side
+     * @param b Right side
+     * @param fn Key comparison check. Returns true if a given key name is a mismatch.
+     * @returns true if equals
+     */
+    function mapEquals(a: (object|null|undefined), b: (object|null|undefined), fn: Function): boolean;
+
+    /**
+     * Equality check for long data fields.
+     * @param [a] Left side
+     * @param [b] Right side
+     * @returns true if equals
+     */
+    function longEquals(a?: (number|Long), b?: (number|Long)): boolean;
+
     /** Array implementation used in the browser. `Uint8Array` if supported, otherwise `Array`. */
     let Array: Constructor<Uint8Array>;
 
