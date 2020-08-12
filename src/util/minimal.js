@@ -172,6 +172,10 @@ util.Array = typeof Uint8Array !== "undefined" ? Uint8Array /* istanbul ignore n
  * @property {number} high High bits
  * @property {boolean} unsigned Whether unsigned or not
  */
+/**
+ * @method Long#toNumber
+ * @returns {number}
+ */
 
 /**
  * Long.js's Long class if available.
@@ -322,7 +326,7 @@ util.ProtocolError = newError("ProtocolError");
  * A OneOf getter as returned by {@link util.oneOfGetter}.
  * @typedef OneOfGetter
  * @type {function}
- * @returns {string|undefined} Set field name, if any
+ * @returns {any|undefined} Set field name, if any
  */
 
 /**
@@ -351,7 +355,7 @@ util.oneOfGetter = function getOneOf(fieldNames) {
  * A OneOf setter as returned by {@link util.oneOfSetter}.
  * @typedef OneOfSetter
  * @type {function}
- * @param {string|undefined} value Field name
+ * @param {any|undefined} value Field name
  * @returns {undefined}
  */
 

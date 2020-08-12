@@ -505,7 +505,7 @@ $root.vector_tile = (function() {
                     else if (typeof object.intValue === "number")
                         message.intValue = object.intValue;
                     else if (typeof object.intValue === "object")
-                        message.intValue = new $util.LongBits(object.intValue.low >>> 0, object.intValue.high >>> 0).toNumber();
+                        message.intValue = new $util.LongBits(object.intValue).toNumber();
                 if (object.uintValue != null)
                     if ($util.Long)
                         (message.uintValue = $util.Long.fromValue(object.uintValue)).unsigned = true;
@@ -514,7 +514,7 @@ $root.vector_tile = (function() {
                     else if (typeof object.uintValue === "number")
                         message.uintValue = object.uintValue;
                     else if (typeof object.uintValue === "object")
-                        message.uintValue = new $util.LongBits(object.uintValue.low >>> 0, object.uintValue.high >>> 0).toNumber(true);
+                        message.uintValue = new $util.LongBits(object.uintValue).toNumber(true);
                 if (object.sintValue != null)
                     if ($util.Long)
                         (message.sintValue = $util.Long.fromValue(object.sintValue)).unsigned = false;
@@ -523,7 +523,7 @@ $root.vector_tile = (function() {
                     else if (typeof object.sintValue === "number")
                         message.sintValue = object.sintValue;
                     else if (typeof object.sintValue === "object")
-                        message.sintValue = new $util.LongBits(object.sintValue.low >>> 0, object.sintValue.high >>> 0).toNumber();
+                        message.sintValue = new $util.LongBits(object.sintValue).toNumber();
                 if (object.boolValue != null)
                     message.boolValue = Boolean(object.boolValue);
                 return message;
@@ -573,17 +573,17 @@ $root.vector_tile = (function() {
                     if (typeof message.intValue === "number")
                         object.intValue = options.longs === String ? String(message.intValue) : message.intValue;
                     else
-                        object.intValue = options.longs === String ? $util.Long.prototype.toString.call(message.intValue) : options.longs === Number ? new $util.LongBits(message.intValue.low >>> 0, message.intValue.high >>> 0).toNumber() : message.intValue;
+                        object.intValue = options.longs === String ? $util.Long.prototype.toString.call(message.intValue) : options.longs === Number ? new $util.LongBits(message.intValue).toNumber() : message.intValue;
                 if (message.uintValue != null && message.hasOwnProperty("uintValue"))
                     if (typeof message.uintValue === "number")
                         object.uintValue = options.longs === String ? String(message.uintValue) : message.uintValue;
                     else
-                        object.uintValue = options.longs === String ? $util.Long.prototype.toString.call(message.uintValue) : options.longs === Number ? new $util.LongBits(message.uintValue.low >>> 0, message.uintValue.high >>> 0).toNumber(true) : message.uintValue;
+                        object.uintValue = options.longs === String ? $util.Long.prototype.toString.call(message.uintValue) : options.longs === Number ? new $util.LongBits(message.uintValue).toNumber(true) : message.uintValue;
                 if (message.sintValue != null && message.hasOwnProperty("sintValue"))
                     if (typeof message.sintValue === "number")
                         object.sintValue = options.longs === String ? String(message.sintValue) : message.sintValue;
                     else
-                        object.sintValue = options.longs === String ? $util.Long.prototype.toString.call(message.sintValue) : options.longs === Number ? new $util.LongBits(message.sintValue.low >>> 0, message.sintValue.high >>> 0).toNumber() : message.sintValue;
+                        object.sintValue = options.longs === String ? $util.Long.prototype.toString.call(message.sintValue) : options.longs === Number ? new $util.LongBits(message.sintValue).toNumber() : message.sintValue;
                 if (message.boolValue != null && message.hasOwnProperty("boolValue"))
                     object.boolValue = message.boolValue;
                 return object;
@@ -849,7 +849,7 @@ $root.vector_tile = (function() {
                     else if (typeof object.id === "number")
                         message.id = object.id;
                     else if (typeof object.id === "object")
-                        message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber(true);
+                        message.id = new $util.LongBits(object.id).toNumber(true);
                 if (object.tags) {
                     if (!Array.isArray(object.tags))
                         throw TypeError(".vector_tile.Tile.Feature.tags: array expected");
@@ -914,7 +914,7 @@ $root.vector_tile = (function() {
                     if (typeof message.id === "number")
                         object.id = options.longs === String ? String(message.id) : message.id;
                     else
-                        object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber(true) : message.id;
+                        object.id = options.longs === String ? $util.Long.prototype.toString.call(message.id) : options.longs === Number ? new $util.LongBits(message.id).toNumber(true) : message.id;
                 if (message.tags && message.tags.length) {
                     object.tags = [];
                     for (var j = 0; j < message.tags.length; ++j)
@@ -1125,9 +1125,9 @@ $root.vector_tile = (function() {
                     }
                 }
                 if (!message.hasOwnProperty("version"))
-                    throw $util.ProtocolError("missing required 'version'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'version'", { instance: message });
                 if (!message.hasOwnProperty("name"))
-                    throw $util.ProtocolError("missing required 'name'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'name'", { instance: message });
                 return message;
             };
 

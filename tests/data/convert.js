@@ -394,7 +394,7 @@ $root.Message = (function() {
             else if (typeof object.uint64Val === "number")
                 message.uint64Val = object.uint64Val;
             else if (typeof object.uint64Val === "object")
-                message.uint64Val = new $util.LongBits(object.uint64Val.low >>> 0, object.uint64Val.high >>> 0).toNumber(true);
+                message.uint64Val = new $util.LongBits(object.uint64Val).toNumber(true);
         if (object.uint64Repeated) {
             if (!Array.isArray(object.uint64Repeated))
                 throw TypeError(".Message.uint64Repeated: array expected");
@@ -407,7 +407,7 @@ $root.Message = (function() {
                 else if (typeof object.uint64Repeated[i] === "number")
                     message.uint64Repeated[i] = object.uint64Repeated[i];
                 else if (typeof object.uint64Repeated[i] === "object")
-                    message.uint64Repeated[i] = new $util.LongBits(object.uint64Repeated[i].low >>> 0, object.uint64Repeated[i].high >>> 0).toNumber(true);
+                    message.uint64Repeated[i] = new $util.LongBits(object.uint64Repeated[i]).toNumber(true);
         }
         if (object.bytesVal != null)
             if (typeof object.bytesVal === "string")
@@ -463,7 +463,7 @@ $root.Message = (function() {
                 else if (typeof object.int64Map[keys[i]] === "number")
                     message.int64Map[keys[i]] = object.int64Map[keys[i]];
                 else if (typeof object.int64Map[keys[i]] === "object")
-                    message.int64Map[keys[i]] = new $util.LongBits(object.int64Map[keys[i]].low >>> 0, object.int64Map[keys[i]].high >>> 0).toNumber();
+                    message.int64Map[keys[i]] = new $util.LongBits(object.int64Map[keys[i]]).toNumber();
         }
         return message;
     };
@@ -516,14 +516,14 @@ $root.Message = (function() {
             if (typeof message.uint64Val === "number")
                 object.uint64Val = options.longs === String ? String(message.uint64Val) : message.uint64Val;
             else
-                object.uint64Val = options.longs === String ? $util.Long.prototype.toString.call(message.uint64Val) : options.longs === Number ? new $util.LongBits(message.uint64Val.low >>> 0, message.uint64Val.high >>> 0).toNumber(true) : message.uint64Val;
+                object.uint64Val = options.longs === String ? $util.Long.prototype.toString.call(message.uint64Val) : options.longs === Number ? new $util.LongBits(message.uint64Val).toNumber(true) : message.uint64Val;
         if (message.uint64Repeated && message.uint64Repeated.length) {
             object.uint64Repeated = [];
             for (var j = 0; j < message.uint64Repeated.length; ++j)
                 if (typeof message.uint64Repeated[j] === "number")
                     object.uint64Repeated[j] = options.longs === String ? String(message.uint64Repeated[j]) : message.uint64Repeated[j];
                 else
-                    object.uint64Repeated[j] = options.longs === String ? $util.Long.prototype.toString.call(message.uint64Repeated[j]) : options.longs === Number ? new $util.LongBits(message.uint64Repeated[j].low >>> 0, message.uint64Repeated[j].high >>> 0).toNumber(true) : message.uint64Repeated[j];
+                    object.uint64Repeated[j] = options.longs === String ? $util.Long.prototype.toString.call(message.uint64Repeated[j]) : options.longs === Number ? new $util.LongBits(message.uint64Repeated[j]).toNumber(true) : message.uint64Repeated[j];
         }
         if (message.bytesVal != null && message.hasOwnProperty("bytesVal"))
             object.bytesVal = options.bytes === String ? $util.base64.encode(message.bytesVal, 0, message.bytesVal.length) : options.bytes === Array ? Array.prototype.slice.call(message.bytesVal) : message.bytesVal;
@@ -546,7 +546,7 @@ $root.Message = (function() {
                 if (typeof message.int64Map[keys2[j]] === "number")
                     object.int64Map[keys2[j]] = options.longs === String ? String(message.int64Map[keys2[j]]) : message.int64Map[keys2[j]];
                 else
-                    object.int64Map[keys2[j]] = options.longs === String ? $util.Long.prototype.toString.call(message.int64Map[keys2[j]]) : options.longs === Number ? new $util.LongBits(message.int64Map[keys2[j]].low >>> 0, message.int64Map[keys2[j]].high >>> 0).toNumber() : message.int64Map[keys2[j]];
+                    object.int64Map[keys2[j]] = options.longs === String ? $util.Long.prototype.toString.call(message.int64Map[keys2[j]]) : options.longs === Number ? new $util.LongBits(message.int64Map[keys2[j]]).toNumber() : message.int64Map[keys2[j]];
         }
         return object;
     };

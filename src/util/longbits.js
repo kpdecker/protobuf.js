@@ -8,25 +8,30 @@ var util = require("../util/minimal");
  * @classdesc Helper class for working with the low and high bits of a 64 bit value.
  * @memberof util
  * @constructor
- * @param {number} lo Low 32 bits, unsigned
- * @param {number} hi High 32 bits, unsigned
+ * @param {number|Long|LongBits} lo Low 32 bits, unsigned or long object to copy
+ * @param {number} [hi] High 32 bits, unsigned
  */
 function LongBits(lo, hi) {
 
     // note that the casts below are theoretically unnecessary as of today, but older statically
     // generated converter code might still call the ctor with signed 32bits. kept for compat.
 
-    /**
-     * Low bits.
-     * @type {number}
-     */
-    this.lo = lo >>> 0;
+    if (typeof lo === "object") {
+        this.lo = lo.low != null ? lo.low : lo.lo;
+        this.hi = lo.high != null ? lo.high : lo.hi;
+    } else {
+        /**
+         * Low bits.
+         * @type {number}
+         */
+        this.lo = lo >>> 0;
 
-    /**
-     * High bits.
-     * @type {number}
-     */
-    this.hi = hi >>> 0;
+        /**
+         * High bits.
+         * @type {number}
+         */
+        this.hi = hi >>> 0;
+    }
 }
 
 /**

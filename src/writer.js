@@ -201,10 +201,14 @@ VarintOp.prototype.fn = writeVarint32;
 
 /**
  * Writes an unsigned 32 bit value as a varint.
- * @param {number} value Value to write
+ * @param {number | string} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.uint32 = function write_uint32(value) {
+    if (typeof value === "string") {
+      value = parseFloat(value);
+    }
+
     // here, the call to this.push has been inlined and a varint specific Op subclass is used.
     // uint32 is by far the most frequently used operation and benefits significantly from this.
     this.len += (this.tail = this.tail.next = new VarintOp(
@@ -221,10 +225,13 @@ Writer.prototype.uint32 = function write_uint32(value) {
 /**
  * Writes a signed 32 bit value as a varint.
  * @function
- * @param {number} value Value to write
+ * @param {number | string} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.int32 = function write_int32(value) {
+    if (typeof value === "string") {
+        value = parseFloat(value);
+    }
     return value < 0
         ? this._push(writeVarint64, 10, LongBits.fromNumber(value)) // 10 bytes per spec
         : this.uint32(value);
@@ -285,7 +292,7 @@ Writer.prototype.sint64 = function write_sint64(value) {
 
 /**
  * Writes a boolish value as a varint.
- * @param {boolean} value Value to write
+ * @param {boolean|any} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.bool = function write_bool(value) {

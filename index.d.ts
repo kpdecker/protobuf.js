@@ -1852,19 +1852,23 @@ export interface Long {
 
     /** Whether unsigned or not */
     unsigned: boolean;
+
+    /**
+     */
+    toNumber(): number;
 }
 
 /**
  * A OneOf getter as returned by {@link util.oneOfGetter}.
  * @returns Set field name, if any
  */
-type OneOfGetter = () => (string|undefined);
+type OneOfGetter = () => (any|undefined);
 
 /**
  * A OneOf setter as returned by {@link util.oneOfSetter}.
  * @param value Field name
  */
-type OneOfSetter = (value: (string|undefined)) => void;
+type OneOfSetter = (value: (any|undefined)) => void;
 
 /** Various utility functions. */
 export namespace util {
@@ -1874,10 +1878,10 @@ export namespace util {
 
         /**
          * Constructs new long bits.
-         * @param lo Low 32 bits, unsigned
-         * @param hi High 32 bits, unsigned
+         * @param lo Low 32 bits, unsigned or long object to copy
+         * @param [hi] High 32 bits, unsigned
          */
-        constructor(lo: number, hi: number);
+        constructor(lo: (number|Long|LongBits), hi?: number);
 
         /** Low bits. */
         public lo: number;
@@ -2520,17 +2524,17 @@ export class Writer {
 
     /**
      * Writes an unsigned 32 bit value as a varint.
-     * @param value Value to write
+     * @param {number | string} value Value to write
      * @returns `this`
      */
-    public uint32(value: number): Writer;
+    public uint32(value: (number|string)): Writer;
 
     /**
      * Writes a signed 32 bit value as a varint.
-     * @param value Value to write
+     * @param {number | string} value Value to write
      * @returns `this`
      */
-    public int32(value: number): Writer;
+    public int32(value: (number|string)): Writer;
 
     /**
      * Writes a 32 bit value as a varint, zig-zag encoded.
@@ -2568,7 +2572,7 @@ export class Writer {
      * @param value Value to write
      * @returns `this`
      */
-    public bool(value: boolean): Writer;
+    public bool(value: (boolean|any)): Writer;
 
     /**
      * Writes an unsigned 32 bit value as fixed 32 bits.

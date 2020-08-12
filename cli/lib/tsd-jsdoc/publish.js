@@ -656,7 +656,9 @@ function handleFunction(element, parent, isConstructor) {
         begin(element);
         insideClass = isClassLike(parent);
         if (insideClass) {
-            write(element.access || "public", " ");
+            if (!isInterface(parent)) {
+                write(element.access || "public", " ");
+            }
             if (element.scope === "static")
                 write("static ");
         } else
