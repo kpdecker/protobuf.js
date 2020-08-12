@@ -456,6 +456,27 @@ const $root: any = $protobuf.roots.test_convert || ($protobuf.roots.test_convert
         toJSON() {
             return Message.toObject(this, $protobuf.util.toJSONOptions);
         };
+
+        /**
+         * Compares two messages, checking for strict equality.
+         */
+        static equals(a: Message.IMessage, b: Message.IMessage): boolean {
+            if (!a || !b)
+                return a === b;
+            if (a === b)
+                return true;
+            return a.stringVal === b.stringVal && (!!a.stringRepeated && !!b.stringRepeated && a.stringRepeated.length === b.stringRepeated.length && !a.stringRepeated.find(function (aValue, i) {
+                return (a.stringRepeated && a.stringRepeated[i]) === (b.stringRepeated && b.stringRepeated[i]);
+            })) && $util.longEquals(a.uint64Val, b.uint64Val) && (!!a.uint64Repeated && !!b.uint64Repeated && a.uint64Repeated.length === b.uint64Repeated.length && !a.uint64Repeated.find(function (aValue, i) {
+                return $util.longEquals(a.uint64Repeated && a.uint64Repeated[i], b.uint64Repeated && b.uint64Repeated[i]);
+            })) && $util.bytesEquals(a.bytesVal, b.bytesVal) && (!!a.bytesRepeated && !!b.bytesRepeated && a.bytesRepeated.length === b.bytesRepeated.length && !a.bytesRepeated.find(function (aValue, i) {
+                return $util.bytesEquals(a.bytesRepeated && a.bytesRepeated[i], b.bytesRepeated && b.bytesRepeated[i]);
+            })) && a.enumVal === b.enumVal && (!!a.enumRepeated && !!b.enumRepeated && a.enumRepeated.length === b.enumRepeated.length && !a.enumRepeated.find(function (aValue, i) {
+                return (a.enumRepeated && a.enumRepeated[i]) === (b.enumRepeated && b.enumRepeated[i]);
+            })) && $util.mapEquals(a.int64Map, b.int64Map, function (keyName) {
+                return !!b.int64Map && (!(keyName in b.int64Map) && $util.longEquals(a.int64Map && a.int64Map[keyName], b.int64Map && b.int64Map[keyName]));
+            });
+        }
     }
 
     export namespace Message {

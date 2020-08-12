@@ -562,6 +562,29 @@ const $root: any = $protobuf.roots.test_package || ($protobuf.roots.test_package
         toJSON() {
             return Package.toObject(this, $protobuf.util.toJSONOptions);
         };
+
+        /**
+         * Compares two messages, checking for strict equality.
+         */
+        static equals(a: Package.IPackage, b: Package.IPackage): boolean {
+            if (!a || !b)
+                return a === b;
+            if (a === b)
+                return true;
+            return a.name === b.name && a.version === b.version && a.versionScheme === b.versionScheme && a.description === b.description && a.author === b.author && a.license === b.license && $root.Package.Repository.equals(a.repository, b.repository) && a.bugs === b.bugs && a.homepage === b.homepage && (!!a.keywords && !!b.keywords && a.keywords.length === b.keywords.length && !a.keywords.find(function (aValue, i) {
+                return (a.keywords && a.keywords[i]) === (b.keywords && b.keywords[i]);
+            })) && a.main === b.main && $util.mapEquals(a.bin, b.bin, function (keyName) {
+                return !!b.bin && (!(keyName in b.bin) && (a.bin && a.bin[keyName]) === (b.bin && b.bin[keyName]));
+            }) && $util.mapEquals(a.scripts, b.scripts, function (keyName) {
+                return !!b.scripts && (!(keyName in b.scripts) && (a.scripts && a.scripts[keyName]) === (b.scripts && b.scripts[keyName]));
+            }) && $util.mapEquals(a.dependencies, b.dependencies, function (keyName) {
+                return !!b.dependencies && (!(keyName in b.dependencies) && (a.dependencies && a.dependencies[keyName]) === (b.dependencies && b.dependencies[keyName]));
+            }) && $util.mapEquals(a.devDependencies, b.devDependencies, function (keyName) {
+                return !!b.devDependencies && (!(keyName in b.devDependencies) && (a.devDependencies && a.devDependencies[keyName]) === (b.devDependencies && b.devDependencies[keyName]));
+            }) && a.types === b.types && (!!a.cliDependencies && !!b.cliDependencies && a.cliDependencies.length === b.cliDependencies.length && !a.cliDependencies.find(function (aValue, i) {
+                return (a.cliDependencies && a.cliDependencies[i]) === (b.cliDependencies && b.cliDependencies[i]);
+            }));
+        }
     }
 
     export namespace Package {
@@ -717,6 +740,17 @@ const $root: any = $protobuf.roots.test_package || ($protobuf.roots.test_package
             toJSON() {
                 return Repository.toObject(this, $protobuf.util.toJSONOptions);
             };
+
+            /**
+             * Compares two messages, checking for strict equality.
+             */
+            static equals(a: Repository.IRepository, b: Repository.IRepository): boolean {
+                if (!a || !b)
+                    return a === b;
+                if (a === b)
+                    return true;
+                return a.type === b.type && a.url === b.url;
+            }
         }
 
     }

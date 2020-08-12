@@ -94,6 +94,7 @@ protobuf.Message          = require("./message");
 protobuf.wrappers         = require("./wrappers");
 
 // Utility
+protobuf.equals           = require("./equals");
 protobuf.types            = require("./types");
 protobuf.util             = require("./util");
 

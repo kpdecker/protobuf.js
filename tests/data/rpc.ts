@@ -178,6 +178,17 @@ const $root: any = $protobuf.roots.test_rpc || ($protobuf.roots.test_rpc = {} as
         toJSON() {
             return MyRequest.toObject(this, $protobuf.util.toJSONOptions);
         };
+
+        /**
+         * Compares two messages, checking for strict equality.
+         */
+        static equals(a: MyRequest.IMyRequest, b: MyRequest.IMyRequest): boolean {
+            if (!a || !b)
+                return a === b;
+            if (a === b)
+                return true;
+            return a.path === b.path;
+        }
     }
     $root.MyRequest = MyRequest;
 
@@ -318,6 +329,17 @@ const $root: any = $protobuf.roots.test_rpc || ($protobuf.roots.test_rpc = {} as
         toJSON() {
             return MyResponse.toObject(this, $protobuf.util.toJSONOptions);
         };
+
+        /**
+         * Compares two messages, checking for strict equality.
+         */
+        static equals(a: MyResponse.IMyResponse, b: MyResponse.IMyResponse): boolean {
+            if (!a || !b)
+                return a === b;
+            if (a === b)
+                return true;
+            return a.status === b.status;
+        }
     }
     $root.MyResponse = MyResponse;
 

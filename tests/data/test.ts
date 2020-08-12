@@ -129,6 +129,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return Empty.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: Empty.IEmpty, b: Empty.IEmpty): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return true;
+                }
             }
 
             export enum OuterEnum {
@@ -285,6 +296,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return EnumContainer.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: EnumContainer.IEnumContainer, b: EnumContainer.IEnumContainer): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.outerEnum === b.outerEnum;
+                }
             }
 
             /** Properties of a Simple1. */
@@ -471,6 +493,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return Simple1.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: Simple1.ISimple1, b: Simple1.ISimple1): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.aString === b.aString && (!!a.aRepeatedString && !!b.aRepeatedString && a.aRepeatedString.length === b.aRepeatedString.length && !a.aRepeatedString.find(function (aValue, i) {
+                        return (a.aRepeatedString && a.aRepeatedString[i]) === (b.aRepeatedString && b.aRepeatedString[i]);
+                    })) && a.aBoolean === b.aBoolean;
+                }
             }
 
             /** Properties of a Simple2. */
@@ -641,6 +676,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return Simple2.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: Simple2.ISimple2, b: Simple2.ISimple2): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.aString === b.aString && (!!a.aRepeatedString && !!b.aRepeatedString && a.aRepeatedString.length === b.aRepeatedString.length && !a.aRepeatedString.find(function (aValue, i) {
+                        return (a.aRepeatedString && a.aRepeatedString[i]) === (b.aRepeatedString && b.aRepeatedString[i]);
+                    }));
+                }
             }
 
             /** Properties of a SpecialCases. */
@@ -825,6 +873,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return SpecialCases.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: SpecialCases.ISpecialCases, b: SpecialCases.ISpecialCases): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.normal === b.normal && a["default"] === b["default"] && a["function"] === b["function"] && a["var"] === b["var"];
+                }
             }
 
             /** Properties of an OptionalFields. */
@@ -1068,6 +1127,21 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return OptionalFields.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: OptionalFields.IOptionalFields, b: OptionalFields.IOptionalFields): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.aString === b.aString && a.aBool === b.aBool && $root.jspb.test.OptionalFields.Nested.equals(a.aNestedMessage, b.aNestedMessage) && (!!a.aRepeatedMessage && !!b.aRepeatedMessage && a.aRepeatedMessage.length === b.aRepeatedMessage.length && !a.aRepeatedMessage.find(function (aValue, i) {
+                        return $root.jspb.test.OptionalFields.Nested.equals(a.aRepeatedMessage && a.aRepeatedMessage[i], b.aRepeatedMessage && b.aRepeatedMessage[i]);
+                    })) && (!!a.aRepeatedString && !!b.aRepeatedString && a.aRepeatedString.length === b.aRepeatedString.length && !a.aRepeatedString.find(function (aValue, i) {
+                        return (a.aRepeatedString && a.aRepeatedString[i]) === (b.aRepeatedString && b.aRepeatedString[i]);
+                    }));
+                }
             }
 
             export namespace OptionalFields {
@@ -1207,6 +1281,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return Nested.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: Nested.INested, b: Nested.INested): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.anInt === b.anInt;
+                    }
                 }
 
             }
@@ -1522,6 +1607,21 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return HasExtensions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: HasExtensions.IHasExtensions, b: HasExtensions.IHasExtensions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.str1 === b.str1 && a.str2 === b.str2 && a.str3 === b.str3 && $root.jspb.test.IsExtension.equals(a[".jspb.test.IsExtension.extField"], b[".jspb.test.IsExtension.extField"]) && $root.jspb.test.Simple1.equals(a[".jspb.test.IndirectExtension.simple"], b[".jspb.test.IndirectExtension.simple"]) && a[".jspb.test.IndirectExtension.str"] === b[".jspb.test.IndirectExtension.str"] && (!!a[".jspb.test.IndirectExtension.repeatedStr"] && !!b[".jspb.test.IndirectExtension.repeatedStr"] && a[".jspb.test.IndirectExtension.repeatedStr"].length === b[".jspb.test.IndirectExtension.repeatedStr"].length && !a[".jspb.test.IndirectExtension.repeatedStr"].find(function (aValue, i) {
+                        return (a[".jspb.test.IndirectExtension.repeatedStr"] && a[".jspb.test.IndirectExtension.repeatedStr"][i]) === (b[".jspb.test.IndirectExtension.repeatedStr"] && b[".jspb.test.IndirectExtension.repeatedStr"][i]);
+                    })) && (!!a[".jspb.test.IndirectExtension.repeatedSimple"] && !!b[".jspb.test.IndirectExtension.repeatedSimple"] && a[".jspb.test.IndirectExtension.repeatedSimple"].length === b[".jspb.test.IndirectExtension.repeatedSimple"].length && !a[".jspb.test.IndirectExtension.repeatedSimple"].find(function (aValue, i) {
+                        return $root.jspb.test.Simple1.equals(a[".jspb.test.IndirectExtension.repeatedSimple"] && a[".jspb.test.IndirectExtension.repeatedSimple"][i], b[".jspb.test.IndirectExtension.repeatedSimple"] && b[".jspb.test.IndirectExtension.repeatedSimple"][i]);
+                    })) && $root.jspb.test.Simple1.equals(a[".jspb.test.simple1"], b[".jspb.test.simple1"]);
+                }
             }
 
             /** Properties of a Complex. */
@@ -1765,6 +1865,21 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return Complex.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: Complex.IComplex, b: Complex.IComplex): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.aString === b.aString && a.anOutOfOrderBool === b.anOutOfOrderBool && $root.jspb.test.Complex.Nested.equals(a.aNestedMessage, b.aNestedMessage) && (!!a.aRepeatedMessage && !!b.aRepeatedMessage && a.aRepeatedMessage.length === b.aRepeatedMessage.length && !a.aRepeatedMessage.find(function (aValue, i) {
+                        return $root.jspb.test.Complex.Nested.equals(a.aRepeatedMessage && a.aRepeatedMessage[i], b.aRepeatedMessage && b.aRepeatedMessage[i]);
+                    })) && (!!a.aRepeatedString && !!b.aRepeatedString && a.aRepeatedString.length === b.aRepeatedString.length && !a.aRepeatedString.find(function (aValue, i) {
+                        return (a.aRepeatedString && a.aRepeatedString[i]) === (b.aRepeatedString && b.aRepeatedString[i]);
+                    }));
+                }
             }
 
             export namespace Complex {
@@ -1904,6 +2019,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return Nested.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: Nested.INested, b: Nested.INested): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.anInt === b.anInt;
+                    }
                 }
 
             }
@@ -2026,6 +2152,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return OuterMessage.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: OuterMessage.IOuterMessage, b: OuterMessage.IOuterMessage): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return true;
+                }
             }
 
             export namespace OuterMessage {
@@ -2165,6 +2302,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return Complex.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: Complex.IComplex, b: Complex.IComplex): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.innerComplexField === b.innerComplexField;
+                    }
                 }
 
             }
@@ -2305,6 +2453,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return IsExtension.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: IsExtension.IIsExtension, b: IsExtension.IIsExtension): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.ext1 === b.ext1;
+                }
             }
 
             export namespace IsExtension {
@@ -2430,6 +2589,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return IndirectExtension.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: IndirectExtension.IIndirectExtension, b: IndirectExtension.IIndirectExtension): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return true;
+                }
             }
 
             export namespace IndirectExtension {
@@ -2692,6 +2862,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return DefaultValues.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: DefaultValues.IDefaultValues, b: DefaultValues.IDefaultValues): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.stringField === b.stringField && a.boolField === b.boolField && $util.longEquals(a.intField, b.intField) && a.enumField === b.enumField && a.emptyField === b.emptyField && $util.bytesEquals(a.bytesField, b.bytesField);
+                }
             }
 
             export namespace DefaultValues {
@@ -2988,6 +3169,21 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return FloatingPointFields.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: FloatingPointFields.IFloatingPointFields, b: FloatingPointFields.IFloatingPointFields): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.optionalFloatField === b.optionalFloatField && a.requiredFloatField === b.requiredFloatField && (!!a.repeatedFloatField && !!b.repeatedFloatField && a.repeatedFloatField.length === b.repeatedFloatField.length && !a.repeatedFloatField.find(function (aValue, i) {
+                        return (a.repeatedFloatField && a.repeatedFloatField[i]) === (b.repeatedFloatField && b.repeatedFloatField[i]);
+                    })) && a.defaultFloatField === b.defaultFloatField && a.optionalDoubleField === b.optionalDoubleField && a.requiredDoubleField === b.requiredDoubleField && (!!a.repeatedDoubleField && !!b.repeatedDoubleField && a.repeatedDoubleField.length === b.repeatedDoubleField.length && !a.repeatedDoubleField.find(function (aValue, i) {
+                        return (a.repeatedDoubleField && a.repeatedDoubleField[i]) === (b.repeatedDoubleField && b.repeatedDoubleField[i]);
+                    })) && a.defaultDoubleField === b.defaultDoubleField;
+                }
             }
 
             /** Properties of a TestClone. */
@@ -3243,6 +3439,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return TestClone.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: TestClone.ITestClone, b: TestClone.ITestClone): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.str === b.str && $root.jspb.test.Simple1.equals(a.simple1, b.simple1) && (!!a.simple2 && !!b.simple2 && a.simple2.length === b.simple2.length && !a.simple2.find(function (aValue, i) {
+                        return $root.jspb.test.Simple1.equals(a.simple2 && a.simple2[i], b.simple2 && b.simple2[i]);
+                    })) && $util.bytesEquals(a.bytesField, b.bytesField) && a.unused === b.unused && $root.jspb.test.CloneExtension.equals(a[".jspb.test.CloneExtension.extField"], b[".jspb.test.CloneExtension.extField"]);
+                }
             }
 
             /** Properties of a CloneExtension. */
@@ -3381,6 +3590,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return CloneExtension.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: CloneExtension.ICloneExtension, b: CloneExtension.ICloneExtension): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.ext === b.ext;
+                }
             }
 
             export namespace CloneExtension {
@@ -3643,6 +3863,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return TestGroup.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: TestGroup.ITestGroup, b: TestGroup.ITestGroup): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return !!a.repeatedGroup && !!b.repeatedGroup && a.repeatedGroup.length === b.repeatedGroup.length && !a.repeatedGroup.find(function (aValue, i) {
+                        return $root.jspb.test.TestGroup.RepeatedGroup.equals(a.repeatedGroup && a.repeatedGroup[i], b.repeatedGroup && b.repeatedGroup[i]);
+                    }) && $root.jspb.test.TestGroup.RequiredGroup.equals(a.requiredGroup, b.requiredGroup) && $root.jspb.test.TestGroup.OptionalGroup.equals(a.optionalGroup, b.optionalGroup) && a.id === b.id && $root.jspb.test.Simple2.equals(a.requiredSimple, b.requiredSimple) && $root.jspb.test.Simple2.equals(a.optionalSimple, b.optionalSimple);
+                }
             }
 
             export namespace TestGroup {
@@ -3821,6 +4054,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return RepeatedGroup.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: RepeatedGroup.IRepeatedGroup, b: RepeatedGroup.IRepeatedGroup): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.id === b.id && (!!a.someBool && !!b.someBool && a.someBool.length === b.someBool.length && !a.someBool.find(function (aValue, i) {
+                            return (a.someBool && a.someBool[i]) === (b.someBool && b.someBool[i]);
+                        }));
+                    }
                 }
 
                 /** Properties of a RequiredGroup. */
@@ -3961,6 +4207,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return RequiredGroup.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: RequiredGroup.IRequiredGroup, b: RequiredGroup.IRequiredGroup): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.id === b.id;
+                    }
                 }
 
                 /** Properties of an OptionalGroup. */
@@ -4101,6 +4358,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return OptionalGroup.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: OptionalGroup.IOptionalGroup, b: OptionalGroup.IOptionalGroup): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.id === b.id;
+                    }
                 }
 
             }
@@ -4246,6 +4514,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return TestGroup1.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: TestGroup1.ITestGroup1, b: TestGroup1.ITestGroup1): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return $root.jspb.test.TestGroup.RepeatedGroup.equals(a.group, b.group);
+                }
             }
 
             /** Properties of a TestReservedNames. */
@@ -4400,6 +4679,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return TestReservedNames.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: TestReservedNames.ITestReservedNames, b: TestReservedNames.ITestReservedNames): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.extension === b.extension && a[".jspb.test.TestReservedNamesExtension.foo"] === b[".jspb.test.TestReservedNamesExtension.foo"];
+                }
             }
 
             /** Properties of a TestReservedNamesExtension. */
@@ -4520,6 +4810,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return TestReservedNamesExtension.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: TestReservedNamesExtension.ITestReservedNamesExtension, b: TestReservedNamesExtension.ITestReservedNamesExtension): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return true;
+                }
             }
 
             export namespace TestReservedNamesExtension {
@@ -4899,6 +5200,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return TestMessageWithOneof.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: TestMessageWithOneof.ITestMessageWithOneof, b: TestMessageWithOneof.ITestMessageWithOneof): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.pone === b.pone && a.pthree === b.pthree && $root.jspb.test.TestMessageWithOneof.equals(a.rone, b.rone) && a.rtwo === b.rtwo && a.normalField === b.normalField && (!!a.repeatedField && !!b.repeatedField && a.repeatedField.length === b.repeatedField.length && !a.repeatedField.find(function (aValue, i) {
+                        return (a.repeatedField && a.repeatedField[i]) === (b.repeatedField && b.repeatedField[i]);
+                    })) && a.aone === b.aone && a.atwo === b.atwo && a.bone === b.bone && a.btwo === b.btwo;
+                }
             }
 
             /** Properties of a TestEndsWithBytes. */
@@ -5062,6 +5376,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return TestEndsWithBytes.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: TestEndsWithBytes.ITestEndsWithBytes, b: TestEndsWithBytes.ITestEndsWithBytes): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.value === b.value && $util.bytesEquals(a.data, b.data);
+                }
             }
 
             /** Properties of a TestMapFieldsNoBinary. */
@@ -5799,6 +6124,39 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return TestMapFieldsNoBinary.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: TestMapFieldsNoBinary.ITestMapFieldsNoBinary, b: TestMapFieldsNoBinary.ITestMapFieldsNoBinary): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return $util.mapEquals(a.mapStringString, b.mapStringString, function (keyName) {
+                        return !!b.mapStringString && (!(keyName in b.mapStringString) && (a.mapStringString && a.mapStringString[keyName]) === (b.mapStringString && b.mapStringString[keyName]));
+                    }) && $util.mapEquals(a.mapStringInt32, b.mapStringInt32, function (keyName) {
+                        return !!b.mapStringInt32 && (!(keyName in b.mapStringInt32) && (a.mapStringInt32 && a.mapStringInt32[keyName]) === (b.mapStringInt32 && b.mapStringInt32[keyName]));
+                    }) && $util.mapEquals(a.mapStringInt64, b.mapStringInt64, function (keyName) {
+                        return !!b.mapStringInt64 && (!(keyName in b.mapStringInt64) && $util.longEquals(a.mapStringInt64 && a.mapStringInt64[keyName], b.mapStringInt64 && b.mapStringInt64[keyName]));
+                    }) && $util.mapEquals(a.mapStringBool, b.mapStringBool, function (keyName) {
+                        return !!b.mapStringBool && (!(keyName in b.mapStringBool) && (a.mapStringBool && a.mapStringBool[keyName]) === (b.mapStringBool && b.mapStringBool[keyName]));
+                    }) && $util.mapEquals(a.mapStringDouble, b.mapStringDouble, function (keyName) {
+                        return !!b.mapStringDouble && (!(keyName in b.mapStringDouble) && (a.mapStringDouble && a.mapStringDouble[keyName]) === (b.mapStringDouble && b.mapStringDouble[keyName]));
+                    }) && $util.mapEquals(a.mapStringEnum, b.mapStringEnum, function (keyName) {
+                        return !!b.mapStringEnum && (!(keyName in b.mapStringEnum) && (a.mapStringEnum && a.mapStringEnum[keyName]) === (b.mapStringEnum && b.mapStringEnum[keyName]));
+                    }) && $util.mapEquals(a.mapStringMsg, b.mapStringMsg, function (keyName) {
+                        return !!b.mapStringMsg && (!(keyName in b.mapStringMsg) && $root.jspb.test.MapValueMessageNoBinary.equals(a.mapStringMsg && a.mapStringMsg[keyName], b.mapStringMsg && b.mapStringMsg[keyName]));
+                    }) && $util.mapEquals(a.mapInt32String, b.mapInt32String, function (keyName) {
+                        return !!b.mapInt32String && (!(keyName in b.mapInt32String) && (a.mapInt32String && a.mapInt32String[keyName]) === (b.mapInt32String && b.mapInt32String[keyName]));
+                    }) && $util.mapEquals(a.mapInt64String, b.mapInt64String, function (keyName) {
+                        return !!b.mapInt64String && (!(keyName in b.mapInt64String) && (a.mapInt64String && a.mapInt64String[keyName]) === (b.mapInt64String && b.mapInt64String[keyName]));
+                    }) && $util.mapEquals(a.mapBoolString, b.mapBoolString, function (keyName) {
+                        return !!b.mapBoolString && (!(keyName in b.mapBoolString) && (a.mapBoolString && a.mapBoolString[keyName]) === (b.mapBoolString && b.mapBoolString[keyName]));
+                    }) && $root.jspb.test.TestMapFieldsNoBinary.equals(a.testMapFields, b.testMapFields) && $util.mapEquals(a.mapStringTestmapfields, b.mapStringTestmapfields, function (keyName) {
+                        return !!b.mapStringTestmapfields && (!(keyName in b.mapStringTestmapfields) && $root.jspb.test.TestMapFieldsNoBinary.equals(a.mapStringTestmapfields && a.mapStringTestmapfields[keyName], b.mapStringTestmapfields && b.mapStringTestmapfields[keyName]));
+                    });
+                }
             }
 
             export enum MapValueEnumNoBinary {
@@ -5943,6 +6301,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return MapValueMessageNoBinary.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: MapValueMessageNoBinary.IMapValueMessageNoBinary, b: MapValueMessageNoBinary.IMapValueMessageNoBinary): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.foo === b.foo;
+                }
             }
 
             /** Properties of a Deeply. */
@@ -6063,6 +6432,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return Deeply.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: Deeply.IDeeply, b: Deeply.IDeeply): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return true;
+                }
             }
 
             export namespace Deeply {
@@ -6184,6 +6564,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return Nested.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: Nested.INested, b: Nested.INested): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return true;
+                    }
                 }
 
                 export namespace Nested {
@@ -6323,6 +6714,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                         toJSON() {
                             return Message.toObject(this, $protobuf.util.toJSONOptions);
                         };
+
+                        /**
+                         * Compares two messages, checking for strict equality.
+                         */
+                        static equals(a: Message.IMessage, b: Message.IMessage): boolean {
+                            if (!a || !b)
+                                return a === b;
+                            if (a === b)
+                                return true;
+                            return a.count === b.count;
+                        }
                     }
 
                 }
@@ -6496,6 +6898,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return FileDescriptorSet.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: FileDescriptorSet.IFileDescriptorSet, b: FileDescriptorSet.IFileDescriptorSet): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return !!a.file && !!b.file && a.file.length === b.file.length && !a.file.find(function (aValue, i) {
+                        return $root.google.protobuf.FileDescriptorProto.equals(a.file && a.file[i], b.file && b.file[i]);
+                    });
+                }
             }
 
             /** Properties of a FileDescriptorProto. */
@@ -6954,6 +7369,31 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return FileDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: FileDescriptorProto.IFileDescriptorProto, b: FileDescriptorProto.IFileDescriptorProto): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.name === b.name && a["package"] === b["package"] && (!!a.dependency && !!b.dependency && a.dependency.length === b.dependency.length && !a.dependency.find(function (aValue, i) {
+                        return (a.dependency && a.dependency[i]) === (b.dependency && b.dependency[i]);
+                    })) && (!!a.publicDependency && !!b.publicDependency && a.publicDependency.length === b.publicDependency.length && !a.publicDependency.find(function (aValue, i) {
+                        return (a.publicDependency && a.publicDependency[i]) === (b.publicDependency && b.publicDependency[i]);
+                    })) && (!!a.weakDependency && !!b.weakDependency && a.weakDependency.length === b.weakDependency.length && !a.weakDependency.find(function (aValue, i) {
+                        return (a.weakDependency && a.weakDependency[i]) === (b.weakDependency && b.weakDependency[i]);
+                    })) && (!!a.messageType && !!b.messageType && a.messageType.length === b.messageType.length && !a.messageType.find(function (aValue, i) {
+                        return $root.google.protobuf.DescriptorProto.equals(a.messageType && a.messageType[i], b.messageType && b.messageType[i]);
+                    })) && (!!a.enumType && !!b.enumType && a.enumType.length === b.enumType.length && !a.enumType.find(function (aValue, i) {
+                        return $root.google.protobuf.EnumDescriptorProto.equals(a.enumType && a.enumType[i], b.enumType && b.enumType[i]);
+                    })) && (!!a.service && !!b.service && a.service.length === b.service.length && !a.service.find(function (aValue, i) {
+                        return $root.google.protobuf.ServiceDescriptorProto.equals(a.service && a.service[i], b.service && b.service[i]);
+                    })) && (!!a.extension && !!b.extension && a.extension.length === b.extension.length && !a.extension.find(function (aValue, i) {
+                        return $root.google.protobuf.FieldDescriptorProto.equals(a.extension && a.extension[i], b.extension && b.extension[i]);
+                    })) && $root.google.protobuf.FileOptions.equals(a.options, b.options) && $root.google.protobuf.SourceCodeInfo.equals(a.sourceCodeInfo, b.sourceCodeInfo) && a.syntax === b.syntax;
+                }
             }
 
             /** Properties of a DescriptorProto. */
@@ -7398,6 +7838,33 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return DescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: DescriptorProto.IDescriptorProto, b: DescriptorProto.IDescriptorProto): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.name === b.name && (!!a.field && !!b.field && a.field.length === b.field.length && !a.field.find(function (aValue, i) {
+                        return $root.google.protobuf.FieldDescriptorProto.equals(a.field && a.field[i], b.field && b.field[i]);
+                    })) && (!!a.extension && !!b.extension && a.extension.length === b.extension.length && !a.extension.find(function (aValue, i) {
+                        return $root.google.protobuf.FieldDescriptorProto.equals(a.extension && a.extension[i], b.extension && b.extension[i]);
+                    })) && (!!a.nestedType && !!b.nestedType && a.nestedType.length === b.nestedType.length && !a.nestedType.find(function (aValue, i) {
+                        return $root.google.protobuf.DescriptorProto.equals(a.nestedType && a.nestedType[i], b.nestedType && b.nestedType[i]);
+                    })) && (!!a.enumType && !!b.enumType && a.enumType.length === b.enumType.length && !a.enumType.find(function (aValue, i) {
+                        return $root.google.protobuf.EnumDescriptorProto.equals(a.enumType && a.enumType[i], b.enumType && b.enumType[i]);
+                    })) && (!!a.extensionRange && !!b.extensionRange && a.extensionRange.length === b.extensionRange.length && !a.extensionRange.find(function (aValue, i) {
+                        return $root.google.protobuf.DescriptorProto.ExtensionRange.equals(a.extensionRange && a.extensionRange[i], b.extensionRange && b.extensionRange[i]);
+                    })) && (!!a.oneofDecl && !!b.oneofDecl && a.oneofDecl.length === b.oneofDecl.length && !a.oneofDecl.find(function (aValue, i) {
+                        return $root.google.protobuf.OneofDescriptorProto.equals(a.oneofDecl && a.oneofDecl[i], b.oneofDecl && b.oneofDecl[i]);
+                    })) && $root.google.protobuf.MessageOptions.equals(a.options, b.options) && (!!a.reservedRange && !!b.reservedRange && a.reservedRange.length === b.reservedRange.length && !a.reservedRange.find(function (aValue, i) {
+                        return $root.google.protobuf.DescriptorProto.ReservedRange.equals(a.reservedRange && a.reservedRange[i], b.reservedRange && b.reservedRange[i]);
+                    })) && (!!a.reservedName && !!b.reservedName && a.reservedName.length === b.reservedName.length && !a.reservedName.find(function (aValue, i) {
+                        return (a.reservedName && a.reservedName[i]) === (b.reservedName && b.reservedName[i]);
+                    }));
+                }
             }
 
             export namespace DescriptorProto {
@@ -7553,6 +8020,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return ExtensionRange.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: ExtensionRange.IExtensionRange, b: ExtensionRange.IExtensionRange): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.start === b.start && a.end === b.end;
+                    }
                 }
 
                 /** Properties of a ReservedRange. */
@@ -7707,6 +8185,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return ReservedRange.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: ReservedRange.IReservedRange, b: ReservedRange.IReservedRange): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.start === b.start && a.end === b.end;
+                    }
                 }
 
             }
@@ -8099,6 +8588,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return FieldDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: FieldDescriptorProto.IFieldDescriptorProto, b: FieldDescriptorProto.IFieldDescriptorProto): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.name === b.name && a.number === b.number && a.label === b.label && a.type === b.type && a.typeName === b.typeName && a.extendee === b.extendee && a.defaultValue === b.defaultValue && a.oneofIndex === b.oneofIndex && a.jsonName === b.jsonName && $root.google.protobuf.FieldOptions.equals(a.options, b.options);
+                }
             }
 
             export namespace FieldDescriptorProto {
@@ -8288,6 +8788,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return OneofDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: OneofDescriptorProto.IOneofDescriptorProto, b: OneofDescriptorProto.IOneofDescriptorProto): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.name === b.name && $root.google.protobuf.OneofOptions.equals(a.options, b.options);
+                }
             }
 
             /** Properties of an EnumDescriptorProto. */
@@ -8484,6 +8995,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return EnumDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: EnumDescriptorProto.IEnumDescriptorProto, b: EnumDescriptorProto.IEnumDescriptorProto): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.name === b.name && (!!a.value && !!b.value && a.value.length === b.value.length && !a.value.find(function (aValue, i) {
+                        return $root.google.protobuf.EnumValueDescriptorProto.equals(a.value && a.value[i], b.value && b.value[i]);
+                    })) && $root.google.protobuf.EnumOptions.equals(a.options, b.options);
+                }
             }
 
             /** Properties of an EnumValueDescriptorProto. */
@@ -8658,6 +9182,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return EnumValueDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: EnumValueDescriptorProto.IEnumValueDescriptorProto, b: EnumValueDescriptorProto.IEnumValueDescriptorProto): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.name === b.name && a.number === b.number && $root.google.protobuf.EnumValueOptions.equals(a.options, b.options);
+                }
             }
 
             /** Properties of a ServiceDescriptorProto. */
@@ -8854,6 +9389,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return ServiceDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: ServiceDescriptorProto.IServiceDescriptorProto, b: ServiceDescriptorProto.IServiceDescriptorProto): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.name === b.name && (!!a.method && !!b.method && a.method.length === b.method.length && !a.method.find(function (aValue, i) {
+                        return $root.google.protobuf.MethodDescriptorProto.equals(a.method && a.method[i], b.method && b.method[i]);
+                    })) && $root.google.protobuf.ServiceOptions.equals(a.options, b.options);
+                }
             }
 
             /** Properties of a MethodDescriptorProto. */
@@ -9073,6 +9621,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return MethodDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: MethodDescriptorProto.IMethodDescriptorProto, b: MethodDescriptorProto.IMethodDescriptorProto): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.name === b.name && a.inputType === b.inputType && a.outputType === b.outputType && $root.google.protobuf.MethodOptions.equals(a.options, b.options) && a.clientStreaming === b.clientStreaming && a.serverStreaming === b.serverStreaming;
+                }
             }
 
             /** Properties of a FileOptions. */
@@ -9462,6 +10021,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return FileOptions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: FileOptions.IFileOptions, b: FileOptions.IFileOptions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.javaPackage === b.javaPackage && a.javaOuterClassname === b.javaOuterClassname && a.javaMultipleFiles === b.javaMultipleFiles && a.javaGenerateEqualsAndHash === b.javaGenerateEqualsAndHash && a.javaStringCheckUtf8 === b.javaStringCheckUtf8 && a.optimizeFor === b.optimizeFor && a.goPackage === b.goPackage && a.ccGenericServices === b.ccGenericServices && a.javaGenericServices === b.javaGenericServices && a.pyGenericServices === b.pyGenericServices && a.deprecated === b.deprecated && a.ccEnableArenas === b.ccEnableArenas && a.objcClassPrefix === b.objcClassPrefix && a.csharpNamespace === b.csharpNamespace && (!!a.uninterpretedOption && !!b.uninterpretedOption && a.uninterpretedOption.length === b.uninterpretedOption.length && !a.uninterpretedOption.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
+                    }));
+                }
             }
 
             export namespace FileOptions {
@@ -9692,6 +10264,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return MessageOptions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: MessageOptions.IMessageOptions, b: MessageOptions.IMessageOptions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.messageSetWireFormat === b.messageSetWireFormat && a.noStandardDescriptorAccessor === b.noStandardDescriptorAccessor && a.deprecated === b.deprecated && a.mapEntry === b.mapEntry && (!!a.uninterpretedOption && !!b.uninterpretedOption && a.uninterpretedOption.length === b.uninterpretedOption.length && !a.uninterpretedOption.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
+                    }));
+                }
             }
 
             /** Properties of a FieldOptions. */
@@ -9979,6 +10564,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return FieldOptions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: FieldOptions.IFieldOptions, b: FieldOptions.IFieldOptions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.ctype === b.ctype && a.packed === b.packed && a.jstype === b.jstype && a.lazy === b.lazy && a.deprecated === b.deprecated && a.weak === b.weak && (!!a.uninterpretedOption && !!b.uninterpretedOption && a.uninterpretedOption.length === b.uninterpretedOption.length && !a.uninterpretedOption.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
+                    }));
+                }
             }
 
             export namespace FieldOptions {
@@ -10153,6 +10751,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return OneofOptions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: OneofOptions.IOneofOptions, b: OneofOptions.IOneofOptions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return !!a.uninterpretedOption && !!b.uninterpretedOption && a.uninterpretedOption.length === b.uninterpretedOption.length && !a.uninterpretedOption.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
+                    });
+                }
             }
 
             /** Properties of an EnumOptions. */
@@ -10359,6 +10970,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return EnumOptions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: EnumOptions.IEnumOptions, b: EnumOptions.IEnumOptions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.allowAlias === b.allowAlias && a.deprecated === b.deprecated && (!!a.uninterpretedOption && !!b.uninterpretedOption && a.uninterpretedOption.length === b.uninterpretedOption.length && !a.uninterpretedOption.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
+                    })) && a[".jspb.test.IsExtension.simpleOption"] === b[".jspb.test.IsExtension.simpleOption"];
+                }
             }
 
             /** Properties of an EnumValueOptions. */
@@ -10534,6 +11158,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return EnumValueOptions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: EnumValueOptions.IEnumValueOptions, b: EnumValueOptions.IEnumValueOptions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.deprecated === b.deprecated && (!!a.uninterpretedOption && !!b.uninterpretedOption && a.uninterpretedOption.length === b.uninterpretedOption.length && !a.uninterpretedOption.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
+                    }));
+                }
             }
 
             /** Properties of a ServiceOptions. */
@@ -10709,6 +11346,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return ServiceOptions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: ServiceOptions.IServiceOptions, b: ServiceOptions.IServiceOptions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.deprecated === b.deprecated && (!!a.uninterpretedOption && !!b.uninterpretedOption && a.uninterpretedOption.length === b.uninterpretedOption.length && !a.uninterpretedOption.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
+                    }));
+                }
             }
 
             /** Properties of a MethodOptions. */
@@ -10918,6 +11568,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return MethodOptions.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: MethodOptions.IMethodOptions, b: MethodOptions.IMethodOptions): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return a.deprecated === b.deprecated && a.idempotencyLevel === b.idempotencyLevel && (!!a.uninterpretedOption && !!b.uninterpretedOption && a.uninterpretedOption.length === b.uninterpretedOption.length && !a.uninterpretedOption.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
+                    }));
+                }
             }
 
             export namespace MethodOptions {
@@ -11215,6 +11878,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return UninterpretedOption.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: UninterpretedOption.IUninterpretedOption, b: UninterpretedOption.IUninterpretedOption): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return !!a.name && !!b.name && a.name.length === b.name.length && !a.name.find(function (aValue, i) {
+                        return $root.google.protobuf.UninterpretedOption.NamePart.equals(a.name && a.name[i], b.name && b.name[i]);
+                    }) && a.identifierValue === b.identifierValue && $util.longEquals(a.positiveIntValue, b.positiveIntValue) && $util.longEquals(a.negativeIntValue, b.negativeIntValue) && a.doubleValue === b.doubleValue && $util.bytesEquals(a.stringValue, b.stringValue) && a.aggregateValue === b.aggregateValue;
+                }
             }
 
             export namespace UninterpretedOption {
@@ -11370,6 +12046,17 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return NamePart.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: NamePart.INamePart, b: NamePart.INamePart): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return a.namePart === b.namePart && a.isExtension === b.isExtension;
+                    }
                 }
 
             }
@@ -11531,6 +12218,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return SourceCodeInfo.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: SourceCodeInfo.ISourceCodeInfo, b: SourceCodeInfo.ISourceCodeInfo): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return !!a.location && !!b.location && a.location.length === b.location.length && !a.location.find(function (aValue, i) {
+                        return $root.google.protobuf.SourceCodeInfo.Location.equals(a.location && a.location[i], b.location && b.location[i]);
+                    });
+                }
             }
 
             export namespace SourceCodeInfo {
@@ -11797,6 +12497,23 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return Location.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: Location.ILocation, b: Location.ILocation): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return !!a.path && !!b.path && a.path.length === b.path.length && !a.path.find(function (aValue, i) {
+                            return (a.path && a.path[i]) === (b.path && b.path[i]);
+                        }) && (!!a.span && !!b.span && a.span.length === b.span.length && !a.span.find(function (aValue, i) {
+                            return (a.span && a.span[i]) === (b.span && b.span[i]);
+                        })) && a.leadingComments === b.leadingComments && a.trailingComments === b.trailingComments && (!!a.leadingDetachedComments && !!b.leadingDetachedComments && a.leadingDetachedComments.length === b.leadingDetachedComments.length && !a.leadingDetachedComments.find(function (aValue, i) {
+                            return (a.leadingDetachedComments && a.leadingDetachedComments[i]) === (b.leadingDetachedComments && b.leadingDetachedComments[i]);
+                        }));
+                    }
                 }
 
             }
@@ -11958,6 +12675,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                 toJSON() {
                     return GeneratedCodeInfo.toObject(this, $protobuf.util.toJSONOptions);
                 };
+
+                /**
+                 * Compares two messages, checking for strict equality.
+                 */
+                static equals(a: GeneratedCodeInfo.IGeneratedCodeInfo, b: GeneratedCodeInfo.IGeneratedCodeInfo): boolean {
+                    if (!a || !b)
+                        return a === b;
+                    if (a === b)
+                        return true;
+                    return !!a.annotation && !!b.annotation && a.annotation.length === b.annotation.length && !a.annotation.find(function (aValue, i) {
+                        return $root.google.protobuf.GeneratedCodeInfo.Annotation.equals(a.annotation && a.annotation[i], b.annotation && b.annotation[i]);
+                    });
+                }
             }
 
             export namespace GeneratedCodeInfo {
@@ -12168,6 +12898,19 @@ const $root: any = $protobuf.roots.test_test || ($protobuf.roots.test_test = {} 
                     toJSON() {
                         return Annotation.toObject(this, $protobuf.util.toJSONOptions);
                     };
+
+                    /**
+                     * Compares two messages, checking for strict equality.
+                     */
+                    static equals(a: Annotation.IAnnotation, b: Annotation.IAnnotation): boolean {
+                        if (!a || !b)
+                            return a === b;
+                        if (a === b)
+                            return true;
+                        return !!a.path && !!b.path && a.path.length === b.path.length && !a.path.find(function (aValue, i) {
+                            return (a.path && a.path[i]) === (b.path && b.path[i]);
+                        }) && a.sourceFile === b.sourceFile && a.begin === b.begin && a.end === b.end;
+                    }
                 }
 
             }

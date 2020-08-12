@@ -159,6 +159,62 @@ util.newBuffer = function newBuffer(sizeOrArray) {
 };
 
 /**
+ * Equality check for byte data fields.
+ * @param {Uint8Array|Buffer|number[]|string} [a] Left side
+ * @param {Uint8Array|Buffer|number[]|string} [b] Right side
+ * @returns {boolean} true if equals
+ */
+util.bytesEquals = function bytesEquals(a, b) {
+    if (a === b)
+        return true;
+
+    if (!a || !b)
+        return false;
+
+    return a.length === b.length && a.findIndex(function(aValue, index) {
+        return aValue !== b[index];
+    }) < 0;
+};
+
+
+/**
+ * Equality check for map data fields.
+ * @param {object|null|undefined} a Left side
+ * @param {object|null|undefined} b Right side
+ * @param {function} fn Key comparison check. Returns true if a given key name is a mismatch.
+ * @returns {boolean} true if equals
+ */
+util.mapEquals = function mapEquals(a, b, fn) {
+    if (a === b)
+        return true;
+
+    if (!a || !b)
+        return false;
+
+    var aKeys = Object.keys(a);
+    return aKeys.length === Object.keys(b).length && aKeys.findIndex(fn) < 0;
+};
+
+
+/**
+ * Equality check for long data fields.
+ * @param {number|Long} [a] Left side
+ * @param {number|Long} [b] Right side
+ * @returns {boolean} true if equals
+ */
+util.longEquals = function longEquals(a, b) {
+    if (a === b)
+        return true;
+
+    if (a == null || b == null)
+        return false;
+
+    // If the checks above did not resolve, then this is either an object that may be equal
+    // or a primitive that is not equal
+    return util.Long && util.Long.isLong(a) ? a.equals(b) : false;
+};
+
+/**
  * Array implementation used in the browser. `Uint8Array` if supported, otherwise `Array`.
  * @type {Constructor<Uint8Array>}
  */

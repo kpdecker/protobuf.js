@@ -620,6 +620,16 @@ function buildType(type) {
         push("};");
     }
 
+    if (config.equals) {
+      push("");
+      pushComment([
+          "Compares two messages, checking for strict equality.",
+      ]);
+      push(`static equals(a: ${typeName(type, !config.forceMessage)}, b: ${typeName(type, !config.forceMessage)}): boolean {`);
+      buildFunction(type, "equals", protobuf.equals(type));
+      push("}");
+    }
+
     indent--;
     push("}");
 }
