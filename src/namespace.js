@@ -109,10 +109,11 @@ function Namespace(name, options) {
     this._nestedArray = null;
 }
 
-function clearCache(namespace) {
-    namespace._nestedArray = null;
-    return namespace;
-}
+Namespace.prototype.clearCache = function clearCache() {
+    this._nestedArray = null;
+    this._pathMap = null;
+    return this;
+};
 
 /**
  * Nested objects of this namespace as an array for iteration.
@@ -191,8 +192,66 @@ Namespace.prototype.addJSON = function addJSON(nestedJson) {
  * @returns {ReflectionObject|null} The reflection object or `null` if it doesn't exist
  */
 Namespace.prototype.get = function get(name) {
-    return this.nested && this.nested[name]
-        || null;
+    if (!Array.isArray(name)) {
+        name = name.split(/\./g);
+    }
+
+    var pathMap = this._loadPathMap()
+    var ptr = pathMap;
+    var walkPath = name.slice();
+    while (ptr && walkPath.length) {
+        ptr = ptr.children && ptr.children.find(function (child) {
+            return child.name === walkPath[0];
+        });
+        if (ptr) {
+            walkPath.shift();
+        }
+    }
+
+    if (!walkPath.length && ptr) {
+        return ptr.node;
+    }
+
+    // Special case direct lookup of . inclusive field names
+    // This is used primarily for extended fields.
+    if (name.length > 1) {
+        name = name.join(".");
+        ptr = pathMap.children.find(function (child) {
+        return child.name === name;
+        });
+        if (ptr) {
+            return ptr.node;
+        }
+    }
+    return null;
+};
+
+Namespace.prototype._loadPathMap = function _loadPathMap() {
+    var pathMap = { children: [] };
+    this.nestedArray.forEach(function (child) {
+        var nameComponents = child.name.split(/\./g);
+        var ptr = pathMap;
+        nameComponents.slice(0, -1).forEach(function (component) {
+            var existing = ptr.children.find(function (mapEl) {
+                return mapEl.name === component;
+            });
+            if (existing) {
+                ptr = existing;
+            } else {
+                var newEl = { name: component, children: [] };
+                ptr.children.push(newEl);
+                ptr = newEl;
+            }
+        });
+
+        var childPathMap = child._loadPathMap && child._loadPathMap();
+        ptr.children.push({
+            name: nameComponents[nameComponents.length - 1],
+            node: child,
+            children: childPathMap && childPathMap.children,
+        });
+    });
+    return pathMap;
 };
 
 /**
@@ -240,8 +299,9 @@ Namespace.prototype.add = function add(object) {
         }
     }
     this.nested[object.name] = object;
+    this.clearCache();
     object.onAdd(this);
-    return clearCache(this);
+    return this;
 };
 
 /**
@@ -262,34 +322,36 @@ Namespace.prototype.remove = function remove(object) {
     if (!Object.keys(this.nested).length)
         this.nested = undefined;
 
+    this.clearCache();
+
     object.onRemove(this);
-    return clearCache(this);
+    return this;
 };
 
 /**
  * Defines additial namespaces within this one if not yet existing.
  * @param {string|string[]} path Path to create
  * @param {*} [json] Nested types to create from JSON
+ * @param {string} [filename] Filename defining namespace
  * @returns {Namespace} Pointer to the last namespace created or `this` if path is empty
  */
-Namespace.prototype.define = function define(path, json) {
+Namespace.prototype.define = function define(path, json, filename) {
 
-    if (util.isString(path))
-        path = path.split(".");
-    else if (!Array.isArray(path))
+    if (Array.isArray(path))
+        path = path.join(".");
+    else if (!util.isString(path))
         throw TypeError("illegal path");
-    if (path && path.length && path[0] === "")
+    if (path.startsWith("."))
         throw Error("path must be relative");
 
     var ptr = this;
-    while (path.length > 0) {
-        var part = path.shift();
-        if (ptr.nested && ptr.nested[part]) {
-            ptr = ptr.nested[part];
-            if (!(ptr instanceof Namespace))
-                throw Error("path conflicts with non-namespace objects");
-        } else
-            ptr.add(ptr = new Namespace(part));
+    if (ptr.nested && ptr.nested[path]) {
+        ptr = ptr.nested[path];
+        if (!(ptr instanceof Namespace))
+            throw Error("path conflicts with non-namespace objects");
+    } else {
+        ptr.add(ptr = new Namespace(path));
+        ptr.filename = filename;
     }
     if (json)
         ptr.addJSON(json);
@@ -338,12 +400,9 @@ Namespace.prototype.lookup = function lookup(path, filterTypes, parentAlreadyChe
         return this.root.lookup(path.slice(1), filterTypes);
 
     // Test if the first part matches any nested object, and if so, traverse if path contains more
-    var found = this.get(path[0]);
+    var found = this.get(path);
     if (found) {
-        if (path.length === 1) {
-            if (!filterTypes || filterTypes.indexOf(found.constructor) > -1)
-                return found;
-        } else if (found instanceof Namespace && (found = found.lookup(path.slice(1), filterTypes, true)))
+        if (!filterTypes || filterTypes.indexOf(found.constructor) > -1)
             return found;
 
     // Otherwise try each nested namespace

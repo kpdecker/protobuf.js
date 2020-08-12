@@ -43,6 +43,7 @@ var base10Re    = /^[1-9][0-9]*$/,
  * @property {boolean} [keepCase=false] Keeps field casing instead of converting to camel case
  * @property {boolean} [alternateCommentMode=false] Recognize double-slash comments in addition to doc-block comments.
  * @property {boolean} [preferTrailingComment=false] Use trailing comment when both leading comment and trailing comment exist.
+ * @property {boolean} [flattenNamespace=false] Treat foo.bar as a single namespace vs. two nested. The type of target should dictate this flag.
  */
 
 /**
@@ -214,7 +215,13 @@ function parse(source, root, options) {
         if (!typeRefRe.test(pkg))
             throw illegal(pkg, "name");
 
-        ptr = ptr.define(pkg);
+        if (options.flattenNamespace) {
+            ptr = ptr.define(pkg, false, parse.filename);
+        } else {
+            pkg.split(/\./g).forEach(function (pkgComponent) {
+                ptr = ptr.define(pkgComponent, false, parse.filename);
+            });
+        }
         skip(";");
     }
 

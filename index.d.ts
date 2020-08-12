@@ -774,9 +774,10 @@ export abstract class NamespaceBase extends ReflectionObject {
      * Defines additial namespaces within this one if not yet existing.
      * @param path Path to create
      * @param [json] Nested types to create from JSON
+     * @param [filename] Filename defining namespace
      * @returns Pointer to the last namespace created or `this` if path is empty
      */
-    public define(path: (string|string[]), json?: any): Namespace;
+    public define(path: (string|string[]), json?: any, filename?: string): Namespace;
 
     /**
      * Resolves this namespace's and all its nested objects' type references. Useful to validate a reflection tree, but comes at a cost.
@@ -1062,6 +1063,9 @@ export interface IParseOptions {
 
     /** Use trailing comment when both leading comment and trailing comment exist. */
     preferTrailingComment?: boolean;
+
+    /** Treat foo.bar as a single namespace vs. two nested. The type of target should dictate this flag. */
+    flattenNamespace?: boolean;
 }
 
 /** Options modifying the behavior of JSON serialization. */

@@ -209,13 +209,13 @@ Type.generateConstructor = function generateConstructor(mtype) {
     /* eslint-enable no-unexpected-multiline */
 };
 
-function clearCache(type) {
-    type._fieldsById = type._fieldsArray = type._oneofsArray = null;
-    delete type.encode;
-    delete type.decode;
-    delete type.verify;
-    return type;
-}
+Type.prototype.clearCache = function clearCache() {
+    this._fieldsById = this._fieldsArray = this._oneofsArray = null;
+    delete this.encode;
+    delete this.decode;
+    delete this.verify;
+    return Namespace.prototype.clearCache.call(this);
+};
 
 /**
  * Message type descriptor.
@@ -308,14 +308,26 @@ Type.prototype.resolveAll = function resolveAll() {
     return Namespace.prototype.resolveAll.call(this);
 };
 
-/**
- * @override
- */
-Type.prototype.get = function get(name) {
-    return this.fields[name]
-        || this.oneofs && this.oneofs[name]
-        || this.nested && this.nested[name]
-        || null;
+Type.prototype._loadPathMap = function _loadPathMap() {
+    var pathMap = Namespace.prototype._loadPathMap.call(this);
+    pathMap.children = pathMap.children.concat(this.fieldsArray.map(function (field) {
+        return {
+            name: field.name,
+            node: field
+        };
+    }));
+    if (this.oneofsArray) {
+      pathMap.children = pathMap.children.concat(
+        this.oneofsArray.map(function (oneOf) {
+          return {
+            name: oneOf.name,
+            node: oneOf,
+          };
+        })
+      );
+    }
+
+    return pathMap;
 };
 
 /**
@@ -348,14 +360,14 @@ Type.prototype.add = function add(object) {
         this.fields[object.name] = object;
         object.message = this;
         object.onAdd(this);
-        return clearCache(this);
+        return this.clearCache();
     }
     if (object instanceof OneOf) {
         if (!this.oneofs)
             this.oneofs = {};
         this.oneofs[object.name] = object;
         object.onAdd(this);
-        return clearCache(this);
+        return this.clearCache();
     }
     return Namespace.prototype.add.call(this, object);
 };
@@ -378,7 +390,7 @@ Type.prototype.remove = function remove(object) {
         delete this.fields[object.name];
         object.parent = null;
         object.onRemove(this);
-        return clearCache(this);
+        return this.clearCache();
     }
     if (object instanceof OneOf) {
 
@@ -389,7 +401,7 @@ Type.prototype.remove = function remove(object) {
         delete this.oneofs[object.name];
         object.parent = null;
         object.onRemove(this);
-        return clearCache(this);
+        return this.clearCache();
     }
     return Namespace.prototype.remove.call(this, object);
 };
