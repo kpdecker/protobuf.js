@@ -65,6 +65,7 @@ function parse(source, root, options) {
     if (!(root instanceof Root)) {
         options = root;
         root = new Root();
+        root.filename = parse.filename;
     }
     if (!options)
         options = parse.defaults;
@@ -305,6 +306,7 @@ function parse(source, root, options) {
             throw illegal(token, "type name");
 
         var type = new Type(token);
+        type.filename = parse.filename;
         ifBlock(type, function parseType_block(token) {
             if (parseCommon(type, token))
                 return;
@@ -367,6 +369,7 @@ function parse(source, root, options) {
         skip("=");
 
         var field = new Field(name, parseId(next()), type, rule, extend);
+        field.filename = parse.filename;
         ifBlock(field, function parseField_block(token) {
 
             /* istanbul ignore else */
@@ -402,6 +405,7 @@ function parse(source, root, options) {
         var id = parseId(next());
         var type = new Type(name);
         type.group = true;
+        type.filename = parse.filename;
         var field = new Field(fieldName, id, name, rule);
         field.filename = parse.filename;
         ifBlock(type, function parseGroup_block(token) {
@@ -451,6 +455,7 @@ function parse(source, root, options) {
 
         skip("=");
         var field = new MapField(applyCase(name), parseId(next()), keyType, valueType);
+        field.filename = parse.filename;
         ifBlock(field, function parseMapField_block(token) {
 
             /* istanbul ignore else */
@@ -473,6 +478,7 @@ function parse(source, root, options) {
             throw illegal(token, "name");
 
         var oneof = new OneOf(applyCase(token));
+        oneof.filename = parse.filename;
         ifBlock(oneof, function parseOneOf_block(token) {
             if (token === "option") {
                 parseOption(oneof, token);
@@ -492,6 +498,7 @@ function parse(source, root, options) {
             throw illegal(token, "name");
 
         var enm = new Enum(token);
+        enm.filename = parse.filename;
         ifBlock(enm, function parseEnum_block(token) {
           switch(token) {
             case "option":
@@ -624,6 +631,7 @@ function parse(source, root, options) {
             throw illegal(token, "service name");
 
         var service = new Service(token);
+        service.filename = parse.filename;
         ifBlock(service, function parseService_block(token) {
             if (parseCommon(service, token))
                 return;
@@ -673,6 +681,7 @@ function parse(source, root, options) {
         skip(")");
 
         var method = new Method(name, type, requestType, responseType, requestStream, responseStream);
+        method.filename = parse.filename;
         method.comment = commentText;
         ifBlock(method, function parseMethod_block(token) {
 
