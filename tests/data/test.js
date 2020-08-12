@@ -533,7 +533,7 @@ $root.jspb = (function() {
                     }
                 }
                 if (!message.hasOwnProperty("aString"))
-                    throw $util.ProtocolError("missing required 'aString'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'aString'", { instance: message });
                 return message;
             };
 
@@ -768,7 +768,7 @@ $root.jspb = (function() {
                     }
                 }
                 if (!message.hasOwnProperty("aString"))
-                    throw $util.ProtocolError("missing required 'aString'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'aString'", { instance: message });
                 return message;
             };
 
@@ -1015,13 +1015,13 @@ $root.jspb = (function() {
                     }
                 }
                 if (!message.hasOwnProperty("normal"))
-                    throw $util.ProtocolError("missing required 'normal'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'normal'", { instance: message });
                 if (!message.hasOwnProperty("default"))
-                    throw $util.ProtocolError("missing required 'default'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'default'", { instance: message });
                 if (!message.hasOwnProperty("function"))
-                    throw $util.ProtocolError("missing required 'function'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'function'", { instance: message });
                 if (!message.hasOwnProperty("var"))
-                    throw $util.ProtocolError("missing required 'var'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'var'", { instance: message });
                 return message;
             };
 
@@ -1294,7 +1294,7 @@ $root.jspb = (function() {
                     }
                 }
                 if (!message.hasOwnProperty("aBool"))
-                    throw $util.ProtocolError("missing required 'aBool'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'aBool'", { instance: message });
                 return message;
             };
 
@@ -2218,9 +2218,9 @@ $root.jspb = (function() {
                     }
                 }
                 if (!message.hasOwnProperty("aString"))
-                    throw $util.ProtocolError("missing required 'aString'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'aString'", { instance: message });
                 if (!message.hasOwnProperty("anOutOfOrderBool"))
-                    throw $util.ProtocolError("missing required 'anOutOfOrderBool'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'anOutOfOrderBool'", { instance: message });
                 return message;
             };
 
@@ -2472,7 +2472,7 @@ $root.jspb = (function() {
                         }
                     }
                     if (!message.hasOwnProperty("anInt"))
-                        throw $util.ProtocolError("missing required 'anInt'", { instance: message });
+                        throw new $util.ProtocolError("missing required 'anInt'", { instance: message });
                     return message;
                 };
 
@@ -3506,7 +3506,7 @@ $root.jspb = (function() {
                     else if (typeof object.intField === "number")
                         message.intField = object.intField;
                     else if (typeof object.intField === "object")
-                        message.intField = new $util.LongBits(object.intField.low >>> 0, object.intField.high >>> 0).toNumber();
+                        message.intField = new $util.LongBits(object.intField).toNumber();
                 switch (object.enumField) {
                 case "E1":
                 case 13:
@@ -3570,7 +3570,7 @@ $root.jspb = (function() {
                     if (typeof message.intField === "number")
                         object.intField = options.longs === String ? String(message.intField) : message.intField;
                     else
-                        object.intField = options.longs === String ? $util.Long.prototype.toString.call(message.intField) : options.longs === Number ? new $util.LongBits(message.intField.low >>> 0, message.intField.high >>> 0).toNumber() : message.intField;
+                        object.intField = options.longs === String ? $util.Long.prototype.toString.call(message.intField) : options.longs === Number ? new $util.LongBits(message.intField).toNumber() : message.intField;
                 if (message.enumField != null && message.hasOwnProperty("enumField"))
                     object.enumField = options.enums === String ? $root.jspb.test.DefaultValues.Enum[message.enumField] : message.enumField;
                 if (message.emptyField != null && message.hasOwnProperty("emptyField"))
@@ -3823,9 +3823,9 @@ $root.jspb = (function() {
                     }
                 }
                 if (!message.hasOwnProperty("requiredFloatField"))
-                    throw $util.ProtocolError("missing required 'requiredFloatField'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'requiredFloatField'", { instance: message });
                 if (!message.hasOwnProperty("requiredDoubleField"))
-                    throw $util.ProtocolError("missing required 'requiredDoubleField'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'requiredDoubleField'", { instance: message });
                 return message;
             };
 
@@ -4693,9 +4693,9 @@ $root.jspb = (function() {
                     }
                 }
                 if (!message.hasOwnProperty("requiredGroup"))
-                    throw $util.ProtocolError("missing required 'requiredGroup'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'requiredGroup'", { instance: message });
                 if (!message.hasOwnProperty("requiredSimple"))
-                    throw $util.ProtocolError("missing required 'requiredSimple'", { instance: message });
+                    throw new $util.ProtocolError("missing required 'requiredSimple'", { instance: message });
                 return message;
             };
 
@@ -4984,7 +4984,7 @@ $root.jspb = (function() {
                         }
                     }
                     if (!message.hasOwnProperty("id"))
-                        throw $util.ProtocolError("missing required 'id'", { instance: message });
+                        throw new $util.ProtocolError("missing required 'id'", { instance: message });
                     return message;
                 };
 
@@ -5194,7 +5194,7 @@ $root.jspb = (function() {
                         }
                     }
                     if (!message.hasOwnProperty("id"))
-                        throw $util.ProtocolError("missing required 'id'", { instance: message });
+                        throw new $util.ProtocolError("missing required 'id'", { instance: message });
                     return message;
                 };
 
@@ -5383,7 +5383,7 @@ $root.jspb = (function() {
                         }
                     }
                     if (!message.hasOwnProperty("id"))
-                        throw $util.ProtocolError("missing required 'id'", { instance: message });
+                        throw new $util.ProtocolError("missing required 'id'", { instance: message });
                     return message;
                 };
 
@@ -6985,100 +6985,254 @@ $root.jspb = (function() {
             TestMapFieldsNoBinary.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.TestMapFieldsNoBinary(), key;
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.jspb.test.TestMapFieldsNoBinary(), key, value;
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        reader.skip().pos++;
                         if (message.mapStringString === $util.emptyObject)
                             message.mapStringString = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.mapStringString[key] = reader.string();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = "";
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapStringString[key] = value;
                         break;
                     case 2:
-                        reader.skip().pos++;
                         if (message.mapStringInt32 === $util.emptyObject)
                             message.mapStringInt32 = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.mapStringInt32[key] = reader.int32();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = 0;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.int32();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapStringInt32[key] = value;
                         break;
                     case 3:
-                        reader.skip().pos++;
                         if (message.mapStringInt64 === $util.emptyObject)
                             message.mapStringInt64 = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.mapStringInt64[key] = reader.int64();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = 0;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.int64();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapStringInt64[key] = value;
                         break;
                     case 4:
-                        reader.skip().pos++;
                         if (message.mapStringBool === $util.emptyObject)
                             message.mapStringBool = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.mapStringBool[key] = reader.bool();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = false;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.bool();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapStringBool[key] = value;
                         break;
                     case 5:
-                        reader.skip().pos++;
                         if (message.mapStringDouble === $util.emptyObject)
                             message.mapStringDouble = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.mapStringDouble[key] = reader.double();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = 0;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.double();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapStringDouble[key] = value;
                         break;
                     case 6:
-                        reader.skip().pos++;
                         if (message.mapStringEnum === $util.emptyObject)
                             message.mapStringEnum = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.mapStringEnum[key] = reader.int32();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = 0;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.int32();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapStringEnum[key] = value;
                         break;
                     case 7:
-                        reader.skip().pos++;
                         if (message.mapStringMsg === $util.emptyObject)
                             message.mapStringMsg = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.mapStringMsg[key] = $root.jspb.test.MapValueMessageNoBinary.decode(reader, reader.uint32());
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = null;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = $root.jspb.test.MapValueMessageNoBinary.decode(reader, reader.uint32());
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapStringMsg[key] = value;
                         break;
                     case 8:
-                        reader.skip().pos++;
                         if (message.mapInt32String === $util.emptyObject)
                             message.mapInt32String = {};
-                        key = reader.int32();
-                        reader.pos++;
-                        message.mapInt32String[key] = reader.string();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = 0;
+                        value = "";
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.int32();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapInt32String[key] = value;
                         break;
                     case 9:
-                        reader.skip().pos++;
                         if (message.mapInt64String === $util.emptyObject)
                             message.mapInt64String = {};
-                        key = reader.int64();
-                        reader.pos++;
-                        message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = reader.string();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = 0;
+                        value = "";
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.int64();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = value;
                         break;
                     case 10:
-                        reader.skip().pos++;
                         if (message.mapBoolString === $util.emptyObject)
                             message.mapBoolString = {};
-                        key = reader.bool();
-                        reader.pos++;
-                        message.mapBoolString[key] = reader.string();
+                        var end2 = reader.uint32() + reader.pos;
+                        key = false;
+                        value = "";
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.bool();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapBoolString[key] = value;
                         break;
                     case 11:
                         message.testMapFields = $root.jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
                         break;
                     case 12:
-                        reader.skip().pos++;
                         if (message.mapStringTestmapfields === $util.emptyObject)
                             message.mapStringTestmapfields = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.mapStringTestmapfields[key] = $root.jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = null;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = $root.jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.mapStringTestmapfields[key] = value;
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -7268,7 +7422,7 @@ $root.jspb = (function() {
                         else if (typeof object.mapStringInt64[keys[i]] === "number")
                             message.mapStringInt64[keys[i]] = object.mapStringInt64[keys[i]];
                         else if (typeof object.mapStringInt64[keys[i]] === "object")
-                            message.mapStringInt64[keys[i]] = new $util.LongBits(object.mapStringInt64[keys[i]].low >>> 0, object.mapStringInt64[keys[i]].high >>> 0).toNumber();
+                            message.mapStringInt64[keys[i]] = new $util.LongBits(object.mapStringInt64[keys[i]]).toNumber();
                 }
                 if (object.mapStringBool) {
                     if (typeof object.mapStringBool !== "object")
@@ -7398,7 +7552,7 @@ $root.jspb = (function() {
                         if (typeof message.mapStringInt64[keys2[j]] === "number")
                             object.mapStringInt64[keys2[j]] = options.longs === String ? String(message.mapStringInt64[keys2[j]]) : message.mapStringInt64[keys2[j]];
                         else
-                            object.mapStringInt64[keys2[j]] = options.longs === String ? $util.Long.prototype.toString.call(message.mapStringInt64[keys2[j]]) : options.longs === Number ? new $util.LongBits(message.mapStringInt64[keys2[j]].low >>> 0, message.mapStringInt64[keys2[j]].high >>> 0).toNumber() : message.mapStringInt64[keys2[j]];
+                            object.mapStringInt64[keys2[j]] = options.longs === String ? $util.Long.prototype.toString.call(message.mapStringInt64[keys2[j]]) : options.longs === Number ? new $util.LongBits(message.mapStringInt64[keys2[j]]).toNumber() : message.mapStringInt64[keys2[j]];
                 }
                 if (message.mapStringBool && (keys2 = Object.keys(message.mapStringBool)).length) {
                     object.mapStringBool = {};
@@ -14572,7 +14726,7 @@ $root.google = (function() {
                     else if (typeof object.positiveIntValue === "number")
                         message.positiveIntValue = object.positiveIntValue;
                     else if (typeof object.positiveIntValue === "object")
-                        message.positiveIntValue = new $util.LongBits(object.positiveIntValue.low >>> 0, object.positiveIntValue.high >>> 0).toNumber(true);
+                        message.positiveIntValue = new $util.LongBits(object.positiveIntValue).toNumber(true);
                 if (object.negativeIntValue != null)
                     if ($util.Long)
                         (message.negativeIntValue = $util.Long.fromValue(object.negativeIntValue)).unsigned = false;
@@ -14581,7 +14735,7 @@ $root.google = (function() {
                     else if (typeof object.negativeIntValue === "number")
                         message.negativeIntValue = object.negativeIntValue;
                     else if (typeof object.negativeIntValue === "object")
-                        message.negativeIntValue = new $util.LongBits(object.negativeIntValue.low >>> 0, object.negativeIntValue.high >>> 0).toNumber();
+                        message.negativeIntValue = new $util.LongBits(object.negativeIntValue).toNumber();
                 if (object.doubleValue != null)
                     message.doubleValue = Number(object.doubleValue);
                 if (object.stringValue != null)
@@ -14642,12 +14796,12 @@ $root.google = (function() {
                     if (typeof message.positiveIntValue === "number")
                         object.positiveIntValue = options.longs === String ? String(message.positiveIntValue) : message.positiveIntValue;
                     else
-                        object.positiveIntValue = options.longs === String ? $util.Long.prototype.toString.call(message.positiveIntValue) : options.longs === Number ? new $util.LongBits(message.positiveIntValue.low >>> 0, message.positiveIntValue.high >>> 0).toNumber(true) : message.positiveIntValue;
+                        object.positiveIntValue = options.longs === String ? $util.Long.prototype.toString.call(message.positiveIntValue) : options.longs === Number ? new $util.LongBits(message.positiveIntValue).toNumber(true) : message.positiveIntValue;
                 if (message.negativeIntValue != null && message.hasOwnProperty("negativeIntValue"))
                     if (typeof message.negativeIntValue === "number")
                         object.negativeIntValue = options.longs === String ? String(message.negativeIntValue) : message.negativeIntValue;
                     else
-                        object.negativeIntValue = options.longs === String ? $util.Long.prototype.toString.call(message.negativeIntValue) : options.longs === Number ? new $util.LongBits(message.negativeIntValue.low >>> 0, message.negativeIntValue.high >>> 0).toNumber() : message.negativeIntValue;
+                        object.negativeIntValue = options.longs === String ? $util.Long.prototype.toString.call(message.negativeIntValue) : options.longs === Number ? new $util.LongBits(message.negativeIntValue).toNumber() : message.negativeIntValue;
                 if (message.doubleValue != null && message.hasOwnProperty("doubleValue"))
                     object.doubleValue = options.json && !isFinite(message.doubleValue) ? String(message.doubleValue) : message.doubleValue;
                 if (message.stringValue != null && message.hasOwnProperty("stringValue"))
@@ -14781,9 +14935,9 @@ $root.google = (function() {
                         }
                     }
                     if (!message.hasOwnProperty("namePart"))
-                        throw $util.ProtocolError("missing required 'namePart'", { instance: message });
+                        throw new $util.ProtocolError("missing required 'namePart'", { instance: message });
                     if (!message.hasOwnProperty("isExtension"))
-                        throw $util.ProtocolError("missing required 'isExtension'", { instance: message });
+                        throw new $util.ProtocolError("missing required 'isExtension'", { instance: message });
                     return message;
                 };
 
