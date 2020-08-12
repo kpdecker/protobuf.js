@@ -193,17 +193,23 @@ function genValuePartial_toObject(gen, field, fieldIndex, prop) {
 /**
  * Generates a runtime message to plain object converter specific to the specified message type.
  * @param {Type} mtype Message type
+ * @param {boolean} isTypescript true if the code target is typescript (implies parameter defaults and higher order enums)
  * @returns {Codegen} Codegen instance
  */
-converter.toObject = function toObject(mtype) {
+converter.toObject = function toObject(mtype, isTypescript) {
     /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
     var fields = mtype.fieldsArray.slice().sort(util.compareFieldsById);
     if (!fields.length)
         return util.codegen()("return {}");
-    var gen = util.codegen(["m", "o"], mtype.name + "$toObject")
-    ("if(!o)")
-        ("o={}")
-    ("var d={}");
+    var gen = util.codegen(["m", "o"], mtype.name + "$toObject");
+
+    if (!isTypescript) {
+        gen("if(!o)")
+            ("o={}")
+        ("var d={}");
+    } else {
+        gen("var d={}");
+    }
 
     var repeatedFields = [],
         mapFields = [],
@@ -236,7 +242,7 @@ converter.toObject = function toObject(mtype) {
         for (i = 0; i < normalFields.length; ++i) {
             var field = normalFields[i],
                 prop  = util.safeProp(field.name);
-            if (field.resolvedType instanceof Enum) gen
+            if (field.resolvedType instanceof Enum && !isTypescript) gen
         ("d%s=o.enums===String?%j:%j", prop, field.resolvedType.valuesById[field.typeDefault], field.typeDefault);
             else if (field.long) gen
         ("if(util.Long){")

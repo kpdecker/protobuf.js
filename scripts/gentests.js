@@ -5,23 +5,28 @@ var fs   = require("fs"),
     pbts = require("../cli/pbts");
 
 [
+    { file: "tests/data/comments.proto", flags: [], target: 'typescript' },
     { file: "tests/data/comments.proto", flags: [] },
+    { file: "tests/data/convert.proto", flags: [], target: 'typescript' },
     { file: "tests/data/convert.proto", flags: [] },
     { file: "tests/data/mapbox/vector_tile.proto", flags: [] },
+    { file: "tests/data/package.proto", flags: [], target: 'typescript' },
     { file: "tests/data/package.proto", flags: [] },
+    { file: "tests/data/rpc.proto", flags: [ ], target: 'typescript' },
     { file: "tests/data/rpc.proto", flags: [ "es6" ] },
     { file: "tests/data/rpc.proto", flags: [] },
     { file: "tests/data/rpc-reserved.proto", flags: [] },
+    { file: "tests/data/test.proto", flags: [], target: 'typescript' },
     { file: "tests/data/test.proto", flags: [] },
     { file: "bench/data/bench.proto", flags: ["no-create", "no-verify", "no-delimited", "no-convert", "no-comments"], out: "bench/data/static_pbjs.js" }
 ]
-.forEach(function({ file, flags, out }) {
+.forEach(function({ file, flags, out, target }) {
     var basename = file.replace(/\.proto$/, "");
     if (!out)
-        out = [ basename ].concat(flags).join("-") + ".js";
+        out = [ basename ].concat(flags).join("-") + (target === "typescript" ? ".ts" : ".js");
     pbjs.main([
-        "--target", "static-module",
-        "--wrap", flags.includes('es6') ? 'es6' : "commonjs",
+        "--target", target || "static-module",
+        "--wrap", target === 'typescript' ? 'ts' : flags.includes('es6') ? 'es6' : "commonjs",
         "--root", "test_" + path.basename(basename, ".js"),
         file
     ].concat(flags.map(function(flag) {
@@ -35,7 +40,7 @@ var fs   = require("fs"),
         try {
             require(path.join(__dirname, "..", out));
         } catch (err) {
-            if (!flags.includes("es6")) {
+            if (!flags.includes("es6") && target !== 'typescript') {
                 process.stderr.write("ERROR: " + err.message + "\n");
             }
         }

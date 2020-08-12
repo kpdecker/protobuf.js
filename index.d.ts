@@ -131,9 +131,10 @@ export namespace converter {
     /**
      * Generates a runtime message to plain object converter specific to the specified message type.
      * @param mtype Message type
+     * @param isTypescript true if the code target is typescript (implies parameter defaults and higher order enums)
      * @returns Codegen instance
      */
-    function toObject(mtype: Type): Codegen;
+    function toObject(mtype: Type, isTypescript: boolean): Codegen;
 }
 
 /**
