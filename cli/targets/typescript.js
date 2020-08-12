@@ -182,8 +182,8 @@ function buildNamespace(ref, ns) {
         emitNamespace = true;
         push('');
         push(`export namespace ${escapeName(ns.name)} {`);
+        indent++;
     }
-    indent++;
     ns.nestedArray.forEach(function(nested) {
         if (nested instanceof Enum) {
             buildEnum(nested);
@@ -196,8 +196,8 @@ function buildNamespace(ref, ns) {
 
         push("");
     });
-    --indent;
     if (emitNamespace) {
+      --indent;
       push("}");
     }
 
