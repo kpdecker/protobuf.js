@@ -46,6 +46,9 @@ export interface IMyRequest {
  * Represents a MyRequest.
  */
 export class MyRequest implements IMyRequest {
+    path?: string;
+
+    // #region create
     /**
      * Constructs a new MyRequest.
      */
@@ -55,7 +58,6 @@ export class MyRequest implements IMyRequest {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    path?: string = "";
 
     /**
      * Creates a new MyRequest instance using the specified properties.
@@ -63,7 +65,9 @@ export class MyRequest implements IMyRequest {
     static create(properties: IMyRequest): MyRequest {
         return new MyRequest(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified MyRequest message. Does not implicitly {@link MyRequest.verify|verify} messages.
      * @param message MyRequestmessage or plain object to encode
@@ -85,7 +89,9 @@ export class MyRequest implements IMyRequest {
     static encodeDelimited(message: IMyRequest, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a MyRequest message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -122,7 +128,9 @@ export class MyRequest implements IMyRequest {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a MyRequest message.
      * @param message Plain object to verify
@@ -136,7 +144,9 @@ export class MyRequest implements IMyRequest {
                 return "path: string expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a MyRequest message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -171,7 +181,9 @@ export class MyRequest implements IMyRequest {
     toJSON() {
         return MyRequest.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -182,6 +194,7 @@ export class MyRequest implements IMyRequest {
             return true;
         return a.path === b.path;
     }
+    // #endregion
 }
 
 /** Properties of a MyResponse. */
@@ -193,6 +206,9 @@ export interface IMyResponse {
  * Represents a MyResponse.
  */
 export class MyResponse implements IMyResponse {
+    status?: number;
+
+    // #region create
     /**
      * Constructs a new MyResponse.
      */
@@ -202,7 +218,6 @@ export class MyResponse implements IMyResponse {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    status?: number = 0;
 
     /**
      * Creates a new MyResponse instance using the specified properties.
@@ -210,7 +225,9 @@ export class MyResponse implements IMyResponse {
     static create(properties: IMyResponse): MyResponse {
         return new MyResponse(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified MyResponse message. Does not implicitly {@link MyResponse.verify|verify} messages.
      * @param message MyResponsemessage or plain object to encode
@@ -232,7 +249,9 @@ export class MyResponse implements IMyResponse {
     static encodeDelimited(message: IMyResponse, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a MyResponse message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -269,7 +288,9 @@ export class MyResponse implements IMyResponse {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a MyResponse message.
      * @param message Plain object to verify
@@ -283,7 +304,9 @@ export class MyResponse implements IMyResponse {
                 return "status: integer expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a MyResponse message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -318,7 +341,9 @@ export class MyResponse implements IMyResponse {
     toJSON() {
         return MyResponse.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -329,5 +354,6 @@ export class MyResponse implements IMyResponse {
             return true;
         return a.status === b.status;
     }
+    // #endregion
 }
 ;

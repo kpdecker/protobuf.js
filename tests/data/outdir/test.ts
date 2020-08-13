@@ -12,6 +12,8 @@ export interface IEmpty {
  * Represents an Empty.
  */
 export class Empty implements IEmpty {
+
+    // #region create
     /**
      * Constructs a new Empty.
      */
@@ -28,7 +30,9 @@ export class Empty implements IEmpty {
     static create(properties: IEmpty): Empty {
         return new Empty(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Empty message. Does not implicitly {@link Empty.verify|verify} messages.
      * @param message Emptymessage or plain object to encode
@@ -48,7 +52,9 @@ export class Empty implements IEmpty {
     static encodeDelimited(message: IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an Empty message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -82,7 +88,9 @@ export class Empty implements IEmpty {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an Empty message.
      * @param message Plain object to verify
@@ -93,7 +101,9 @@ export class Empty implements IEmpty {
             return "object expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an Empty message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -120,7 +130,9 @@ export class Empty implements IEmpty {
     toJSON() {
         return Empty.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -131,6 +143,7 @@ export class Empty implements IEmpty {
             return true;
         return true;
     }
+    // #endregion
 }
 
 export enum OuterEnum {
@@ -147,6 +160,9 @@ export interface IEnumContainer {
  * Represents an EnumContainer.
  */
 export class EnumContainer implements IEnumContainer {
+    outerEnum?: OuterEnum;
+
+    // #region create
     /**
      * Constructs a new EnumContainer.
      */
@@ -156,7 +172,6 @@ export class EnumContainer implements IEnumContainer {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    outerEnum?: OuterEnum = 1;
 
     /**
      * Creates a new EnumContainer instance using the specified properties.
@@ -164,7 +179,9 @@ export class EnumContainer implements IEnumContainer {
     static create(properties: IEnumContainer): EnumContainer {
         return new EnumContainer(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified EnumContainer message. Does not implicitly {@link EnumContainer.verify|verify} messages.
      * @param message EnumContainermessage or plain object to encode
@@ -186,7 +203,9 @@ export class EnumContainer implements IEnumContainer {
     static encodeDelimited(message: IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an EnumContainer message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -223,7 +242,9 @@ export class EnumContainer implements IEnumContainer {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an EnumContainer message.
      * @param message Plain object to verify
@@ -242,7 +263,9 @@ export class EnumContainer implements IEnumContainer {
             }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an EnumContainer message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -285,7 +308,9 @@ export class EnumContainer implements IEnumContainer {
     toJSON() {
         return EnumContainer.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -296,6 +321,7 @@ export class EnumContainer implements IEnumContainer {
             return true;
         return a.outerEnum === b.outerEnum;
     }
+    // #endregion
 }
 
 /** Properties of a Simple1. */
@@ -310,20 +336,21 @@ export interface ISimple1 {
  * Represents a Simple1.
  */
 export class Simple1 implements ISimple1 {
+    aString: string = "";
+    aRepeatedString?: string[];
+    aBoolean?: boolean;
+    aSomething?: ISomething;
+
+    // #region create
     /**
      * Constructs a new Simple1.
      */
     constructor(properties?: ISimple1) {
-        this.aRepeatedString = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    aString: string = "";
-    aRepeatedString?: string[];
-    aBoolean?: boolean = false;
-    aSomething?: ISomething;
 
     /**
      * Creates a new Simple1 instance using the specified properties.
@@ -331,7 +358,9 @@ export class Simple1 implements ISimple1 {
     static create(properties: ISimple1): Simple1 {
         return new Simple1(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Simple1 message. Does not implicitly {@link Simple1.verify|verify} messages.
      * @param message Simple1message or plain object to encode
@@ -359,7 +388,9 @@ export class Simple1 implements ISimple1 {
     static encodeDelimited(message: ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Simple1 message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -409,7 +440,9 @@ export class Simple1 implements ISimple1 {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Simple1 message.
      * @param message Plain object to verify
@@ -437,7 +470,9 @@ export class Simple1 implements ISimple1 {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Simple1 message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -500,7 +535,9 @@ export class Simple1 implements ISimple1 {
     toJSON() {
         return Simple1.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -513,6 +550,7 @@ export class Simple1 implements ISimple1 {
             return (a.aRepeatedString && a.aRepeatedString[i]) === (b.aRepeatedString && b.aRepeatedString[i]);
         })) && a.aBoolean === b.aBoolean && Something.equals(a.aSomething, b.aSomething);
     }
+    // #endregion
 }
 
 /** Properties of a Simple2. */
@@ -525,18 +563,19 @@ export interface ISimple2 {
  * Represents a Simple2.
  */
 export class Simple2 implements ISimple2 {
+    aString: string = "";
+    aRepeatedString?: string[];
+
+    // #region create
     /**
      * Constructs a new Simple2.
      */
     constructor(properties?: ISimple2) {
-        this.aRepeatedString = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    aString: string = "";
-    aRepeatedString?: string[];
 
     /**
      * Creates a new Simple2 instance using the specified properties.
@@ -544,7 +583,9 @@ export class Simple2 implements ISimple2 {
     static create(properties: ISimple2): Simple2 {
         return new Simple2(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Simple2 message. Does not implicitly {@link Simple2.verify|verify} messages.
      * @param message Simple2message or plain object to encode
@@ -568,7 +609,9 @@ export class Simple2 implements ISimple2 {
     static encodeDelimited(message: ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Simple2 message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -612,7 +655,9 @@ export class Simple2 implements ISimple2 {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Simple2 message.
      * @param message Plain object to verify
@@ -632,7 +677,9 @@ export class Simple2 implements ISimple2 {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Simple2 message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -681,7 +728,9 @@ export class Simple2 implements ISimple2 {
     toJSON() {
         return Simple2.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -694,6 +743,7 @@ export class Simple2 implements ISimple2 {
             return (a.aRepeatedString && a.aRepeatedString[i]) === (b.aRepeatedString && b.aRepeatedString[i]);
         }));
     }
+    // #endregion
 }
 
 /** Properties of a SpecialCases. */
@@ -708,6 +758,12 @@ export interface ISpecialCases {
  * Represents a SpecialCases.
  */
 export class SpecialCases implements ISpecialCases {
+    normal: string = "";
+    ["default"]: string = "";
+    ["function"]: string = "";
+    ["var"]: string = "";
+
+    // #region create
     /**
      * Constructs a new SpecialCases.
      */
@@ -717,10 +773,6 @@ export class SpecialCases implements ISpecialCases {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    normal: string = "";
-    ["default"]: string = "";
-    ["function"]: string = "";
-    ["var"]: string = "";
 
     /**
      * Creates a new SpecialCases instance using the specified properties.
@@ -728,7 +780,9 @@ export class SpecialCases implements ISpecialCases {
     static create(properties: ISpecialCases): SpecialCases {
         return new SpecialCases(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified SpecialCases message. Does not implicitly {@link SpecialCases.verify|verify} messages.
      * @param message SpecialCasesmessage or plain object to encode
@@ -752,7 +806,9 @@ export class SpecialCases implements ISpecialCases {
     static encodeDelimited(message: ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a SpecialCases message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -806,7 +862,9 @@ export class SpecialCases implements ISpecialCases {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a SpecialCases message.
      * @param message Plain object to verify
@@ -825,7 +883,9 @@ export class SpecialCases implements ISpecialCases {
             return "var: string expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a SpecialCases message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -876,7 +936,9 @@ export class SpecialCases implements ISpecialCases {
     toJSON() {
         return SpecialCases.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -887,6 +949,7 @@ export class SpecialCases implements ISpecialCases {
             return true;
         return a.normal === b.normal && a["default"] === b["default"] && a["function"] === b["function"] && a["var"] === b["var"];
     }
+    // #endregion
 }
 
 /** Properties of an OptionalFields. */
@@ -902,22 +965,22 @@ export interface IOptionalFields {
  * Represents an OptionalFields.
  */
 export class OptionalFields implements IOptionalFields {
+    aString?: string;
+    aBool: boolean = false;
+    aNestedMessage?: OptionalFields.INested;
+    aRepeatedMessage?: OptionalFields.INested[];
+    aRepeatedString?: string[];
+
+    // #region create
     /**
      * Constructs a new OptionalFields.
      */
     constructor(properties?: IOptionalFields) {
-        this.aRepeatedMessage = [];
-        this.aRepeatedString = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    aString?: string = "";
-    aBool: boolean = false;
-    aNestedMessage?: OptionalFields.INested;
-    aRepeatedMessage?: OptionalFields.INested[];
-    aRepeatedString?: string[];
 
     /**
      * Creates a new OptionalFields instance using the specified properties.
@@ -925,7 +988,9 @@ export class OptionalFields implements IOptionalFields {
     static create(properties: IOptionalFields): OptionalFields {
         return new OptionalFields(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified OptionalFields message. Does not implicitly {@link OptionalFields.verify|verify} messages.
      * @param message OptionalFieldsmessage or plain object to encode
@@ -956,7 +1021,9 @@ export class OptionalFields implements IOptionalFields {
     static encodeDelimited(message: IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an OptionalFields message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -1011,7 +1078,9 @@ export class OptionalFields implements IOptionalFields {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an OptionalFields message.
      * @param message Plain object to verify
@@ -1048,7 +1117,9 @@ export class OptionalFields implements IOptionalFields {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an OptionalFields message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -1128,7 +1199,9 @@ export class OptionalFields implements IOptionalFields {
     toJSON() {
         return OptionalFields.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -1143,6 +1216,7 @@ export class OptionalFields implements IOptionalFields {
             return (a.aRepeatedString && a.aRepeatedString[i]) === (b.aRepeatedString && b.aRepeatedString[i]);
         }));
     }
+    // #endregion
 }
 
 export namespace OptionalFields {
@@ -1155,6 +1229,9 @@ export namespace OptionalFields {
      * Represents a Nested.
      */
     export class Nested implements INested {
+        anInt?: number;
+
+        // #region create
         /**
          * Constructs a new Nested.
          */
@@ -1164,7 +1241,6 @@ export namespace OptionalFields {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        anInt?: number = 0;
 
         /**
          * Creates a new Nested instance using the specified properties.
@@ -1172,7 +1248,9 @@ export namespace OptionalFields {
         static create(properties: INested): Nested {
             return new Nested(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
          * @param message Nestedmessage or plain object to encode
@@ -1194,7 +1272,9 @@ export namespace OptionalFields {
         static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a Nested message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -1231,7 +1311,9 @@ export namespace OptionalFields {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a Nested message.
          * @param message Plain object to verify
@@ -1245,7 +1327,9 @@ export namespace OptionalFields {
                     return "anInt: integer expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a Nested message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -1280,7 +1364,9 @@ export namespace OptionalFields {
         toJSON() {
             return Nested.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -1291,6 +1377,7 @@ export namespace OptionalFields {
                 return true;
             return a.anInt === b.anInt;
         }
+        // #endregion
     }
 
 }
@@ -1312,26 +1399,26 @@ export interface IHasExtensions {
  * Represents a HasExtensions.
  */
 export class HasExtensions implements IHasExtensions {
+    str1?: string;
+    str2?: string;
+    str3?: string;
+    ["IsExtension.extField"]?: IIsExtension;
+    ["IndirectExtension.simple"]?: ISimple1;
+    ["IndirectExtension.str"]?: string;
+    ["IndirectExtension.repeatedStr"]?: string[];
+    ["IndirectExtension.repeatedSimple"]?: ISimple1[];
+    simple1?: ISimple1;
+
+    // #region create
     /**
      * Constructs a new HasExtensions.
      */
     constructor(properties?: IHasExtensions) {
-        this["IndirectExtension.repeatedStr"] = [];
-        this["IndirectExtension.repeatedSimple"] = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    str1?: string = "";
-    str2?: string = "";
-    str3?: string = "";
-    ["IsExtension.extField"]?: IIsExtension;
-    ["IndirectExtension.simple"]?: ISimple1;
-    ["IndirectExtension.str"]?: string = "";
-    ["IndirectExtension.repeatedStr"]?: string[];
-    ["IndirectExtension.repeatedSimple"]?: ISimple1[];
-    simple1?: ISimple1;
 
     /**
      * Creates a new HasExtensions instance using the specified properties.
@@ -1339,7 +1426,9 @@ export class HasExtensions implements IHasExtensions {
     static create(properties: IHasExtensions): HasExtensions {
         return new HasExtensions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified HasExtensions message. Does not implicitly {@link HasExtensions.verify|verify} messages.
      * @param message HasExtensionsmessage or plain object to encode
@@ -1379,7 +1468,9 @@ export class HasExtensions implements IHasExtensions {
     static encodeDelimited(message: IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a HasExtensions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -1444,7 +1535,9 @@ export class HasExtensions implements IHasExtensions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a HasExtensions message.
      * @param message Plain object to verify
@@ -1498,7 +1591,9 @@ export class HasExtensions implements IHasExtensions {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a HasExtensions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -1604,7 +1699,9 @@ export class HasExtensions implements IHasExtensions {
     toJSON() {
         return HasExtensions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -1619,6 +1716,7 @@ export class HasExtensions implements IHasExtensions {
             return Simple1.equals(a["IndirectExtension.repeatedSimple"] && a["IndirectExtension.repeatedSimple"][i], b["IndirectExtension.repeatedSimple"] && b["IndirectExtension.repeatedSimple"][i]);
         })) && Simple1.equals(a.simple1, b.simple1);
     }
+    // #endregion
 }
 
 /** Properties of a Complex. */
@@ -1634,22 +1732,22 @@ export interface IComplex {
  * Represents a Complex.
  */
 export class Complex implements IComplex {
-    /**
-     * Constructs a new Complex.
-     */
-    constructor(properties?: IComplex) {
-        this.aRepeatedMessage = [];
-        this.aRepeatedString = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
     aString: string = "";
     anOutOfOrderBool: boolean = false;
     aNestedMessage?: Complex.INested;
     aRepeatedMessage?: Complex.INested[];
     aRepeatedString?: string[];
+
+    // #region create
+    /**
+     * Constructs a new Complex.
+     */
+    constructor(properties?: IComplex) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
 
     /**
      * Creates a new Complex instance using the specified properties.
@@ -1657,7 +1755,9 @@ export class Complex implements IComplex {
     static create(properties: IComplex): Complex {
         return new Complex(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Complex message. Does not implicitly {@link Complex.verify|verify} messages.
      * @param message Complexmessage or plain object to encode
@@ -1687,7 +1787,9 @@ export class Complex implements IComplex {
     static encodeDelimited(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Complex message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -1744,7 +1846,9 @@ export class Complex implements IComplex {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Complex message.
      * @param message Plain object to verify
@@ -1780,7 +1884,9 @@ export class Complex implements IComplex {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Complex message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -1860,7 +1966,9 @@ export class Complex implements IComplex {
     toJSON() {
         return Complex.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -1875,6 +1983,7 @@ export class Complex implements IComplex {
             return (a.aRepeatedString && a.aRepeatedString[i]) === (b.aRepeatedString && b.aRepeatedString[i]);
         }));
     }
+    // #endregion
 }
 
 export namespace Complex {
@@ -1887,6 +1996,9 @@ export namespace Complex {
      * Represents a Nested.
      */
     export class Nested implements INested {
+        anInt: number = 0;
+
+        // #region create
         /**
          * Constructs a new Nested.
          */
@@ -1896,7 +2008,6 @@ export namespace Complex {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        anInt: number = 0;
 
         /**
          * Creates a new Nested instance using the specified properties.
@@ -1904,7 +2015,9 @@ export namespace Complex {
         static create(properties: INested): Nested {
             return new Nested(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
          * @param message Nestedmessage or plain object to encode
@@ -1925,7 +2038,9 @@ export namespace Complex {
         static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a Nested message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -1964,7 +2079,9 @@ export namespace Complex {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a Nested message.
          * @param message Plain object to verify
@@ -1977,7 +2094,9 @@ export namespace Complex {
                 return "anInt: integer expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a Nested message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -2012,7 +2131,9 @@ export namespace Complex {
         toJSON() {
             return Nested.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -2023,6 +2144,7 @@ export namespace Complex {
                 return true;
             return a.anInt === b.anInt;
         }
+        // #endregion
     }
 
 }
@@ -2035,6 +2157,8 @@ export interface IOuterMessage {
  * Represents an OuterMessage.
  */
 export class OuterMessage implements IOuterMessage {
+
+    // #region create
     /**
      * Constructs a new OuterMessage.
      */
@@ -2051,7 +2175,9 @@ export class OuterMessage implements IOuterMessage {
     static create(properties: IOuterMessage): OuterMessage {
         return new OuterMessage(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified OuterMessage message. Does not implicitly {@link OuterMessage.verify|verify} messages.
      * @param message OuterMessagemessage or plain object to encode
@@ -2071,7 +2197,9 @@ export class OuterMessage implements IOuterMessage {
     static encodeDelimited(message: IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an OuterMessage message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -2105,7 +2233,9 @@ export class OuterMessage implements IOuterMessage {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an OuterMessage message.
      * @param message Plain object to verify
@@ -2116,7 +2246,9 @@ export class OuterMessage implements IOuterMessage {
             return "object expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an OuterMessage message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2143,7 +2275,9 @@ export class OuterMessage implements IOuterMessage {
     toJSON() {
         return OuterMessage.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2154,6 +2288,7 @@ export class OuterMessage implements IOuterMessage {
             return true;
         return true;
     }
+    // #endregion
 }
 
 export namespace OuterMessage {
@@ -2166,6 +2301,9 @@ export namespace OuterMessage {
      * Represents a Complex.
      */
     export class Complex implements IComplex {
+        innerComplexField?: number;
+
+        // #region create
         /**
          * Constructs a new Complex.
          */
@@ -2175,7 +2313,6 @@ export namespace OuterMessage {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        innerComplexField?: number = 0;
 
         /**
          * Creates a new Complex instance using the specified properties.
@@ -2183,7 +2320,9 @@ export namespace OuterMessage {
         static create(properties: IComplex): Complex {
             return new Complex(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified Complex message. Does not implicitly {@link Complex.verify|verify} messages.
          * @param message Complexmessage or plain object to encode
@@ -2205,7 +2344,9 @@ export namespace OuterMessage {
         static encodeDelimited(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a Complex message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -2242,7 +2383,9 @@ export namespace OuterMessage {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a Complex message.
          * @param message Plain object to verify
@@ -2256,7 +2399,9 @@ export namespace OuterMessage {
                     return "innerComplexField: integer expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a Complex message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -2291,7 +2436,9 @@ export namespace OuterMessage {
         toJSON() {
             return Complex.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -2302,6 +2449,7 @@ export namespace OuterMessage {
                 return true;
             return a.innerComplexField === b.innerComplexField;
         }
+        // #endregion
     }
 
 }
@@ -2315,6 +2463,9 @@ export interface IIsExtension {
  * Represents an IsExtension.
  */
 export class IsExtension implements IIsExtension {
+    ext1?: string;
+
+    // #region create
     /**
      * Constructs a new IsExtension.
      */
@@ -2324,7 +2475,6 @@ export class IsExtension implements IIsExtension {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    ext1?: string = "";
 
     /**
      * Creates a new IsExtension instance using the specified properties.
@@ -2332,7 +2482,9 @@ export class IsExtension implements IIsExtension {
     static create(properties: IIsExtension): IsExtension {
         return new IsExtension(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified IsExtension message. Does not implicitly {@link IsExtension.verify|verify} messages.
      * @param message IsExtensionmessage or plain object to encode
@@ -2354,7 +2506,9 @@ export class IsExtension implements IIsExtension {
     static encodeDelimited(message: IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an IsExtension message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -2391,7 +2545,9 @@ export class IsExtension implements IIsExtension {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an IsExtension message.
      * @param message Plain object to verify
@@ -2405,7 +2561,9 @@ export class IsExtension implements IIsExtension {
                 return "ext1: string expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an IsExtension message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2440,7 +2598,9 @@ export class IsExtension implements IIsExtension {
     toJSON() {
         return IsExtension.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2451,6 +2611,7 @@ export class IsExtension implements IIsExtension {
             return true;
         return a.ext1 === b.ext1;
     }
+    // #endregion
 }
 
 export namespace IsExtension {
@@ -2466,6 +2627,8 @@ export interface IIndirectExtension {
  * Represents an IndirectExtension.
  */
 export class IndirectExtension implements IIndirectExtension {
+
+    // #region create
     /**
      * Constructs a new IndirectExtension.
      */
@@ -2482,7 +2645,9 @@ export class IndirectExtension implements IIndirectExtension {
     static create(properties: IIndirectExtension): IndirectExtension {
         return new IndirectExtension(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified IndirectExtension message. Does not implicitly {@link IndirectExtension.verify|verify} messages.
      * @param message IndirectExtensionmessage or plain object to encode
@@ -2502,7 +2667,9 @@ export class IndirectExtension implements IIndirectExtension {
     static encodeDelimited(message: IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an IndirectExtension message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -2536,7 +2703,9 @@ export class IndirectExtension implements IIndirectExtension {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an IndirectExtension message.
      * @param message Plain object to verify
@@ -2547,7 +2716,9 @@ export class IndirectExtension implements IIndirectExtension {
             return "object expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an IndirectExtension message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2574,7 +2745,9 @@ export class IndirectExtension implements IIndirectExtension {
     toJSON() {
         return IndirectExtension.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2585,6 +2758,7 @@ export class IndirectExtension implements IIndirectExtension {
             return true;
         return true;
     }
+    // #endregion
 }
 
 export namespace IndirectExtension {
@@ -2609,6 +2783,14 @@ export interface IDefaultValues {
  * Represents a DefaultValues.
  */
 export class DefaultValues implements IDefaultValues {
+    stringField?: string;
+    boolField?: boolean;
+    intField?: (number|$protobuf.Long);
+    enumField?: DefaultValues.Enum;
+    emptyField?: string;
+    bytesField?: Uint8Array;
+
+    // #region create
     /**
      * Constructs a new DefaultValues.
      */
@@ -2618,12 +2800,6 @@ export class DefaultValues implements IDefaultValues {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    stringField?: string = "default<>abc";
-    boolField?: boolean = true;
-    intField?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(11, 0, false) : 11;
-    enumField?: DefaultValues.Enum = 13;
-    emptyField?: string = "";
-    bytesField?: Uint8Array= $util.newBuffer([109,111,111]);
 
     /**
      * Creates a new DefaultValues instance using the specified properties.
@@ -2631,7 +2807,9 @@ export class DefaultValues implements IDefaultValues {
     static create(properties: IDefaultValues): DefaultValues {
         return new DefaultValues(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified DefaultValues message. Does not implicitly {@link DefaultValues.verify|verify} messages.
      * @param message DefaultValuesmessage or plain object to encode
@@ -2663,7 +2841,9 @@ export class DefaultValues implements IDefaultValues {
     static encodeDelimited(message: IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a DefaultValues message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -2715,7 +2895,9 @@ export class DefaultValues implements IDefaultValues {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a DefaultValues message.
      * @param message Plain object to verify
@@ -2749,7 +2931,9 @@ export class DefaultValues implements IDefaultValues {
                 return "bytesField: buffer expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a DefaultValues message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2845,7 +3029,9 @@ export class DefaultValues implements IDefaultValues {
     toJSON() {
         return DefaultValues.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2856,6 +3042,7 @@ export class DefaultValues implements IDefaultValues {
             return true;
         return a.stringField === b.stringField && a.boolField === b.boolField && $util.longEquals(a.intField, b.intField) && a.enumField === b.enumField && a.emptyField === b.emptyField && $util.bytesEquals(a.bytesField, b.bytesField);
     }
+    // #endregion
 }
 
 export namespace DefaultValues {
@@ -2882,25 +3069,25 @@ export interface IFloatingPointFields {
  * Represents a FloatingPointFields.
  */
 export class FloatingPointFields implements IFloatingPointFields {
+    optionalFloatField?: number;
+    requiredFloatField: number = 0;
+    repeatedFloatField?: number[];
+    defaultFloatField?: number;
+    optionalDoubleField?: number;
+    requiredDoubleField: number = 0;
+    repeatedDoubleField?: number[];
+    defaultDoubleField?: number;
+
+    // #region create
     /**
      * Constructs a new FloatingPointFields.
      */
     constructor(properties?: IFloatingPointFields) {
-        this.repeatedFloatField = [];
-        this.repeatedDoubleField = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    optionalFloatField?: number = 0;
-    requiredFloatField: number = 0;
-    repeatedFloatField?: number[];
-    defaultFloatField?: number = 2;
-    optionalDoubleField?: number = 0;
-    requiredDoubleField: number = 0;
-    repeatedDoubleField?: number[];
-    defaultDoubleField?: number = 2;
 
     /**
      * Creates a new FloatingPointFields instance using the specified properties.
@@ -2908,7 +3095,9 @@ export class FloatingPointFields implements IFloatingPointFields {
     static create(properties: IFloatingPointFields): FloatingPointFields {
         return new FloatingPointFields(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified FloatingPointFields message. Does not implicitly {@link FloatingPointFields.verify|verify} messages.
      * @param message FloatingPointFieldsmessage or plain object to encode
@@ -2944,7 +3133,9 @@ export class FloatingPointFields implements IFloatingPointFields {
     static encodeDelimited(message: IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a FloatingPointFields message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -3020,7 +3211,9 @@ export class FloatingPointFields implements IFloatingPointFields {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a FloatingPointFields message.
      * @param message Plain object to verify
@@ -3061,7 +3254,9 @@ export class FloatingPointFields implements IFloatingPointFields {
                 return "defaultDoubleField: number expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a FloatingPointFields message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -3150,7 +3345,9 @@ export class FloatingPointFields implements IFloatingPointFields {
     toJSON() {
         return FloatingPointFields.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -3165,6 +3362,7 @@ export class FloatingPointFields implements IFloatingPointFields {
             return (a.repeatedDoubleField && a.repeatedDoubleField[i]) === (b.repeatedDoubleField && b.repeatedDoubleField[i]);
         })) && a.defaultDoubleField === b.defaultDoubleField;
     }
+    // #endregion
 }
 
 /** Properties of a TestClone. */
@@ -3181,22 +3379,23 @@ export interface ITestClone {
  * Represents a TestClone.
  */
 export class TestClone implements ITestClone {
+    str?: string;
+    simple1?: ISimple1;
+    simple2?: ISimple1[];
+    bytesField?: Uint8Array;
+    unused?: string;
+    ["CloneExtension.extField"]?: ICloneExtension;
+
+    // #region create
     /**
      * Constructs a new TestClone.
      */
     constructor(properties?: ITestClone) {
-        this.simple2 = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    str?: string = "";
-    simple1?: ISimple1;
-    simple2?: ISimple1[];
-    bytesField?: Uint8Array= $util.newBuffer([]);
-    unused?: string = "";
-    ["CloneExtension.extField"]?: ICloneExtension;
 
     /**
      * Creates a new TestClone instance using the specified properties.
@@ -3204,7 +3403,9 @@ export class TestClone implements ITestClone {
     static create(properties: ITestClone): TestClone {
         return new TestClone(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified TestClone message. Does not implicitly {@link TestClone.verify|verify} messages.
      * @param message TestClonemessage or plain object to encode
@@ -3237,7 +3438,9 @@ export class TestClone implements ITestClone {
     static encodeDelimited(message: ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a TestClone message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -3291,7 +3494,9 @@ export class TestClone implements ITestClone {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a TestClone message.
      * @param message Plain object to verify
@@ -3330,7 +3535,9 @@ export class TestClone implements ITestClone {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a TestClone message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -3418,7 +3625,9 @@ export class TestClone implements ITestClone {
     toJSON() {
         return TestClone.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -3431,6 +3640,7 @@ export class TestClone implements ITestClone {
             return Simple1.equals(a.simple2 && a.simple2[i], b.simple2 && b.simple2[i]);
         })) && $util.bytesEquals(a.bytesField, b.bytesField) && a.unused === b.unused && CloneExtension.equals(a["CloneExtension.extField"], b["CloneExtension.extField"]);
     }
+    // #endregion
 }
 
 /** Properties of a CloneExtension. */
@@ -3442,6 +3652,9 @@ export interface ICloneExtension {
  * Represents a CloneExtension.
  */
 export class CloneExtension implements ICloneExtension {
+    ext?: string;
+
+    // #region create
     /**
      * Constructs a new CloneExtension.
      */
@@ -3451,7 +3664,6 @@ export class CloneExtension implements ICloneExtension {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    ext?: string = "";
 
     /**
      * Creates a new CloneExtension instance using the specified properties.
@@ -3459,7 +3671,9 @@ export class CloneExtension implements ICloneExtension {
     static create(properties: ICloneExtension): CloneExtension {
         return new CloneExtension(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified CloneExtension message. Does not implicitly {@link CloneExtension.verify|verify} messages.
      * @param message CloneExtensionmessage or plain object to encode
@@ -3481,7 +3695,9 @@ export class CloneExtension implements ICloneExtension {
     static encodeDelimited(message: ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a CloneExtension message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -3518,7 +3734,9 @@ export class CloneExtension implements ICloneExtension {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a CloneExtension message.
      * @param message Plain object to verify
@@ -3532,7 +3750,9 @@ export class CloneExtension implements ICloneExtension {
                 return "ext: string expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a CloneExtension message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -3567,7 +3787,9 @@ export class CloneExtension implements ICloneExtension {
     toJSON() {
         return CloneExtension.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -3578,6 +3800,7 @@ export class CloneExtension implements ICloneExtension {
             return true;
         return a.ext === b.ext;
     }
+    // #endregion
 }
 
 export namespace CloneExtension {
@@ -3598,22 +3821,23 @@ export interface ITestGroup {
  * Represents a TestGroup.
  */
 export class TestGroup implements ITestGroup {
+    repeatedGroup?: TestGroup.IRepeatedGroup[];
+    requiredGroup: TestGroup.IRequiredGroup;
+    optionalGroup?: TestGroup.IOptionalGroup;
+    id?: string;
+    requiredSimple: ISimple2;
+    optionalSimple?: ISimple2;
+
+    // #region create
     /**
      * Constructs a new TestGroup.
      */
     constructor(properties?: ITestGroup) {
-        this.repeatedGroup = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    repeatedGroup?: TestGroup.IRepeatedGroup[];
-    requiredGroup: TestGroup.IRequiredGroup;
-    optionalGroup?: TestGroup.IOptionalGroup;
-    id?: string = "";
-    requiredSimple: ISimple2;
-    optionalSimple?: ISimple2;
 
     /**
      * Creates a new TestGroup instance using the specified properties.
@@ -3621,7 +3845,9 @@ export class TestGroup implements ITestGroup {
     static create(properties: ITestGroup): TestGroup {
         return new TestGroup(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified TestGroup message. Does not implicitly {@link TestGroup.verify|verify} messages.
      * @param message TestGroupmessage or plain object to encode
@@ -3652,7 +3878,9 @@ export class TestGroup implements ITestGroup {
     static encodeDelimited(message: ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a TestGroup message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -3710,7 +3938,9 @@ export class TestGroup implements ITestGroup {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a TestGroup message.
      * @param message Plain object to verify
@@ -3753,7 +3983,9 @@ export class TestGroup implements ITestGroup {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a TestGroup message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -3838,7 +4070,9 @@ export class TestGroup implements ITestGroup {
     toJSON() {
         return TestGroup.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -3851,6 +4085,7 @@ export class TestGroup implements ITestGroup {
             return TestGroup.RepeatedGroup.equals(a.repeatedGroup && a.repeatedGroup[i], b.repeatedGroup && b.repeatedGroup[i]);
         }) && TestGroup.RequiredGroup.equals(a.requiredGroup, b.requiredGroup) && TestGroup.OptionalGroup.equals(a.optionalGroup, b.optionalGroup) && a.id === b.id && Simple2.equals(a.requiredSimple, b.requiredSimple) && Simple2.equals(a.optionalSimple, b.optionalSimple);
     }
+    // #endregion
 }
 
 export namespace TestGroup {
@@ -3864,18 +4099,19 @@ export namespace TestGroup {
      * Represents a RepeatedGroup.
      */
     export class RepeatedGroup implements IRepeatedGroup {
+        id: string = "";
+        someBool?: boolean[];
+
+        // #region create
         /**
          * Constructs a new RepeatedGroup.
          */
         constructor(properties?: IRepeatedGroup) {
-            this.someBool = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        id: string = "";
-        someBool?: boolean[];
 
         /**
          * Creates a new RepeatedGroup instance using the specified properties.
@@ -3883,7 +4119,9 @@ export namespace TestGroup {
         static create(properties: IRepeatedGroup): RepeatedGroup {
             return new RepeatedGroup(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified RepeatedGroup message. Does not implicitly {@link RepeatedGroup.verify|verify} messages.
          * @param message RepeatedGroupmessage or plain object to encode
@@ -3907,7 +4145,9 @@ export namespace TestGroup {
         static encodeDelimited(message: IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a RepeatedGroup message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -3958,7 +4198,9 @@ export namespace TestGroup {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a RepeatedGroup message.
          * @param message Plain object to verify
@@ -3978,7 +4220,9 @@ export namespace TestGroup {
             }
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a RepeatedGroup message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -4027,7 +4271,9 @@ export namespace TestGroup {
         toJSON() {
             return RepeatedGroup.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -4040,6 +4286,7 @@ export namespace TestGroup {
                 return (a.someBool && a.someBool[i]) === (b.someBool && b.someBool[i]);
             }));
         }
+        // #endregion
     }
 
     /** Properties of a RequiredGroup. */
@@ -4051,6 +4298,9 @@ export namespace TestGroup {
      * Represents a RequiredGroup.
      */
     export class RequiredGroup implements IRequiredGroup {
+        id: string = "";
+
+        // #region create
         /**
          * Constructs a new RequiredGroup.
          */
@@ -4060,7 +4310,6 @@ export namespace TestGroup {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        id: string = "";
 
         /**
          * Creates a new RequiredGroup instance using the specified properties.
@@ -4068,7 +4317,9 @@ export namespace TestGroup {
         static create(properties: IRequiredGroup): RequiredGroup {
             return new RequiredGroup(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified RequiredGroup message. Does not implicitly {@link RequiredGroup.verify|verify} messages.
          * @param message RequiredGroupmessage or plain object to encode
@@ -4089,7 +4340,9 @@ export namespace TestGroup {
         static encodeDelimited(message: IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a RequiredGroup message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -4130,7 +4383,9 @@ export namespace TestGroup {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a RequiredGroup message.
          * @param message Plain object to verify
@@ -4143,7 +4398,9 @@ export namespace TestGroup {
                 return "id: string expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a RequiredGroup message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -4178,7 +4435,9 @@ export namespace TestGroup {
         toJSON() {
             return RequiredGroup.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -4189,6 +4448,7 @@ export namespace TestGroup {
                 return true;
             return a.id === b.id;
         }
+        // #endregion
     }
 
     /** Properties of an OptionalGroup. */
@@ -4200,6 +4460,9 @@ export namespace TestGroup {
      * Represents an OptionalGroup.
      */
     export class OptionalGroup implements IOptionalGroup {
+        id: string = "";
+
+        // #region create
         /**
          * Constructs a new OptionalGroup.
          */
@@ -4209,7 +4472,6 @@ export namespace TestGroup {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        id: string = "";
 
         /**
          * Creates a new OptionalGroup instance using the specified properties.
@@ -4217,7 +4479,9 @@ export namespace TestGroup {
         static create(properties: IOptionalGroup): OptionalGroup {
             return new OptionalGroup(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified OptionalGroup message. Does not implicitly {@link OptionalGroup.verify|verify} messages.
          * @param message OptionalGroupmessage or plain object to encode
@@ -4238,7 +4502,9 @@ export namespace TestGroup {
         static encodeDelimited(message: IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes an OptionalGroup message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -4279,7 +4545,9 @@ export namespace TestGroup {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies an OptionalGroup message.
          * @param message Plain object to verify
@@ -4292,7 +4560,9 @@ export namespace TestGroup {
                 return "id: string expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates an OptionalGroup message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -4327,7 +4597,9 @@ export namespace TestGroup {
         toJSON() {
             return OptionalGroup.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -4338,6 +4610,7 @@ export namespace TestGroup {
                 return true;
             return a.id === b.id;
         }
+        // #endregion
     }
 
 }
@@ -4351,6 +4624,9 @@ export interface ITestGroup1 {
  * Represents a TestGroup1.
  */
 export class TestGroup1 implements ITestGroup1 {
+    group?: TestGroup.IRepeatedGroup;
+
+    // #region create
     /**
      * Constructs a new TestGroup1.
      */
@@ -4360,7 +4636,6 @@ export class TestGroup1 implements ITestGroup1 {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    group?: TestGroup.IRepeatedGroup;
 
     /**
      * Creates a new TestGroup1 instance using the specified properties.
@@ -4368,7 +4643,9 @@ export class TestGroup1 implements ITestGroup1 {
     static create(properties: ITestGroup1): TestGroup1 {
         return new TestGroup1(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified TestGroup1 message. Does not implicitly {@link TestGroup1.verify|verify} messages.
      * @param message TestGroup1message or plain object to encode
@@ -4390,7 +4667,9 @@ export class TestGroup1 implements ITestGroup1 {
     static encodeDelimited(message: ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a TestGroup1 message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4427,7 +4706,9 @@ export class TestGroup1 implements ITestGroup1 {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a TestGroup1 message.
      * @param message Plain object to verify
@@ -4443,7 +4724,9 @@ export class TestGroup1 implements ITestGroup1 {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a TestGroup1 message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -4481,7 +4764,9 @@ export class TestGroup1 implements ITestGroup1 {
     toJSON() {
         return TestGroup1.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -4492,6 +4777,7 @@ export class TestGroup1 implements ITestGroup1 {
             return true;
         return TestGroup.RepeatedGroup.equals(a.group, b.group);
     }
+    // #endregion
 }
 
 /** Properties of a TestReservedNames. */
@@ -4504,6 +4790,10 @@ export interface ITestReservedNames {
  * Represents a TestReservedNames.
  */
 export class TestReservedNames implements ITestReservedNames {
+    extension?: number;
+    ["TestReservedNamesExtension.foo"]?: number;
+
+    // #region create
     /**
      * Constructs a new TestReservedNames.
      */
@@ -4513,8 +4803,6 @@ export class TestReservedNames implements ITestReservedNames {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    extension?: number = 0;
-    ["TestReservedNamesExtension.foo"]?: number = 0;
 
     /**
      * Creates a new TestReservedNames instance using the specified properties.
@@ -4522,7 +4810,9 @@ export class TestReservedNames implements ITestReservedNames {
     static create(properties: ITestReservedNames): TestReservedNames {
         return new TestReservedNames(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified TestReservedNames message. Does not implicitly {@link TestReservedNames.verify|verify} messages.
      * @param message TestReservedNamesmessage or plain object to encode
@@ -4546,7 +4836,9 @@ export class TestReservedNames implements ITestReservedNames {
     static encodeDelimited(message: ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a TestReservedNames message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4586,7 +4878,9 @@ export class TestReservedNames implements ITestReservedNames {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a TestReservedNames message.
      * @param message Plain object to verify
@@ -4603,7 +4897,9 @@ export class TestReservedNames implements ITestReservedNames {
                 return "TestReservedNamesExtension.foo: integer expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a TestReservedNames message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -4644,7 +4940,9 @@ export class TestReservedNames implements ITestReservedNames {
     toJSON() {
         return TestReservedNames.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -4655,6 +4953,7 @@ export class TestReservedNames implements ITestReservedNames {
             return true;
         return a.extension === b.extension && a["TestReservedNamesExtension.foo"] === b["TestReservedNamesExtension.foo"];
     }
+    // #endregion
 }
 
 /** Properties of a TestReservedNamesExtension. */
@@ -4665,6 +4964,8 @@ export interface ITestReservedNamesExtension {
  * Represents a TestReservedNamesExtension.
  */
 export class TestReservedNamesExtension implements ITestReservedNamesExtension {
+
+    // #region create
     /**
      * Constructs a new TestReservedNamesExtension.
      */
@@ -4681,7 +4982,9 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
     static create(properties: ITestReservedNamesExtension): TestReservedNamesExtension {
         return new TestReservedNamesExtension(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified TestReservedNamesExtension message. Does not implicitly {@link TestReservedNamesExtension.verify|verify} messages.
      * @param message TestReservedNamesExtensionmessage or plain object to encode
@@ -4701,7 +5004,9 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
     static encodeDelimited(message: ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a TestReservedNamesExtension message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4735,7 +5040,9 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a TestReservedNamesExtension message.
      * @param message Plain object to verify
@@ -4746,7 +5053,9 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
             return "object expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a TestReservedNamesExtension message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -4773,7 +5082,9 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
     toJSON() {
         return TestReservedNamesExtension.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -4784,6 +5095,7 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
             return true;
         return true;
     }
+    // #endregion
 }
 
 export namespace TestReservedNamesExtension {
@@ -4808,26 +5120,16 @@ export interface ITestMessageWithOneof {
  * Represents a TestMessageWithOneof.
  */
 export class TestMessageWithOneof implements ITestMessageWithOneof {
-    /**
-     * Constructs a new TestMessageWithOneof.
-     */
-    constructor(properties?: ITestMessageWithOneof) {
-        this.repeatedField = [];
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-    pone?: string = "";
-    pthree?: string = "";
+    pone?: string;
+    pthree?: string;
     rone?: ITestMessageWithOneof;
-    rtwo?: string = "";
-    normalField?: boolean = false;
+    rtwo?: string;
+    normalField?: boolean;
     repeatedField?: string[];
-    aone?: number = 1234;
-    atwo?: number = 0;
-    bone?: number = 0;
-    btwo?: number = 1234;
+    aone?: number;
+    atwo?: number;
+    bone?: number;
+    btwo?: number;
 
     // OneOf field names bound to virtual getters and setters
 
@@ -4867,13 +5169,26 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
         TestMessageWithOneof.oneOf_defaultOneofBSet(value);
     }
 
+    // #region create
+    /**
+     * Constructs a new TestMessageWithOneof.
+     */
+    constructor(properties?: ITestMessageWithOneof) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new TestMessageWithOneof instance using the specified properties.
      */
     static create(properties: ITestMessageWithOneof): TestMessageWithOneof {
         return new TestMessageWithOneof(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified TestMessageWithOneof message. Does not implicitly {@link TestMessageWithOneof.verify|verify} messages.
      * @param message TestMessageWithOneofmessage or plain object to encode
@@ -4914,7 +5229,9 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
     static encodeDelimited(message: ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a TestMessageWithOneof message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4980,7 +5297,9 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a TestMessageWithOneof message.
      * @param message Plain object to verify
@@ -5053,7 +5372,9 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a TestMessageWithOneof message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -5161,7 +5482,9 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
     toJSON() {
         return TestMessageWithOneof.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -5174,6 +5497,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
             return (a.repeatedField && a.repeatedField[i]) === (b.repeatedField && b.repeatedField[i]);
         })) && a.aone === b.aone && a.atwo === b.atwo && a.bone === b.bone && a.btwo === b.btwo;
     }
+    // #endregion
 }
 
 /** Properties of a TestEndsWithBytes. */
@@ -5186,6 +5510,10 @@ export interface ITestEndsWithBytes {
  * Represents a TestEndsWithBytes.
  */
 export class TestEndsWithBytes implements ITestEndsWithBytes {
+    value?: number;
+    data?: Uint8Array;
+
+    // #region create
     /**
      * Constructs a new TestEndsWithBytes.
      */
@@ -5195,8 +5523,6 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    value?: number = 0;
-    data?: Uint8Array= $util.newBuffer([]);
 
     /**
      * Creates a new TestEndsWithBytes instance using the specified properties.
@@ -5204,7 +5530,9 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
     static create(properties: ITestEndsWithBytes): TestEndsWithBytes {
         return new TestEndsWithBytes(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified TestEndsWithBytes message. Does not implicitly {@link TestEndsWithBytes.verify|verify} messages.
      * @param message TestEndsWithBytesmessage or plain object to encode
@@ -5228,7 +5556,9 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
     static encodeDelimited(message: ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a TestEndsWithBytes message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -5268,7 +5598,9 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a TestEndsWithBytes message.
      * @param message Plain object to verify
@@ -5285,7 +5617,9 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
                 return "data: buffer expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a TestEndsWithBytes message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -5335,7 +5669,9 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
     toJSON() {
         return TestEndsWithBytes.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -5346,6 +5682,7 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
             return true;
         return a.value === b.value && $util.bytesEquals(a.data, b.data);
     }
+    // #endregion
 }
 
 /** Properties of a TestMapFieldsNoBinary. */
@@ -5368,26 +5705,6 @@ export interface ITestMapFieldsNoBinary {
  * Represents a TestMapFieldsNoBinary.
  */
 export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
-    /**
-     * Constructs a new TestMapFieldsNoBinary.
-     */
-    constructor(properties?: ITestMapFieldsNoBinary) {
-        this.mapStringString = {};
-        this.mapStringInt32 = {};
-        this.mapStringInt64 = {};
-        this.mapStringBool = {};
-        this.mapStringDouble = {};
-        this.mapStringEnum = {};
-        this.mapStringMsg = {};
-        this.mapInt32String = {};
-        this.mapInt64String = {};
-        this.mapBoolString = {};
-        this.mapStringTestmapfields = {};
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
     mapStringString?: {[key: string]: string};
     mapStringInt32?: {[key: string]: number};
     mapStringInt64?: {[key: string]: (number|$protobuf.Long)};
@@ -5401,13 +5718,26 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
     testMapFields?: ITestMapFieldsNoBinary;
     mapStringTestmapfields?: {[key: string]: ITestMapFieldsNoBinary};
 
+    // #region create
+    /**
+     * Constructs a new TestMapFieldsNoBinary.
+     */
+    constructor(properties?: ITestMapFieldsNoBinary) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new TestMapFieldsNoBinary instance using the specified properties.
      */
     static create(properties: ITestMapFieldsNoBinary): TestMapFieldsNoBinary {
         return new TestMapFieldsNoBinary(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified TestMapFieldsNoBinary message. Does not implicitly {@link TestMapFieldsNoBinary.verify|verify} messages.
      * @param message TestMapFieldsNoBinarymessage or plain object to encode
@@ -5466,7 +5796,9 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
     static encodeDelimited(message: ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a TestMapFieldsNoBinary message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -5745,7 +6077,9 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a TestMapFieldsNoBinary message.
      * @param message Plain object to verify
@@ -5868,7 +6202,9 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a TestMapFieldsNoBinary message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -6081,7 +6417,9 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
     toJSON() {
         return TestMapFieldsNoBinary.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -6114,6 +6452,7 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
             return !!b.mapStringTestmapfields && (!(keyName in b.mapStringTestmapfields) && TestMapFieldsNoBinary.equals(a.mapStringTestmapfields && a.mapStringTestmapfields[keyName], b.mapStringTestmapfields && b.mapStringTestmapfields[keyName]));
         });
     }
+    // #endregion
 }
 
 export enum MapValueEnumNoBinary {
@@ -6131,6 +6470,9 @@ export interface IMapValueMessageNoBinary {
  * Represents a MapValueMessageNoBinary.
  */
 export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
+    foo?: number;
+
+    // #region create
     /**
      * Constructs a new MapValueMessageNoBinary.
      */
@@ -6140,7 +6482,6 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    foo?: number = 0;
 
     /**
      * Creates a new MapValueMessageNoBinary instance using the specified properties.
@@ -6148,7 +6489,9 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
     static create(properties: IMapValueMessageNoBinary): MapValueMessageNoBinary {
         return new MapValueMessageNoBinary(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified MapValueMessageNoBinary message. Does not implicitly {@link MapValueMessageNoBinary.verify|verify} messages.
      * @param message MapValueMessageNoBinarymessage or plain object to encode
@@ -6170,7 +6513,9 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
     static encodeDelimited(message: IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a MapValueMessageNoBinary message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -6207,7 +6552,9 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a MapValueMessageNoBinary message.
      * @param message Plain object to verify
@@ -6221,7 +6568,9 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
                 return "foo: integer expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a MapValueMessageNoBinary message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -6256,7 +6605,9 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
     toJSON() {
         return MapValueMessageNoBinary.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -6267,6 +6618,7 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
             return true;
         return a.foo === b.foo;
     }
+    // #endregion
 }
 
 /** Properties of a Deeply. */
@@ -6277,6 +6629,8 @@ export interface IDeeply {
  * Represents a Deeply.
  */
 export class Deeply implements IDeeply {
+
+    // #region create
     /**
      * Constructs a new Deeply.
      */
@@ -6293,7 +6647,9 @@ export class Deeply implements IDeeply {
     static create(properties: IDeeply): Deeply {
         return new Deeply(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Deeply message. Does not implicitly {@link Deeply.verify|verify} messages.
      * @param message Deeplymessage or plain object to encode
@@ -6313,7 +6669,9 @@ export class Deeply implements IDeeply {
     static encodeDelimited(message: IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Deeply message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -6347,7 +6705,9 @@ export class Deeply implements IDeeply {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Deeply message.
      * @param message Plain object to verify
@@ -6358,7 +6718,9 @@ export class Deeply implements IDeeply {
             return "object expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Deeply message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -6385,7 +6747,9 @@ export class Deeply implements IDeeply {
     toJSON() {
         return Deeply.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -6396,6 +6760,7 @@ export class Deeply implements IDeeply {
             return true;
         return true;
     }
+    // #endregion
 }
 
 export namespace Deeply {
@@ -6407,6 +6772,8 @@ export namespace Deeply {
      * Represents a Nested.
      */
     export class Nested implements INested {
+
+        // #region create
         /**
          * Constructs a new Nested.
          */
@@ -6423,7 +6790,9 @@ export namespace Deeply {
         static create(properties: INested): Nested {
             return new Nested(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
          * @param message Nestedmessage or plain object to encode
@@ -6443,7 +6812,9 @@ export namespace Deeply {
         static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a Nested message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -6477,7 +6848,9 @@ export namespace Deeply {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a Nested message.
          * @param message Plain object to verify
@@ -6488,7 +6861,9 @@ export namespace Deeply {
                 return "object expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a Nested message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -6515,7 +6890,9 @@ export namespace Deeply {
         toJSON() {
             return Nested.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -6526,6 +6903,7 @@ export namespace Deeply {
                 return true;
             return true;
         }
+        // #endregion
     }
 
     export namespace Nested {
@@ -6538,6 +6916,9 @@ export namespace Deeply {
          * Represents a Message.
          */
         export class Message implements IMessage {
+            count?: number;
+
+            // #region create
             /**
              * Constructs a new Message.
              */
@@ -6547,7 +6928,6 @@ export namespace Deeply {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
-            count?: number = 0;
 
             /**
              * Creates a new Message instance using the specified properties.
@@ -6555,7 +6935,9 @@ export namespace Deeply {
             static create(properties: IMessage): Message {
                 return new Message(properties);
             }
+            // #endregion
 
+            // #region encode
             /**
              * Encodes the specified Message message. Does not implicitly {@link Message.verify|verify} messages.
              * @param message Messagemessage or plain object to encode
@@ -6577,7 +6959,9 @@ export namespace Deeply {
             static encodeDelimited(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
+            // #endregion
 
+            // #region decode
             /**
              * Decodes a Message message from the specified reader or buffer.
              * @param reader Reader or buffer to decode from
@@ -6614,7 +6998,9 @@ export namespace Deeply {
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
             }
+            // #endregion
 
+            // #region verify
             /**
              * Verifies a Message message.
              * @param message Plain object to verify
@@ -6628,7 +7014,9 @@ export namespace Deeply {
                         return "count: integer expected";
                 return null;
             }
+            // #endregion
 
+            // #region convert
             /**
              * Creates a Message message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
@@ -6663,7 +7051,9 @@ export namespace Deeply {
             toJSON() {
                 return Message.toObject(this, $protobuf.util.toJSONOptions);
             };
+            // #endregion
 
+            // #region equals
             /**
              * Compares two messages, checking for strict equality.
              */
@@ -6674,6 +7064,7 @@ export namespace Deeply {
                     return true;
                 return a.count === b.count;
             }
+            // #endregion
         }
 
     }

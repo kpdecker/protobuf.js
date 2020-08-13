@@ -36,7 +36,6 @@ $root.vector_tile = (function() {
          * @param {vector_tile.ITile=} [properties] Properties to set
          */
         function Tile(properties) {
-            this.layers = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -624,8 +623,6 @@ $root.vector_tile = (function() {
              * @param {vector_tile.Tile.IFeature=} [properties] Properties to set
              */
             function Feature(properties) {
-                this.tags = [];
-                this.geometry = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -967,9 +964,6 @@ $root.vector_tile = (function() {
              * @param {vector_tile.Tile.ILayer=} [properties] Properties to set
              */
             function Layer(properties) {
-                this.features = [];
-                this.keys = [];
-                this.values = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)

@@ -182,7 +182,6 @@ $root.Test = (function() {
 $root.Outer = (function() {
 
     function Outer(properties) {
-        this.bool = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)

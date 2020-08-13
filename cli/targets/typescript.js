@@ -428,13 +428,6 @@ function buildType(type) {
     push(`export class ${className} implements ${interfaceName} {`);
     indent++;
 
-    pushComment([
-        "Constructs a new " + type.name + ".",
-    ]);
-    push(`constructor(properties?: ${interfaceName}) {`);
-    buildFunction(type, type.name, Type.generateConstructor(type));
-    push("}");
-
     // default values
     type.fieldsArray.forEach(function(field) {
         field.resolve();
@@ -445,18 +438,19 @@ function buildType(type) {
                 field.comment
             ]);
         }
-        if (field.repeated || field.map || field.typeDefault == null)
+
+        if (field.repeated || field.map || field.optional || field.typeDefault == null)
             push(`${prop}${field.optional ? '?' : ''}: ${jsType};`); // overwritten in constructor
         else if (field.long)
-            push(`${prop}${field.optional ? "?" : ""}: ${jsType} = $util.Long ? ($util.Long as any).fromBits(${
+            push(`${prop}: ${jsType} = $util.Long ? ($util.Long as any).fromBits(${
                     JSON.stringify(field.typeDefault.low)}, ${
                     JSON.stringify(field.typeDefault.high)}, ${
                     JSON.stringify(field.typeDefault.unsigned)
                     }) : ${field.typeDefault.toNumber(field.type.charAt(0) === "u")};`);
         else if (field.bytes) {
-            push(`${prop}${field.optional ? "?" : ""}: ${jsType}= $util.newBuffer(${JSON.stringify(Array.prototype.slice.call(field.typeDefault))});`);
+            push(`${prop}: ${jsType}= $util.newBuffer(${JSON.stringify(Array.prototype.slice.call(field.typeDefault))});`);
         } else
-            push(`${prop}${field.optional ? "?" : ""}: ${jsType} = ${JSON.stringify(field.typeDefault)};`);
+            push(`${prop}: ${jsType} = ${JSON.stringify(field.typeDefault)};`);
 
         if (field.comment) {
             push("");
@@ -498,10 +492,19 @@ function buildType(type) {
         push("}");
     });
 
+    push("");
+    push("// #region create");
+    pushComment(['Constructs a new ' + type.name + '.']);
+    push(`constructor(properties?: ${interfaceName}) {`);
+    buildFunction(type, type.name, Type.generateConstructor(type));
+    push('}');
+
     if (config.create) {
         push("");
         pushComment([
-            "Creates a new " + type.name + " instance using the specified properties.",
+          'Creates a new ' +
+            type.name +
+            ' instance using the specified properties.',
         ]);
         push(
           `static create(properties: ${interfaceName}): ${className} {`
@@ -511,9 +514,11 @@ function buildType(type) {
             --indent;
         push("}");
     }
+    push("// #endregion");
 
     if (config.encode) {
         push("");
+        push("// #region encode");
         pushComment([
             "Encodes the specified " + type.name + " message. Does not implicitly {@link " + className + ".verify|verify} messages.",
             "@param message " + type.name + "message or plain object to encode",
@@ -536,10 +541,12 @@ function buildType(type) {
             --indent;
             push("}");
         }
+        push("// #endregion");
     }
 
     if (config.decode) {
         push("");
+        push("// #region decode");
         pushComment([
             "Decodes " + aOrAn(type.name) + " message from the specified reader or buffer.",
             "@param reader Reader or buffer to decode from",
@@ -569,10 +576,12 @@ function buildType(type) {
             --indent;
             push("}");
         }
+        push("// #endregion");
     }
 
     if (config.verify) {
         push("");
+        push("// #region verify");
         pushComment([
             "Verifies " + aOrAn(type.name) + " message.",
             "@param message Plain object to verify",
@@ -581,10 +590,12 @@ function buildType(type) {
         push("static verify(message): string | null | void {");
         buildFunction(type, "verify", protobuf.verifier(type));
         push("}");
+        push("// #endregion");
     }
 
     if (config.convert) {
         push("");
+        push("// #region convert");
         pushComment([
             "Creates " + aOrAn(type.name) + " message from a plain object. Also converts values to their respective internal types.",
             "@param object Plain object",
@@ -613,16 +624,19 @@ function buildType(type) {
             push(`return ${className}.toObject(this, $protobuf.util.toJSONOptions);`);
         --indent;
         push("};");
+        push("// #endregion");
     }
 
     if (config.equals) {
       push("");
+      push("// #region equals");
       pushComment([
           "Compares two messages, checking for strict equality.",
       ]);
       push(`static equals(a?: ${dataName}, b?: ${dataName}): boolean {`);
       buildFunction(type, "equals", protobuf.equals(type));
       push("}");
+      push("// #endregion");
     }
 
     indent--;

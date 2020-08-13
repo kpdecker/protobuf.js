@@ -21,29 +21,26 @@ export interface IMessage {
  * Represents a Message.
  */
 export class Message implements IMessage {
+    stringVal?: string;
+    stringRepeated?: string[];
+    uint64Val?: (number|$protobuf.Long);
+    uint64Repeated?: (number|$protobuf.Long)[];
+    bytesVal?: Uint8Array;
+    bytesRepeated?: Uint8Array[];
+    enumVal?: Message.SomeEnum;
+    enumRepeated?: Message.SomeEnum[];
+    int64Map?: {[key: string]: (number|$protobuf.Long)};
+
+    // #region create
     /**
      * Constructs a new Message.
      */
     constructor(properties?: IMessage) {
-        this.stringRepeated = [];
-        this.uint64Repeated = [];
-        this.bytesRepeated = [];
-        this.enumRepeated = [];
-        this.int64Map = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    stringVal?: string = "";
-    stringRepeated?: string[];
-    uint64Val?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(0, 0, true) : 0;
-    uint64Repeated?: (number|$protobuf.Long)[];
-    bytesVal?: Uint8Array= $util.newBuffer([]);
-    bytesRepeated?: Uint8Array[];
-    enumVal?: Message.SomeEnum = 1;
-    enumRepeated?: Message.SomeEnum[];
-    int64Map?: {[key: string]: (number|$protobuf.Long)};
 
     /**
      * Creates a new Message instance using the specified properties.
@@ -51,7 +48,9 @@ export class Message implements IMessage {
     static create(properties: IMessage): Message {
         return new Message(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Message message. Does not implicitly {@link Message.verify|verify} messages.
      * @param message Messagemessage or plain object to encode
@@ -100,7 +99,9 @@ export class Message implements IMessage {
     static encodeDelimited(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Message message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -198,7 +199,9 @@ export class Message implements IMessage {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Message message.
      * @param message Plain object to verify
@@ -267,7 +270,9 @@ export class Message implements IMessage {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Message message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -451,7 +456,9 @@ export class Message implements IMessage {
     toJSON() {
         return Message.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -472,6 +479,7 @@ export class Message implements IMessage {
             return !!b.int64Map && (!(keyName in b.int64Map) && $util.longEquals(a.int64Map && a.int64Map[keyName], b.int64Map && b.int64Map[keyName]));
         });
     }
+    // #endregion
 }
 
 export namespace Message {

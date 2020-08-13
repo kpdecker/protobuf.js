@@ -199,9 +199,9 @@ Type.generateConstructor = function generateConstructor(mtype) {
     var gen = util.codegen(["p"], mtype.name);
     // explicitly initialize mutable object/array fields so that these aren't just inherited from the prototype
     for (var i = 0, field; i < mtype.fieldsArray.length; ++i)
-        if ((field = mtype._fieldsArray[i]).map) gen
+        if ((field = mtype._fieldsArray[i]).map && !field.optional) gen
             ("this%s={}", util.safeProp(field.name));
-        else if (field.repeated) gen
+        else if (field.repeated && !field.optional) gen
             ("this%s=[]", util.safeProp(field.name));
     return gen
     ("if(p)for(var ks=Object.keys(p),i=0;i<ks.length;++i)if(p[ks[i]]!=null)") // omit undefined or null

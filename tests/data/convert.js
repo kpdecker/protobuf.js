@@ -35,11 +35,6 @@ $root.Message = (function() {
      * @param {IMessage=} [properties] Properties to set
      */
     function Message(properties) {
-        this.stringRepeated = [];
-        this.uint64Repeated = [];
-        this.bytesRepeated = [];
-        this.enumRepeated = [];
-        this.int64Map = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
