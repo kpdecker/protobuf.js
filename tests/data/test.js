@@ -6990,7 +6990,7 @@ $root.jspb = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        if (message.mapStringString === $util.emptyObject)
+                        if (message.mapStringString === $util.emptyObject || !message.mapStringString)
                             message.mapStringString = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = "";
@@ -7012,7 +7012,7 @@ $root.jspb = (function() {
                         message.mapStringString[key] = value;
                         break;
                     case 2:
-                        if (message.mapStringInt32 === $util.emptyObject)
+                        if (message.mapStringInt32 === $util.emptyObject || !message.mapStringInt32)
                             message.mapStringInt32 = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = "";
@@ -7034,7 +7034,7 @@ $root.jspb = (function() {
                         message.mapStringInt32[key] = value;
                         break;
                     case 3:
-                        if (message.mapStringInt64 === $util.emptyObject)
+                        if (message.mapStringInt64 === $util.emptyObject || !message.mapStringInt64)
                             message.mapStringInt64 = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = "";
@@ -7056,7 +7056,7 @@ $root.jspb = (function() {
                         message.mapStringInt64[key] = value;
                         break;
                     case 4:
-                        if (message.mapStringBool === $util.emptyObject)
+                        if (message.mapStringBool === $util.emptyObject || !message.mapStringBool)
                             message.mapStringBool = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = "";
@@ -7078,7 +7078,7 @@ $root.jspb = (function() {
                         message.mapStringBool[key] = value;
                         break;
                     case 5:
-                        if (message.mapStringDouble === $util.emptyObject)
+                        if (message.mapStringDouble === $util.emptyObject || !message.mapStringDouble)
                             message.mapStringDouble = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = "";
@@ -7100,7 +7100,7 @@ $root.jspb = (function() {
                         message.mapStringDouble[key] = value;
                         break;
                     case 6:
-                        if (message.mapStringEnum === $util.emptyObject)
+                        if (message.mapStringEnum === $util.emptyObject || !message.mapStringEnum)
                             message.mapStringEnum = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = "";
@@ -7122,7 +7122,7 @@ $root.jspb = (function() {
                         message.mapStringEnum[key] = value;
                         break;
                     case 7:
-                        if (message.mapStringMsg === $util.emptyObject)
+                        if (message.mapStringMsg === $util.emptyObject || !message.mapStringMsg)
                             message.mapStringMsg = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = "";
@@ -7144,7 +7144,7 @@ $root.jspb = (function() {
                         message.mapStringMsg[key] = value;
                         break;
                     case 8:
-                        if (message.mapInt32String === $util.emptyObject)
+                        if (message.mapInt32String === $util.emptyObject || !message.mapInt32String)
                             message.mapInt32String = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = 0;
@@ -7166,7 +7166,7 @@ $root.jspb = (function() {
                         message.mapInt32String[key] = value;
                         break;
                     case 9:
-                        if (message.mapInt64String === $util.emptyObject)
+                        if (message.mapInt64String === $util.emptyObject || !message.mapInt64String)
                             message.mapInt64String = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = 0;
@@ -7188,7 +7188,7 @@ $root.jspb = (function() {
                         message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = value;
                         break;
                     case 10:
-                        if (message.mapBoolString === $util.emptyObject)
+                        if (message.mapBoolString === $util.emptyObject || !message.mapBoolString)
                             message.mapBoolString = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = false;
@@ -7213,7 +7213,7 @@ $root.jspb = (function() {
                         message.testMapFields = $root.jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
                         break;
                     case 12:
-                        if (message.mapStringTestmapfields === $util.emptyObject)
+                        if (message.mapStringTestmapfields === $util.emptyObject || !message.mapStringTestmapfields)
                             message.mapStringTestmapfields = {};
                         var end2 = reader.uint32() + reader.pos;
                         key = "";

@@ -4,9 +4,6 @@ import * as $protobuf from "../../minimal";
 // Common aliases
 const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
-// Exported root namespace
-const $root: any = $protobuf.roots.test_rpc || ($protobuf.roots.test_rpc = {} as $protobuf.Root);
-
 export class MyService extends $protobuf.rpc.Service {
     /**
      * Constructs a new MyService service.
@@ -17,8 +14,8 @@ export class MyService extends $protobuf.rpc.Service {
     constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited: boolean = false, responseDelimited: boolean = false) {
         super(rpcImpl, requestDelimited, responseDelimited);
 
-        (this.myMethod as any).requestCtor = $root.MyRequest;
-        (this.myMethod as any).responseCtor = $root.MyResponse;
+        (this.myMethod as any).requestCtor = MyRequest;
+        (this.myMethod as any).responseCtor = MyResponse;
         (this.myMethod as any).requestStream = undefined;
         (this.myMethod as any).responseStream = undefined;
     }
@@ -35,28 +32,24 @@ export class MyService extends $protobuf.rpc.Service {
         return new MyService(rpcImpl, requestDelimited, responseDelimited);
     };
 
-    async myMethod(request: MyRequest.IMyRequest): Promise<MyResponse> {
-        return (this.rpcCall as any)(this.myMethod, $root.MyRequest, $root.MyResponse, request);
+    async myMethod(request: IMyRequest): Promise<MyResponse> {
+        return (this.rpcCall as any)(this.myMethod, MyRequest, MyResponse, request);
     }
 }
-$root.MyService = MyService;
-
 
 /** Properties of a MyRequest. */
-export namespace MyRequest {
-    export interface IMyRequest {
-        path?: string;
-    }
+export interface IMyRequest {
+    path?: string;
 }
 
 /**
  * Represents a MyRequest.
  */
-export class MyRequest implements MyRequest.IMyRequest {
+export class MyRequest implements IMyRequest {
     /**
      * Constructs a new MyRequest.
      */
-    constructor(properties?: MyRequest.IMyRequest) {
+    constructor(properties?: IMyRequest) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -67,7 +60,7 @@ export class MyRequest implements MyRequest.IMyRequest {
     /**
      * Creates a new MyRequest instance using the specified properties.
      */
-    static create(properties: MyRequest.IMyRequest): MyRequest {
+    static create(properties: IMyRequest): MyRequest {
         return new MyRequest(properties);
     }
 
@@ -76,7 +69,7 @@ export class MyRequest implements MyRequest.IMyRequest {
      * @param message MyRequestmessage or plain object to encode
      * @param writer Writer to encode to
      */
-    static encode(message: MyRequest.IMyRequest, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IMyRequest, writer?: $protobuf.Writer): $protobuf.Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.path != null && Object.hasOwnProperty.call(message, "path"))
@@ -89,7 +82,7 @@ export class MyRequest implements MyRequest.IMyRequest {
      * @param message MyRequestmessage or plain object to encode
      * @param writer Writer to encode to
      */
-    static encodeDelimited(message: MyRequest.IMyRequest, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IMyRequest, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
 
@@ -103,7 +96,7 @@ export class MyRequest implements MyRequest.IMyRequest {
     static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MyRequest {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MyRequest();
+        var end = length === undefined ? reader.len : reader.pos + length, message = new MyRequest();
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -148,10 +141,10 @@ export class MyRequest implements MyRequest.IMyRequest {
      * Creates a MyRequest message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
      */
-    static fromObject(object): MyRequest {
-        if (object instanceof $root.MyRequest)
+    static fromObject(object): IMyRequest {
+        if (object instanceof MyRequest)
             return object;
-        var message = new $root.MyRequest();
+        var message = new MyRequest();
         if (object.path != null)
             message.path = String(object.path);
         return message;
@@ -163,7 +156,7 @@ export class MyRequest implements MyRequest.IMyRequest {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: MyRequest, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IMyRequest, options: $protobuf.IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.path = "";
@@ -182,7 +175,7 @@ export class MyRequest implements MyRequest.IMyRequest {
     /**
      * Compares two messages, checking for strict equality.
      */
-    static equals(a: MyRequest.IMyRequest, b: MyRequest.IMyRequest): boolean {
+    static equals(a?: IMyRequest, b?: IMyRequest): boolean {
         if (!a || !b)
             return a === b;
         if (a === b)
@@ -190,24 +183,20 @@ export class MyRequest implements MyRequest.IMyRequest {
         return a.path === b.path;
     }
 }
-$root.MyRequest = MyRequest;
-
 
 /** Properties of a MyResponse. */
-export namespace MyResponse {
-    export interface IMyResponse {
-        status?: number;
-    }
+export interface IMyResponse {
+    status?: number;
 }
 
 /**
  * Represents a MyResponse.
  */
-export class MyResponse implements MyResponse.IMyResponse {
+export class MyResponse implements IMyResponse {
     /**
      * Constructs a new MyResponse.
      */
-    constructor(properties?: MyResponse.IMyResponse) {
+    constructor(properties?: IMyResponse) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -218,7 +207,7 @@ export class MyResponse implements MyResponse.IMyResponse {
     /**
      * Creates a new MyResponse instance using the specified properties.
      */
-    static create(properties: MyResponse.IMyResponse): MyResponse {
+    static create(properties: IMyResponse): MyResponse {
         return new MyResponse(properties);
     }
 
@@ -227,7 +216,7 @@ export class MyResponse implements MyResponse.IMyResponse {
      * @param message MyResponsemessage or plain object to encode
      * @param writer Writer to encode to
      */
-    static encode(message: MyResponse.IMyResponse, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IMyResponse, writer?: $protobuf.Writer): $protobuf.Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.status != null && Object.hasOwnProperty.call(message, "status"))
@@ -240,7 +229,7 @@ export class MyResponse implements MyResponse.IMyResponse {
      * @param message MyResponsemessage or plain object to encode
      * @param writer Writer to encode to
      */
-    static encodeDelimited(message: MyResponse.IMyResponse, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IMyResponse, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
 
@@ -254,7 +243,7 @@ export class MyResponse implements MyResponse.IMyResponse {
     static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MyResponse {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MyResponse();
+        var end = length === undefined ? reader.len : reader.pos + length, message = new MyResponse();
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -299,10 +288,10 @@ export class MyResponse implements MyResponse.IMyResponse {
      * Creates a MyResponse message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
      */
-    static fromObject(object): MyResponse {
-        if (object instanceof $root.MyResponse)
+    static fromObject(object): IMyResponse {
+        if (object instanceof MyResponse)
             return object;
-        var message = new $root.MyResponse();
+        var message = new MyResponse();
         if (object.status != null)
             message.status = object.status | 0;
         return message;
@@ -314,7 +303,7 @@ export class MyResponse implements MyResponse.IMyResponse {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: MyResponse, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IMyResponse, options: $protobuf.IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.status = 0;
@@ -333,7 +322,7 @@ export class MyResponse implements MyResponse.IMyResponse {
     /**
      * Compares two messages, checking for strict equality.
      */
-    static equals(a: MyResponse.IMyResponse, b: MyResponse.IMyResponse): boolean {
+    static equals(a?: IMyResponse, b?: IMyResponse): boolean {
         if (!a || !b)
             return a === b;
         if (a === b)
@@ -341,6 +330,4 @@ export class MyResponse implements MyResponse.IMyResponse {
         return a.status === b.status;
     }
 }
-$root.MyResponse = MyResponse;
-
 ;

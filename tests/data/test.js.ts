@@ -2,7 +2,7 @@ import * as protobuf from "../..";
 import { jspb } from "./test";
 
 // should encode an object implementing the interface
-let mInterface: jspb.test.Simple1.ISimple1 = {
+let mInterface: jspb.test.ISimple1 = {
   aString: 'a-string',
   aRepeatedString: ['a', 'repeated', 'string'],
   aBoolean: true,

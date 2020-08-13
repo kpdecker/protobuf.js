@@ -4,32 +4,27 @@ import * as $protobuf from "../../minimal";
 // Common aliases
 const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
-// Exported root namespace
-const $root: any = $protobuf.roots.test_convert || ($protobuf.roots.test_convert = {} as $protobuf.Root);
-
 /** Properties of a Message. */
-export namespace Message {
-    export interface IMessage {
-        stringVal?: string;
-        stringRepeated?: string[];
-        uint64Val?: (number|$protobuf.Long);
-        uint64Repeated?: (number|$protobuf.Long)[];
-        bytesVal?: Uint8Array;
-        bytesRepeated?: Uint8Array[];
-        enumVal?: Message.SomeEnum;
-        enumRepeated?: Message.SomeEnum[];
-        int64Map?: {[key: string]: (number|$protobuf.Long)};
-    }
+export interface IMessage {
+    stringVal?: string;
+    stringRepeated?: string[];
+    uint64Val?: (number|$protobuf.Long);
+    uint64Repeated?: (number|$protobuf.Long)[];
+    bytesVal?: Uint8Array;
+    bytesRepeated?: Uint8Array[];
+    enumVal?: Message.SomeEnum;
+    enumRepeated?: Message.SomeEnum[];
+    int64Map?: {[key: string]: (number|$protobuf.Long)};
 }
 
 /**
  * Represents a Message.
  */
-export class Message implements Message.IMessage {
+export class Message implements IMessage {
     /**
      * Constructs a new Message.
      */
-    constructor(properties?: Message.IMessage) {
+    constructor(properties?: IMessage) {
         this.stringRepeated = [];
         this.uint64Repeated = [];
         this.bytesRepeated = [];
@@ -53,7 +48,7 @@ export class Message implements Message.IMessage {
     /**
      * Creates a new Message instance using the specified properties.
      */
-    static create(properties: Message.IMessage): Message {
+    static create(properties: IMessage): Message {
         return new Message(properties);
     }
 
@@ -62,7 +57,7 @@ export class Message implements Message.IMessage {
      * @param message Messagemessage or plain object to encode
      * @param writer Writer to encode to
      */
-    static encode(message: Message.IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.stringVal != null && Object.hasOwnProperty.call(message, "stringVal"))
@@ -102,7 +97,7 @@ export class Message implements Message.IMessage {
      * @param message Messagemessage or plain object to encode
      * @param writer Writer to encode to
      */
-    static encodeDelimited(message: Message.IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
 
@@ -116,7 +111,7 @@ export class Message implements Message.IMessage {
     static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Message {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Message(), key, value;
+        var end = length === undefined ? reader.len : reader.pos + length, message = new Message(), key, value;
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -163,7 +158,7 @@ export class Message implements Message.IMessage {
                     message.enumRepeated.push(reader.int32());
                 break;
             case 9:
-                if (message.int64Map === $util.emptyObject)
+                if (message.int64Map === $util.emptyObject || !message.int64Map)
                     message.int64Map = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
@@ -277,10 +272,10 @@ export class Message implements Message.IMessage {
      * Creates a Message message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
      */
-    static fromObject(object): Message {
-        if (object instanceof $root.Message)
+    static fromObject(object): IMessage {
+        if (object instanceof Message)
             return object;
-        var message = new $root.Message();
+        var message = new Message();
         if (object.stringVal != null)
             message.stringVal = String(object.stringVal);
         if (object.stringRepeated) {
@@ -378,7 +373,7 @@ export class Message implements Message.IMessage {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: Message, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IMessage, options: $protobuf.IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults) {
             object.stringRepeated = [];
@@ -432,11 +427,11 @@ export class Message implements Message.IMessage {
                 object.bytesRepeated[j] = options.bytes === String ? $util.base64.encode(message.bytesRepeated[j], 0, message.bytesRepeated[j].length) : options.bytes === Array ? Array.prototype.slice.call(message.bytesRepeated[j]) : message.bytesRepeated[j];
         }
         if (message.enumVal != null && message.hasOwnProperty("enumVal"))
-            object.enumVal = options.enums === String ? $root.Message.SomeEnum[message.enumVal] : message.enumVal;
+            object.enumVal = options.enums === String ? Message.SomeEnum[message.enumVal] : message.enumVal;
         if (message.enumRepeated && message.enumRepeated.length) {
             object.enumRepeated = [];
             for (var j = 0; j < message.enumRepeated.length; ++j)
-                object.enumRepeated[j] = options.enums === String ? $root.Message.SomeEnum[message.enumRepeated[j]] : message.enumRepeated[j];
+                object.enumRepeated[j] = options.enums === String ? Message.SomeEnum[message.enumRepeated[j]] : message.enumRepeated[j];
         }
         var keys2;
         if (message.int64Map && (keys2 = Object.keys(message.int64Map)).length) {
@@ -460,7 +455,7 @@ export class Message implements Message.IMessage {
     /**
      * Compares two messages, checking for strict equality.
      */
-    static equals(a: Message.IMessage, b: Message.IMessage): boolean {
+    static equals(a?: IMessage, b?: IMessage): boolean {
         if (!a || !b)
             return a === b;
         if (a === b)
@@ -484,9 +479,6 @@ export namespace Message {
         ONE = 1,
         TWO = 2,
     }
-    $root.SomeEnum = SomeEnum;
 
 }
-$root.Message = Message;
-
 ;

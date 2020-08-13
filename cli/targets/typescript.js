@@ -41,11 +41,7 @@ function static_target(root, options, callback) {
                 pushComment("@fileoverview " + root.comment);
                 push("");
             }
-            push("// Exported root namespace");
         }
-        var rootProp = util.safeProp(config.root || "default");
-        push("const $root: any = $protobuf.roots" + rootProp + " || ($protobuf.roots" + rootProp + " = {} as $protobuf.Root);");
-        push("");
 
         buildNamespace(null, root);
 
@@ -105,59 +101,27 @@ function exportName(object, asInterface) {
     return object[asInterface ? "__interfaceName" : "__exportName"] = parts.join(".");
 }
 
-function findCommonAncestor(a, b) {
-  let aParent = a;
-  while (aParent && aParent.name) {
-    let bParent = b.parent;
-    let bParentPath = '';
-
-    while (bParent) {
-      if (aParent === bParent) {
-        return {
-          node: bParent,
-          path: bParentPath
-        };
-      }
-      bParentPath = `${bParent.name}.${bParentPath}`;
-      bParent = bParent.parent;
-    }
-    aParent = aParent.parent;
-  }
-
-  return { path: '' };
-}
-
 function typeName(object, asInterface, context) {
   let parentPath = '';
-  let commonAncestor;
-  if (context) {
-    commonAncestor = findCommonAncestor(context, object);
-    parentPath = commonAncestor.path;
-    console.log(
-      'typename',
-      object.name,
-      context.name,
-      parentPath,
-      object instanceof Enum || asInterface,
-      commonAncestor.node && commonAncestor.node.name,
-      commonAncestor.node === context
-    );
-  }
 
-  if ((object instanceof Enum || asInterface) && commonAncestor && commonAncestor.node === context) {
-    // Enums must explicitly reference namespace
-    parentPath = `${parentPath}${context.name}.`;
-  }
+  // TODO: Look at including parents in the name to avoid conflicting names
+  let referenceName = !(object instanceof Enum) && asInterface ? `I${object.name}` : escapeName(object.name);
 
-  if (asInterface) {
-    return `${parentPath}${object.name}.I${object.name}`;
+  parentPath = [''];
+  var ptr = object.parent;
+  while (ptr && ptr.name && !ptr.isFileRoot) {
+      parentPath.unshift(ptr.name);
+      ptr = ptr.parent;
   }
-  return `${parentPath}${escapeName(object.name)}`;
+  parentPath = parentPath.join('.');
+
+
+  return `${parentPath}${referenceName}`;
 }
 
 function escapeName(name) {
     if (!name)
-        return "$root";
+        return "";
     return util.isReserved(name) ? name + "_" : name;
 }
 
@@ -187,10 +151,6 @@ function buildNamespace(ref, ns) {
     ns.nestedArray.forEach(function(nested) {
         if (nested instanceof Enum) {
             buildEnum(nested);
-
-            if (!ref) {
-                push("$root." + escapeName(nested.name) + " = " + escapeName(nested.name) + ";");
-            }
         } else if (nested instanceof Namespace)
             buildNamespace(ns.name, nested);
 
@@ -199,11 +159,6 @@ function buildNamespace(ref, ns) {
     if (emitNamespace) {
       --indent;
       push("}");
-    }
-
-    if (!ref && ns.name) {
-        push("$root." + escapeName(ns.name) + " = " + escapeName(ns.name) + ";");
-        push("");
     }
 }
 
@@ -316,7 +271,7 @@ function buildFunction(type, functionName, gen) {
             )
                 return {
                     "type": "Identifier",
-                    "name": "$root" + type.fullName
+                    "name": typeName(type, false, type)
                 };
             // replace types[N] with the field's actual type
             if (
@@ -326,7 +281,7 @@ function buildFunction(type, functionName, gen) {
             )
                 return {
                     "type": "Identifier",
-                    "name": "$root" + type.fieldsArray[node.property.value].resolvedType.fullName
+                    "name": typeName(type.fieldsArray[node.property.value].resolvedType, false, type)
                 };
             return undefined;
         }
@@ -412,9 +367,7 @@ function toJsType(field) {
 function buildType(type) {
     push(`/** Properties of ${aOrAn(type.name)}. */`);
 
-    push(`export namespace ${escapeName(type.name)} {`);
-    indent++;
-    push(`export interface ${escapeName("I" + type.name)} {`);
+    push(`export interface I${type.name} {`);
     indent++;
     type.fieldsArray.forEach(function(field) {
         var prop = util.safeProp(field.name); // either .name or ["name"]
@@ -422,8 +375,6 @@ function buildType(type) {
         var jsType = toJsType(field);
         push(`${field.comment ? `/** ${field.comment} */\n` : ""}${prop}${field.optional ? "?" : ""}: ${jsType};`);
     });
-    indent--;
-    push('}');
     indent--;
     push('}');
 
@@ -594,7 +545,7 @@ function buildType(type) {
             "Creates " + aOrAn(type.name) + " message from a plain object. Also converts values to their respective internal types.",
             "@param object Plain object",
         ]);
-        push(`static fromObject(object): ${typeName(type)} {`);
+        push(`static fromObject(object): ${typeName(type, !config.forceMessage)} {`);
         buildFunction(type, "fromObject", protobuf.converter.fromObject(type));
         push("}");
 
@@ -605,8 +556,8 @@ function buildType(type) {
             "@param optionsConversion options",
             "@returns Plain object"
         ]);
-        push(`static toObject(message: ${typeName(type)}, options: $protobuf.IConversionOptions = {}) {`);
-        buildFunction(type, "toObject", protobuf.converter.toObject(type, typeName(type, true)));
+        push(`static toObject(message: ${typeName(type, !config.forceMessage)}, options: $protobuf.IConversionOptions = {}) {`);
+        buildFunction(type, "toObject", protobuf.converter.toObject(type, typeName(type, !config.forceMessage)));
         push("}");
 
         push("");
@@ -625,7 +576,7 @@ function buildType(type) {
       pushComment([
           "Compares two messages, checking for strict equality.",
       ]);
-      push(`static equals(a: ${typeName(type, !config.forceMessage)}, b: ${typeName(type, !config.forceMessage)}): boolean {`);
+      push(`static equals(a?: ${typeName(type, !config.forceMessage)}, b?: ${typeName(type, !config.forceMessage)}): boolean {`);
       buildFunction(type, "equals", protobuf.equals(type));
       push("}");
     }
@@ -655,8 +606,8 @@ function buildService(service) {
         method.resolve();
         var lcName = protobuf.util.lcFirst(method.name);
         push("");
-        push(`(this.${lcName} as any).requestCtor = $root.${exportName(method.resolvedRequestType)};`);
-        push(`(this.${lcName} as any).responseCtor = $root.${exportName(method.resolvedResponseType)};`);
+        push(`(this.${lcName} as any).requestCtor = ${exportName(method.resolvedRequestType)};`);
+        push(`(this.${lcName} as any).responseCtor = ${exportName(method.resolvedResponseType)};`);
         push(`(this.${lcName} as any).requestStream = ${method.requestStream};`);
         push(`(this.${lcName} as any).responseStream = ${method.responseStream};`);
     });
@@ -687,7 +638,7 @@ function buildService(service) {
         if (!method.requestStream && !method.responseStream) {
             push(`async ${escapeName(lcName)}(request: ${typeName(method.resolvedRequestType, !config.forceMessage)}): Promise<${exportName(method.resolvedResponseType)}> {`);
             ++indent;
-            push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", $root." + exportName(method.resolvedRequestType) + ", $root." + exportName(method.resolvedResponseType) + ", request);");
+            push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", request);");
             --indent;
         } else if (method.requestStream && method.responseStream) {
             push(`async ${escapeName(lcName)}(): Promise<Stream.Duplex> {`);
@@ -697,12 +648,12 @@ function buildService(service) {
         } else if (!method.requestStream && method.responseStream) {
             push(`async ${escapeName(lcName)}(request: ${typeName(method.resolvedRequestType, !config.forceMessage)}): Promise<Stream.Readable> {`);
             ++indent;
-            push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", $root." + exportName(method.resolvedRequestType) + ", $root." + exportName(method.resolvedResponseType) + ", request);");
+            push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", request);");
             --indent;
         } else if (method.requestStream && !method.responseStream) {
             push(`async ${escapeName(lcName)}(callback: (err?: Error, response?: ${typeName(method.resolvedResponseType)}) => void): Promise<Stream.Writable> {`);
             ++indent;
-            push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", $root." + exportName(method.resolvedRequestType) + ", $root." + exportName(method.resolvedResponseType) + ", undefined, callback);");
+            push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", undefined, callback);");
             --indent;
         }
         push("}");

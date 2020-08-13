@@ -4,18 +4,13 @@ import * as $protobuf from "../../minimal";
 // Common aliases
 const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
-// Exported root namespace
-const $root: any = $protobuf.roots.test_comments || ($protobuf.roots.test_comments = {} as $protobuf.Root);
-
 /** Properties of a Test1. */
-export namespace Test1 {
-    export interface ITest1 {
-        /** Field with a comment. */
+export interface ITest1 {
+    /** Field with a comment. */
 field1?: string;
-        field2?: number;
-        /** Field with a comment and a <a href="http://example.com/foo/">link</a> */
+    field2?: number;
+    /** Field with a comment and a <a href="http://example.com/foo/">link</a> */
 field3?: boolean;
-    }
 }
 
 /**
@@ -24,11 +19,11 @@ field3?: boolean;
  * a
  * comment.
  */
-export class Test1 implements Test1.ITest1 {
+export class Test1 implements ITest1 {
     /**
      * Constructs a new Test1.
      */
-    constructor(properties?: Test1.ITest1) {
+    constructor(properties?: ITest1) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -49,7 +44,7 @@ export class Test1 implements Test1.ITest1 {
     /**
      * Creates a new Test1 instance using the specified properties.
      */
-    static create(properties: Test1.ITest1): Test1 {
+    static create(properties: ITest1): Test1 {
         return new Test1(properties);
     }
 
@@ -58,7 +53,7 @@ export class Test1 implements Test1.ITest1 {
      * @param message Test1message or plain object to encode
      * @param writer Writer to encode to
      */
-    static encode(message: Test1.ITest1, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITest1, writer?: $protobuf.Writer): $protobuf.Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.field1 != null && Object.hasOwnProperty.call(message, "field1"))
@@ -75,7 +70,7 @@ export class Test1 implements Test1.ITest1 {
      * @param message Test1message or plain object to encode
      * @param writer Writer to encode to
      */
-    static encodeDelimited(message: Test1.ITest1, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITest1, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
 
@@ -89,7 +84,7 @@ export class Test1 implements Test1.ITest1 {
     static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Test1 {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Test1();
+        var end = length === undefined ? reader.len : reader.pos + length, message = new Test1();
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -146,10 +141,10 @@ export class Test1 implements Test1.ITest1 {
      * Creates a Test1 message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
      */
-    static fromObject(object): Test1 {
-        if (object instanceof $root.Test1)
+    static fromObject(object): ITest1 {
+        if (object instanceof Test1)
             return object;
-        var message = new $root.Test1();
+        var message = new Test1();
         if (object.field1 != null)
             message.field1 = String(object.field1);
         if (object.field2 != null)
@@ -165,7 +160,7 @@ export class Test1 implements Test1.ITest1 {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: Test1, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITest1, options: $protobuf.IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults) {
             object.field1 = "";
@@ -191,7 +186,7 @@ export class Test1 implements Test1.ITest1 {
     /**
      * Compares two messages, checking for strict equality.
      */
-    static equals(a: Test1.ITest1, b: Test1.ITest1): boolean {
+    static equals(a?: ITest1, b?: ITest1): boolean {
         if (!a || !b)
             return a === b;
         if (a === b)
@@ -199,23 +194,19 @@ export class Test1 implements Test1.ITest1 {
         return a.field1 === b.field1 && a.field2 === b.field2 && a.field3 === b.field3;
     }
 }
-$root.Test1 = Test1;
-
 
 /** Properties of a Test2. */
-export namespace Test2 {
-    export interface ITest2 {
-    }
+export interface ITest2 {
 }
 
 /**
  * Represents a Test2.
  */
-export class Test2 implements Test2.ITest2 {
+export class Test2 implements ITest2 {
     /**
      * Constructs a new Test2.
      */
-    constructor(properties?: Test2.ITest2) {
+    constructor(properties?: ITest2) {
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -225,7 +216,7 @@ export class Test2 implements Test2.ITest2 {
     /**
      * Creates a new Test2 instance using the specified properties.
      */
-    static create(properties: Test2.ITest2): Test2 {
+    static create(properties: ITest2): Test2 {
         return new Test2(properties);
     }
 
@@ -234,7 +225,7 @@ export class Test2 implements Test2.ITest2 {
      * @param message Test2message or plain object to encode
      * @param writer Writer to encode to
      */
-    static encode(message: Test2.ITest2, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITest2, writer?: $protobuf.Writer): $protobuf.Writer {
         if (!writer)
             writer = $Writer.create();
         return writer;
@@ -245,7 +236,7 @@ export class Test2 implements Test2.ITest2 {
      * @param message Test2message or plain object to encode
      * @param writer Writer to encode to
      */
-    static encodeDelimited(message: Test2.ITest2, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITest2, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
 
@@ -259,7 +250,7 @@ export class Test2 implements Test2.ITest2 {
     static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Test2 {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Test2();
+        var end = length === undefined ? reader.len : reader.pos + length, message = new Test2();
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -298,10 +289,10 @@ export class Test2 implements Test2.ITest2 {
      * Creates a Test2 message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
      */
-    static fromObject(object): Test2 {
-        if (object instanceof $root.Test2)
+    static fromObject(object): ITest2 {
+        if (object instanceof Test2)
             return object;
-        return new $root.Test2();
+        return new Test2();
     }
 
     /**
@@ -310,7 +301,7 @@ export class Test2 implements Test2.ITest2 {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: Test2, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITest2, options: $protobuf.IConversionOptions = {}) {
         return {};
     }
 
@@ -324,7 +315,7 @@ export class Test2 implements Test2.ITest2 {
     /**
      * Compares two messages, checking for strict equality.
      */
-    static equals(a: Test2.ITest2, b: Test2.ITest2): boolean {
+    static equals(a?: ITest2, b?: ITest2): boolean {
         if (!a || !b)
             return a === b;
         if (a === b)
@@ -332,8 +323,6 @@ export class Test2 implements Test2.ITest2 {
         return true;
     }
 }
-$root.Test2 = Test2;
-
 
 export enum Test3 {
     ONE = 1,
@@ -341,5 +330,4 @@ export enum Test3 {
     THREE = 3,
     FOUR = 4,
 }
-$root.Test3 = Test3;
 ;

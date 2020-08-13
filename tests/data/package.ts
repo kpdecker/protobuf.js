@@ -4,40 +4,35 @@ import * as $protobuf from "../../minimal";
 // Common aliases
 const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
-// Exported root namespace
-const $root: any = $protobuf.roots.test_package || ($protobuf.roots.test_package = {} as $protobuf.Root);
-
 /** Properties of a Package. */
-export namespace Package {
-    export interface IPackage {
-        name?: string;
-        version?: string;
-        versionScheme?: string;
-        description?: string;
-        author?: string;
-        license?: string;
-        repository?: Package.Repository.IRepository;
-        bugs?: string;
-        homepage?: string;
-        keywords?: string[];
-        main?: string;
-        bin?: {[key: string]: string};
-        scripts?: {[key: string]: string};
-        dependencies?: {[key: string]: string};
-        devDependencies?: {[key: string]: string};
-        types?: string;
-        cliDependencies?: string[];
-    }
+export interface IPackage {
+    name?: string;
+    version?: string;
+    versionScheme?: string;
+    description?: string;
+    author?: string;
+    license?: string;
+    repository?: Package.IRepository;
+    bugs?: string;
+    homepage?: string;
+    keywords?: string[];
+    main?: string;
+    bin?: {[key: string]: string};
+    scripts?: {[key: string]: string};
+    dependencies?: {[key: string]: string};
+    devDependencies?: {[key: string]: string};
+    types?: string;
+    cliDependencies?: string[];
 }
 
 /**
  * Represents a Package.
  */
-export class Package implements Package.IPackage {
+export class Package implements IPackage {
     /**
      * Constructs a new Package.
      */
-    constructor(properties?: Package.IPackage) {
+    constructor(properties?: IPackage) {
         this.keywords = [];
         this.bin = {};
         this.scripts = {};
@@ -55,7 +50,7 @@ export class Package implements Package.IPackage {
     description?: string = "";
     author?: string = "";
     license?: string = "";
-    repository?: Package.Repository.IRepository;
+    repository?: Package.IRepository;
     bugs?: string = "";
     homepage?: string = "";
     keywords?: string[];
@@ -70,7 +65,7 @@ export class Package implements Package.IPackage {
     /**
      * Creates a new Package instance using the specified properties.
      */
-    static create(properties: Package.IPackage): Package {
+    static create(properties: IPackage): Package {
         return new Package(properties);
     }
 
@@ -79,7 +74,7 @@ export class Package implements Package.IPackage {
      * @param message Packagemessage or plain object to encode
      * @param writer Writer to encode to
      */
-    static encode(message: Package.IPackage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IPackage, writer?: $protobuf.Writer): $protobuf.Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -93,7 +88,7 @@ export class Package implements Package.IPackage {
         if (message.license != null && Object.hasOwnProperty.call(message, "license"))
             writer.uint32(/* id 5, wireType 2 =*/42).string(message.license);
         if (message.repository != null && Object.hasOwnProperty.call(message, "repository"))
-            $root.Package.Repository.encode(message.repository, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
+            Package.Repository.encode(message.repository, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
         if (message.bugs != null && Object.hasOwnProperty.call(message, "bugs"))
             writer.uint32(/* id 7, wireType 2 =*/58).string(message.bugs);
         if (message.homepage != null && Object.hasOwnProperty.call(message, "homepage"))
@@ -130,7 +125,7 @@ export class Package implements Package.IPackage {
      * @param message Packagemessage or plain object to encode
      * @param writer Writer to encode to
      */
-    static encodeDelimited(message: Package.IPackage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IPackage, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
 
@@ -144,7 +139,7 @@ export class Package implements Package.IPackage {
     static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Package {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Package(), key, value;
+        var end = length === undefined ? reader.len : reader.pos + length, message = new Package(), key, value;
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -167,7 +162,7 @@ export class Package implements Package.IPackage {
                 message.license = reader.string();
                 break;
             case 6:
-                message.repository = $root.Package.Repository.decode(reader, reader.uint32());
+                message.repository = Package.Repository.decode(reader, reader.uint32());
                 break;
             case 7:
                 message.bugs = reader.string();
@@ -184,7 +179,7 @@ export class Package implements Package.IPackage {
                 message.main = reader.string();
                 break;
             case 11:
-                if (message.bin === $util.emptyObject)
+                if (message.bin === $util.emptyObject || !message.bin)
                     message.bin = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
@@ -206,7 +201,7 @@ export class Package implements Package.IPackage {
                 message.bin[key] = value;
                 break;
             case 12:
-                if (message.scripts === $util.emptyObject)
+                if (message.scripts === $util.emptyObject || !message.scripts)
                     message.scripts = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
@@ -228,7 +223,7 @@ export class Package implements Package.IPackage {
                 message.scripts[key] = value;
                 break;
             case 13:
-                if (message.dependencies === $util.emptyObject)
+                if (message.dependencies === $util.emptyObject || !message.dependencies)
                     message.dependencies = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
@@ -250,7 +245,7 @@ export class Package implements Package.IPackage {
                 message.dependencies[key] = value;
                 break;
             case 15:
-                if (message.devDependencies === $util.emptyObject)
+                if (message.devDependencies === $util.emptyObject || !message.devDependencies)
                     message.devDependencies = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
@@ -326,7 +321,7 @@ export class Package implements Package.IPackage {
             if (!$util.isString(message.license))
                 return "license: string expected";
         if (message.repository != null && message.hasOwnProperty("repository")) {
-            var error = $root.Package.Repository.verify(message.repository);
+            var error = Package.Repository.verify(message.repository);
             if (error)
                 return "repository." + error;
         }
@@ -395,10 +390,10 @@ export class Package implements Package.IPackage {
      * Creates a Package message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
      */
-    static fromObject(object): Package {
-        if (object instanceof $root.Package)
+    static fromObject(object): IPackage {
+        if (object instanceof Package)
             return object;
-        var message = new $root.Package();
+        var message = new Package();
         if (object.name != null)
             message.name = String(object.name);
         if (object.version != null)
@@ -414,7 +409,7 @@ export class Package implements Package.IPackage {
         if (object.repository != null) {
             if (typeof object.repository !== "object")
                 throw TypeError(".Package.repository: object expected");
-            message.repository = $root.Package.Repository.fromObject(object.repository);
+            message.repository = Package.Repository.fromObject(object.repository);
         }
         if (object.bugs != null)
             message.bugs = String(object.bugs);
@@ -475,7 +470,7 @@ export class Package implements Package.IPackage {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: Package, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IPackage, options: $protobuf.IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults) {
             object.keywords = [];
@@ -511,7 +506,7 @@ export class Package implements Package.IPackage {
         if (message.license != null && message.hasOwnProperty("license"))
             object.license = message.license;
         if (message.repository != null && message.hasOwnProperty("repository"))
-            object.repository = $root.Package.Repository.toObject(message.repository, options);
+            object.repository = Package.Repository.toObject(message.repository, options);
         if (message.bugs != null && message.hasOwnProperty("bugs"))
             object.bugs = message.bugs;
         if (message.homepage != null && message.hasOwnProperty("homepage"))
@@ -566,12 +561,12 @@ export class Package implements Package.IPackage {
     /**
      * Compares two messages, checking for strict equality.
      */
-    static equals(a: Package.IPackage, b: Package.IPackage): boolean {
+    static equals(a?: IPackage, b?: IPackage): boolean {
         if (!a || !b)
             return a === b;
         if (a === b)
             return true;
-        return a.name === b.name && a.version === b.version && a.versionScheme === b.versionScheme && a.description === b.description && a.author === b.author && a.license === b.license && $root.Package.Repository.equals(a.repository, b.repository) && a.bugs === b.bugs && a.homepage === b.homepage && (!!a.keywords && !!b.keywords && a.keywords.length === b.keywords.length && !a.keywords.find(function (aValue, i) {
+        return a.name === b.name && a.version === b.version && a.versionScheme === b.versionScheme && a.description === b.description && a.author === b.author && a.license === b.license && Package.Repository.equals(a.repository, b.repository) && a.bugs === b.bugs && a.homepage === b.homepage && (!!a.keywords && !!b.keywords && a.keywords.length === b.keywords.length && !a.keywords.find(function (aValue, i) {
             return (a.keywords && a.keywords[i]) === (b.keywords && b.keywords[i]);
         })) && a.main === b.main && $util.mapEquals(a.bin, b.bin, function (keyName) {
             return !!b.bin && (!(keyName in b.bin) && (a.bin && a.bin[keyName]) === (b.bin && b.bin[keyName]));
@@ -589,21 +584,19 @@ export class Package implements Package.IPackage {
 
 export namespace Package {
     /** Properties of a Repository. */
-    export namespace Repository {
-        export interface IRepository {
-            type?: string;
-            url?: string;
-        }
+    export interface IRepository {
+        type?: string;
+        url?: string;
     }
 
     /**
      * Represents a Repository.
      */
-    export class Repository implements Repository.IRepository {
+    export class Repository implements Package.IRepository {
         /**
          * Constructs a new Repository.
          */
-        constructor(properties?: Repository.IRepository) {
+        constructor(properties?: Package.IRepository) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -615,7 +608,7 @@ export namespace Package {
         /**
          * Creates a new Repository instance using the specified properties.
          */
-        static create(properties: Repository.IRepository): Repository {
+        static create(properties: Package.IRepository): Repository {
             return new Repository(properties);
         }
 
@@ -624,7 +617,7 @@ export namespace Package {
          * @param message Repositorymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: Repository.IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: Package.IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
@@ -639,7 +632,7 @@ export namespace Package {
          * @param message Repositorymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: Repository.IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: Package.IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -650,10 +643,10 @@ export namespace Package {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Repository {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Package.Repository {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Package.Repository();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new Package.Repository();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
@@ -677,7 +670,7 @@ export namespace Package {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Repository {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Package.Repository {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -704,10 +697,10 @@ export namespace Package {
          * Creates a Repository message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): Repository {
-            if (object instanceof $root.Package.Repository)
+        static fromObject(object): Package.IRepository {
+            if (object instanceof Package.Repository)
                 return object;
-            var message = new $root.Package.Repository();
+            var message = new Package.Repository();
             if (object.type != null)
                 message.type = String(object.type);
             if (object.url != null)
@@ -721,7 +714,7 @@ export namespace Package {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: Repository, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: Package.IRepository, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.type = "";
@@ -744,7 +737,7 @@ export namespace Package {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a: Repository.IRepository, b: Repository.IRepository): boolean {
+        static equals(a?: Package.IRepository, b?: Package.IRepository): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -754,6 +747,4 @@ export namespace Package {
     }
 
 }
-$root.Package = Package;
-
 ;
