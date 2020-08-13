@@ -347,11 +347,13 @@ Namespace.prototype.define = function define(path, json, filename) {
     var ptr = this;
     if (ptr.nested && ptr.nested[path]) {
         ptr = ptr.nested[path];
+        ptr.filenames.push(filename);
         if (!(ptr instanceof Namespace))
             throw Error("path conflicts with non-namespace objects");
     } else {
         ptr.add(ptr = new Namespace(path));
         ptr.filename = filename;
+        ptr.filenames = [ filename ];
     }
     if (json)
         ptr.addJSON(json);
