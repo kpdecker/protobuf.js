@@ -21,15 +21,6 @@ field3?: boolean;
  */
 export class Test1 implements ITest1 {
     /**
-     * Constructs a new Test1.
-     */
-    constructor(properties?: ITest1) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-    /**
      * Field with a comment.
      */
     field1?: string;
@@ -41,13 +32,26 @@ export class Test1 implements ITest1 {
     field3?: boolean;
 
 
+    // #region create
+    /**
+     * Constructs a new Test1.
+     */
+    constructor(properties?: ITest1) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new Test1 instance using the specified properties.
      */
     static create(properties: ITest1): Test1 {
         return new Test1(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Test1 message. Does not implicitly {@link Test1.verify|verify} messages.
      * @param message Test1message or plain object to encode
@@ -73,7 +77,9 @@ export class Test1 implements ITest1 {
     static encodeDelimited(message: ITest1, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Test1 message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -116,7 +122,9 @@ export class Test1 implements ITest1 {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Test1 message.
      * @param message Plain object to verify
@@ -136,7 +144,9 @@ export class Test1 implements ITest1 {
                 return "field3: boolean expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Test1 message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -182,7 +192,9 @@ export class Test1 implements ITest1 {
     toJSON() {
         return Test1.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -193,6 +205,7 @@ export class Test1 implements ITest1 {
             return true;
         return a.field1 === b.field1 && a.field2 === b.field2 && a.field3 === b.field3;
     }
+    // #endregion
 }
 
 /** Properties of a Test2. */
@@ -203,6 +216,8 @@ export interface ITest2 {
  * Represents a Test2.
  */
 export class Test2 implements ITest2 {
+
+    // #region create
     /**
      * Constructs a new Test2.
      */
@@ -219,7 +234,9 @@ export class Test2 implements ITest2 {
     static create(properties: ITest2): Test2 {
         return new Test2(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Test2 message. Does not implicitly {@link Test2.verify|verify} messages.
      * @param message Test2message or plain object to encode
@@ -239,7 +256,9 @@ export class Test2 implements ITest2 {
     static encodeDelimited(message: ITest2, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Test2 message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -273,7 +292,9 @@ export class Test2 implements ITest2 {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Test2 message.
      * @param message Plain object to verify
@@ -284,7 +305,9 @@ export class Test2 implements ITest2 {
             return "object expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Test2 message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -311,7 +334,9 @@ export class Test2 implements ITest2 {
     toJSON() {
         return Test2.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -322,6 +347,7 @@ export class Test2 implements ITest2 {
             return true;
         return true;
     }
+    // #endregion
 }
 
 export enum Test3 {

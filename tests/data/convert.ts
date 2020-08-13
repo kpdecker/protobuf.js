@@ -21,15 +21,6 @@ export interface IMessage {
  * Represents a Message.
  */
 export class Message implements IMessage {
-    /**
-     * Constructs a new Message.
-     */
-    constructor(properties?: IMessage) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
     stringVal?: string;
     stringRepeated?: string[];
     uint64Val?: (number|$protobuf.Long);
@@ -40,13 +31,26 @@ export class Message implements IMessage {
     enumRepeated?: Message.SomeEnum[];
     int64Map?: {[key: string]: (number|$protobuf.Long)};
 
+    // #region create
+    /**
+     * Constructs a new Message.
+     */
+    constructor(properties?: IMessage) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new Message instance using the specified properties.
      */
     static create(properties: IMessage): Message {
         return new Message(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Message message. Does not implicitly {@link Message.verify|verify} messages.
      * @param message Messagemessage or plain object to encode
@@ -95,7 +99,9 @@ export class Message implements IMessage {
     static encodeDelimited(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Message message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -193,7 +199,9 @@ export class Message implements IMessage {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Message message.
      * @param message Plain object to verify
@@ -262,7 +270,9 @@ export class Message implements IMessage {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Message message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -446,7 +456,9 @@ export class Message implements IMessage {
     toJSON() {
         return Message.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -467,6 +479,7 @@ export class Message implements IMessage {
             return !!b.int64Map && (!(keyName in b.int64Map) && $util.longEquals(a.int64Map && a.int64Map[keyName], b.int64Map && b.int64Map[keyName]));
         });
     }
+    // #endregion
 }
 
 export namespace Message {

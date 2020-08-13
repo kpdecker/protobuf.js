@@ -12,6 +12,8 @@ export interface ISomething {
  * Represents a Something.
  */
 export class Something implements ISomething {
+
+    // #region create
     /**
      * Constructs a new Something.
      */
@@ -28,7 +30,9 @@ export class Something implements ISomething {
     static create(properties: ISomething): Something {
         return new Something(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Something message. Does not implicitly {@link Something.verify|verify} messages.
      * @param message Somethingmessage or plain object to encode
@@ -48,7 +52,9 @@ export class Something implements ISomething {
     static encodeDelimited(message: ISomething, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Something message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -82,7 +88,9 @@ export class Something implements ISomething {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Something message.
      * @param message Plain object to verify
@@ -93,7 +101,9 @@ export class Something implements ISomething {
             return "object expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Something message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -120,7 +130,9 @@ export class Something implements ISomething {
     toJSON() {
         return Something.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -131,5 +143,6 @@ export class Something implements ISomething {
             return true;
         return true;
     }
+    // #endregion
 }
 ;

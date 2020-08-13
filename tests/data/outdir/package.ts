@@ -29,15 +29,6 @@ export interface IPackage {
  * Represents a Package.
  */
 export class Package implements IPackage {
-    /**
-     * Constructs a new Package.
-     */
-    constructor(properties?: IPackage) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
     name?: string;
     version?: string;
     versionScheme?: string;
@@ -56,13 +47,26 @@ export class Package implements IPackage {
     types?: string;
     cliDependencies?: string[];
 
+    // #region create
+    /**
+     * Constructs a new Package.
+     */
+    constructor(properties?: IPackage) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new Package instance using the specified properties.
      */
     static create(properties: IPackage): Package {
         return new Package(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified Package message. Does not implicitly {@link Package.verify|verify} messages.
      * @param message Packagemessage or plain object to encode
@@ -122,7 +126,9 @@ export class Package implements IPackage {
     static encodeDelimited(message: IPackage, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a Package message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -287,7 +293,9 @@ export class Package implements IPackage {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a Package message.
      * @param message Plain object to verify
@@ -379,7 +387,9 @@ export class Package implements IPackage {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a Package message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -551,7 +561,9 @@ export class Package implements IPackage {
     toJSON() {
         return Package.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -574,6 +586,7 @@ export class Package implements IPackage {
             return (a.cliDependencies && a.cliDependencies[i]) === (b.cliDependencies && b.cliDependencies[i]);
         }));
     }
+    // #endregion
 }
 
 export namespace Package {
@@ -587,6 +600,10 @@ export namespace Package {
      * Represents a Repository.
      */
     export class Repository implements IRepository {
+        type?: string;
+        url?: string;
+
+        // #region create
         /**
          * Constructs a new Repository.
          */
@@ -596,8 +613,6 @@ export namespace Package {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        type?: string;
-        url?: string;
 
         /**
          * Creates a new Repository instance using the specified properties.
@@ -605,7 +620,9 @@ export namespace Package {
         static create(properties: IRepository): Repository {
             return new Repository(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified Repository message. Does not implicitly {@link Repository.verify|verify} messages.
          * @param message Repositorymessage or plain object to encode
@@ -629,7 +646,9 @@ export namespace Package {
         static encodeDelimited(message: IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a Repository message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -669,7 +688,9 @@ export namespace Package {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a Repository message.
          * @param message Plain object to verify
@@ -686,7 +707,9 @@ export namespace Package {
                     return "url: string expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a Repository message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -727,7 +750,9 @@ export namespace Package {
         toJSON() {
             return Repository.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -738,6 +763,7 @@ export namespace Package {
                 return true;
             return a.type === b.type && a.url === b.url;
         }
+        // #endregion
     }
 
 }

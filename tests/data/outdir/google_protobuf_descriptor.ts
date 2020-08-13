@@ -13,6 +13,9 @@ export interface IFileDescriptorSet {
  * Represents a FileDescriptorSet.
  */
 export class FileDescriptorSet implements IFileDescriptorSet {
+    file?: IFileDescriptorProto[];
+
+    // #region create
     /**
      * Constructs a new FileDescriptorSet.
      */
@@ -22,7 +25,6 @@ export class FileDescriptorSet implements IFileDescriptorSet {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    file?: IFileDescriptorProto[];
 
     /**
      * Creates a new FileDescriptorSet instance using the specified properties.
@@ -30,7 +32,9 @@ export class FileDescriptorSet implements IFileDescriptorSet {
     static create(properties: IFileDescriptorSet): FileDescriptorSet {
         return new FileDescriptorSet(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified FileDescriptorSet message. Does not implicitly {@link FileDescriptorSet.verify|verify} messages.
      * @param message FileDescriptorSetmessage or plain object to encode
@@ -53,7 +57,9 @@ export class FileDescriptorSet implements IFileDescriptorSet {
     static encodeDelimited(message: IFileDescriptorSet, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a FileDescriptorSet message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -92,7 +98,9 @@ export class FileDescriptorSet implements IFileDescriptorSet {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a FileDescriptorSet message.
      * @param message Plain object to verify
@@ -112,7 +120,9 @@ export class FileDescriptorSet implements IFileDescriptorSet {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a FileDescriptorSet message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -158,7 +168,9 @@ export class FileDescriptorSet implements IFileDescriptorSet {
     toJSON() {
         return FileDescriptorSet.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -171,6 +183,7 @@ export class FileDescriptorSet implements IFileDescriptorSet {
             return FileDescriptorProto.equals(a.file && a.file[i], b.file && b.file[i]);
         });
     }
+    // #endregion
 }
 
 /** Properties of a FileDescriptorProto. */
@@ -193,15 +206,6 @@ export interface IFileDescriptorProto {
  * Represents a FileDescriptorProto.
  */
 export class FileDescriptorProto implements IFileDescriptorProto {
-    /**
-     * Constructs a new FileDescriptorProto.
-     */
-    constructor(properties?: IFileDescriptorProto) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
     name?: string;
     ["package"]?: string;
     dependency?: string[];
@@ -215,13 +219,26 @@ export class FileDescriptorProto implements IFileDescriptorProto {
     sourceCodeInfo?: ISourceCodeInfo;
     syntax?: string;
 
+    // #region create
+    /**
+     * Constructs a new FileDescriptorProto.
+     */
+    constructor(properties?: IFileDescriptorProto) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new FileDescriptorProto instance using the specified properties.
      */
     static create(properties: IFileDescriptorProto): FileDescriptorProto {
         return new FileDescriptorProto(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified FileDescriptorProto message. Does not implicitly {@link FileDescriptorProto.verify|verify} messages.
      * @param message FileDescriptorProtomessage or plain object to encode
@@ -272,7 +289,9 @@ export class FileDescriptorProto implements IFileDescriptorProto {
     static encodeDelimited(message: IFileDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a FileDescriptorProto message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -366,7 +385,9 @@ export class FileDescriptorProto implements IFileDescriptorProto {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a FileDescriptorProto message.
      * @param message Plain object to verify
@@ -453,7 +474,9 @@ export class FileDescriptorProto implements IFileDescriptorProto {
                 return "syntax: string expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a FileDescriptorProto message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -620,7 +643,9 @@ export class FileDescriptorProto implements IFileDescriptorProto {
     toJSON() {
         return FileDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -645,6 +670,7 @@ export class FileDescriptorProto implements IFileDescriptorProto {
             return FieldDescriptorProto.equals(a.extension && a.extension[i], b.extension && b.extension[i]);
         })) && FileOptions.equals(a.options, b.options) && SourceCodeInfo.equals(a.sourceCodeInfo, b.sourceCodeInfo) && a.syntax === b.syntax;
     }
+    // #endregion
 }
 
 /** Properties of a DescriptorProto. */
@@ -665,15 +691,6 @@ export interface IDescriptorProto {
  * Represents a DescriptorProto.
  */
 export class DescriptorProto implements IDescriptorProto {
-    /**
-     * Constructs a new DescriptorProto.
-     */
-    constructor(properties?: IDescriptorProto) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
     name?: string;
     field?: IFieldDescriptorProto[];
     extension?: IFieldDescriptorProto[];
@@ -685,13 +702,26 @@ export class DescriptorProto implements IDescriptorProto {
     reservedRange?: DescriptorProto.IReservedRange[];
     reservedName?: string[];
 
+    // #region create
+    /**
+     * Constructs a new DescriptorProto.
+     */
+    constructor(properties?: IDescriptorProto) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new DescriptorProto instance using the specified properties.
      */
     static create(properties: IDescriptorProto): DescriptorProto {
         return new DescriptorProto(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified DescriptorProto message. Does not implicitly {@link DescriptorProto.verify|verify} messages.
      * @param message DescriptorProtomessage or plain object to encode
@@ -739,7 +769,9 @@ export class DescriptorProto implements IDescriptorProto {
     static encodeDelimited(message: IDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a DescriptorProto message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -819,7 +851,9 @@ export class DescriptorProto implements IDescriptorProto {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a DescriptorProto message.
      * @param message Plain object to verify
@@ -908,7 +942,9 @@ export class DescriptorProto implements IDescriptorProto {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a DescriptorProto message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -1079,7 +1115,9 @@ export class DescriptorProto implements IDescriptorProto {
     toJSON() {
         return DescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -1106,6 +1144,7 @@ export class DescriptorProto implements IDescriptorProto {
             return (a.reservedName && a.reservedName[i]) === (b.reservedName && b.reservedName[i]);
         }));
     }
+    // #endregion
 }
 
 export namespace DescriptorProto {
@@ -1119,6 +1158,10 @@ export namespace DescriptorProto {
      * Represents an ExtensionRange.
      */
     export class ExtensionRange implements IExtensionRange {
+        start?: number;
+        end?: number;
+
+        // #region create
         /**
          * Constructs a new ExtensionRange.
          */
@@ -1128,8 +1171,6 @@ export namespace DescriptorProto {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        start?: number;
-        end?: number;
 
         /**
          * Creates a new ExtensionRange instance using the specified properties.
@@ -1137,7 +1178,9 @@ export namespace DescriptorProto {
         static create(properties: IExtensionRange): ExtensionRange {
             return new ExtensionRange(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified ExtensionRange message. Does not implicitly {@link ExtensionRange.verify|verify} messages.
          * @param message ExtensionRangemessage or plain object to encode
@@ -1161,7 +1204,9 @@ export namespace DescriptorProto {
         static encodeDelimited(message: IExtensionRange, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes an ExtensionRange message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -1201,7 +1246,9 @@ export namespace DescriptorProto {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies an ExtensionRange message.
          * @param message Plain object to verify
@@ -1218,7 +1265,9 @@ export namespace DescriptorProto {
                     return "end: integer expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates an ExtensionRange message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -1259,7 +1308,9 @@ export namespace DescriptorProto {
         toJSON() {
             return ExtensionRange.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -1270,6 +1321,7 @@ export namespace DescriptorProto {
                 return true;
             return a.start === b.start && a.end === b.end;
         }
+        // #endregion
     }
 
     /** Properties of a ReservedRange. */
@@ -1282,6 +1334,10 @@ export namespace DescriptorProto {
      * Represents a ReservedRange.
      */
     export class ReservedRange implements IReservedRange {
+        start?: number;
+        end?: number;
+
+        // #region create
         /**
          * Constructs a new ReservedRange.
          */
@@ -1291,8 +1347,6 @@ export namespace DescriptorProto {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        start?: number;
-        end?: number;
 
         /**
          * Creates a new ReservedRange instance using the specified properties.
@@ -1300,7 +1354,9 @@ export namespace DescriptorProto {
         static create(properties: IReservedRange): ReservedRange {
             return new ReservedRange(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified ReservedRange message. Does not implicitly {@link ReservedRange.verify|verify} messages.
          * @param message ReservedRangemessage or plain object to encode
@@ -1324,7 +1380,9 @@ export namespace DescriptorProto {
         static encodeDelimited(message: IReservedRange, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a ReservedRange message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -1364,7 +1422,9 @@ export namespace DescriptorProto {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a ReservedRange message.
          * @param message Plain object to verify
@@ -1381,7 +1441,9 @@ export namespace DescriptorProto {
                     return "end: integer expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a ReservedRange message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -1422,7 +1484,9 @@ export namespace DescriptorProto {
         toJSON() {
             return ReservedRange.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -1433,6 +1497,7 @@ export namespace DescriptorProto {
                 return true;
             return a.start === b.start && a.end === b.end;
         }
+        // #endregion
     }
 
 }
@@ -1455,15 +1520,6 @@ export interface IFieldDescriptorProto {
  * Represents a FieldDescriptorProto.
  */
 export class FieldDescriptorProto implements IFieldDescriptorProto {
-    /**
-     * Constructs a new FieldDescriptorProto.
-     */
-    constructor(properties?: IFieldDescriptorProto) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
     name?: string;
     number?: number;
     label?: FieldDescriptorProto.Label;
@@ -1475,13 +1531,26 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
     jsonName?: string;
     options?: IFieldOptions;
 
+    // #region create
+    /**
+     * Constructs a new FieldDescriptorProto.
+     */
+    constructor(properties?: IFieldDescriptorProto) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new FieldDescriptorProto instance using the specified properties.
      */
     static create(properties: IFieldDescriptorProto): FieldDescriptorProto {
         return new FieldDescriptorProto(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified FieldDescriptorProto message. Does not implicitly {@link FieldDescriptorProto.verify|verify} messages.
      * @param message FieldDescriptorProtomessage or plain object to encode
@@ -1521,7 +1590,9 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
     static encodeDelimited(message: IFieldDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a FieldDescriptorProto message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -1585,7 +1656,9 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a FieldDescriptorProto message.
      * @param message Plain object to verify
@@ -1655,7 +1728,9 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a FieldDescriptorProto message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -1823,7 +1898,9 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
     toJSON() {
         return FieldDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -1834,6 +1911,7 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
             return true;
         return a.name === b.name && a.number === b.number && a.label === b.label && a.type === b.type && a.typeName === b.typeName && a.extendee === b.extendee && a.defaultValue === b.defaultValue && a.oneofIndex === b.oneofIndex && a.jsonName === b.jsonName && FieldOptions.equals(a.options, b.options);
     }
+    // #endregion
 }
 
 export namespace FieldDescriptorProto {
@@ -1876,6 +1954,10 @@ export interface IOneofDescriptorProto {
  * Represents an OneofDescriptorProto.
  */
 export class OneofDescriptorProto implements IOneofDescriptorProto {
+    name?: string;
+    options?: IOneofOptions;
+
+    // #region create
     /**
      * Constructs a new OneofDescriptorProto.
      */
@@ -1885,8 +1967,6 @@ export class OneofDescriptorProto implements IOneofDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string;
-    options?: IOneofOptions;
 
     /**
      * Creates a new OneofDescriptorProto instance using the specified properties.
@@ -1894,7 +1974,9 @@ export class OneofDescriptorProto implements IOneofDescriptorProto {
     static create(properties: IOneofDescriptorProto): OneofDescriptorProto {
         return new OneofDescriptorProto(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified OneofDescriptorProto message. Does not implicitly {@link OneofDescriptorProto.verify|verify} messages.
      * @param message OneofDescriptorProtomessage or plain object to encode
@@ -1918,7 +2000,9 @@ export class OneofDescriptorProto implements IOneofDescriptorProto {
     static encodeDelimited(message: IOneofDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an OneofDescriptorProto message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -1958,7 +2042,9 @@ export class OneofDescriptorProto implements IOneofDescriptorProto {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an OneofDescriptorProto message.
      * @param message Plain object to verify
@@ -1977,7 +2063,9 @@ export class OneofDescriptorProto implements IOneofDescriptorProto {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an OneofDescriptorProto message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2021,7 +2109,9 @@ export class OneofDescriptorProto implements IOneofDescriptorProto {
     toJSON() {
         return OneofDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2032,6 +2122,7 @@ export class OneofDescriptorProto implements IOneofDescriptorProto {
             return true;
         return a.name === b.name && OneofOptions.equals(a.options, b.options);
     }
+    // #endregion
 }
 
 /** Properties of an EnumDescriptorProto. */
@@ -2045,6 +2136,11 @@ export interface IEnumDescriptorProto {
  * Represents an EnumDescriptorProto.
  */
 export class EnumDescriptorProto implements IEnumDescriptorProto {
+    name?: string;
+    value?: IEnumValueDescriptorProto[];
+    options?: IEnumOptions;
+
+    // #region create
     /**
      * Constructs a new EnumDescriptorProto.
      */
@@ -2054,9 +2150,6 @@ export class EnumDescriptorProto implements IEnumDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string;
-    value?: IEnumValueDescriptorProto[];
-    options?: IEnumOptions;
 
     /**
      * Creates a new EnumDescriptorProto instance using the specified properties.
@@ -2064,7 +2157,9 @@ export class EnumDescriptorProto implements IEnumDescriptorProto {
     static create(properties: IEnumDescriptorProto): EnumDescriptorProto {
         return new EnumDescriptorProto(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified EnumDescriptorProto message. Does not implicitly {@link EnumDescriptorProto.verify|verify} messages.
      * @param message EnumDescriptorProtomessage or plain object to encode
@@ -2091,7 +2186,9 @@ export class EnumDescriptorProto implements IEnumDescriptorProto {
     static encodeDelimited(message: IEnumDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an EnumDescriptorProto message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -2136,7 +2233,9 @@ export class EnumDescriptorProto implements IEnumDescriptorProto {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an EnumDescriptorProto message.
      * @param message Plain object to verify
@@ -2164,7 +2263,9 @@ export class EnumDescriptorProto implements IEnumDescriptorProto {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an EnumDescriptorProto message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2225,7 +2326,9 @@ export class EnumDescriptorProto implements IEnumDescriptorProto {
     toJSON() {
         return EnumDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2238,6 +2341,7 @@ export class EnumDescriptorProto implements IEnumDescriptorProto {
             return EnumValueDescriptorProto.equals(a.value && a.value[i], b.value && b.value[i]);
         })) && EnumOptions.equals(a.options, b.options);
     }
+    // #endregion
 }
 
 /** Properties of an EnumValueDescriptorProto. */
@@ -2251,6 +2355,11 @@ export interface IEnumValueDescriptorProto {
  * Represents an EnumValueDescriptorProto.
  */
 export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
+    name?: string;
+    number?: number;
+    options?: IEnumValueOptions;
+
+    // #region create
     /**
      * Constructs a new EnumValueDescriptorProto.
      */
@@ -2260,9 +2369,6 @@ export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string;
-    number?: number;
-    options?: IEnumValueOptions;
 
     /**
      * Creates a new EnumValueDescriptorProto instance using the specified properties.
@@ -2270,7 +2376,9 @@ export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
     static create(properties: IEnumValueDescriptorProto): EnumValueDescriptorProto {
         return new EnumValueDescriptorProto(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified EnumValueDescriptorProto message. Does not implicitly {@link EnumValueDescriptorProto.verify|verify} messages.
      * @param message EnumValueDescriptorProtomessage or plain object to encode
@@ -2296,7 +2404,9 @@ export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
     static encodeDelimited(message: IEnumValueDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an EnumValueDescriptorProto message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -2339,7 +2449,9 @@ export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an EnumValueDescriptorProto message.
      * @param message Plain object to verify
@@ -2361,7 +2473,9 @@ export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an EnumValueDescriptorProto message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2410,7 +2524,9 @@ export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
     toJSON() {
         return EnumValueDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2421,6 +2537,7 @@ export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
             return true;
         return a.name === b.name && a.number === b.number && EnumValueOptions.equals(a.options, b.options);
     }
+    // #endregion
 }
 
 /** Properties of a ServiceDescriptorProto. */
@@ -2434,6 +2551,11 @@ export interface IServiceDescriptorProto {
  * Represents a ServiceDescriptorProto.
  */
 export class ServiceDescriptorProto implements IServiceDescriptorProto {
+    name?: string;
+    method?: IMethodDescriptorProto[];
+    options?: IServiceOptions;
+
+    // #region create
     /**
      * Constructs a new ServiceDescriptorProto.
      */
@@ -2443,9 +2565,6 @@ export class ServiceDescriptorProto implements IServiceDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string;
-    method?: IMethodDescriptorProto[];
-    options?: IServiceOptions;
 
     /**
      * Creates a new ServiceDescriptorProto instance using the specified properties.
@@ -2453,7 +2572,9 @@ export class ServiceDescriptorProto implements IServiceDescriptorProto {
     static create(properties: IServiceDescriptorProto): ServiceDescriptorProto {
         return new ServiceDescriptorProto(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified ServiceDescriptorProto message. Does not implicitly {@link ServiceDescriptorProto.verify|verify} messages.
      * @param message ServiceDescriptorProtomessage or plain object to encode
@@ -2480,7 +2601,9 @@ export class ServiceDescriptorProto implements IServiceDescriptorProto {
     static encodeDelimited(message: IServiceDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a ServiceDescriptorProto message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -2525,7 +2648,9 @@ export class ServiceDescriptorProto implements IServiceDescriptorProto {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a ServiceDescriptorProto message.
      * @param message Plain object to verify
@@ -2553,7 +2678,9 @@ export class ServiceDescriptorProto implements IServiceDescriptorProto {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a ServiceDescriptorProto message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2614,7 +2741,9 @@ export class ServiceDescriptorProto implements IServiceDescriptorProto {
     toJSON() {
         return ServiceDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2627,6 +2756,7 @@ export class ServiceDescriptorProto implements IServiceDescriptorProto {
             return MethodDescriptorProto.equals(a.method && a.method[i], b.method && b.method[i]);
         })) && ServiceOptions.equals(a.options, b.options);
     }
+    // #endregion
 }
 
 /** Properties of a MethodDescriptorProto. */
@@ -2643,6 +2773,14 @@ export interface IMethodDescriptorProto {
  * Represents a MethodDescriptorProto.
  */
 export class MethodDescriptorProto implements IMethodDescriptorProto {
+    name?: string;
+    inputType?: string;
+    outputType?: string;
+    options?: IMethodOptions;
+    clientStreaming?: boolean;
+    serverStreaming?: boolean;
+
+    // #region create
     /**
      * Constructs a new MethodDescriptorProto.
      */
@@ -2652,12 +2790,6 @@ export class MethodDescriptorProto implements IMethodDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string;
-    inputType?: string;
-    outputType?: string;
-    options?: IMethodOptions;
-    clientStreaming?: boolean;
-    serverStreaming?: boolean;
 
     /**
      * Creates a new MethodDescriptorProto instance using the specified properties.
@@ -2665,7 +2797,9 @@ export class MethodDescriptorProto implements IMethodDescriptorProto {
     static create(properties: IMethodDescriptorProto): MethodDescriptorProto {
         return new MethodDescriptorProto(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified MethodDescriptorProto message. Does not implicitly {@link MethodDescriptorProto.verify|verify} messages.
      * @param message MethodDescriptorProtomessage or plain object to encode
@@ -2697,7 +2831,9 @@ export class MethodDescriptorProto implements IMethodDescriptorProto {
     static encodeDelimited(message: IMethodDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a MethodDescriptorProto message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -2749,7 +2885,9 @@ export class MethodDescriptorProto implements IMethodDescriptorProto {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a MethodDescriptorProto message.
      * @param message Plain object to verify
@@ -2780,7 +2918,9 @@ export class MethodDescriptorProto implements IMethodDescriptorProto {
                 return "serverStreaming: boolean expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a MethodDescriptorProto message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -2844,7 +2984,9 @@ export class MethodDescriptorProto implements IMethodDescriptorProto {
     toJSON() {
         return MethodDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -2855,6 +2997,7 @@ export class MethodDescriptorProto implements IMethodDescriptorProto {
             return true;
         return a.name === b.name && a.inputType === b.inputType && a.outputType === b.outputType && MethodOptions.equals(a.options, b.options) && a.clientStreaming === b.clientStreaming && a.serverStreaming === b.serverStreaming;
     }
+    // #endregion
 }
 
 /** Properties of a FileOptions. */
@@ -2880,15 +3023,6 @@ export interface IFileOptions {
  * Represents a FileOptions.
  */
 export class FileOptions implements IFileOptions {
-    /**
-     * Constructs a new FileOptions.
-     */
-    constructor(properties?: IFileOptions) {
-        if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
     javaPackage?: string;
     javaOuterClassname?: string;
     javaMultipleFiles?: boolean;
@@ -2905,13 +3039,26 @@ export class FileOptions implements IFileOptions {
     csharpNamespace?: string;
     uninterpretedOption?: IUninterpretedOption[];
 
+    // #region create
+    /**
+     * Constructs a new FileOptions.
+     */
+    constructor(properties?: IFileOptions) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
     /**
      * Creates a new FileOptions instance using the specified properties.
      */
     static create(properties: IFileOptions): FileOptions {
         return new FileOptions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified FileOptions message. Does not implicitly {@link FileOptions.verify|verify} messages.
      * @param message FileOptionsmessage or plain object to encode
@@ -2962,7 +3109,9 @@ export class FileOptions implements IFileOptions {
     static encodeDelimited(message: IFileOptions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a FileOptions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -3043,7 +3192,9 @@ export class FileOptions implements IFileOptions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a FileOptions message.
      * @param message Plain object to verify
@@ -3111,7 +3262,9 @@ export class FileOptions implements IFileOptions {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a FileOptions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -3241,7 +3394,9 @@ export class FileOptions implements IFileOptions {
     toJSON() {
         return FileOptions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -3254,6 +3409,7 @@ export class FileOptions implements IFileOptions {
             return UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
         }));
     }
+    // #endregion
 }
 
 export namespace FileOptions {
@@ -3278,6 +3434,13 @@ export interface IMessageOptions {
  * Represents a MessageOptions.
  */
 export class MessageOptions implements IMessageOptions {
+    messageSetWireFormat?: boolean;
+    noStandardDescriptorAccessor?: boolean;
+    deprecated?: boolean;
+    mapEntry?: boolean;
+    uninterpretedOption?: IUninterpretedOption[];
+
+    // #region create
     /**
      * Constructs a new MessageOptions.
      */
@@ -3287,11 +3450,6 @@ export class MessageOptions implements IMessageOptions {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    messageSetWireFormat?: boolean;
-    noStandardDescriptorAccessor?: boolean;
-    deprecated?: boolean;
-    mapEntry?: boolean;
-    uninterpretedOption?: IUninterpretedOption[];
 
     /**
      * Creates a new MessageOptions instance using the specified properties.
@@ -3299,7 +3457,9 @@ export class MessageOptions implements IMessageOptions {
     static create(properties: IMessageOptions): MessageOptions {
         return new MessageOptions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified MessageOptions message. Does not implicitly {@link MessageOptions.verify|verify} messages.
      * @param message MessageOptionsmessage or plain object to encode
@@ -3330,7 +3490,9 @@ export class MessageOptions implements IMessageOptions {
     static encodeDelimited(message: IMessageOptions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a MessageOptions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -3381,7 +3543,9 @@ export class MessageOptions implements IMessageOptions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a MessageOptions message.
      * @param message Plain object to verify
@@ -3413,7 +3577,9 @@ export class MessageOptions implements IMessageOptions {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a MessageOptions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -3481,7 +3647,9 @@ export class MessageOptions implements IMessageOptions {
     toJSON() {
         return MessageOptions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -3494,6 +3662,7 @@ export class MessageOptions implements IMessageOptions {
             return UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
         }));
     }
+    // #endregion
 }
 
 /** Properties of a FieldOptions. */
@@ -3511,6 +3680,15 @@ export interface IFieldOptions {
  * Represents a FieldOptions.
  */
 export class FieldOptions implements IFieldOptions {
+    ctype?: FieldOptions.CType;
+    packed?: boolean;
+    jstype?: FieldOptions.JSType;
+    lazy?: boolean;
+    deprecated?: boolean;
+    weak?: boolean;
+    uninterpretedOption?: IUninterpretedOption[];
+
+    // #region create
     /**
      * Constructs a new FieldOptions.
      */
@@ -3520,13 +3698,6 @@ export class FieldOptions implements IFieldOptions {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    ctype?: FieldOptions.CType;
-    packed?: boolean;
-    jstype?: FieldOptions.JSType;
-    lazy?: boolean;
-    deprecated?: boolean;
-    weak?: boolean;
-    uninterpretedOption?: IUninterpretedOption[];
 
     /**
      * Creates a new FieldOptions instance using the specified properties.
@@ -3534,7 +3705,9 @@ export class FieldOptions implements IFieldOptions {
     static create(properties: IFieldOptions): FieldOptions {
         return new FieldOptions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified FieldOptions message. Does not implicitly {@link FieldOptions.verify|verify} messages.
      * @param message FieldOptionsmessage or plain object to encode
@@ -3569,7 +3742,9 @@ export class FieldOptions implements IFieldOptions {
     static encodeDelimited(message: IFieldOptions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a FieldOptions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -3626,7 +3801,9 @@ export class FieldOptions implements IFieldOptions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a FieldOptions message.
      * @param message Plain object to verify
@@ -3676,7 +3853,9 @@ export class FieldOptions implements IFieldOptions {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a FieldOptions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -3778,7 +3957,9 @@ export class FieldOptions implements IFieldOptions {
     toJSON() {
         return FieldOptions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -3791,6 +3972,7 @@ export class FieldOptions implements IFieldOptions {
             return UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
         }));
     }
+    // #endregion
 }
 
 export namespace FieldOptions {
@@ -3817,6 +3999,9 @@ export interface IOneofOptions {
  * Represents an OneofOptions.
  */
 export class OneofOptions implements IOneofOptions {
+    uninterpretedOption?: IUninterpretedOption[];
+
+    // #region create
     /**
      * Constructs a new OneofOptions.
      */
@@ -3826,7 +4011,6 @@ export class OneofOptions implements IOneofOptions {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    uninterpretedOption?: IUninterpretedOption[];
 
     /**
      * Creates a new OneofOptions instance using the specified properties.
@@ -3834,7 +4018,9 @@ export class OneofOptions implements IOneofOptions {
     static create(properties: IOneofOptions): OneofOptions {
         return new OneofOptions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified OneofOptions message. Does not implicitly {@link OneofOptions.verify|verify} messages.
      * @param message OneofOptionsmessage or plain object to encode
@@ -3857,7 +4043,9 @@ export class OneofOptions implements IOneofOptions {
     static encodeDelimited(message: IOneofOptions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an OneofOptions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -3896,7 +4084,9 @@ export class OneofOptions implements IOneofOptions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an OneofOptions message.
      * @param message Plain object to verify
@@ -3916,7 +4106,9 @@ export class OneofOptions implements IOneofOptions {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an OneofOptions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -3962,7 +4154,9 @@ export class OneofOptions implements IOneofOptions {
     toJSON() {
         return OneofOptions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -3975,6 +4169,7 @@ export class OneofOptions implements IOneofOptions {
             return UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
         });
     }
+    // #endregion
 }
 
 /** Properties of an EnumOptions. */
@@ -3989,6 +4184,12 @@ export interface IEnumOptions {
  * Represents an EnumOptions.
  */
 export class EnumOptions implements IEnumOptions {
+    allowAlias?: boolean;
+    deprecated?: boolean;
+    uninterpretedOption?: IUninterpretedOption[];
+    ["IsExtension.simpleOption"]?: string;
+
+    // #region create
     /**
      * Constructs a new EnumOptions.
      */
@@ -3998,10 +4199,6 @@ export class EnumOptions implements IEnumOptions {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    allowAlias?: boolean;
-    deprecated?: boolean;
-    uninterpretedOption?: IUninterpretedOption[];
-    ["IsExtension.simpleOption"]?: string;
 
     /**
      * Creates a new EnumOptions instance using the specified properties.
@@ -4009,7 +4206,9 @@ export class EnumOptions implements IEnumOptions {
     static create(properties: IEnumOptions): EnumOptions {
         return new EnumOptions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified EnumOptions message. Does not implicitly {@link EnumOptions.verify|verify} messages.
      * @param message EnumOptionsmessage or plain object to encode
@@ -4038,7 +4237,9 @@ export class EnumOptions implements IEnumOptions {
     static encodeDelimited(message: IEnumOptions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an EnumOptions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4086,7 +4287,9 @@ export class EnumOptions implements IEnumOptions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an EnumOptions message.
      * @param message Plain object to verify
@@ -4115,7 +4318,9 @@ export class EnumOptions implements IEnumOptions {
                 return "IsExtension.simpleOption: string expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an EnumOptions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -4178,7 +4383,9 @@ export class EnumOptions implements IEnumOptions {
     toJSON() {
         return EnumOptions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -4191,6 +4398,7 @@ export class EnumOptions implements IEnumOptions {
             return UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
         })) && a["IsExtension.simpleOption"] === b["IsExtension.simpleOption"];
     }
+    // #endregion
 }
 
 /** Properties of an EnumValueOptions. */
@@ -4203,6 +4411,10 @@ export interface IEnumValueOptions {
  * Represents an EnumValueOptions.
  */
 export class EnumValueOptions implements IEnumValueOptions {
+    deprecated?: boolean;
+    uninterpretedOption?: IUninterpretedOption[];
+
+    // #region create
     /**
      * Constructs a new EnumValueOptions.
      */
@@ -4212,8 +4424,6 @@ export class EnumValueOptions implements IEnumValueOptions {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    deprecated?: boolean;
-    uninterpretedOption?: IUninterpretedOption[];
 
     /**
      * Creates a new EnumValueOptions instance using the specified properties.
@@ -4221,7 +4431,9 @@ export class EnumValueOptions implements IEnumValueOptions {
     static create(properties: IEnumValueOptions): EnumValueOptions {
         return new EnumValueOptions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified EnumValueOptions message. Does not implicitly {@link EnumValueOptions.verify|verify} messages.
      * @param message EnumValueOptionsmessage or plain object to encode
@@ -4246,7 +4458,9 @@ export class EnumValueOptions implements IEnumValueOptions {
     static encodeDelimited(message: IEnumValueOptions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an EnumValueOptions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4288,7 +4502,9 @@ export class EnumValueOptions implements IEnumValueOptions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an EnumValueOptions message.
      * @param message Plain object to verify
@@ -4311,7 +4527,9 @@ export class EnumValueOptions implements IEnumValueOptions {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an EnumValueOptions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -4363,7 +4581,9 @@ export class EnumValueOptions implements IEnumValueOptions {
     toJSON() {
         return EnumValueOptions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -4376,6 +4596,7 @@ export class EnumValueOptions implements IEnumValueOptions {
             return UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
         }));
     }
+    // #endregion
 }
 
 /** Properties of a ServiceOptions. */
@@ -4388,6 +4609,10 @@ export interface IServiceOptions {
  * Represents a ServiceOptions.
  */
 export class ServiceOptions implements IServiceOptions {
+    deprecated?: boolean;
+    uninterpretedOption?: IUninterpretedOption[];
+
+    // #region create
     /**
      * Constructs a new ServiceOptions.
      */
@@ -4397,8 +4622,6 @@ export class ServiceOptions implements IServiceOptions {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    deprecated?: boolean;
-    uninterpretedOption?: IUninterpretedOption[];
 
     /**
      * Creates a new ServiceOptions instance using the specified properties.
@@ -4406,7 +4629,9 @@ export class ServiceOptions implements IServiceOptions {
     static create(properties: IServiceOptions): ServiceOptions {
         return new ServiceOptions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified ServiceOptions message. Does not implicitly {@link ServiceOptions.verify|verify} messages.
      * @param message ServiceOptionsmessage or plain object to encode
@@ -4431,7 +4656,9 @@ export class ServiceOptions implements IServiceOptions {
     static encodeDelimited(message: IServiceOptions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a ServiceOptions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4473,7 +4700,9 @@ export class ServiceOptions implements IServiceOptions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a ServiceOptions message.
      * @param message Plain object to verify
@@ -4496,7 +4725,9 @@ export class ServiceOptions implements IServiceOptions {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a ServiceOptions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -4548,7 +4779,9 @@ export class ServiceOptions implements IServiceOptions {
     toJSON() {
         return ServiceOptions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -4561,6 +4794,7 @@ export class ServiceOptions implements IServiceOptions {
             return UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
         }));
     }
+    // #endregion
 }
 
 /** Properties of a MethodOptions. */
@@ -4574,6 +4808,11 @@ export interface IMethodOptions {
  * Represents a MethodOptions.
  */
 export class MethodOptions implements IMethodOptions {
+    deprecated?: boolean;
+    idempotencyLevel?: MethodOptions.IdempotencyLevel;
+    uninterpretedOption?: IUninterpretedOption[];
+
+    // #region create
     /**
      * Constructs a new MethodOptions.
      */
@@ -4583,9 +4822,6 @@ export class MethodOptions implements IMethodOptions {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    deprecated?: boolean;
-    idempotencyLevel?: MethodOptions.IdempotencyLevel;
-    uninterpretedOption?: IUninterpretedOption[];
 
     /**
      * Creates a new MethodOptions instance using the specified properties.
@@ -4593,7 +4829,9 @@ export class MethodOptions implements IMethodOptions {
     static create(properties: IMethodOptions): MethodOptions {
         return new MethodOptions(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified MethodOptions message. Does not implicitly {@link MethodOptions.verify|verify} messages.
      * @param message MethodOptionsmessage or plain object to encode
@@ -4620,7 +4858,9 @@ export class MethodOptions implements IMethodOptions {
     static encodeDelimited(message: IMethodOptions, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a MethodOptions message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4665,7 +4905,9 @@ export class MethodOptions implements IMethodOptions {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a MethodOptions message.
      * @param message Plain object to verify
@@ -4697,7 +4939,9 @@ export class MethodOptions implements IMethodOptions {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a MethodOptions message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -4767,7 +5011,9 @@ export class MethodOptions implements IMethodOptions {
     toJSON() {
         return MethodOptions.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -4780,6 +5026,7 @@ export class MethodOptions implements IMethodOptions {
             return UninterpretedOption.equals(a.uninterpretedOption && a.uninterpretedOption[i], b.uninterpretedOption && b.uninterpretedOption[i]);
         }));
     }
+    // #endregion
 }
 
 export namespace MethodOptions {
@@ -4806,6 +5053,15 @@ export interface IUninterpretedOption {
  * Represents an UninterpretedOption.
  */
 export class UninterpretedOption implements IUninterpretedOption {
+    name?: UninterpretedOption.INamePart[];
+    identifierValue?: string;
+    positiveIntValue?: (number|$protobuf.Long);
+    negativeIntValue?: (number|$protobuf.Long);
+    doubleValue?: number;
+    stringValue?: Uint8Array;
+    aggregateValue?: string;
+
+    // #region create
     /**
      * Constructs a new UninterpretedOption.
      */
@@ -4815,13 +5071,6 @@ export class UninterpretedOption implements IUninterpretedOption {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: UninterpretedOption.INamePart[];
-    identifierValue?: string;
-    positiveIntValue?: (number|$protobuf.Long);
-    negativeIntValue?: (number|$protobuf.Long);
-    doubleValue?: number;
-    stringValue?: Uint8Array;
-    aggregateValue?: string;
 
     /**
      * Creates a new UninterpretedOption instance using the specified properties.
@@ -4829,7 +5078,9 @@ export class UninterpretedOption implements IUninterpretedOption {
     static create(properties: IUninterpretedOption): UninterpretedOption {
         return new UninterpretedOption(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified UninterpretedOption message. Does not implicitly {@link UninterpretedOption.verify|verify} messages.
      * @param message UninterpretedOptionmessage or plain object to encode
@@ -4864,7 +5115,9 @@ export class UninterpretedOption implements IUninterpretedOption {
     static encodeDelimited(message: IUninterpretedOption, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes an UninterpretedOption message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -4921,7 +5174,9 @@ export class UninterpretedOption implements IUninterpretedOption {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies an UninterpretedOption message.
      * @param message Plain object to verify
@@ -4959,7 +5214,9 @@ export class UninterpretedOption implements IUninterpretedOption {
                 return "aggregateValue: string expected";
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates an UninterpretedOption message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -5074,7 +5331,9 @@ export class UninterpretedOption implements IUninterpretedOption {
     toJSON() {
         return UninterpretedOption.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -5087,6 +5346,7 @@ export class UninterpretedOption implements IUninterpretedOption {
             return UninterpretedOption.NamePart.equals(a.name && a.name[i], b.name && b.name[i]);
         }) && a.identifierValue === b.identifierValue && $util.longEquals(a.positiveIntValue, b.positiveIntValue) && $util.longEquals(a.negativeIntValue, b.negativeIntValue) && a.doubleValue === b.doubleValue && $util.bytesEquals(a.stringValue, b.stringValue) && a.aggregateValue === b.aggregateValue;
     }
+    // #endregion
 }
 
 export namespace UninterpretedOption {
@@ -5100,6 +5360,10 @@ export namespace UninterpretedOption {
      * Represents a NamePart.
      */
     export class NamePart implements INamePart {
+        namePart: string = "";
+        isExtension: boolean = false;
+
+        // #region create
         /**
          * Constructs a new NamePart.
          */
@@ -5109,8 +5373,6 @@ export namespace UninterpretedOption {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        namePart: string = "";
-        isExtension: boolean = false;
 
         /**
          * Creates a new NamePart instance using the specified properties.
@@ -5118,7 +5380,9 @@ export namespace UninterpretedOption {
         static create(properties: INamePart): NamePart {
             return new NamePart(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified NamePart message. Does not implicitly {@link NamePart.verify|verify} messages.
          * @param message NamePartmessage or plain object to encode
@@ -5140,7 +5404,9 @@ export namespace UninterpretedOption {
         static encodeDelimited(message: INamePart, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a NamePart message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -5184,7 +5450,9 @@ export namespace UninterpretedOption {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a NamePart message.
          * @param message Plain object to verify
@@ -5199,7 +5467,9 @@ export namespace UninterpretedOption {
                 return "isExtension: boolean expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a NamePart message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -5240,7 +5510,9 @@ export namespace UninterpretedOption {
         toJSON() {
             return NamePart.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -5251,6 +5523,7 @@ export namespace UninterpretedOption {
                 return true;
             return a.namePart === b.namePart && a.isExtension === b.isExtension;
         }
+        // #endregion
     }
 
 }
@@ -5264,6 +5537,9 @@ export interface ISourceCodeInfo {
  * Represents a SourceCodeInfo.
  */
 export class SourceCodeInfo implements ISourceCodeInfo {
+    location?: SourceCodeInfo.ILocation[];
+
+    // #region create
     /**
      * Constructs a new SourceCodeInfo.
      */
@@ -5273,7 +5549,6 @@ export class SourceCodeInfo implements ISourceCodeInfo {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    location?: SourceCodeInfo.ILocation[];
 
     /**
      * Creates a new SourceCodeInfo instance using the specified properties.
@@ -5281,7 +5556,9 @@ export class SourceCodeInfo implements ISourceCodeInfo {
     static create(properties: ISourceCodeInfo): SourceCodeInfo {
         return new SourceCodeInfo(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified SourceCodeInfo message. Does not implicitly {@link SourceCodeInfo.verify|verify} messages.
      * @param message SourceCodeInfomessage or plain object to encode
@@ -5304,7 +5581,9 @@ export class SourceCodeInfo implements ISourceCodeInfo {
     static encodeDelimited(message: ISourceCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a SourceCodeInfo message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -5343,7 +5622,9 @@ export class SourceCodeInfo implements ISourceCodeInfo {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a SourceCodeInfo message.
      * @param message Plain object to verify
@@ -5363,7 +5644,9 @@ export class SourceCodeInfo implements ISourceCodeInfo {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a SourceCodeInfo message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -5409,7 +5692,9 @@ export class SourceCodeInfo implements ISourceCodeInfo {
     toJSON() {
         return SourceCodeInfo.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -5422,6 +5707,7 @@ export class SourceCodeInfo implements ISourceCodeInfo {
             return SourceCodeInfo.Location.equals(a.location && a.location[i], b.location && b.location[i]);
         });
     }
+    // #endregion
 }
 
 export namespace SourceCodeInfo {
@@ -5438,6 +5724,13 @@ export namespace SourceCodeInfo {
      * Represents a Location.
      */
     export class Location implements ILocation {
+        path?: number[];
+        span?: number[];
+        leadingComments?: string;
+        trailingComments?: string;
+        leadingDetachedComments?: string[];
+
+        // #region create
         /**
          * Constructs a new Location.
          */
@@ -5447,11 +5740,6 @@ export namespace SourceCodeInfo {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        path?: number[];
-        span?: number[];
-        leadingComments?: string;
-        trailingComments?: string;
-        leadingDetachedComments?: string[];
 
         /**
          * Creates a new Location instance using the specified properties.
@@ -5459,7 +5747,9 @@ export namespace SourceCodeInfo {
         static create(properties: ILocation): Location {
             return new Location(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified Location message. Does not implicitly {@link Location.verify|verify} messages.
          * @param message Locationmessage or plain object to encode
@@ -5498,7 +5788,9 @@ export namespace SourceCodeInfo {
         static encodeDelimited(message: ILocation, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes a Location message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -5563,7 +5855,9 @@ export namespace SourceCodeInfo {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies a Location message.
          * @param message Plain object to verify
@@ -5601,7 +5895,9 @@ export namespace SourceCodeInfo {
             }
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates a Location message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -5683,7 +5979,9 @@ export namespace SourceCodeInfo {
         toJSON() {
             return Location.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -5700,6 +5998,7 @@ export namespace SourceCodeInfo {
                 return (a.leadingDetachedComments && a.leadingDetachedComments[i]) === (b.leadingDetachedComments && b.leadingDetachedComments[i]);
             }));
         }
+        // #endregion
     }
 
 }
@@ -5713,6 +6012,9 @@ export interface IGeneratedCodeInfo {
  * Represents a GeneratedCodeInfo.
  */
 export class GeneratedCodeInfo implements IGeneratedCodeInfo {
+    annotation?: GeneratedCodeInfo.IAnnotation[];
+
+    // #region create
     /**
      * Constructs a new GeneratedCodeInfo.
      */
@@ -5722,7 +6024,6 @@ export class GeneratedCodeInfo implements IGeneratedCodeInfo {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    annotation?: GeneratedCodeInfo.IAnnotation[];
 
     /**
      * Creates a new GeneratedCodeInfo instance using the specified properties.
@@ -5730,7 +6031,9 @@ export class GeneratedCodeInfo implements IGeneratedCodeInfo {
     static create(properties: IGeneratedCodeInfo): GeneratedCodeInfo {
         return new GeneratedCodeInfo(properties);
     }
+    // #endregion
 
+    // #region encode
     /**
      * Encodes the specified GeneratedCodeInfo message. Does not implicitly {@link GeneratedCodeInfo.verify|verify} messages.
      * @param message GeneratedCodeInfomessage or plain object to encode
@@ -5753,7 +6056,9 @@ export class GeneratedCodeInfo implements IGeneratedCodeInfo {
     static encodeDelimited(message: IGeneratedCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
         return this.encode(message, writer).ldelim();
     }
+    // #endregion
 
+    // #region decode
     /**
      * Decodes a GeneratedCodeInfo message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
@@ -5792,7 +6097,9 @@ export class GeneratedCodeInfo implements IGeneratedCodeInfo {
             reader = new $Reader(reader);
         return this.decode(reader, (reader as $protobuf.Reader).uint32());
     }
+    // #endregion
 
+    // #region verify
     /**
      * Verifies a GeneratedCodeInfo message.
      * @param message Plain object to verify
@@ -5812,7 +6119,9 @@ export class GeneratedCodeInfo implements IGeneratedCodeInfo {
         }
         return null;
     }
+    // #endregion
 
+    // #region convert
     /**
      * Creates a GeneratedCodeInfo message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
@@ -5858,7 +6167,9 @@ export class GeneratedCodeInfo implements IGeneratedCodeInfo {
     toJSON() {
         return GeneratedCodeInfo.toObject(this, $protobuf.util.toJSONOptions);
     };
+    // #endregion
 
+    // #region equals
     /**
      * Compares two messages, checking for strict equality.
      */
@@ -5871,6 +6182,7 @@ export class GeneratedCodeInfo implements IGeneratedCodeInfo {
             return GeneratedCodeInfo.Annotation.equals(a.annotation && a.annotation[i], b.annotation && b.annotation[i]);
         });
     }
+    // #endregion
 }
 
 export namespace GeneratedCodeInfo {
@@ -5886,6 +6198,12 @@ export namespace GeneratedCodeInfo {
      * Represents an Annotation.
      */
     export class Annotation implements IAnnotation {
+        path?: number[];
+        sourceFile?: string;
+        begin?: number;
+        end?: number;
+
+        // #region create
         /**
          * Constructs a new Annotation.
          */
@@ -5895,10 +6213,6 @@ export namespace GeneratedCodeInfo {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        path?: number[];
-        sourceFile?: string;
-        begin?: number;
-        end?: number;
 
         /**
          * Creates a new Annotation instance using the specified properties.
@@ -5906,7 +6220,9 @@ export namespace GeneratedCodeInfo {
         static create(properties: IAnnotation): Annotation {
             return new Annotation(properties);
         }
+        // #endregion
 
+        // #region encode
         /**
          * Encodes the specified Annotation message. Does not implicitly {@link Annotation.verify|verify} messages.
          * @param message Annotationmessage or plain object to encode
@@ -5938,7 +6254,9 @@ export namespace GeneratedCodeInfo {
         static encodeDelimited(message: IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
+        // #endregion
 
+        // #region decode
         /**
          * Decodes an Annotation message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
@@ -5991,7 +6309,9 @@ export namespace GeneratedCodeInfo {
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
         }
+        // #endregion
 
+        // #region verify
         /**
          * Verifies an Annotation message.
          * @param message Plain object to verify
@@ -6018,7 +6338,9 @@ export namespace GeneratedCodeInfo {
                     return "end: integer expected";
             return null;
         }
+        // #endregion
 
+        // #region convert
         /**
          * Creates an Annotation message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
@@ -6078,7 +6400,9 @@ export namespace GeneratedCodeInfo {
         toJSON() {
             return Annotation.toObject(this, $protobuf.util.toJSONOptions);
         };
+        // #endregion
 
+        // #region equals
         /**
          * Compares two messages, checking for strict equality.
          */
@@ -6091,6 +6415,7 @@ export namespace GeneratedCodeInfo {
                 return (a.path && a.path[i]) === (b.path && b.path[i]);
             }) && a.sourceFile === b.sourceFile && a.begin === b.begin && a.end === b.end;
         }
+        // #endregion
     }
 
 }
