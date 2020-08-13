@@ -50,9 +50,20 @@ function static_target(root, options, callback) {
 
         out = out.join("\n");
         out = `import * as $protobuf from "${options.dependency || '@kpdecker/protobufjs/minimal'}";
-${Object.keys(imports).map((path) => 
-    `import { ${Object.keys(imports[path]).join(', ')} } from "./${path.replace(/\.proto$/, '')}";`
-).join('\n')}
+${Object.keys(imports).map((path) => {
+    var defaultImport = Object.keys(imports[path]).find((name) => imports[path][name] === 'default');
+    var keys = Object.keys(imports[path]).filter((name) => imports[path][name] === true);
+
+    var importNames = [];
+    if (defaultImport) {
+        importNames.push(`* as ${defaultImport}`);
+    }
+    if (keys.length) {
+        importNames.push(`{ ${keys.join(', ')} }`);
+    }
+
+    return `import ${importNames.join(', ')} from "${path.replace(/\.proto$/, '')}";`
+}).join('\n')}
 
 ${out};
 `;
@@ -97,7 +108,7 @@ function exportName(object, asInterface) {
             return object.__interfaceName;
     } else if (object.__exportName)
         return object.__exportName;
-    var parts = object.fullName.substring(1).split("."),
+    var parts = object.fullName.replace(/^\./, '').split("."),
         i = 0;
     while (i < parts.length)
         parts[i] = escapeName(parts[i++]);
@@ -124,8 +135,9 @@ function typeName(object, asInterface, context, omitParentPath) {
   let parentPath = '';
 
   if (config.outdir && context && context.filename !== object.filename) {
-    imports[object.filename] = imports[object.filename] || {};
-    imports[object.filename][referenceName] = true;
+    const importPath = `./${object.filename}`;
+    imports[importPath] = imports[importPath] || {};
+    imports[importPath][referenceName] = true;
   } else if (!omitParentPath) {
     parentPath = [''];
     while (ptr && ptr.name && !ptr.isFileRoot) {
@@ -673,19 +685,19 @@ function buildService(service) {
             push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", request);");
             --indent;
         } else if (method.requestStream && method.responseStream) {
-            imports.stream = { Stream: true };
+            imports.stream = { Stream: 'default' };
             push(`async ${escapeName(lcName)}(): Promise<Stream.Duplex> {`);
             ++indent;
             push("return (this.rpcImpl as any)(this." + escapeName(lcName) + ");");
             --indent;
         } else if (!method.requestStream && method.responseStream) {
-            imports.stream = { Stream: true };
+            imports.stream = { Stream: 'default' };
             push(`async ${escapeName(lcName)}(request: ${typeName(method.resolvedRequestType, !config.forceMessage)}): Promise<Stream.Readable> {`);
             ++indent;
             push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", request);");
             --indent;
         } else if (method.requestStream && !method.responseStream) {
-            imports.stream = { Stream: true };
+            imports.stream = { Stream: 'default' };
             push(`async ${escapeName(lcName)}(callback: (err?: Error, response?: ${typeName(method.resolvedResponseType)}) => void): Promise<Stream.Writable> {`);
             ++indent;
             push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", undefined, callback);");
