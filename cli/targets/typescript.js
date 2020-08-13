@@ -123,7 +123,10 @@ function typeName(object, asInterface, context, omitParentPath) {
 
   let parentPath = '';
 
-  if (!omitParentPath) {
+  if (config.outdir && context && context.filename !== object.filename) {
+    imports[object.filename] = imports[object.filename] || {};
+    imports[object.filename][referenceName] = true;
+  } else if (!omitParentPath) {
     parentPath = [''];
     while (ptr && ptr.name && !ptr.isFileRoot) {
         parentPath.unshift(ptr.name);

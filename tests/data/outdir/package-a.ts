@@ -1,0 +1,135 @@
+import * as $protobuf from "../../../minimal";
+
+
+// Common aliases
+const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+
+/** Properties of a Something. */
+export interface ISomething {
+}
+
+/**
+ * Represents a Something.
+ */
+export class Something implements ISomething {
+    /**
+     * Constructs a new Something.
+     */
+    constructor(properties?: ISomething) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Creates a new Something instance using the specified properties.
+     */
+    static create(properties: ISomething): Something {
+        return new Something(properties);
+    }
+
+    /**
+     * Encodes the specified Something message. Does not implicitly {@link Something.verify|verify} messages.
+     * @param message Somethingmessage or plain object to encode
+     * @param writer Writer to encode to
+     */
+    static encode(message: ISomething, writer?: $protobuf.Writer): $protobuf.Writer {
+        if (!writer)
+            writer = $Writer.create();
+        return writer;
+    }
+
+    /**
+     * Encodes the specified Something message, length delimited. Does not implicitly {@link Something.verify|verify} messages.
+     * @param message Somethingmessage or plain object to encode
+     * @param writer Writer to encode to
+     */
+    static encodeDelimited(message: ISomething, writer?: $protobuf.Writer): $protobuf.Writer {
+        return this.encode(message, writer).ldelim();
+    }
+
+    /**
+     * Decodes a Something message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param length Message length if known beforehand
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Something {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        var end = length === undefined ? reader.len : reader.pos + length, message = new Something();
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    }
+
+    /**
+     * Decodes a Something message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Something {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+    }
+
+    /**
+     * Verifies a Something message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    static verify(message): string | null | void {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        return null;
+    }
+
+    /**
+     * Creates a Something message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     */
+    static fromObject(object): ISomething {
+        if (object instanceof Something)
+            return object;
+        return new Something();
+    }
+
+    /**
+     * Creates a plain object from a Something message. Also converts values to other types if specified.
+     * @param message Something
+     * @param optionsConversion options
+     * @returns Plain object
+     */
+    static toObject(message: ISomething, options: $protobuf.IConversionOptions = {}) {
+        return {};
+    }
+
+    /**
+     * Converts this Something to JSON.
+     */
+    toJSON() {
+        return Something.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Compares two messages, checking for strict equality.
+     */
+    static equals(a?: ISomething, b?: ISomething): boolean {
+        if (!a || !b)
+            return a === b;
+        if (a === b)
+            return true;
+        return true;
+    }
+}
+;

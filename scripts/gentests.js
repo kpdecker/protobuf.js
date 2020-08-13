@@ -16,35 +16,46 @@ var fs   = require("fs"),
     { file: "tests/data/rpc.proto", flags: [ "es6" ] },
     { file: "tests/data/rpc.proto", flags: [] },
     { file: "tests/data/rpc-reserved.proto", flags: [] },
+    { file: "tests/data/test.proto", flags: [], target: 'typescript', outDir: 'tests/data/outdir' },
     { file: "tests/data/test.proto", flags: [], target: 'typescript' },
     { file: "tests/data/test.proto", flags: [] },
     { file: "bench/data/bench.proto", flags: ["no-create", "no-verify", "no-delimited", "no-convert", "no-comments"], out: "bench/data/static_pbjs.js" }
 ]
-.forEach(function({ file, flags, out, target }) {
+.forEach(function({ file, flags, out, outDir, target }) {
     var basename = file.replace(/\.proto$/, "");
-    if (!out)
+    if (!out && !outDir)
         out = [ basename ].concat(flags).join("-") + (target === "typescript" ? ".ts" : ".js");
+
+    var pathToProtobufjs = path
+        .relative(outDir || path.dirname(out), 'minimal')
+        .replace(/\\/g, '/');
+
+    var callback =
+      !outDir &&
+      function (err, output) {
+        if (err) throw err;
+        fs.writeFileSync(out, output);
+        process.stdout.write('pbjs: ' + file + ' -> ' + out + '\n');
+        try {
+          require(path.join(__dirname, '..', out));
+        } catch (err) {
+          if (!flags.includes('es6') && target !== 'typescript') {
+            process.stderr.write('ERROR: ' + err.message + '\n');
+          }
+        }
+      };
     pbjs.main([
+        "--dependency", pathToProtobufjs,
         "--target", target || "static-module",
         "--wrap", target === 'typescript' ? 'ts' : flags.includes('es6') ? 'es6' : "commonjs",
         "--root", "test_" + path.basename(basename, ".js"),
+        outDir && '--outdir', outDir,
         file
-    ].concat(flags.map(function(flag) {
+    ]
+    .filter(Boolean)
+    .concat(flags.map(function(flag) {
         return "--" + flag;
-    })), function(err, output) {
-        if (err)
-            throw err;
-        var pathToProtobufjs = path.relative(path.dirname(out), "minimal").replace(/\\/g, "/");
-        fs.writeFileSync(out, output.replace(/"protobufjs\/minimal"/g, JSON.stringify(pathToProtobufjs)));
-        process.stdout.write("pbjs: " + file + " -> " + out + "\n");
-        try {
-            require(path.join(__dirname, "..", out));
-        } catch (err) {
-            if (!flags.includes("es6") && target !== 'typescript') {
-                process.stderr.write("ERROR: " + err.message + "\n");
-            }
-        }
-    });
+    })), callback);
 });
 
 process.stdout.write("\n");
