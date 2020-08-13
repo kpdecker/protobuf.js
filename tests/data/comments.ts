@@ -49,7 +49,7 @@ export class Test1 implements ITest1 {
     }
 
     /**
-     * Encodes the specified Test1 message. Does not implicitly {@link Type .Test1.verify|verify} messages.
+     * Encodes the specified Test1 message. Does not implicitly {@link Test1.verify|verify} messages.
      * @param message Test1message or plain object to encode
      * @param writer Writer to encode to
      */
@@ -66,7 +66,7 @@ export class Test1 implements ITest1 {
     }
 
     /**
-     * Encodes the specified Test1 message, length delimited. Does not implicitly {@link Type .Test1.verify|verify} messages.
+     * Encodes the specified Test1 message, length delimited. Does not implicitly {@link Test1.verify|verify} messages.
      * @param message Test1message or plain object to encode
      * @param writer Writer to encode to
      */
@@ -221,7 +221,7 @@ export class Test2 implements ITest2 {
     }
 
     /**
-     * Encodes the specified Test2 message. Does not implicitly {@link Type .Test2.verify|verify} messages.
+     * Encodes the specified Test2 message. Does not implicitly {@link Test2.verify|verify} messages.
      * @param message Test2message or plain object to encode
      * @param writer Writer to encode to
      */
@@ -232,7 +232,7 @@ export class Test2 implements ITest2 {
     }
 
     /**
-     * Encodes the specified Test2 message, length delimited. Does not implicitly {@link Type .Test2.verify|verify} messages.
+     * Encodes the specified Test2 message, length delimited. Does not implicitly {@link Test2.verify|verify} messages.
      * @param message Test2message or plain object to encode
      * @param writer Writer to encode to
      */

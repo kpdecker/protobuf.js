@@ -13,11 +13,11 @@ export namespace jspb.test {
     /**
      * Represents an Empty.
      */
-    export class Empty implements jspb.test.IEmpty {
+    export class Empty implements IEmpty {
         /**
          * Constructs a new Empty.
          */
-        constructor(properties?: jspb.test.IEmpty) {
+        constructor(properties?: IEmpty) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -27,27 +27,27 @@ export namespace jspb.test {
         /**
          * Creates a new Empty instance using the specified properties.
          */
-        static create(properties: jspb.test.IEmpty): Empty {
+        static create(properties: IEmpty): Empty {
             return new Empty(properties);
         }
 
         /**
-         * Encodes the specified Empty message. Does not implicitly {@link Type .jspb.test.Empty.verify|verify} messages.
+         * Encodes the specified Empty message. Does not implicitly {@link Empty.verify|verify} messages.
          * @param message Emptymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
         }
 
         /**
-         * Encodes the specified Empty message, length delimited. Does not implicitly {@link Type .jspb.test.Empty.verify|verify} messages.
+         * Encodes the specified Empty message, length delimited. Does not implicitly {@link Empty.verify|verify} messages.
          * @param message Emptymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -58,7 +58,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.Empty {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Empty {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Empty();
@@ -79,7 +79,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.Empty {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Empty {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -100,7 +100,7 @@ export namespace jspb.test {
          * Creates an Empty message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IEmpty {
+        static fromObject(object): IEmpty {
             if (object instanceof jspb.test.Empty)
                 return object;
             return new jspb.test.Empty();
@@ -112,7 +112,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IEmpty, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEmpty, options: $protobuf.IConversionOptions = {}) {
             return {};
         }
 
@@ -126,7 +126,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IEmpty, b?: jspb.test.IEmpty): boolean {
+        static equals(a?: IEmpty, b?: IEmpty): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -148,11 +148,11 @@ export namespace jspb.test {
     /**
      * Represents an EnumContainer.
      */
-    export class EnumContainer implements jspb.test.IEnumContainer {
+    export class EnumContainer implements IEnumContainer {
         /**
          * Constructs a new EnumContainer.
          */
-        constructor(properties?: jspb.test.IEnumContainer) {
+        constructor(properties?: IEnumContainer) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -163,16 +163,16 @@ export namespace jspb.test {
         /**
          * Creates a new EnumContainer instance using the specified properties.
          */
-        static create(properties: jspb.test.IEnumContainer): EnumContainer {
+        static create(properties: IEnumContainer): EnumContainer {
             return new EnumContainer(properties);
         }
 
         /**
-         * Encodes the specified EnumContainer message. Does not implicitly {@link Type .jspb.test.EnumContainer.verify|verify} messages.
+         * Encodes the specified EnumContainer message. Does not implicitly {@link EnumContainer.verify|verify} messages.
          * @param message EnumContainermessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.outerEnum != null && Object.hasOwnProperty.call(message, "outerEnum"))
@@ -181,11 +181,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified EnumContainer message, length delimited. Does not implicitly {@link Type .jspb.test.EnumContainer.verify|verify} messages.
+         * Encodes the specified EnumContainer message, length delimited. Does not implicitly {@link EnumContainer.verify|verify} messages.
          * @param message EnumContainermessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -196,7 +196,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.EnumContainer {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumContainer {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.EnumContainer();
@@ -220,7 +220,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.EnumContainer {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumContainer {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -249,7 +249,7 @@ export namespace jspb.test {
          * Creates an EnumContainer message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IEnumContainer {
+        static fromObject(object): IEnumContainer {
             if (object instanceof jspb.test.EnumContainer)
                 return object;
             var message = new jspb.test.EnumContainer();
@@ -272,7 +272,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IEnumContainer, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumContainer, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.outerEnum = 1;
@@ -291,7 +291,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IEnumContainer, b?: jspb.test.IEnumContainer): boolean {
+        static equals(a?: IEnumContainer, b?: IEnumContainer): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -310,11 +310,11 @@ export namespace jspb.test {
     /**
      * Represents a Simple1.
      */
-    export class Simple1 implements jspb.test.ISimple1 {
+    export class Simple1 implements ISimple1 {
         /**
          * Constructs a new Simple1.
          */
-        constructor(properties?: jspb.test.ISimple1) {
+        constructor(properties?: ISimple1) {
             this.aRepeatedString = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -328,16 +328,16 @@ export namespace jspb.test {
         /**
          * Creates a new Simple1 instance using the specified properties.
          */
-        static create(properties: jspb.test.ISimple1): Simple1 {
+        static create(properties: ISimple1): Simple1 {
             return new Simple1(properties);
         }
 
         /**
-         * Encodes the specified Simple1 message. Does not implicitly {@link Type .jspb.test.Simple1.verify|verify} messages.
+         * Encodes the specified Simple1 message. Does not implicitly {@link Simple1.verify|verify} messages.
          * @param message Simple1message or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
@@ -350,11 +350,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified Simple1 message, length delimited. Does not implicitly {@link Type .jspb.test.Simple1.verify|verify} messages.
+         * Encodes the specified Simple1 message, length delimited. Does not implicitly {@link Simple1.verify|verify} messages.
          * @param message Simple1message or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -365,7 +365,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.Simple1 {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Simple1 {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Simple1();
@@ -399,7 +399,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.Simple1 {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Simple1 {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -432,7 +432,7 @@ export namespace jspb.test {
          * Creates a Simple1 message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ISimple1 {
+        static fromObject(object): ISimple1 {
             if (object instanceof jspb.test.Simple1)
                 return object;
             var message = new jspb.test.Simple1();
@@ -456,7 +456,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ISimple1, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISimple1, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.aRepeatedString = [];
@@ -486,7 +486,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ISimple1, b?: jspb.test.ISimple1): boolean {
+        static equals(a?: ISimple1, b?: ISimple1): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -506,11 +506,11 @@ export namespace jspb.test {
     /**
      * Represents a Simple2.
      */
-    export class Simple2 implements jspb.test.ISimple2 {
+    export class Simple2 implements ISimple2 {
         /**
          * Constructs a new Simple2.
          */
-        constructor(properties?: jspb.test.ISimple2) {
+        constructor(properties?: ISimple2) {
             this.aRepeatedString = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -523,16 +523,16 @@ export namespace jspb.test {
         /**
          * Creates a new Simple2 instance using the specified properties.
          */
-        static create(properties: jspb.test.ISimple2): Simple2 {
+        static create(properties: ISimple2): Simple2 {
             return new Simple2(properties);
         }
 
         /**
-         * Encodes the specified Simple2 message. Does not implicitly {@link Type .jspb.test.Simple2.verify|verify} messages.
+         * Encodes the specified Simple2 message. Does not implicitly {@link Simple2.verify|verify} messages.
          * @param message Simple2message or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
@@ -543,11 +543,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified Simple2 message, length delimited. Does not implicitly {@link Type .jspb.test.Simple2.verify|verify} messages.
+         * Encodes the specified Simple2 message, length delimited. Does not implicitly {@link Simple2.verify|verify} messages.
          * @param message Simple2message or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -558,7 +558,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.Simple2 {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Simple2 {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Simple2();
@@ -589,7 +589,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.Simple2 {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Simple2 {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -619,7 +619,7 @@ export namespace jspb.test {
          * Creates a Simple2 message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ISimple2 {
+        static fromObject(object): ISimple2 {
             if (object instanceof jspb.test.Simple2)
                 return object;
             var message = new jspb.test.Simple2();
@@ -641,7 +641,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ISimple2, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISimple2, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.aRepeatedString = [];
@@ -667,7 +667,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ISimple2, b?: jspb.test.ISimple2): boolean {
+        static equals(a?: ISimple2, b?: ISimple2): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -689,11 +689,11 @@ export namespace jspb.test {
     /**
      * Represents a SpecialCases.
      */
-    export class SpecialCases implements jspb.test.ISpecialCases {
+    export class SpecialCases implements ISpecialCases {
         /**
          * Constructs a new SpecialCases.
          */
-        constructor(properties?: jspb.test.ISpecialCases) {
+        constructor(properties?: ISpecialCases) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -707,16 +707,16 @@ export namespace jspb.test {
         /**
          * Creates a new SpecialCases instance using the specified properties.
          */
-        static create(properties: jspb.test.ISpecialCases): SpecialCases {
+        static create(properties: ISpecialCases): SpecialCases {
             return new SpecialCases(properties);
         }
 
         /**
-         * Encodes the specified SpecialCases message. Does not implicitly {@link Type .jspb.test.SpecialCases.verify|verify} messages.
+         * Encodes the specified SpecialCases message. Does not implicitly {@link SpecialCases.verify|verify} messages.
          * @param message SpecialCasesmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.normal);
@@ -727,11 +727,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified SpecialCases message, length delimited. Does not implicitly {@link Type .jspb.test.SpecialCases.verify|verify} messages.
+         * Encodes the specified SpecialCases message, length delimited. Does not implicitly {@link SpecialCases.verify|verify} messages.
          * @param message SpecialCasesmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -742,7 +742,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.SpecialCases {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): SpecialCases {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.SpecialCases();
@@ -783,7 +783,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.SpecialCases {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): SpecialCases {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -812,7 +812,7 @@ export namespace jspb.test {
          * Creates a SpecialCases message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ISpecialCases {
+        static fromObject(object): ISpecialCases {
             if (object instanceof jspb.test.SpecialCases)
                 return object;
             var message = new jspb.test.SpecialCases();
@@ -833,7 +833,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ISpecialCases, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISpecialCases, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.normal = "";
@@ -862,7 +862,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ISpecialCases, b?: jspb.test.ISpecialCases): boolean {
+        static equals(a?: ISpecialCases, b?: ISpecialCases): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -883,11 +883,11 @@ export namespace jspb.test {
     /**
      * Represents an OptionalFields.
      */
-    export class OptionalFields implements jspb.test.IOptionalFields {
+    export class OptionalFields implements IOptionalFields {
         /**
          * Constructs a new OptionalFields.
          */
-        constructor(properties?: jspb.test.IOptionalFields) {
+        constructor(properties?: IOptionalFields) {
             this.aRepeatedMessage = [];
             this.aRepeatedString = [];
             if (properties)
@@ -904,16 +904,16 @@ export namespace jspb.test {
         /**
          * Creates a new OptionalFields instance using the specified properties.
          */
-        static create(properties: jspb.test.IOptionalFields): OptionalFields {
+        static create(properties: IOptionalFields): OptionalFields {
             return new OptionalFields(properties);
         }
 
         /**
-         * Encodes the specified OptionalFields message. Does not implicitly {@link Type .jspb.test.OptionalFields.verify|verify} messages.
+         * Encodes the specified OptionalFields message. Does not implicitly {@link OptionalFields.verify|verify} messages.
          * @param message OptionalFieldsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.aString != null && Object.hasOwnProperty.call(message, "aString"))
@@ -931,11 +931,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified OptionalFields message, length delimited. Does not implicitly {@link Type .jspb.test.OptionalFields.verify|verify} messages.
+         * Encodes the specified OptionalFields message, length delimited. Does not implicitly {@link OptionalFields.verify|verify} messages.
          * @param message OptionalFieldsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -946,7 +946,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.OptionalFields {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OptionalFields {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OptionalFields();
@@ -988,7 +988,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.OptionalFields {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OptionalFields {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -1035,7 +1035,7 @@ export namespace jspb.test {
          * Creates an OptionalFields message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IOptionalFields {
+        static fromObject(object): IOptionalFields {
             if (object instanceof jspb.test.OptionalFields)
                 return object;
             var message = new jspb.test.OptionalFields();
@@ -1074,7 +1074,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IOptionalFields, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOptionalFields, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.aRepeatedMessage = [];
@@ -1114,7 +1114,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IOptionalFields, b?: jspb.test.IOptionalFields): boolean {
+        static equals(a?: IOptionalFields, b?: IOptionalFields): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -1136,11 +1136,11 @@ export namespace jspb.test {
         /**
          * Represents a Nested.
          */
-        export class Nested implements jspb.test.OptionalFields.INested {
+        export class Nested implements INested {
             /**
              * Constructs a new Nested.
              */
-            constructor(properties?: jspb.test.OptionalFields.INested) {
+            constructor(properties?: INested) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -1151,16 +1151,16 @@ export namespace jspb.test {
             /**
              * Creates a new Nested instance using the specified properties.
              */
-            static create(properties: jspb.test.OptionalFields.INested): Nested {
+            static create(properties: INested): Nested {
                 return new Nested(properties);
             }
 
             /**
-             * Encodes the specified Nested message. Does not implicitly {@link Type .jspb.test.OptionalFields.Nested.verify|verify} messages.
+             * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
              * @param message Nestedmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: jspb.test.OptionalFields.INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.anInt != null && Object.hasOwnProperty.call(message, "anInt"))
@@ -1169,11 +1169,11 @@ export namespace jspb.test {
             }
 
             /**
-             * Encodes the specified Nested message, length delimited. Does not implicitly {@link Type .jspb.test.OptionalFields.Nested.verify|verify} messages.
+             * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
              * @param message Nestedmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: jspb.test.OptionalFields.INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -1184,7 +1184,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.OptionalFields.Nested {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OptionalFields.Nested();
@@ -1208,7 +1208,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.OptionalFields.Nested {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -1232,7 +1232,7 @@ export namespace jspb.test {
              * Creates a Nested message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): jspb.test.OptionalFields.INested {
+            static fromObject(object): INested {
                 if (object instanceof jspb.test.OptionalFields.Nested)
                     return object;
                 var message = new jspb.test.OptionalFields.Nested();
@@ -1247,7 +1247,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: jspb.test.OptionalFields.INested, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.anInt = 0;
@@ -1266,7 +1266,7 @@ export namespace jspb.test {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: jspb.test.OptionalFields.INested, b?: jspb.test.OptionalFields.INested): boolean {
+            static equals(a?: INested, b?: INested): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -1293,11 +1293,11 @@ export namespace jspb.test {
     /**
      * Represents a HasExtensions.
      */
-    export class HasExtensions implements jspb.test.IHasExtensions {
+    export class HasExtensions implements IHasExtensions {
         /**
          * Constructs a new HasExtensions.
          */
-        constructor(properties?: jspb.test.IHasExtensions) {
+        constructor(properties?: IHasExtensions) {
             this[".jspb.test.IndirectExtension.repeatedStr"] = [];
             this[".jspb.test.IndirectExtension.repeatedSimple"] = [];
             if (properties)
@@ -1318,16 +1318,16 @@ export namespace jspb.test {
         /**
          * Creates a new HasExtensions instance using the specified properties.
          */
-        static create(properties: jspb.test.IHasExtensions): HasExtensions {
+        static create(properties: IHasExtensions): HasExtensions {
             return new HasExtensions(properties);
         }
 
         /**
-         * Encodes the specified HasExtensions message. Does not implicitly {@link Type .jspb.test.HasExtensions.verify|verify} messages.
+         * Encodes the specified HasExtensions message. Does not implicitly {@link HasExtensions.verify|verify} messages.
          * @param message HasExtensionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.str1 != null && Object.hasOwnProperty.call(message, "str1"))
@@ -1354,11 +1354,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified HasExtensions message, length delimited. Does not implicitly {@link Type .jspb.test.HasExtensions.verify|verify} messages.
+         * Encodes the specified HasExtensions message, length delimited. Does not implicitly {@link HasExtensions.verify|verify} messages.
          * @param message HasExtensionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -1369,7 +1369,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.HasExtensions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): HasExtensions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.HasExtensions();
@@ -1421,7 +1421,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.HasExtensions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): HasExtensions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -1485,7 +1485,7 @@ export namespace jspb.test {
          * Creates a HasExtensions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IHasExtensions {
+        static fromObject(object): IHasExtensions {
             if (object instanceof jspb.test.HasExtensions)
                 return object;
             var message = new jspb.test.HasExtensions();
@@ -1538,7 +1538,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IHasExtensions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IHasExtensions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object[".jspb.test.IndirectExtension.repeatedStr"] = [];
@@ -1590,7 +1590,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IHasExtensions, b?: jspb.test.IHasExtensions): boolean {
+        static equals(a?: IHasExtensions, b?: IHasExtensions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -1615,11 +1615,11 @@ export namespace jspb.test {
     /**
      * Represents a Complex.
      */
-    export class Complex implements jspb.test.IComplex {
+    export class Complex implements IComplex {
         /**
          * Constructs a new Complex.
          */
-        constructor(properties?: jspb.test.IComplex) {
+        constructor(properties?: IComplex) {
             this.aRepeatedMessage = [];
             this.aRepeatedString = [];
             if (properties)
@@ -1636,16 +1636,16 @@ export namespace jspb.test {
         /**
          * Creates a new Complex instance using the specified properties.
          */
-        static create(properties: jspb.test.IComplex): Complex {
+        static create(properties: IComplex): Complex {
             return new Complex(properties);
         }
 
         /**
-         * Encodes the specified Complex message. Does not implicitly {@link Type .jspb.test.Complex.verify|verify} messages.
+         * Encodes the specified Complex message. Does not implicitly {@link Complex.verify|verify} messages.
          * @param message Complexmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
@@ -1662,11 +1662,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified Complex message, length delimited. Does not implicitly {@link Type .jspb.test.Complex.verify|verify} messages.
+         * Encodes the specified Complex message, length delimited. Does not implicitly {@link Complex.verify|verify} messages.
          * @param message Complexmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -1677,7 +1677,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.Complex {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Complex {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Complex();
@@ -1721,7 +1721,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.Complex {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Complex {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -1767,7 +1767,7 @@ export namespace jspb.test {
          * Creates a Complex message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IComplex {
+        static fromObject(object): IComplex {
             if (object instanceof jspb.test.Complex)
                 return object;
             var message = new jspb.test.Complex();
@@ -1806,7 +1806,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IComplex, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IComplex, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.aRepeatedMessage = [];
@@ -1846,7 +1846,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IComplex, b?: jspb.test.IComplex): boolean {
+        static equals(a?: IComplex, b?: IComplex): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -1868,11 +1868,11 @@ export namespace jspb.test {
         /**
          * Represents a Nested.
          */
-        export class Nested implements jspb.test.Complex.INested {
+        export class Nested implements INested {
             /**
              * Constructs a new Nested.
              */
-            constructor(properties?: jspb.test.Complex.INested) {
+            constructor(properties?: INested) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -1883,16 +1883,16 @@ export namespace jspb.test {
             /**
              * Creates a new Nested instance using the specified properties.
              */
-            static create(properties: jspb.test.Complex.INested): Nested {
+            static create(properties: INested): Nested {
                 return new Nested(properties);
             }
 
             /**
-             * Encodes the specified Nested message. Does not implicitly {@link Type .jspb.test.Complex.Nested.verify|verify} messages.
+             * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
              * @param message Nestedmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: jspb.test.Complex.INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.anInt);
@@ -1900,11 +1900,11 @@ export namespace jspb.test {
             }
 
             /**
-             * Encodes the specified Nested message, length delimited. Does not implicitly {@link Type .jspb.test.Complex.Nested.verify|verify} messages.
+             * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
              * @param message Nestedmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: jspb.test.Complex.INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -1915,7 +1915,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.Complex.Nested {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Complex.Nested();
@@ -1941,7 +1941,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.Complex.Nested {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -1964,7 +1964,7 @@ export namespace jspb.test {
              * Creates a Nested message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): jspb.test.Complex.INested {
+            static fromObject(object): INested {
                 if (object instanceof jspb.test.Complex.Nested)
                     return object;
                 var message = new jspb.test.Complex.Nested();
@@ -1979,7 +1979,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: jspb.test.Complex.INested, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.anInt = 0;
@@ -1998,7 +1998,7 @@ export namespace jspb.test {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: jspb.test.Complex.INested, b?: jspb.test.Complex.INested): boolean {
+            static equals(a?: INested, b?: INested): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -2016,11 +2016,11 @@ export namespace jspb.test {
     /**
      * Represents an OuterMessage.
      */
-    export class OuterMessage implements jspb.test.IOuterMessage {
+    export class OuterMessage implements IOuterMessage {
         /**
          * Constructs a new OuterMessage.
          */
-        constructor(properties?: jspb.test.IOuterMessage) {
+        constructor(properties?: IOuterMessage) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2030,27 +2030,27 @@ export namespace jspb.test {
         /**
          * Creates a new OuterMessage instance using the specified properties.
          */
-        static create(properties: jspb.test.IOuterMessage): OuterMessage {
+        static create(properties: IOuterMessage): OuterMessage {
             return new OuterMessage(properties);
         }
 
         /**
-         * Encodes the specified OuterMessage message. Does not implicitly {@link Type .jspb.test.OuterMessage.verify|verify} messages.
+         * Encodes the specified OuterMessage message. Does not implicitly {@link OuterMessage.verify|verify} messages.
          * @param message OuterMessagemessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
         }
 
         /**
-         * Encodes the specified OuterMessage message, length delimited. Does not implicitly {@link Type .jspb.test.OuterMessage.verify|verify} messages.
+         * Encodes the specified OuterMessage message, length delimited. Does not implicitly {@link OuterMessage.verify|verify} messages.
          * @param message OuterMessagemessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -2061,7 +2061,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.OuterMessage {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OuterMessage {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OuterMessage();
@@ -2082,7 +2082,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.OuterMessage {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OuterMessage {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -2103,7 +2103,7 @@ export namespace jspb.test {
          * Creates an OuterMessage message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IOuterMessage {
+        static fromObject(object): IOuterMessage {
             if (object instanceof jspb.test.OuterMessage)
                 return object;
             return new jspb.test.OuterMessage();
@@ -2115,7 +2115,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IOuterMessage, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOuterMessage, options: $protobuf.IConversionOptions = {}) {
             return {};
         }
 
@@ -2129,7 +2129,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IOuterMessage, b?: jspb.test.IOuterMessage): boolean {
+        static equals(a?: IOuterMessage, b?: IOuterMessage): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -2147,11 +2147,11 @@ export namespace jspb.test {
         /**
          * Represents a Complex.
          */
-        export class Complex implements jspb.test.OuterMessage.IComplex {
+        export class Complex implements IComplex {
             /**
              * Constructs a new Complex.
              */
-            constructor(properties?: jspb.test.OuterMessage.IComplex) {
+            constructor(properties?: IComplex) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -2162,16 +2162,16 @@ export namespace jspb.test {
             /**
              * Creates a new Complex instance using the specified properties.
              */
-            static create(properties: jspb.test.OuterMessage.IComplex): Complex {
+            static create(properties: IComplex): Complex {
                 return new Complex(properties);
             }
 
             /**
-             * Encodes the specified Complex message. Does not implicitly {@link Type .jspb.test.OuterMessage.Complex.verify|verify} messages.
+             * Encodes the specified Complex message. Does not implicitly {@link Complex.verify|verify} messages.
              * @param message Complexmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: jspb.test.OuterMessage.IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.innerComplexField != null && Object.hasOwnProperty.call(message, "innerComplexField"))
@@ -2180,11 +2180,11 @@ export namespace jspb.test {
             }
 
             /**
-             * Encodes the specified Complex message, length delimited. Does not implicitly {@link Type .jspb.test.OuterMessage.Complex.verify|verify} messages.
+             * Encodes the specified Complex message, length delimited. Does not implicitly {@link Complex.verify|verify} messages.
              * @param message Complexmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: jspb.test.OuterMessage.IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -2195,7 +2195,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.OuterMessage.Complex {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Complex {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OuterMessage.Complex();
@@ -2219,7 +2219,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.OuterMessage.Complex {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Complex {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -2243,7 +2243,7 @@ export namespace jspb.test {
              * Creates a Complex message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): jspb.test.OuterMessage.IComplex {
+            static fromObject(object): IComplex {
                 if (object instanceof jspb.test.OuterMessage.Complex)
                     return object;
                 var message = new jspb.test.OuterMessage.Complex();
@@ -2258,7 +2258,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: jspb.test.OuterMessage.IComplex, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IComplex, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.innerComplexField = 0;
@@ -2277,7 +2277,7 @@ export namespace jspb.test {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: jspb.test.OuterMessage.IComplex, b?: jspb.test.OuterMessage.IComplex): boolean {
+            static equals(a?: IComplex, b?: IComplex): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -2296,11 +2296,11 @@ export namespace jspb.test {
     /**
      * Represents an IsExtension.
      */
-    export class IsExtension implements jspb.test.IIsExtension {
+    export class IsExtension implements IIsExtension {
         /**
          * Constructs a new IsExtension.
          */
-        constructor(properties?: jspb.test.IIsExtension) {
+        constructor(properties?: IIsExtension) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2311,16 +2311,16 @@ export namespace jspb.test {
         /**
          * Creates a new IsExtension instance using the specified properties.
          */
-        static create(properties: jspb.test.IIsExtension): IsExtension {
+        static create(properties: IIsExtension): IsExtension {
             return new IsExtension(properties);
         }
 
         /**
-         * Encodes the specified IsExtension message. Does not implicitly {@link Type .jspb.test.IsExtension.verify|verify} messages.
+         * Encodes the specified IsExtension message. Does not implicitly {@link IsExtension.verify|verify} messages.
          * @param message IsExtensionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.ext1 != null && Object.hasOwnProperty.call(message, "ext1"))
@@ -2329,11 +2329,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified IsExtension message, length delimited. Does not implicitly {@link Type .jspb.test.IsExtension.verify|verify} messages.
+         * Encodes the specified IsExtension message, length delimited. Does not implicitly {@link IsExtension.verify|verify} messages.
          * @param message IsExtensionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -2344,7 +2344,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.IsExtension {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): IsExtension {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.IsExtension();
@@ -2368,7 +2368,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.IsExtension {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): IsExtension {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -2392,7 +2392,7 @@ export namespace jspb.test {
          * Creates an IsExtension message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IIsExtension {
+        static fromObject(object): IIsExtension {
             if (object instanceof jspb.test.IsExtension)
                 return object;
             var message = new jspb.test.IsExtension();
@@ -2407,7 +2407,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IIsExtension, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IIsExtension, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.ext1 = "";
@@ -2426,7 +2426,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IIsExtension, b?: jspb.test.IIsExtension): boolean {
+        static equals(a?: IIsExtension, b?: IIsExtension): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -2447,11 +2447,11 @@ export namespace jspb.test {
     /**
      * Represents an IndirectExtension.
      */
-    export class IndirectExtension implements jspb.test.IIndirectExtension {
+    export class IndirectExtension implements IIndirectExtension {
         /**
          * Constructs a new IndirectExtension.
          */
-        constructor(properties?: jspb.test.IIndirectExtension) {
+        constructor(properties?: IIndirectExtension) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2461,27 +2461,27 @@ export namespace jspb.test {
         /**
          * Creates a new IndirectExtension instance using the specified properties.
          */
-        static create(properties: jspb.test.IIndirectExtension): IndirectExtension {
+        static create(properties: IIndirectExtension): IndirectExtension {
             return new IndirectExtension(properties);
         }
 
         /**
-         * Encodes the specified IndirectExtension message. Does not implicitly {@link Type .jspb.test.IndirectExtension.verify|verify} messages.
+         * Encodes the specified IndirectExtension message. Does not implicitly {@link IndirectExtension.verify|verify} messages.
          * @param message IndirectExtensionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
         }
 
         /**
-         * Encodes the specified IndirectExtension message, length delimited. Does not implicitly {@link Type .jspb.test.IndirectExtension.verify|verify} messages.
+         * Encodes the specified IndirectExtension message, length delimited. Does not implicitly {@link IndirectExtension.verify|verify} messages.
          * @param message IndirectExtensionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -2492,7 +2492,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.IndirectExtension {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): IndirectExtension {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.IndirectExtension();
@@ -2513,7 +2513,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.IndirectExtension {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): IndirectExtension {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -2534,7 +2534,7 @@ export namespace jspb.test {
          * Creates an IndirectExtension message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IIndirectExtension {
+        static fromObject(object): IIndirectExtension {
             if (object instanceof jspb.test.IndirectExtension)
                 return object;
             return new jspb.test.IndirectExtension();
@@ -2546,7 +2546,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IIndirectExtension, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IIndirectExtension, options: $protobuf.IConversionOptions = {}) {
             return {};
         }
 
@@ -2560,7 +2560,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IIndirectExtension, b?: jspb.test.IIndirectExtension): boolean {
+        static equals(a?: IIndirectExtension, b?: IIndirectExtension): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -2590,11 +2590,11 @@ export namespace jspb.test {
     /**
      * Represents a DefaultValues.
      */
-    export class DefaultValues implements jspb.test.IDefaultValues {
+    export class DefaultValues implements IDefaultValues {
         /**
          * Constructs a new DefaultValues.
          */
-        constructor(properties?: jspb.test.IDefaultValues) {
+        constructor(properties?: IDefaultValues) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2610,16 +2610,16 @@ export namespace jspb.test {
         /**
          * Creates a new DefaultValues instance using the specified properties.
          */
-        static create(properties: jspb.test.IDefaultValues): DefaultValues {
+        static create(properties: IDefaultValues): DefaultValues {
             return new DefaultValues(properties);
         }
 
         /**
-         * Encodes the specified DefaultValues message. Does not implicitly {@link Type .jspb.test.DefaultValues.verify|verify} messages.
+         * Encodes the specified DefaultValues message. Does not implicitly {@link DefaultValues.verify|verify} messages.
          * @param message DefaultValuesmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.stringField != null && Object.hasOwnProperty.call(message, "stringField"))
@@ -2638,11 +2638,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified DefaultValues message, length delimited. Does not implicitly {@link Type .jspb.test.DefaultValues.verify|verify} messages.
+         * Encodes the specified DefaultValues message, length delimited. Does not implicitly {@link DefaultValues.verify|verify} messages.
          * @param message DefaultValuesmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -2653,7 +2653,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.DefaultValues {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): DefaultValues {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.DefaultValues();
@@ -2692,7 +2692,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.DefaultValues {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): DefaultValues {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -2736,7 +2736,7 @@ export namespace jspb.test {
          * Creates a DefaultValues message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IDefaultValues {
+        static fromObject(object): IDefaultValues {
             if (object instanceof jspb.test.DefaultValues)
                 return object;
             var message = new jspb.test.DefaultValues();
@@ -2779,7 +2779,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IDefaultValues, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IDefaultValues, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.stringField = "default<>abc";
@@ -2831,7 +2831,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IDefaultValues, b?: jspb.test.IDefaultValues): boolean {
+        static equals(a?: IDefaultValues, b?: IDefaultValues): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -2863,11 +2863,11 @@ export namespace jspb.test {
     /**
      * Represents a FloatingPointFields.
      */
-    export class FloatingPointFields implements jspb.test.IFloatingPointFields {
+    export class FloatingPointFields implements IFloatingPointFields {
         /**
          * Constructs a new FloatingPointFields.
          */
-        constructor(properties?: jspb.test.IFloatingPointFields) {
+        constructor(properties?: IFloatingPointFields) {
             this.repeatedFloatField = [];
             this.repeatedDoubleField = [];
             if (properties)
@@ -2887,16 +2887,16 @@ export namespace jspb.test {
         /**
          * Creates a new FloatingPointFields instance using the specified properties.
          */
-        static create(properties: jspb.test.IFloatingPointFields): FloatingPointFields {
+        static create(properties: IFloatingPointFields): FloatingPointFields {
             return new FloatingPointFields(properties);
         }
 
         /**
-         * Encodes the specified FloatingPointFields message. Does not implicitly {@link Type .jspb.test.FloatingPointFields.verify|verify} messages.
+         * Encodes the specified FloatingPointFields message. Does not implicitly {@link FloatingPointFields.verify|verify} messages.
          * @param message FloatingPointFieldsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.optionalFloatField != null && Object.hasOwnProperty.call(message, "optionalFloatField"))
@@ -2919,11 +2919,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified FloatingPointFields message, length delimited. Does not implicitly {@link Type .jspb.test.FloatingPointFields.verify|verify} messages.
+         * Encodes the specified FloatingPointFields message, length delimited. Does not implicitly {@link FloatingPointFields.verify|verify} messages.
          * @param message FloatingPointFieldsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -2934,7 +2934,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.FloatingPointFields {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FloatingPointFields {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.FloatingPointFields();
@@ -2997,7 +2997,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.FloatingPointFields {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FloatingPointFields {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -3048,7 +3048,7 @@ export namespace jspb.test {
          * Creates a FloatingPointFields message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IFloatingPointFields {
+        static fromObject(object): IFloatingPointFields {
             if (object instanceof jspb.test.FloatingPointFields)
                 return object;
             var message = new jspb.test.FloatingPointFields();
@@ -3087,7 +3087,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IFloatingPointFields, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFloatingPointFields, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.repeatedFloatField = [];
@@ -3136,7 +3136,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IFloatingPointFields, b?: jspb.test.IFloatingPointFields): boolean {
+        static equals(a?: IFloatingPointFields, b?: IFloatingPointFields): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -3162,11 +3162,11 @@ export namespace jspb.test {
     /**
      * Represents a TestClone.
      */
-    export class TestClone implements jspb.test.ITestClone {
+    export class TestClone implements ITestClone {
         /**
          * Constructs a new TestClone.
          */
-        constructor(properties?: jspb.test.ITestClone) {
+        constructor(properties?: ITestClone) {
             this.simple2 = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -3183,16 +3183,16 @@ export namespace jspb.test {
         /**
          * Creates a new TestClone instance using the specified properties.
          */
-        static create(properties: jspb.test.ITestClone): TestClone {
+        static create(properties: ITestClone): TestClone {
             return new TestClone(properties);
         }
 
         /**
-         * Encodes the specified TestClone message. Does not implicitly {@link Type .jspb.test.TestClone.verify|verify} messages.
+         * Encodes the specified TestClone message. Does not implicitly {@link TestClone.verify|verify} messages.
          * @param message TestClonemessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.str != null && Object.hasOwnProperty.call(message, "str"))
@@ -3212,11 +3212,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified TestClone message, length delimited. Does not implicitly {@link Type .jspb.test.TestClone.verify|verify} messages.
+         * Encodes the specified TestClone message, length delimited. Does not implicitly {@link TestClone.verify|verify} messages.
          * @param message TestClonemessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -3227,7 +3227,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestClone {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestClone {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestClone();
@@ -3268,7 +3268,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestClone {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestClone {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -3317,7 +3317,7 @@ export namespace jspb.test {
          * Creates a TestClone message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ITestClone {
+        static fromObject(object): ITestClone {
             if (object instanceof jspb.test.TestClone)
                 return object;
             var message = new jspb.test.TestClone();
@@ -3359,7 +3359,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ITestClone, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestClone, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.simple2 = [];
@@ -3404,7 +3404,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ITestClone, b?: jspb.test.ITestClone): boolean {
+        static equals(a?: ITestClone, b?: ITestClone): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -3423,11 +3423,11 @@ export namespace jspb.test {
     /**
      * Represents a CloneExtension.
      */
-    export class CloneExtension implements jspb.test.ICloneExtension {
+    export class CloneExtension implements ICloneExtension {
         /**
          * Constructs a new CloneExtension.
          */
-        constructor(properties?: jspb.test.ICloneExtension) {
+        constructor(properties?: ICloneExtension) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3438,16 +3438,16 @@ export namespace jspb.test {
         /**
          * Creates a new CloneExtension instance using the specified properties.
          */
-        static create(properties: jspb.test.ICloneExtension): CloneExtension {
+        static create(properties: ICloneExtension): CloneExtension {
             return new CloneExtension(properties);
         }
 
         /**
-         * Encodes the specified CloneExtension message. Does not implicitly {@link Type .jspb.test.CloneExtension.verify|verify} messages.
+         * Encodes the specified CloneExtension message. Does not implicitly {@link CloneExtension.verify|verify} messages.
          * @param message CloneExtensionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.ext != null && Object.hasOwnProperty.call(message, "ext"))
@@ -3456,11 +3456,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified CloneExtension message, length delimited. Does not implicitly {@link Type .jspb.test.CloneExtension.verify|verify} messages.
+         * Encodes the specified CloneExtension message, length delimited. Does not implicitly {@link CloneExtension.verify|verify} messages.
          * @param message CloneExtensionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -3471,7 +3471,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.CloneExtension {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): CloneExtension {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.CloneExtension();
@@ -3495,7 +3495,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.CloneExtension {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): CloneExtension {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -3519,7 +3519,7 @@ export namespace jspb.test {
          * Creates a CloneExtension message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ICloneExtension {
+        static fromObject(object): ICloneExtension {
             if (object instanceof jspb.test.CloneExtension)
                 return object;
             var message = new jspb.test.CloneExtension();
@@ -3534,7 +3534,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ICloneExtension, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ICloneExtension, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.ext = "";
@@ -3553,7 +3553,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ICloneExtension, b?: jspb.test.ICloneExtension): boolean {
+        static equals(a?: ICloneExtension, b?: ICloneExtension): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -3579,11 +3579,11 @@ export namespace jspb.test {
     /**
      * Represents a TestGroup.
      */
-    export class TestGroup implements jspb.test.ITestGroup {
+    export class TestGroup implements ITestGroup {
         /**
          * Constructs a new TestGroup.
          */
-        constructor(properties?: jspb.test.ITestGroup) {
+        constructor(properties?: ITestGroup) {
             this.repeatedGroup = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -3600,16 +3600,16 @@ export namespace jspb.test {
         /**
          * Creates a new TestGroup instance using the specified properties.
          */
-        static create(properties: jspb.test.ITestGroup): TestGroup {
+        static create(properties: ITestGroup): TestGroup {
             return new TestGroup(properties);
         }
 
         /**
-         * Encodes the specified TestGroup message. Does not implicitly {@link Type .jspb.test.TestGroup.verify|verify} messages.
+         * Encodes the specified TestGroup message. Does not implicitly {@link TestGroup.verify|verify} messages.
          * @param message TestGroupmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.repeatedGroup != null && message.repeatedGroup.length)
@@ -3627,11 +3627,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified TestGroup message, length delimited. Does not implicitly {@link Type .jspb.test.TestGroup.verify|verify} messages.
+         * Encodes the specified TestGroup message, length delimited. Does not implicitly {@link TestGroup.verify|verify} messages.
          * @param message TestGroupmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -3642,7 +3642,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestGroup {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestGroup {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup();
@@ -3687,7 +3687,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestGroup {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestGroup {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -3740,7 +3740,7 @@ export namespace jspb.test {
          * Creates a TestGroup message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ITestGroup {
+        static fromObject(object): ITestGroup {
             if (object instanceof jspb.test.TestGroup)
                 return object;
             var message = new jspb.test.TestGroup();
@@ -3785,7 +3785,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ITestGroup, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestGroup, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.repeatedGroup = [];
@@ -3824,7 +3824,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ITestGroup, b?: jspb.test.ITestGroup): boolean {
+        static equals(a?: ITestGroup, b?: ITestGroup): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -3845,11 +3845,11 @@ export namespace jspb.test {
         /**
          * Represents a RepeatedGroup.
          */
-        export class RepeatedGroup implements jspb.test.TestGroup.IRepeatedGroup {
+        export class RepeatedGroup implements IRepeatedGroup {
             /**
              * Constructs a new RepeatedGroup.
              */
-            constructor(properties?: jspb.test.TestGroup.IRepeatedGroup) {
+            constructor(properties?: IRepeatedGroup) {
                 this.someBool = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -3862,16 +3862,16 @@ export namespace jspb.test {
             /**
              * Creates a new RepeatedGroup instance using the specified properties.
              */
-            static create(properties: jspb.test.TestGroup.IRepeatedGroup): RepeatedGroup {
+            static create(properties: IRepeatedGroup): RepeatedGroup {
                 return new RepeatedGroup(properties);
             }
 
             /**
-             * Encodes the specified RepeatedGroup message. Does not implicitly {@link Type .jspb.test.TestGroup.RepeatedGroup.verify|verify} messages.
+             * Encodes the specified RepeatedGroup message. Does not implicitly {@link RepeatedGroup.verify|verify} messages.
              * @param message RepeatedGroupmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: jspb.test.TestGroup.IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
@@ -3882,11 +3882,11 @@ export namespace jspb.test {
             }
 
             /**
-             * Encodes the specified RepeatedGroup message, length delimited. Does not implicitly {@link Type .jspb.test.TestGroup.RepeatedGroup.verify|verify} messages.
+             * Encodes the specified RepeatedGroup message, length delimited. Does not implicitly {@link RepeatedGroup.verify|verify} messages.
              * @param message RepeatedGroupmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: jspb.test.TestGroup.IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -3897,7 +3897,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestGroup.RepeatedGroup {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): RepeatedGroup {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.RepeatedGroup();
@@ -3935,7 +3935,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestGroup.RepeatedGroup {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): RepeatedGroup {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -3965,7 +3965,7 @@ export namespace jspb.test {
              * Creates a RepeatedGroup message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): jspb.test.TestGroup.IRepeatedGroup {
+            static fromObject(object): IRepeatedGroup {
                 if (object instanceof jspb.test.TestGroup.RepeatedGroup)
                     return object;
                 var message = new jspb.test.TestGroup.RepeatedGroup();
@@ -3987,7 +3987,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: jspb.test.TestGroup.IRepeatedGroup, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IRepeatedGroup, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.arrays || options.defaults)
                     object.someBool = [];
@@ -4013,7 +4013,7 @@ export namespace jspb.test {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: jspb.test.TestGroup.IRepeatedGroup, b?: jspb.test.TestGroup.IRepeatedGroup): boolean {
+            static equals(a?: IRepeatedGroup, b?: IRepeatedGroup): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -4032,11 +4032,11 @@ export namespace jspb.test {
         /**
          * Represents a RequiredGroup.
          */
-        export class RequiredGroup implements jspb.test.TestGroup.IRequiredGroup {
+        export class RequiredGroup implements IRequiredGroup {
             /**
              * Constructs a new RequiredGroup.
              */
-            constructor(properties?: jspb.test.TestGroup.IRequiredGroup) {
+            constructor(properties?: IRequiredGroup) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -4047,16 +4047,16 @@ export namespace jspb.test {
             /**
              * Creates a new RequiredGroup instance using the specified properties.
              */
-            static create(properties: jspb.test.TestGroup.IRequiredGroup): RequiredGroup {
+            static create(properties: IRequiredGroup): RequiredGroup {
                 return new RequiredGroup(properties);
             }
 
             /**
-             * Encodes the specified RequiredGroup message. Does not implicitly {@link Type .jspb.test.TestGroup.RequiredGroup.verify|verify} messages.
+             * Encodes the specified RequiredGroup message. Does not implicitly {@link RequiredGroup.verify|verify} messages.
              * @param message RequiredGroupmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: jspb.test.TestGroup.IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
@@ -4064,11 +4064,11 @@ export namespace jspb.test {
             }
 
             /**
-             * Encodes the specified RequiredGroup message, length delimited. Does not implicitly {@link Type .jspb.test.TestGroup.RequiredGroup.verify|verify} messages.
+             * Encodes the specified RequiredGroup message, length delimited. Does not implicitly {@link RequiredGroup.verify|verify} messages.
              * @param message RequiredGroupmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: jspb.test.TestGroup.IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -4079,7 +4079,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestGroup.RequiredGroup {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): RequiredGroup {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.RequiredGroup();
@@ -4107,7 +4107,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestGroup.RequiredGroup {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): RequiredGroup {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -4130,7 +4130,7 @@ export namespace jspb.test {
              * Creates a RequiredGroup message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): jspb.test.TestGroup.IRequiredGroup {
+            static fromObject(object): IRequiredGroup {
                 if (object instanceof jspb.test.TestGroup.RequiredGroup)
                     return object;
                 var message = new jspb.test.TestGroup.RequiredGroup();
@@ -4145,7 +4145,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: jspb.test.TestGroup.IRequiredGroup, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IRequiredGroup, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.id = "";
@@ -4164,7 +4164,7 @@ export namespace jspb.test {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: jspb.test.TestGroup.IRequiredGroup, b?: jspb.test.TestGroup.IRequiredGroup): boolean {
+            static equals(a?: IRequiredGroup, b?: IRequiredGroup): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -4181,11 +4181,11 @@ export namespace jspb.test {
         /**
          * Represents an OptionalGroup.
          */
-        export class OptionalGroup implements jspb.test.TestGroup.IOptionalGroup {
+        export class OptionalGroup implements IOptionalGroup {
             /**
              * Constructs a new OptionalGroup.
              */
-            constructor(properties?: jspb.test.TestGroup.IOptionalGroup) {
+            constructor(properties?: IOptionalGroup) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -4196,16 +4196,16 @@ export namespace jspb.test {
             /**
              * Creates a new OptionalGroup instance using the specified properties.
              */
-            static create(properties: jspb.test.TestGroup.IOptionalGroup): OptionalGroup {
+            static create(properties: IOptionalGroup): OptionalGroup {
                 return new OptionalGroup(properties);
             }
 
             /**
-             * Encodes the specified OptionalGroup message. Does not implicitly {@link Type .jspb.test.TestGroup.OptionalGroup.verify|verify} messages.
+             * Encodes the specified OptionalGroup message. Does not implicitly {@link OptionalGroup.verify|verify} messages.
              * @param message OptionalGroupmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: jspb.test.TestGroup.IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
@@ -4213,11 +4213,11 @@ export namespace jspb.test {
             }
 
             /**
-             * Encodes the specified OptionalGroup message, length delimited. Does not implicitly {@link Type .jspb.test.TestGroup.OptionalGroup.verify|verify} messages.
+             * Encodes the specified OptionalGroup message, length delimited. Does not implicitly {@link OptionalGroup.verify|verify} messages.
              * @param message OptionalGroupmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: jspb.test.TestGroup.IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -4228,7 +4228,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestGroup.OptionalGroup {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OptionalGroup {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.OptionalGroup();
@@ -4256,7 +4256,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestGroup.OptionalGroup {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OptionalGroup {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -4279,7 +4279,7 @@ export namespace jspb.test {
              * Creates an OptionalGroup message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): jspb.test.TestGroup.IOptionalGroup {
+            static fromObject(object): IOptionalGroup {
                 if (object instanceof jspb.test.TestGroup.OptionalGroup)
                     return object;
                 var message = new jspb.test.TestGroup.OptionalGroup();
@@ -4294,7 +4294,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: jspb.test.TestGroup.IOptionalGroup, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IOptionalGroup, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.id = "";
@@ -4313,7 +4313,7 @@ export namespace jspb.test {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: jspb.test.TestGroup.IOptionalGroup, b?: jspb.test.TestGroup.IOptionalGroup): boolean {
+            static equals(a?: IOptionalGroup, b?: IOptionalGroup): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -4332,11 +4332,11 @@ export namespace jspb.test {
     /**
      * Represents a TestGroup1.
      */
-    export class TestGroup1 implements jspb.test.ITestGroup1 {
+    export class TestGroup1 implements ITestGroup1 {
         /**
          * Constructs a new TestGroup1.
          */
-        constructor(properties?: jspb.test.ITestGroup1) {
+        constructor(properties?: ITestGroup1) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -4347,16 +4347,16 @@ export namespace jspb.test {
         /**
          * Creates a new TestGroup1 instance using the specified properties.
          */
-        static create(properties: jspb.test.ITestGroup1): TestGroup1 {
+        static create(properties: ITestGroup1): TestGroup1 {
             return new TestGroup1(properties);
         }
 
         /**
-         * Encodes the specified TestGroup1 message. Does not implicitly {@link Type .jspb.test.TestGroup1.verify|verify} messages.
+         * Encodes the specified TestGroup1 message. Does not implicitly {@link TestGroup1.verify|verify} messages.
          * @param message TestGroup1message or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.group != null && Object.hasOwnProperty.call(message, "group"))
@@ -4365,11 +4365,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified TestGroup1 message, length delimited. Does not implicitly {@link Type .jspb.test.TestGroup1.verify|verify} messages.
+         * Encodes the specified TestGroup1 message, length delimited. Does not implicitly {@link TestGroup1.verify|verify} messages.
          * @param message TestGroup1message or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -4380,7 +4380,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestGroup1 {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestGroup1 {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup1();
@@ -4404,7 +4404,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestGroup1 {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestGroup1 {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -4430,7 +4430,7 @@ export namespace jspb.test {
          * Creates a TestGroup1 message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ITestGroup1 {
+        static fromObject(object): ITestGroup1 {
             if (object instanceof jspb.test.TestGroup1)
                 return object;
             var message = new jspb.test.TestGroup1();
@@ -4448,7 +4448,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ITestGroup1, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestGroup1, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.group = null;
@@ -4467,7 +4467,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ITestGroup1, b?: jspb.test.ITestGroup1): boolean {
+        static equals(a?: ITestGroup1, b?: ITestGroup1): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -4485,11 +4485,11 @@ export namespace jspb.test {
     /**
      * Represents a TestReservedNames.
      */
-    export class TestReservedNames implements jspb.test.ITestReservedNames {
+    export class TestReservedNames implements ITestReservedNames {
         /**
          * Constructs a new TestReservedNames.
          */
-        constructor(properties?: jspb.test.ITestReservedNames) {
+        constructor(properties?: ITestReservedNames) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -4501,16 +4501,16 @@ export namespace jspb.test {
         /**
          * Creates a new TestReservedNames instance using the specified properties.
          */
-        static create(properties: jspb.test.ITestReservedNames): TestReservedNames {
+        static create(properties: ITestReservedNames): TestReservedNames {
             return new TestReservedNames(properties);
         }
 
         /**
-         * Encodes the specified TestReservedNames message. Does not implicitly {@link Type .jspb.test.TestReservedNames.verify|verify} messages.
+         * Encodes the specified TestReservedNames message. Does not implicitly {@link TestReservedNames.verify|verify} messages.
          * @param message TestReservedNamesmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.extension != null && Object.hasOwnProperty.call(message, "extension"))
@@ -4521,11 +4521,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified TestReservedNames message, length delimited. Does not implicitly {@link Type .jspb.test.TestReservedNames.verify|verify} messages.
+         * Encodes the specified TestReservedNames message, length delimited. Does not implicitly {@link TestReservedNames.verify|verify} messages.
          * @param message TestReservedNamesmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -4536,7 +4536,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestReservedNames {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestReservedNames {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestReservedNames();
@@ -4563,7 +4563,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestReservedNames {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestReservedNames {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -4590,7 +4590,7 @@ export namespace jspb.test {
          * Creates a TestReservedNames message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ITestReservedNames {
+        static fromObject(object): ITestReservedNames {
             if (object instanceof jspb.test.TestReservedNames)
                 return object;
             var message = new jspb.test.TestReservedNames();
@@ -4607,7 +4607,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ITestReservedNames, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestReservedNames, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.extension = 0;
@@ -4630,7 +4630,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ITestReservedNames, b?: jspb.test.ITestReservedNames): boolean {
+        static equals(a?: ITestReservedNames, b?: ITestReservedNames): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -4646,11 +4646,11 @@ export namespace jspb.test {
     /**
      * Represents a TestReservedNamesExtension.
      */
-    export class TestReservedNamesExtension implements jspb.test.ITestReservedNamesExtension {
+    export class TestReservedNamesExtension implements ITestReservedNamesExtension {
         /**
          * Constructs a new TestReservedNamesExtension.
          */
-        constructor(properties?: jspb.test.ITestReservedNamesExtension) {
+        constructor(properties?: ITestReservedNamesExtension) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -4660,27 +4660,27 @@ export namespace jspb.test {
         /**
          * Creates a new TestReservedNamesExtension instance using the specified properties.
          */
-        static create(properties: jspb.test.ITestReservedNamesExtension): TestReservedNamesExtension {
+        static create(properties: ITestReservedNamesExtension): TestReservedNamesExtension {
             return new TestReservedNamesExtension(properties);
         }
 
         /**
-         * Encodes the specified TestReservedNamesExtension message. Does not implicitly {@link Type .jspb.test.TestReservedNamesExtension.verify|verify} messages.
+         * Encodes the specified TestReservedNamesExtension message. Does not implicitly {@link TestReservedNamesExtension.verify|verify} messages.
          * @param message TestReservedNamesExtensionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
         }
 
         /**
-         * Encodes the specified TestReservedNamesExtension message, length delimited. Does not implicitly {@link Type .jspb.test.TestReservedNamesExtension.verify|verify} messages.
+         * Encodes the specified TestReservedNamesExtension message, length delimited. Does not implicitly {@link TestReservedNamesExtension.verify|verify} messages.
          * @param message TestReservedNamesExtensionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -4691,7 +4691,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestReservedNamesExtension {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestReservedNamesExtension {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestReservedNamesExtension();
@@ -4712,7 +4712,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestReservedNamesExtension {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestReservedNamesExtension {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -4733,7 +4733,7 @@ export namespace jspb.test {
          * Creates a TestReservedNamesExtension message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ITestReservedNamesExtension {
+        static fromObject(object): ITestReservedNamesExtension {
             if (object instanceof jspb.test.TestReservedNamesExtension)
                 return object;
             return new jspb.test.TestReservedNamesExtension();
@@ -4745,7 +4745,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ITestReservedNamesExtension, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestReservedNamesExtension, options: $protobuf.IConversionOptions = {}) {
             return {};
         }
 
@@ -4759,7 +4759,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ITestReservedNamesExtension, b?: jspb.test.ITestReservedNamesExtension): boolean {
+        static equals(a?: ITestReservedNamesExtension, b?: ITestReservedNamesExtension): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -4789,11 +4789,11 @@ export namespace jspb.test {
     /**
      * Represents a TestMessageWithOneof.
      */
-    export class TestMessageWithOneof implements jspb.test.ITestMessageWithOneof {
+    export class TestMessageWithOneof implements ITestMessageWithOneof {
         /**
          * Constructs a new TestMessageWithOneof.
          */
-        constructor(properties?: jspb.test.ITestMessageWithOneof) {
+        constructor(properties?: ITestMessageWithOneof) {
             this.repeatedField = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -4852,16 +4852,16 @@ export namespace jspb.test {
         /**
          * Creates a new TestMessageWithOneof instance using the specified properties.
          */
-        static create(properties: jspb.test.ITestMessageWithOneof): TestMessageWithOneof {
+        static create(properties: ITestMessageWithOneof): TestMessageWithOneof {
             return new TestMessageWithOneof(properties);
         }
 
         /**
-         * Encodes the specified TestMessageWithOneof message. Does not implicitly {@link Type .jspb.test.TestMessageWithOneof.verify|verify} messages.
+         * Encodes the specified TestMessageWithOneof message. Does not implicitly {@link TestMessageWithOneof.verify|verify} messages.
          * @param message TestMessageWithOneofmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.pone != null && Object.hasOwnProperty.call(message, "pone"))
@@ -4889,11 +4889,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified TestMessageWithOneof message, length delimited. Does not implicitly {@link Type .jspb.test.TestMessageWithOneof.verify|verify} messages.
+         * Encodes the specified TestMessageWithOneof message, length delimited. Does not implicitly {@link TestMessageWithOneof.verify|verify} messages.
          * @param message TestMessageWithOneofmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -4904,7 +4904,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestMessageWithOneof {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestMessageWithOneof {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestMessageWithOneof();
@@ -4957,7 +4957,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestMessageWithOneof {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestMessageWithOneof {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -5040,7 +5040,7 @@ export namespace jspb.test {
          * Creates a TestMessageWithOneof message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ITestMessageWithOneof {
+        static fromObject(object): ITestMessageWithOneof {
             if (object instanceof jspb.test.TestMessageWithOneof)
                 return object;
             var message = new jspb.test.TestMessageWithOneof();
@@ -5081,7 +5081,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ITestMessageWithOneof, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestMessageWithOneof, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.repeatedField = [];
@@ -5147,7 +5147,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ITestMessageWithOneof, b?: jspb.test.ITestMessageWithOneof): boolean {
+        static equals(a?: ITestMessageWithOneof, b?: ITestMessageWithOneof): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -5167,11 +5167,11 @@ export namespace jspb.test {
     /**
      * Represents a TestEndsWithBytes.
      */
-    export class TestEndsWithBytes implements jspb.test.ITestEndsWithBytes {
+    export class TestEndsWithBytes implements ITestEndsWithBytes {
         /**
          * Constructs a new TestEndsWithBytes.
          */
-        constructor(properties?: jspb.test.ITestEndsWithBytes) {
+        constructor(properties?: ITestEndsWithBytes) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -5183,16 +5183,16 @@ export namespace jspb.test {
         /**
          * Creates a new TestEndsWithBytes instance using the specified properties.
          */
-        static create(properties: jspb.test.ITestEndsWithBytes): TestEndsWithBytes {
+        static create(properties: ITestEndsWithBytes): TestEndsWithBytes {
             return new TestEndsWithBytes(properties);
         }
 
         /**
-         * Encodes the specified TestEndsWithBytes message. Does not implicitly {@link Type .jspb.test.TestEndsWithBytes.verify|verify} messages.
+         * Encodes the specified TestEndsWithBytes message. Does not implicitly {@link TestEndsWithBytes.verify|verify} messages.
          * @param message TestEndsWithBytesmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.value != null && Object.hasOwnProperty.call(message, "value"))
@@ -5203,11 +5203,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified TestEndsWithBytes message, length delimited. Does not implicitly {@link Type .jspb.test.TestEndsWithBytes.verify|verify} messages.
+         * Encodes the specified TestEndsWithBytes message, length delimited. Does not implicitly {@link TestEndsWithBytes.verify|verify} messages.
          * @param message TestEndsWithBytesmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -5218,7 +5218,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestEndsWithBytes {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestEndsWithBytes {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestEndsWithBytes();
@@ -5245,7 +5245,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestEndsWithBytes {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestEndsWithBytes {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -5272,7 +5272,7 @@ export namespace jspb.test {
          * Creates a TestEndsWithBytes message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ITestEndsWithBytes {
+        static fromObject(object): ITestEndsWithBytes {
             if (object instanceof jspb.test.TestEndsWithBytes)
                 return object;
             var message = new jspb.test.TestEndsWithBytes();
@@ -5292,7 +5292,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ITestEndsWithBytes, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestEndsWithBytes, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.value = 0;
@@ -5321,7 +5321,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ITestEndsWithBytes, b?: jspb.test.ITestEndsWithBytes): boolean {
+        static equals(a?: ITestEndsWithBytes, b?: ITestEndsWithBytes): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -5349,11 +5349,11 @@ export namespace jspb.test {
     /**
      * Represents a TestMapFieldsNoBinary.
      */
-    export class TestMapFieldsNoBinary implements jspb.test.ITestMapFieldsNoBinary {
+    export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         /**
          * Constructs a new TestMapFieldsNoBinary.
          */
-        constructor(properties?: jspb.test.ITestMapFieldsNoBinary) {
+        constructor(properties?: ITestMapFieldsNoBinary) {
             this.mapStringString = {};
             this.mapStringInt32 = {};
             this.mapStringInt64 = {};
@@ -5386,16 +5386,16 @@ export namespace jspb.test {
         /**
          * Creates a new TestMapFieldsNoBinary instance using the specified properties.
          */
-        static create(properties: jspb.test.ITestMapFieldsNoBinary): TestMapFieldsNoBinary {
+        static create(properties: ITestMapFieldsNoBinary): TestMapFieldsNoBinary {
             return new TestMapFieldsNoBinary(properties);
         }
 
         /**
-         * Encodes the specified TestMapFieldsNoBinary message. Does not implicitly {@link Type .jspb.test.TestMapFieldsNoBinary.verify|verify} messages.
+         * Encodes the specified TestMapFieldsNoBinary message. Does not implicitly {@link TestMapFieldsNoBinary.verify|verify} messages.
          * @param message TestMapFieldsNoBinarymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.mapStringString != null && Object.hasOwnProperty.call(message, "mapStringString"))
@@ -5441,11 +5441,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified TestMapFieldsNoBinary message, length delimited. Does not implicitly {@link Type .jspb.test.TestMapFieldsNoBinary.verify|verify} messages.
+         * Encodes the specified TestMapFieldsNoBinary message, length delimited. Does not implicitly {@link TestMapFieldsNoBinary.verify|verify} messages.
          * @param message TestMapFieldsNoBinarymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -5456,7 +5456,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.TestMapFieldsNoBinary {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestMapFieldsNoBinary {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestMapFieldsNoBinary(), key, value;
@@ -5722,7 +5722,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.TestMapFieldsNoBinary {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestMapFieldsNoBinary {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -5855,7 +5855,7 @@ export namespace jspb.test {
          * Creates a TestMapFieldsNoBinary message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.ITestMapFieldsNoBinary {
+        static fromObject(object): ITestMapFieldsNoBinary {
             if (object instanceof jspb.test.TestMapFieldsNoBinary)
                 return object;
             var message = new jspb.test.TestMapFieldsNoBinary();
@@ -5976,7 +5976,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.ITestMapFieldsNoBinary, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestMapFieldsNoBinary, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.objects || options.defaults) {
                 object.mapStringString = {};
@@ -6067,7 +6067,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.ITestMapFieldsNoBinary, b?: jspb.test.ITestMapFieldsNoBinary): boolean {
+        static equals(a?: ITestMapFieldsNoBinary, b?: ITestMapFieldsNoBinary): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -6112,11 +6112,11 @@ export namespace jspb.test {
     /**
      * Represents a MapValueMessageNoBinary.
      */
-    export class MapValueMessageNoBinary implements jspb.test.IMapValueMessageNoBinary {
+    export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
         /**
          * Constructs a new MapValueMessageNoBinary.
          */
-        constructor(properties?: jspb.test.IMapValueMessageNoBinary) {
+        constructor(properties?: IMapValueMessageNoBinary) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -6127,16 +6127,16 @@ export namespace jspb.test {
         /**
          * Creates a new MapValueMessageNoBinary instance using the specified properties.
          */
-        static create(properties: jspb.test.IMapValueMessageNoBinary): MapValueMessageNoBinary {
+        static create(properties: IMapValueMessageNoBinary): MapValueMessageNoBinary {
             return new MapValueMessageNoBinary(properties);
         }
 
         /**
-         * Encodes the specified MapValueMessageNoBinary message. Does not implicitly {@link Type .jspb.test.MapValueMessageNoBinary.verify|verify} messages.
+         * Encodes the specified MapValueMessageNoBinary message. Does not implicitly {@link MapValueMessageNoBinary.verify|verify} messages.
          * @param message MapValueMessageNoBinarymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.foo != null && Object.hasOwnProperty.call(message, "foo"))
@@ -6145,11 +6145,11 @@ export namespace jspb.test {
         }
 
         /**
-         * Encodes the specified MapValueMessageNoBinary message, length delimited. Does not implicitly {@link Type .jspb.test.MapValueMessageNoBinary.verify|verify} messages.
+         * Encodes the specified MapValueMessageNoBinary message, length delimited. Does not implicitly {@link MapValueMessageNoBinary.verify|verify} messages.
          * @param message MapValueMessageNoBinarymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -6160,7 +6160,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.MapValueMessageNoBinary {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MapValueMessageNoBinary {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.MapValueMessageNoBinary();
@@ -6184,7 +6184,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.MapValueMessageNoBinary {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MapValueMessageNoBinary {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -6208,7 +6208,7 @@ export namespace jspb.test {
          * Creates a MapValueMessageNoBinary message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IMapValueMessageNoBinary {
+        static fromObject(object): IMapValueMessageNoBinary {
             if (object instanceof jspb.test.MapValueMessageNoBinary)
                 return object;
             var message = new jspb.test.MapValueMessageNoBinary();
@@ -6223,7 +6223,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IMapValueMessageNoBinary, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IMapValueMessageNoBinary, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.foo = 0;
@@ -6242,7 +6242,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IMapValueMessageNoBinary, b?: jspb.test.IMapValueMessageNoBinary): boolean {
+        static equals(a?: IMapValueMessageNoBinary, b?: IMapValueMessageNoBinary): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -6258,11 +6258,11 @@ export namespace jspb.test {
     /**
      * Represents a Deeply.
      */
-    export class Deeply implements jspb.test.IDeeply {
+    export class Deeply implements IDeeply {
         /**
          * Constructs a new Deeply.
          */
-        constructor(properties?: jspb.test.IDeeply) {
+        constructor(properties?: IDeeply) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -6272,27 +6272,27 @@ export namespace jspb.test {
         /**
          * Creates a new Deeply instance using the specified properties.
          */
-        static create(properties: jspb.test.IDeeply): Deeply {
+        static create(properties: IDeeply): Deeply {
             return new Deeply(properties);
         }
 
         /**
-         * Encodes the specified Deeply message. Does not implicitly {@link Type .jspb.test.Deeply.verify|verify} messages.
+         * Encodes the specified Deeply message. Does not implicitly {@link Deeply.verify|verify} messages.
          * @param message Deeplymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: jspb.test.IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
         }
 
         /**
-         * Encodes the specified Deeply message, length delimited. Does not implicitly {@link Type .jspb.test.Deeply.verify|verify} messages.
+         * Encodes the specified Deeply message, length delimited. Does not implicitly {@link Deeply.verify|verify} messages.
          * @param message Deeplymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: jspb.test.IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -6303,7 +6303,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.Deeply {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Deeply {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply();
@@ -6324,7 +6324,7 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.Deeply {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Deeply {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -6345,7 +6345,7 @@ export namespace jspb.test {
          * Creates a Deeply message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): jspb.test.IDeeply {
+        static fromObject(object): IDeeply {
             if (object instanceof jspb.test.Deeply)
                 return object;
             return new jspb.test.Deeply();
@@ -6357,7 +6357,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: jspb.test.IDeeply, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IDeeply, options: $protobuf.IConversionOptions = {}) {
             return {};
         }
 
@@ -6371,7 +6371,7 @@ export namespace jspb.test {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: jspb.test.IDeeply, b?: jspb.test.IDeeply): boolean {
+        static equals(a?: IDeeply, b?: IDeeply): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -6388,11 +6388,11 @@ export namespace jspb.test {
         /**
          * Represents a Nested.
          */
-        export class Nested implements jspb.test.Deeply.INested {
+        export class Nested implements INested {
             /**
              * Constructs a new Nested.
              */
-            constructor(properties?: jspb.test.Deeply.INested) {
+            constructor(properties?: INested) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -6402,27 +6402,27 @@ export namespace jspb.test {
             /**
              * Creates a new Nested instance using the specified properties.
              */
-            static create(properties: jspb.test.Deeply.INested): Nested {
+            static create(properties: INested): Nested {
                 return new Nested(properties);
             }
 
             /**
-             * Encodes the specified Nested message. Does not implicitly {@link Type .jspb.test.Deeply.Nested.verify|verify} messages.
+             * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
              * @param message Nestedmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: jspb.test.Deeply.INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 return writer;
             }
 
             /**
-             * Encodes the specified Nested message, length delimited. Does not implicitly {@link Type .jspb.test.Deeply.Nested.verify|verify} messages.
+             * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
              * @param message Nestedmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: jspb.test.Deeply.INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -6433,7 +6433,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.Deeply.Nested {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply.Nested();
@@ -6454,7 +6454,7 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.Deeply.Nested {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -6475,7 +6475,7 @@ export namespace jspb.test {
              * Creates a Nested message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): jspb.test.Deeply.INested {
+            static fromObject(object): INested {
                 if (object instanceof jspb.test.Deeply.Nested)
                     return object;
                 return new jspb.test.Deeply.Nested();
@@ -6487,7 +6487,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: jspb.test.Deeply.INested, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
                 return {};
             }
 
@@ -6501,7 +6501,7 @@ export namespace jspb.test {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: jspb.test.Deeply.INested, b?: jspb.test.Deeply.INested): boolean {
+            static equals(a?: INested, b?: INested): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -6519,11 +6519,11 @@ export namespace jspb.test {
             /**
              * Represents a Message.
              */
-            export class Message implements jspb.test.Deeply.Nested.IMessage {
+            export class Message implements IMessage {
                 /**
                  * Constructs a new Message.
                  */
-                constructor(properties?: jspb.test.Deeply.Nested.IMessage) {
+                constructor(properties?: IMessage) {
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -6534,16 +6534,16 @@ export namespace jspb.test {
                 /**
                  * Creates a new Message instance using the specified properties.
                  */
-                static create(properties: jspb.test.Deeply.Nested.IMessage): Message {
+                static create(properties: IMessage): Message {
                     return new Message(properties);
                 }
 
                 /**
-                 * Encodes the specified Message message. Does not implicitly {@link Type .jspb.test.Deeply.Nested.Message.verify|verify} messages.
+                 * Encodes the specified Message message. Does not implicitly {@link Message.verify|verify} messages.
                  * @param message Messagemessage or plain object to encode
                  * @param writer Writer to encode to
                  */
-                static encode(message: jspb.test.Deeply.Nested.IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+                static encode(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.count != null && Object.hasOwnProperty.call(message, "count"))
@@ -6552,11 +6552,11 @@ export namespace jspb.test {
                 }
 
                 /**
-                 * Encodes the specified Message message, length delimited. Does not implicitly {@link Type .jspb.test.Deeply.Nested.Message.verify|verify} messages.
+                 * Encodes the specified Message message, length delimited. Does not implicitly {@link Message.verify|verify} messages.
                  * @param message Messagemessage or plain object to encode
                  * @param writer Writer to encode to
                  */
-                static encodeDelimited(message: jspb.test.Deeply.Nested.IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+                static encodeDelimited(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
                     return this.encode(message, writer).ldelim();
                 }
 
@@ -6567,7 +6567,7 @@ export namespace jspb.test {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                static decode(reader: $protobuf.Reader|Uint8Array, length?: number): jspb.test.Deeply.Nested.Message {
+                static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Message {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
                     var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply.Nested.Message();
@@ -6591,7 +6591,7 @@ export namespace jspb.test {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                static decodeDelimited(reader: $protobuf.Reader|Uint8Array): jspb.test.Deeply.Nested.Message {
+                static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Message {
                     if (!(reader instanceof $Reader))
                         reader = new $Reader(reader);
                     return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -6615,7 +6615,7 @@ export namespace jspb.test {
                  * Creates a Message message from a plain object. Also converts values to their respective internal types.
                  * @param object Plain object
                  */
-                static fromObject(object): jspb.test.Deeply.Nested.IMessage {
+                static fromObject(object): IMessage {
                     if (object instanceof jspb.test.Deeply.Nested.Message)
                         return object;
                     var message = new jspb.test.Deeply.Nested.Message();
@@ -6630,7 +6630,7 @@ export namespace jspb.test {
                  * @param optionsConversion options
                  * @returns Plain object
                  */
-                static toObject(message: jspb.test.Deeply.Nested.IMessage, options: $protobuf.IConversionOptions = {}) {
+                static toObject(message: IMessage, options: $protobuf.IConversionOptions = {}) {
                     let object: any = {};
                     if (options.defaults)
                         object.count = 0;
@@ -6649,7 +6649,7 @@ export namespace jspb.test {
                 /**
                  * Compares two messages, checking for strict equality.
                  */
-                static equals(a?: jspb.test.Deeply.Nested.IMessage, b?: jspb.test.Deeply.Nested.IMessage): boolean {
+                static equals(a?: IMessage, b?: IMessage): boolean {
                     if (!a || !b)
                         return a === b;
                     if (a === b)
@@ -6674,11 +6674,11 @@ export namespace google.protobuf {
     /**
      * Represents a FileDescriptorSet.
      */
-    export class FileDescriptorSet implements google.protobuf.IFileDescriptorSet {
+    export class FileDescriptorSet implements IFileDescriptorSet {
         /**
          * Constructs a new FileDescriptorSet.
          */
-        constructor(properties?: google.protobuf.IFileDescriptorSet) {
+        constructor(properties?: IFileDescriptorSet) {
             this.file = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -6690,16 +6690,16 @@ export namespace google.protobuf {
         /**
          * Creates a new FileDescriptorSet instance using the specified properties.
          */
-        static create(properties: google.protobuf.IFileDescriptorSet): FileDescriptorSet {
+        static create(properties: IFileDescriptorSet): FileDescriptorSet {
             return new FileDescriptorSet(properties);
         }
 
         /**
-         * Encodes the specified FileDescriptorSet message. Does not implicitly {@link Type .google.protobuf.FileDescriptorSet.verify|verify} messages.
+         * Encodes the specified FileDescriptorSet message. Does not implicitly {@link FileDescriptorSet.verify|verify} messages.
          * @param message FileDescriptorSetmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IFileDescriptorSet, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFileDescriptorSet, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.file != null && message.file.length)
@@ -6709,11 +6709,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified FileDescriptorSet message, length delimited. Does not implicitly {@link Type .google.protobuf.FileDescriptorSet.verify|verify} messages.
+         * Encodes the specified FileDescriptorSet message, length delimited. Does not implicitly {@link FileDescriptorSet.verify|verify} messages.
          * @param message FileDescriptorSetmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IFileDescriptorSet, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFileDescriptorSet, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -6724,7 +6724,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.FileDescriptorSet {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FileDescriptorSet {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileDescriptorSet();
@@ -6750,7 +6750,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.FileDescriptorSet {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FileDescriptorSet {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -6780,7 +6780,7 @@ export namespace google.protobuf {
          * Creates a FileDescriptorSet message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IFileDescriptorSet {
+        static fromObject(object): IFileDescriptorSet {
             if (object instanceof google.protobuf.FileDescriptorSet)
                 return object;
             var message = new google.protobuf.FileDescriptorSet();
@@ -6803,7 +6803,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IFileDescriptorSet, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFileDescriptorSet, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.file = [];
@@ -6825,7 +6825,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IFileDescriptorSet, b?: google.protobuf.IFileDescriptorSet): boolean {
+        static equals(a?: IFileDescriptorSet, b?: IFileDescriptorSet): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -6855,11 +6855,11 @@ export namespace google.protobuf {
     /**
      * Represents a FileDescriptorProto.
      */
-    export class FileDescriptorProto implements google.protobuf.IFileDescriptorProto {
+    export class FileDescriptorProto implements IFileDescriptorProto {
         /**
          * Constructs a new FileDescriptorProto.
          */
-        constructor(properties?: google.protobuf.IFileDescriptorProto) {
+        constructor(properties?: IFileDescriptorProto) {
             this.dependency = [];
             this.publicDependency = [];
             this.weakDependency = [];
@@ -6888,16 +6888,16 @@ export namespace google.protobuf {
         /**
          * Creates a new FileDescriptorProto instance using the specified properties.
          */
-        static create(properties: google.protobuf.IFileDescriptorProto): FileDescriptorProto {
+        static create(properties: IFileDescriptorProto): FileDescriptorProto {
             return new FileDescriptorProto(properties);
         }
 
         /**
-         * Encodes the specified FileDescriptorProto message. Does not implicitly {@link Type .google.protobuf.FileDescriptorProto.verify|verify} messages.
+         * Encodes the specified FileDescriptorProto message. Does not implicitly {@link FileDescriptorProto.verify|verify} messages.
          * @param message FileDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IFileDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFileDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -6935,11 +6935,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified FileDescriptorProto message, length delimited. Does not implicitly {@link Type .google.protobuf.FileDescriptorProto.verify|verify} messages.
+         * Encodes the specified FileDescriptorProto message, length delimited. Does not implicitly {@link FileDescriptorProto.verify|verify} messages.
          * @param message FileDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IFileDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFileDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -6950,7 +6950,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.FileDescriptorProto {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FileDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileDescriptorProto();
@@ -7031,7 +7031,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.FileDescriptorProto {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FileDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -7128,7 +7128,7 @@ export namespace google.protobuf {
          * Creates a FileDescriptorProto message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IFileDescriptorProto {
+        static fromObject(object): IFileDescriptorProto {
             if (object instanceof google.protobuf.FileDescriptorProto)
                 return object;
             var message = new google.protobuf.FileDescriptorProto();
@@ -7218,7 +7218,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IFileDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFileDescriptorProto, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.dependency = [];
@@ -7294,7 +7294,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IFileDescriptorProto, b?: google.protobuf.IFileDescriptorProto): boolean {
+        static equals(a?: IFileDescriptorProto, b?: IFileDescriptorProto): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -7334,11 +7334,11 @@ export namespace google.protobuf {
     /**
      * Represents a DescriptorProto.
      */
-    export class DescriptorProto implements google.protobuf.IDescriptorProto {
+    export class DescriptorProto implements IDescriptorProto {
         /**
          * Constructs a new DescriptorProto.
          */
-        constructor(properties?: google.protobuf.IDescriptorProto) {
+        constructor(properties?: IDescriptorProto) {
             this.field = [];
             this.extension = [];
             this.nestedType = [];
@@ -7366,16 +7366,16 @@ export namespace google.protobuf {
         /**
          * Creates a new DescriptorProto instance using the specified properties.
          */
-        static create(properties: google.protobuf.IDescriptorProto): DescriptorProto {
+        static create(properties: IDescriptorProto): DescriptorProto {
             return new DescriptorProto(properties);
         }
 
         /**
-         * Encodes the specified DescriptorProto message. Does not implicitly {@link Type .google.protobuf.DescriptorProto.verify|verify} messages.
+         * Encodes the specified DescriptorProto message. Does not implicitly {@link DescriptorProto.verify|verify} messages.
          * @param message DescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -7410,11 +7410,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified DescriptorProto message, length delimited. Does not implicitly {@link Type .google.protobuf.DescriptorProto.verify|verify} messages.
+         * Encodes the specified DescriptorProto message, length delimited. Does not implicitly {@link DescriptorProto.verify|verify} messages.
          * @param message DescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -7425,7 +7425,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.DescriptorProto {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): DescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto();
@@ -7492,7 +7492,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.DescriptorProto {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): DescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -7591,7 +7591,7 @@ export namespace google.protobuf {
          * Creates a DescriptorProto message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IDescriptorProto {
+        static fromObject(object): IDescriptorProto {
             if (object instanceof google.protobuf.DescriptorProto)
                 return object;
             var message = new google.protobuf.DescriptorProto();
@@ -7688,7 +7688,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IDescriptorProto, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.field = [];
@@ -7761,7 +7761,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IDescriptorProto, b?: google.protobuf.IDescriptorProto): boolean {
+        static equals(a?: IDescriptorProto, b?: IDescriptorProto): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -7796,11 +7796,11 @@ export namespace google.protobuf {
         /**
          * Represents an ExtensionRange.
          */
-        export class ExtensionRange implements google.protobuf.DescriptorProto.IExtensionRange {
+        export class ExtensionRange implements IExtensionRange {
             /**
              * Constructs a new ExtensionRange.
              */
-            constructor(properties?: google.protobuf.DescriptorProto.IExtensionRange) {
+            constructor(properties?: IExtensionRange) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -7812,16 +7812,16 @@ export namespace google.protobuf {
             /**
              * Creates a new ExtensionRange instance using the specified properties.
              */
-            static create(properties: google.protobuf.DescriptorProto.IExtensionRange): ExtensionRange {
+            static create(properties: IExtensionRange): ExtensionRange {
                 return new ExtensionRange(properties);
             }
 
             /**
-             * Encodes the specified ExtensionRange message. Does not implicitly {@link Type .google.protobuf.DescriptorProto.ExtensionRange.verify|verify} messages.
+             * Encodes the specified ExtensionRange message. Does not implicitly {@link ExtensionRange.verify|verify} messages.
              * @param message ExtensionRangemessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: google.protobuf.DescriptorProto.IExtensionRange, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IExtensionRange, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.start != null && Object.hasOwnProperty.call(message, "start"))
@@ -7832,11 +7832,11 @@ export namespace google.protobuf {
             }
 
             /**
-             * Encodes the specified ExtensionRange message, length delimited. Does not implicitly {@link Type .google.protobuf.DescriptorProto.ExtensionRange.verify|verify} messages.
+             * Encodes the specified ExtensionRange message, length delimited. Does not implicitly {@link ExtensionRange.verify|verify} messages.
              * @param message ExtensionRangemessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: google.protobuf.DescriptorProto.IExtensionRange, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IExtensionRange, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -7847,7 +7847,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.DescriptorProto.ExtensionRange {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ExtensionRange {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto.ExtensionRange();
@@ -7874,7 +7874,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.DescriptorProto.ExtensionRange {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ExtensionRange {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -7901,7 +7901,7 @@ export namespace google.protobuf {
              * Creates an ExtensionRange message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): google.protobuf.DescriptorProto.IExtensionRange {
+            static fromObject(object): IExtensionRange {
                 if (object instanceof google.protobuf.DescriptorProto.ExtensionRange)
                     return object;
                 var message = new google.protobuf.DescriptorProto.ExtensionRange();
@@ -7918,7 +7918,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: google.protobuf.DescriptorProto.IExtensionRange, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IExtensionRange, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults) {
                     object.start = 0;
@@ -7941,7 +7941,7 @@ export namespace google.protobuf {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: google.protobuf.DescriptorProto.IExtensionRange, b?: google.protobuf.DescriptorProto.IExtensionRange): boolean {
+            static equals(a?: IExtensionRange, b?: IExtensionRange): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -7959,11 +7959,11 @@ export namespace google.protobuf {
         /**
          * Represents a ReservedRange.
          */
-        export class ReservedRange implements google.protobuf.DescriptorProto.IReservedRange {
+        export class ReservedRange implements IReservedRange {
             /**
              * Constructs a new ReservedRange.
              */
-            constructor(properties?: google.protobuf.DescriptorProto.IReservedRange) {
+            constructor(properties?: IReservedRange) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -7975,16 +7975,16 @@ export namespace google.protobuf {
             /**
              * Creates a new ReservedRange instance using the specified properties.
              */
-            static create(properties: google.protobuf.DescriptorProto.IReservedRange): ReservedRange {
+            static create(properties: IReservedRange): ReservedRange {
                 return new ReservedRange(properties);
             }
 
             /**
-             * Encodes the specified ReservedRange message. Does not implicitly {@link Type .google.protobuf.DescriptorProto.ReservedRange.verify|verify} messages.
+             * Encodes the specified ReservedRange message. Does not implicitly {@link ReservedRange.verify|verify} messages.
              * @param message ReservedRangemessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: google.protobuf.DescriptorProto.IReservedRange, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IReservedRange, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.start != null && Object.hasOwnProperty.call(message, "start"))
@@ -7995,11 +7995,11 @@ export namespace google.protobuf {
             }
 
             /**
-             * Encodes the specified ReservedRange message, length delimited. Does not implicitly {@link Type .google.protobuf.DescriptorProto.ReservedRange.verify|verify} messages.
+             * Encodes the specified ReservedRange message, length delimited. Does not implicitly {@link ReservedRange.verify|verify} messages.
              * @param message ReservedRangemessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: google.protobuf.DescriptorProto.IReservedRange, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IReservedRange, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -8010,7 +8010,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.DescriptorProto.ReservedRange {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ReservedRange {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto.ReservedRange();
@@ -8037,7 +8037,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.DescriptorProto.ReservedRange {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ReservedRange {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -8064,7 +8064,7 @@ export namespace google.protobuf {
              * Creates a ReservedRange message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): google.protobuf.DescriptorProto.IReservedRange {
+            static fromObject(object): IReservedRange {
                 if (object instanceof google.protobuf.DescriptorProto.ReservedRange)
                     return object;
                 var message = new google.protobuf.DescriptorProto.ReservedRange();
@@ -8081,7 +8081,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: google.protobuf.DescriptorProto.IReservedRange, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IReservedRange, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults) {
                     object.start = 0;
@@ -8104,7 +8104,7 @@ export namespace google.protobuf {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: google.protobuf.DescriptorProto.IReservedRange, b?: google.protobuf.DescriptorProto.IReservedRange): boolean {
+            static equals(a?: IReservedRange, b?: IReservedRange): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -8132,11 +8132,11 @@ export namespace google.protobuf {
     /**
      * Represents a FieldDescriptorProto.
      */
-    export class FieldDescriptorProto implements google.protobuf.IFieldDescriptorProto {
+    export class FieldDescriptorProto implements IFieldDescriptorProto {
         /**
          * Constructs a new FieldDescriptorProto.
          */
-        constructor(properties?: google.protobuf.IFieldDescriptorProto) {
+        constructor(properties?: IFieldDescriptorProto) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -8156,16 +8156,16 @@ export namespace google.protobuf {
         /**
          * Creates a new FieldDescriptorProto instance using the specified properties.
          */
-        static create(properties: google.protobuf.IFieldDescriptorProto): FieldDescriptorProto {
+        static create(properties: IFieldDescriptorProto): FieldDescriptorProto {
             return new FieldDescriptorProto(properties);
         }
 
         /**
-         * Encodes the specified FieldDescriptorProto message. Does not implicitly {@link Type .google.protobuf.FieldDescriptorProto.verify|verify} messages.
+         * Encodes the specified FieldDescriptorProto message. Does not implicitly {@link FieldDescriptorProto.verify|verify} messages.
          * @param message FieldDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IFieldDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFieldDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -8192,11 +8192,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified FieldDescriptorProto message, length delimited. Does not implicitly {@link Type .google.protobuf.FieldDescriptorProto.verify|verify} messages.
+         * Encodes the specified FieldDescriptorProto message, length delimited. Does not implicitly {@link FieldDescriptorProto.verify|verify} messages.
          * @param message FieldDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IFieldDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFieldDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -8207,7 +8207,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.FieldDescriptorProto {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FieldDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FieldDescriptorProto();
@@ -8258,7 +8258,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.FieldDescriptorProto {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FieldDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -8338,7 +8338,7 @@ export namespace google.protobuf {
          * Creates a FieldDescriptorProto message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IFieldDescriptorProto {
+        static fromObject(object): IFieldDescriptorProto {
             if (object instanceof google.protobuf.FieldDescriptorProto)
                 return object;
             var message = new google.protobuf.FieldDescriptorProto();
@@ -8458,7 +8458,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IFieldDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFieldDescriptorProto, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.name = "";
@@ -8505,7 +8505,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IFieldDescriptorProto, b?: google.protobuf.IFieldDescriptorProto): boolean {
+        static equals(a?: IFieldDescriptorProto, b?: IFieldDescriptorProto): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -8553,11 +8553,11 @@ export namespace google.protobuf {
     /**
      * Represents an OneofDescriptorProto.
      */
-    export class OneofDescriptorProto implements google.protobuf.IOneofDescriptorProto {
+    export class OneofDescriptorProto implements IOneofDescriptorProto {
         /**
          * Constructs a new OneofDescriptorProto.
          */
-        constructor(properties?: google.protobuf.IOneofDescriptorProto) {
+        constructor(properties?: IOneofDescriptorProto) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -8569,16 +8569,16 @@ export namespace google.protobuf {
         /**
          * Creates a new OneofDescriptorProto instance using the specified properties.
          */
-        static create(properties: google.protobuf.IOneofDescriptorProto): OneofDescriptorProto {
+        static create(properties: IOneofDescriptorProto): OneofDescriptorProto {
             return new OneofDescriptorProto(properties);
         }
 
         /**
-         * Encodes the specified OneofDescriptorProto message. Does not implicitly {@link Type .google.protobuf.OneofDescriptorProto.verify|verify} messages.
+         * Encodes the specified OneofDescriptorProto message. Does not implicitly {@link OneofDescriptorProto.verify|verify} messages.
          * @param message OneofDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IOneofDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOneofDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -8589,11 +8589,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified OneofDescriptorProto message, length delimited. Does not implicitly {@link Type .google.protobuf.OneofDescriptorProto.verify|verify} messages.
+         * Encodes the specified OneofDescriptorProto message, length delimited. Does not implicitly {@link OneofDescriptorProto.verify|verify} messages.
          * @param message OneofDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IOneofDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOneofDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -8604,7 +8604,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.OneofDescriptorProto {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OneofDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.OneofDescriptorProto();
@@ -8631,7 +8631,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.OneofDescriptorProto {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OneofDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -8660,7 +8660,7 @@ export namespace google.protobuf {
          * Creates an OneofDescriptorProto message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IOneofDescriptorProto {
+        static fromObject(object): IOneofDescriptorProto {
             if (object instanceof google.protobuf.OneofDescriptorProto)
                 return object;
             var message = new google.protobuf.OneofDescriptorProto();
@@ -8680,7 +8680,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IOneofDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOneofDescriptorProto, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.name = "";
@@ -8703,7 +8703,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IOneofDescriptorProto, b?: google.protobuf.IOneofDescriptorProto): boolean {
+        static equals(a?: IOneofDescriptorProto, b?: IOneofDescriptorProto): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -8722,11 +8722,11 @@ export namespace google.protobuf {
     /**
      * Represents an EnumDescriptorProto.
      */
-    export class EnumDescriptorProto implements google.protobuf.IEnumDescriptorProto {
+    export class EnumDescriptorProto implements IEnumDescriptorProto {
         /**
          * Constructs a new EnumDescriptorProto.
          */
-        constructor(properties?: google.protobuf.IEnumDescriptorProto) {
+        constructor(properties?: IEnumDescriptorProto) {
             this.value = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -8740,16 +8740,16 @@ export namespace google.protobuf {
         /**
          * Creates a new EnumDescriptorProto instance using the specified properties.
          */
-        static create(properties: google.protobuf.IEnumDescriptorProto): EnumDescriptorProto {
+        static create(properties: IEnumDescriptorProto): EnumDescriptorProto {
             return new EnumDescriptorProto(properties);
         }
 
         /**
-         * Encodes the specified EnumDescriptorProto message. Does not implicitly {@link Type .google.protobuf.EnumDescriptorProto.verify|verify} messages.
+         * Encodes the specified EnumDescriptorProto message. Does not implicitly {@link EnumDescriptorProto.verify|verify} messages.
          * @param message EnumDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IEnumDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -8763,11 +8763,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified EnumDescriptorProto message, length delimited. Does not implicitly {@link Type .google.protobuf.EnumDescriptorProto.verify|verify} messages.
+         * Encodes the specified EnumDescriptorProto message, length delimited. Does not implicitly {@link EnumDescriptorProto.verify|verify} messages.
          * @param message EnumDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IEnumDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -8778,7 +8778,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.EnumDescriptorProto {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumDescriptorProto();
@@ -8810,7 +8810,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.EnumDescriptorProto {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -8848,7 +8848,7 @@ export namespace google.protobuf {
          * Creates an EnumDescriptorProto message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IEnumDescriptorProto {
+        static fromObject(object): IEnumDescriptorProto {
             if (object instanceof google.protobuf.EnumDescriptorProto)
                 return object;
             var message = new google.protobuf.EnumDescriptorProto();
@@ -8878,7 +8878,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IEnumDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumDescriptorProto, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.value = [];
@@ -8908,7 +8908,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IEnumDescriptorProto, b?: google.protobuf.IEnumDescriptorProto): boolean {
+        static equals(a?: IEnumDescriptorProto, b?: IEnumDescriptorProto): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -8929,11 +8929,11 @@ export namespace google.protobuf {
     /**
      * Represents an EnumValueDescriptorProto.
      */
-    export class EnumValueDescriptorProto implements google.protobuf.IEnumValueDescriptorProto {
+    export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
         /**
          * Constructs a new EnumValueDescriptorProto.
          */
-        constructor(properties?: google.protobuf.IEnumValueDescriptorProto) {
+        constructor(properties?: IEnumValueDescriptorProto) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -8946,16 +8946,16 @@ export namespace google.protobuf {
         /**
          * Creates a new EnumValueDescriptorProto instance using the specified properties.
          */
-        static create(properties: google.protobuf.IEnumValueDescriptorProto): EnumValueDescriptorProto {
+        static create(properties: IEnumValueDescriptorProto): EnumValueDescriptorProto {
             return new EnumValueDescriptorProto(properties);
         }
 
         /**
-         * Encodes the specified EnumValueDescriptorProto message. Does not implicitly {@link Type .google.protobuf.EnumValueDescriptorProto.verify|verify} messages.
+         * Encodes the specified EnumValueDescriptorProto message. Does not implicitly {@link EnumValueDescriptorProto.verify|verify} messages.
          * @param message EnumValueDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IEnumValueDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumValueDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -8968,11 +8968,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified EnumValueDescriptorProto message, length delimited. Does not implicitly {@link Type .google.protobuf.EnumValueDescriptorProto.verify|verify} messages.
+         * Encodes the specified EnumValueDescriptorProto message, length delimited. Does not implicitly {@link EnumValueDescriptorProto.verify|verify} messages.
          * @param message EnumValueDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IEnumValueDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumValueDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -8983,7 +8983,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.EnumValueDescriptorProto {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumValueDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumValueDescriptorProto();
@@ -9013,7 +9013,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.EnumValueDescriptorProto {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumValueDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -9045,7 +9045,7 @@ export namespace google.protobuf {
          * Creates an EnumValueDescriptorProto message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IEnumValueDescriptorProto {
+        static fromObject(object): IEnumValueDescriptorProto {
             if (object instanceof google.protobuf.EnumValueDescriptorProto)
                 return object;
             var message = new google.protobuf.EnumValueDescriptorProto();
@@ -9067,7 +9067,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IEnumValueDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumValueDescriptorProto, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.name = "";
@@ -9093,7 +9093,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IEnumValueDescriptorProto, b?: google.protobuf.IEnumValueDescriptorProto): boolean {
+        static equals(a?: IEnumValueDescriptorProto, b?: IEnumValueDescriptorProto): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -9112,11 +9112,11 @@ export namespace google.protobuf {
     /**
      * Represents a ServiceDescriptorProto.
      */
-    export class ServiceDescriptorProto implements google.protobuf.IServiceDescriptorProto {
+    export class ServiceDescriptorProto implements IServiceDescriptorProto {
         /**
          * Constructs a new ServiceDescriptorProto.
          */
-        constructor(properties?: google.protobuf.IServiceDescriptorProto) {
+        constructor(properties?: IServiceDescriptorProto) {
             this.method = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -9130,16 +9130,16 @@ export namespace google.protobuf {
         /**
          * Creates a new ServiceDescriptorProto instance using the specified properties.
          */
-        static create(properties: google.protobuf.IServiceDescriptorProto): ServiceDescriptorProto {
+        static create(properties: IServiceDescriptorProto): ServiceDescriptorProto {
             return new ServiceDescriptorProto(properties);
         }
 
         /**
-         * Encodes the specified ServiceDescriptorProto message. Does not implicitly {@link Type .google.protobuf.ServiceDescriptorProto.verify|verify} messages.
+         * Encodes the specified ServiceDescriptorProto message. Does not implicitly {@link ServiceDescriptorProto.verify|verify} messages.
          * @param message ServiceDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IServiceDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IServiceDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -9153,11 +9153,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified ServiceDescriptorProto message, length delimited. Does not implicitly {@link Type .google.protobuf.ServiceDescriptorProto.verify|verify} messages.
+         * Encodes the specified ServiceDescriptorProto message, length delimited. Does not implicitly {@link ServiceDescriptorProto.verify|verify} messages.
          * @param message ServiceDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IServiceDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IServiceDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -9168,7 +9168,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.ServiceDescriptorProto {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ServiceDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.ServiceDescriptorProto();
@@ -9200,7 +9200,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.ServiceDescriptorProto {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ServiceDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -9238,7 +9238,7 @@ export namespace google.protobuf {
          * Creates a ServiceDescriptorProto message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IServiceDescriptorProto {
+        static fromObject(object): IServiceDescriptorProto {
             if (object instanceof google.protobuf.ServiceDescriptorProto)
                 return object;
             var message = new google.protobuf.ServiceDescriptorProto();
@@ -9268,7 +9268,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IServiceDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IServiceDescriptorProto, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.method = [];
@@ -9298,7 +9298,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IServiceDescriptorProto, b?: google.protobuf.IServiceDescriptorProto): boolean {
+        static equals(a?: IServiceDescriptorProto, b?: IServiceDescriptorProto): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -9322,11 +9322,11 @@ export namespace google.protobuf {
     /**
      * Represents a MethodDescriptorProto.
      */
-    export class MethodDescriptorProto implements google.protobuf.IMethodDescriptorProto {
+    export class MethodDescriptorProto implements IMethodDescriptorProto {
         /**
          * Constructs a new MethodDescriptorProto.
          */
-        constructor(properties?: google.protobuf.IMethodDescriptorProto) {
+        constructor(properties?: IMethodDescriptorProto) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -9342,16 +9342,16 @@ export namespace google.protobuf {
         /**
          * Creates a new MethodDescriptorProto instance using the specified properties.
          */
-        static create(properties: google.protobuf.IMethodDescriptorProto): MethodDescriptorProto {
+        static create(properties: IMethodDescriptorProto): MethodDescriptorProto {
             return new MethodDescriptorProto(properties);
         }
 
         /**
-         * Encodes the specified MethodDescriptorProto message. Does not implicitly {@link Type .google.protobuf.MethodDescriptorProto.verify|verify} messages.
+         * Encodes the specified MethodDescriptorProto message. Does not implicitly {@link MethodDescriptorProto.verify|verify} messages.
          * @param message MethodDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IMethodDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IMethodDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -9370,11 +9370,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified MethodDescriptorProto message, length delimited. Does not implicitly {@link Type .google.protobuf.MethodDescriptorProto.verify|verify} messages.
+         * Encodes the specified MethodDescriptorProto message, length delimited. Does not implicitly {@link MethodDescriptorProto.verify|verify} messages.
          * @param message MethodDescriptorProtomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IMethodDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IMethodDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -9385,7 +9385,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.MethodDescriptorProto {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MethodDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MethodDescriptorProto();
@@ -9424,7 +9424,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.MethodDescriptorProto {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MethodDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -9465,7 +9465,7 @@ export namespace google.protobuf {
          * Creates a MethodDescriptorProto message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IMethodDescriptorProto {
+        static fromObject(object): IMethodDescriptorProto {
             if (object instanceof google.protobuf.MethodDescriptorProto)
                 return object;
             var message = new google.protobuf.MethodDescriptorProto();
@@ -9493,7 +9493,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IMethodDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IMethodDescriptorProto, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.name = "";
@@ -9528,7 +9528,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IMethodDescriptorProto, b?: google.protobuf.IMethodDescriptorProto): boolean {
+        static equals(a?: IMethodDescriptorProto, b?: IMethodDescriptorProto): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -9559,11 +9559,11 @@ export namespace google.protobuf {
     /**
      * Represents a FileOptions.
      */
-    export class FileOptions implements google.protobuf.IFileOptions {
+    export class FileOptions implements IFileOptions {
         /**
          * Constructs a new FileOptions.
          */
-        constructor(properties?: google.protobuf.IFileOptions) {
+        constructor(properties?: IFileOptions) {
             this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -9589,16 +9589,16 @@ export namespace google.protobuf {
         /**
          * Creates a new FileOptions instance using the specified properties.
          */
-        static create(properties: google.protobuf.IFileOptions): FileOptions {
+        static create(properties: IFileOptions): FileOptions {
             return new FileOptions(properties);
         }
 
         /**
-         * Encodes the specified FileOptions message. Does not implicitly {@link Type .google.protobuf.FileOptions.verify|verify} messages.
+         * Encodes the specified FileOptions message. Does not implicitly {@link FileOptions.verify|verify} messages.
          * @param message FileOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IFileOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFileOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.javaPackage != null && Object.hasOwnProperty.call(message, "javaPackage"))
@@ -9636,11 +9636,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified FileOptions message, length delimited. Does not implicitly {@link Type .google.protobuf.FileOptions.verify|verify} messages.
+         * Encodes the specified FileOptions message, length delimited. Does not implicitly {@link FileOptions.verify|verify} messages.
          * @param message FileOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IFileOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFileOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -9651,7 +9651,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.FileOptions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FileOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileOptions();
@@ -9719,7 +9719,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.FileOptions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FileOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -9797,7 +9797,7 @@ export namespace google.protobuf {
          * Creates a FileOptions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IFileOptions {
+        static fromObject(object): IFileOptions {
             if (object instanceof google.protobuf.FileOptions)
                 return object;
             var message = new google.protobuf.FileOptions();
@@ -9860,7 +9860,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IFileOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFileOptions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -9926,7 +9926,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IFileOptions, b?: google.protobuf.IFileOptions): boolean {
+        static equals(a?: IFileOptions, b?: IFileOptions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -9958,11 +9958,11 @@ export namespace google.protobuf {
     /**
      * Represents a MessageOptions.
      */
-    export class MessageOptions implements google.protobuf.IMessageOptions {
+    export class MessageOptions implements IMessageOptions {
         /**
          * Constructs a new MessageOptions.
          */
-        constructor(properties?: google.protobuf.IMessageOptions) {
+        constructor(properties?: IMessageOptions) {
             this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -9978,16 +9978,16 @@ export namespace google.protobuf {
         /**
          * Creates a new MessageOptions instance using the specified properties.
          */
-        static create(properties: google.protobuf.IMessageOptions): MessageOptions {
+        static create(properties: IMessageOptions): MessageOptions {
             return new MessageOptions(properties);
         }
 
         /**
-         * Encodes the specified MessageOptions message. Does not implicitly {@link Type .google.protobuf.MessageOptions.verify|verify} messages.
+         * Encodes the specified MessageOptions message. Does not implicitly {@link MessageOptions.verify|verify} messages.
          * @param message MessageOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IMessageOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IMessageOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.messageSetWireFormat != null && Object.hasOwnProperty.call(message, "messageSetWireFormat"))
@@ -10005,11 +10005,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified MessageOptions message, length delimited. Does not implicitly {@link Type .google.protobuf.MessageOptions.verify|verify} messages.
+         * Encodes the specified MessageOptions message, length delimited. Does not implicitly {@link MessageOptions.verify|verify} messages.
          * @param message MessageOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IMessageOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IMessageOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -10020,7 +10020,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.MessageOptions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MessageOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MessageOptions();
@@ -10058,7 +10058,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.MessageOptions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MessageOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -10100,7 +10100,7 @@ export namespace google.protobuf {
          * Creates a MessageOptions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IMessageOptions {
+        static fromObject(object): IMessageOptions {
             if (object instanceof google.protobuf.MessageOptions)
                 return object;
             var message = new google.protobuf.MessageOptions();
@@ -10131,7 +10131,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IMessageOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IMessageOptions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -10167,7 +10167,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IMessageOptions, b?: google.protobuf.IMessageOptions): boolean {
+        static equals(a?: IMessageOptions, b?: IMessageOptions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -10192,11 +10192,11 @@ export namespace google.protobuf {
     /**
      * Represents a FieldOptions.
      */
-    export class FieldOptions implements google.protobuf.IFieldOptions {
+    export class FieldOptions implements IFieldOptions {
         /**
          * Constructs a new FieldOptions.
          */
-        constructor(properties?: google.protobuf.IFieldOptions) {
+        constructor(properties?: IFieldOptions) {
             this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -10214,16 +10214,16 @@ export namespace google.protobuf {
         /**
          * Creates a new FieldOptions instance using the specified properties.
          */
-        static create(properties: google.protobuf.IFieldOptions): FieldOptions {
+        static create(properties: IFieldOptions): FieldOptions {
             return new FieldOptions(properties);
         }
 
         /**
-         * Encodes the specified FieldOptions message. Does not implicitly {@link Type .google.protobuf.FieldOptions.verify|verify} messages.
+         * Encodes the specified FieldOptions message. Does not implicitly {@link FieldOptions.verify|verify} messages.
          * @param message FieldOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IFieldOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFieldOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.ctype != null && Object.hasOwnProperty.call(message, "ctype"))
@@ -10245,11 +10245,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified FieldOptions message, length delimited. Does not implicitly {@link Type .google.protobuf.FieldOptions.verify|verify} messages.
+         * Encodes the specified FieldOptions message, length delimited. Does not implicitly {@link FieldOptions.verify|verify} messages.
          * @param message FieldOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IFieldOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFieldOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -10260,7 +10260,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.FieldOptions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FieldOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FieldOptions();
@@ -10304,7 +10304,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.FieldOptions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FieldOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -10364,7 +10364,7 @@ export namespace google.protobuf {
          * Creates a FieldOptions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IFieldOptions {
+        static fromObject(object): IFieldOptions {
             if (object instanceof google.protobuf.FieldOptions)
                 return object;
             var message = new google.protobuf.FieldOptions();
@@ -10423,7 +10423,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IFieldOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFieldOptions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -10465,7 +10465,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IFieldOptions, b?: google.protobuf.IFieldOptions): boolean {
+        static equals(a?: IFieldOptions, b?: IFieldOptions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -10499,11 +10499,11 @@ export namespace google.protobuf {
     /**
      * Represents an OneofOptions.
      */
-    export class OneofOptions implements google.protobuf.IOneofOptions {
+    export class OneofOptions implements IOneofOptions {
         /**
          * Constructs a new OneofOptions.
          */
-        constructor(properties?: google.protobuf.IOneofOptions) {
+        constructor(properties?: IOneofOptions) {
             this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -10515,16 +10515,16 @@ export namespace google.protobuf {
         /**
          * Creates a new OneofOptions instance using the specified properties.
          */
-        static create(properties: google.protobuf.IOneofOptions): OneofOptions {
+        static create(properties: IOneofOptions): OneofOptions {
             return new OneofOptions(properties);
         }
 
         /**
-         * Encodes the specified OneofOptions message. Does not implicitly {@link Type .google.protobuf.OneofOptions.verify|verify} messages.
+         * Encodes the specified OneofOptions message. Does not implicitly {@link OneofOptions.verify|verify} messages.
          * @param message OneofOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IOneofOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOneofOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
@@ -10534,11 +10534,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified OneofOptions message, length delimited. Does not implicitly {@link Type .google.protobuf.OneofOptions.verify|verify} messages.
+         * Encodes the specified OneofOptions message, length delimited. Does not implicitly {@link OneofOptions.verify|verify} messages.
          * @param message OneofOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IOneofOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOneofOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -10549,7 +10549,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.OneofOptions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OneofOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.OneofOptions();
@@ -10575,7 +10575,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.OneofOptions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OneofOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -10605,7 +10605,7 @@ export namespace google.protobuf {
          * Creates an OneofOptions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IOneofOptions {
+        static fromObject(object): IOneofOptions {
             if (object instanceof google.protobuf.OneofOptions)
                 return object;
             var message = new google.protobuf.OneofOptions();
@@ -10628,7 +10628,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IOneofOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOneofOptions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -10650,7 +10650,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IOneofOptions, b?: google.protobuf.IOneofOptions): boolean {
+        static equals(a?: IOneofOptions, b?: IOneofOptions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -10672,11 +10672,11 @@ export namespace google.protobuf {
     /**
      * Represents an EnumOptions.
      */
-    export class EnumOptions implements google.protobuf.IEnumOptions {
+    export class EnumOptions implements IEnumOptions {
         /**
          * Constructs a new EnumOptions.
          */
-        constructor(properties?: google.protobuf.IEnumOptions) {
+        constructor(properties?: IEnumOptions) {
             this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -10691,16 +10691,16 @@ export namespace google.protobuf {
         /**
          * Creates a new EnumOptions instance using the specified properties.
          */
-        static create(properties: google.protobuf.IEnumOptions): EnumOptions {
+        static create(properties: IEnumOptions): EnumOptions {
             return new EnumOptions(properties);
         }
 
         /**
-         * Encodes the specified EnumOptions message. Does not implicitly {@link Type .google.protobuf.EnumOptions.verify|verify} messages.
+         * Encodes the specified EnumOptions message. Does not implicitly {@link EnumOptions.verify|verify} messages.
          * @param message EnumOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IEnumOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.allowAlias != null && Object.hasOwnProperty.call(message, "allowAlias"))
@@ -10716,11 +10716,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified EnumOptions message, length delimited. Does not implicitly {@link Type .google.protobuf.EnumOptions.verify|verify} messages.
+         * Encodes the specified EnumOptions message, length delimited. Does not implicitly {@link EnumOptions.verify|verify} messages.
          * @param message EnumOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IEnumOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -10731,7 +10731,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.EnumOptions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumOptions();
@@ -10766,7 +10766,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.EnumOptions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -10805,7 +10805,7 @@ export namespace google.protobuf {
          * Creates an EnumOptions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IEnumOptions {
+        static fromObject(object): IEnumOptions {
             if (object instanceof google.protobuf.EnumOptions)
                 return object;
             var message = new google.protobuf.EnumOptions();
@@ -10834,7 +10834,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IEnumOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumOptions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -10867,7 +10867,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IEnumOptions, b?: google.protobuf.IEnumOptions): boolean {
+        static equals(a?: IEnumOptions, b?: IEnumOptions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -10887,11 +10887,11 @@ export namespace google.protobuf {
     /**
      * Represents an EnumValueOptions.
      */
-    export class EnumValueOptions implements google.protobuf.IEnumValueOptions {
+    export class EnumValueOptions implements IEnumValueOptions {
         /**
          * Constructs a new EnumValueOptions.
          */
-        constructor(properties?: google.protobuf.IEnumValueOptions) {
+        constructor(properties?: IEnumValueOptions) {
             this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -10904,16 +10904,16 @@ export namespace google.protobuf {
         /**
          * Creates a new EnumValueOptions instance using the specified properties.
          */
-        static create(properties: google.protobuf.IEnumValueOptions): EnumValueOptions {
+        static create(properties: IEnumValueOptions): EnumValueOptions {
             return new EnumValueOptions(properties);
         }
 
         /**
-         * Encodes the specified EnumValueOptions message. Does not implicitly {@link Type .google.protobuf.EnumValueOptions.verify|verify} messages.
+         * Encodes the specified EnumValueOptions message. Does not implicitly {@link EnumValueOptions.verify|verify} messages.
          * @param message EnumValueOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IEnumValueOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumValueOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.deprecated != null && Object.hasOwnProperty.call(message, "deprecated"))
@@ -10925,11 +10925,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified EnumValueOptions message, length delimited. Does not implicitly {@link Type .google.protobuf.EnumValueOptions.verify|verify} messages.
+         * Encodes the specified EnumValueOptions message, length delimited. Does not implicitly {@link EnumValueOptions.verify|verify} messages.
          * @param message EnumValueOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IEnumValueOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumValueOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -10940,7 +10940,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.EnumValueOptions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumValueOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumValueOptions();
@@ -10969,7 +10969,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.EnumValueOptions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumValueOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -11002,7 +11002,7 @@ export namespace google.protobuf {
          * Creates an EnumValueOptions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IEnumValueOptions {
+        static fromObject(object): IEnumValueOptions {
             if (object instanceof google.protobuf.EnumValueOptions)
                 return object;
             var message = new google.protobuf.EnumValueOptions();
@@ -11027,7 +11027,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IEnumValueOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumValueOptions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -11053,7 +11053,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IEnumValueOptions, b?: google.protobuf.IEnumValueOptions): boolean {
+        static equals(a?: IEnumValueOptions, b?: IEnumValueOptions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -11073,11 +11073,11 @@ export namespace google.protobuf {
     /**
      * Represents a ServiceOptions.
      */
-    export class ServiceOptions implements google.protobuf.IServiceOptions {
+    export class ServiceOptions implements IServiceOptions {
         /**
          * Constructs a new ServiceOptions.
          */
-        constructor(properties?: google.protobuf.IServiceOptions) {
+        constructor(properties?: IServiceOptions) {
             this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -11090,16 +11090,16 @@ export namespace google.protobuf {
         /**
          * Creates a new ServiceOptions instance using the specified properties.
          */
-        static create(properties: google.protobuf.IServiceOptions): ServiceOptions {
+        static create(properties: IServiceOptions): ServiceOptions {
             return new ServiceOptions(properties);
         }
 
         /**
-         * Encodes the specified ServiceOptions message. Does not implicitly {@link Type .google.protobuf.ServiceOptions.verify|verify} messages.
+         * Encodes the specified ServiceOptions message. Does not implicitly {@link ServiceOptions.verify|verify} messages.
          * @param message ServiceOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IServiceOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IServiceOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.deprecated != null && Object.hasOwnProperty.call(message, "deprecated"))
@@ -11111,11 +11111,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified ServiceOptions message, length delimited. Does not implicitly {@link Type .google.protobuf.ServiceOptions.verify|verify} messages.
+         * Encodes the specified ServiceOptions message, length delimited. Does not implicitly {@link ServiceOptions.verify|verify} messages.
          * @param message ServiceOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IServiceOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IServiceOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -11126,7 +11126,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.ServiceOptions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ServiceOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.ServiceOptions();
@@ -11155,7 +11155,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.ServiceOptions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ServiceOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -11188,7 +11188,7 @@ export namespace google.protobuf {
          * Creates a ServiceOptions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IServiceOptions {
+        static fromObject(object): IServiceOptions {
             if (object instanceof google.protobuf.ServiceOptions)
                 return object;
             var message = new google.protobuf.ServiceOptions();
@@ -11213,7 +11213,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IServiceOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IServiceOptions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -11239,7 +11239,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IServiceOptions, b?: google.protobuf.IServiceOptions): boolean {
+        static equals(a?: IServiceOptions, b?: IServiceOptions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -11260,11 +11260,11 @@ export namespace google.protobuf {
     /**
      * Represents a MethodOptions.
      */
-    export class MethodOptions implements google.protobuf.IMethodOptions {
+    export class MethodOptions implements IMethodOptions {
         /**
          * Constructs a new MethodOptions.
          */
-        constructor(properties?: google.protobuf.IMethodOptions) {
+        constructor(properties?: IMethodOptions) {
             this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -11278,16 +11278,16 @@ export namespace google.protobuf {
         /**
          * Creates a new MethodOptions instance using the specified properties.
          */
-        static create(properties: google.protobuf.IMethodOptions): MethodOptions {
+        static create(properties: IMethodOptions): MethodOptions {
             return new MethodOptions(properties);
         }
 
         /**
-         * Encodes the specified MethodOptions message. Does not implicitly {@link Type .google.protobuf.MethodOptions.verify|verify} messages.
+         * Encodes the specified MethodOptions message. Does not implicitly {@link MethodOptions.verify|verify} messages.
          * @param message MethodOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IMethodOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IMethodOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.deprecated != null && Object.hasOwnProperty.call(message, "deprecated"))
@@ -11301,11 +11301,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified MethodOptions message, length delimited. Does not implicitly {@link Type .google.protobuf.MethodOptions.verify|verify} messages.
+         * Encodes the specified MethodOptions message, length delimited. Does not implicitly {@link MethodOptions.verify|verify} messages.
          * @param message MethodOptionsmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IMethodOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IMethodOptions, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -11316,7 +11316,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.MethodOptions {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MethodOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MethodOptions();
@@ -11348,7 +11348,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.MethodOptions {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MethodOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -11390,7 +11390,7 @@ export namespace google.protobuf {
          * Creates a MethodOptions message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IMethodOptions {
+        static fromObject(object): IMethodOptions {
             if (object instanceof google.protobuf.MethodOptions)
                 return object;
             var message = new google.protobuf.MethodOptions();
@@ -11429,7 +11429,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IMethodOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IMethodOptions, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -11459,7 +11459,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IMethodOptions, b?: google.protobuf.IMethodOptions): boolean {
+        static equals(a?: IMethodOptions, b?: IMethodOptions): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -11493,11 +11493,11 @@ export namespace google.protobuf {
     /**
      * Represents an UninterpretedOption.
      */
-    export class UninterpretedOption implements google.protobuf.IUninterpretedOption {
+    export class UninterpretedOption implements IUninterpretedOption {
         /**
          * Constructs a new UninterpretedOption.
          */
-        constructor(properties?: google.protobuf.IUninterpretedOption) {
+        constructor(properties?: IUninterpretedOption) {
             this.name = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -11515,16 +11515,16 @@ export namespace google.protobuf {
         /**
          * Creates a new UninterpretedOption instance using the specified properties.
          */
-        static create(properties: google.protobuf.IUninterpretedOption): UninterpretedOption {
+        static create(properties: IUninterpretedOption): UninterpretedOption {
             return new UninterpretedOption(properties);
         }
 
         /**
-         * Encodes the specified UninterpretedOption message. Does not implicitly {@link Type .google.protobuf.UninterpretedOption.verify|verify} messages.
+         * Encodes the specified UninterpretedOption message. Does not implicitly {@link UninterpretedOption.verify|verify} messages.
          * @param message UninterpretedOptionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IUninterpretedOption, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IUninterpretedOption, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && message.name.length)
@@ -11546,11 +11546,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified UninterpretedOption message, length delimited. Does not implicitly {@link Type .google.protobuf.UninterpretedOption.verify|verify} messages.
+         * Encodes the specified UninterpretedOption message, length delimited. Does not implicitly {@link UninterpretedOption.verify|verify} messages.
          * @param message UninterpretedOptionmessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IUninterpretedOption, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IUninterpretedOption, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -11561,7 +11561,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.UninterpretedOption {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): UninterpretedOption {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.UninterpretedOption();
@@ -11605,7 +11605,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.UninterpretedOption {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): UninterpretedOption {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -11653,7 +11653,7 @@ export namespace google.protobuf {
          * Creates an UninterpretedOption message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IUninterpretedOption {
+        static fromObject(object): IUninterpretedOption {
             if (object instanceof google.protobuf.UninterpretedOption)
                 return object;
             var message = new google.protobuf.UninterpretedOption();
@@ -11705,7 +11705,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IUninterpretedOption, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IUninterpretedOption, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.name = [];
@@ -11767,7 +11767,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IUninterpretedOption, b?: google.protobuf.IUninterpretedOption): boolean {
+        static equals(a?: IUninterpretedOption, b?: IUninterpretedOption): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -11788,11 +11788,11 @@ export namespace google.protobuf {
         /**
          * Represents a NamePart.
          */
-        export class NamePart implements google.protobuf.UninterpretedOption.INamePart {
+        export class NamePart implements INamePart {
             /**
              * Constructs a new NamePart.
              */
-            constructor(properties?: google.protobuf.UninterpretedOption.INamePart) {
+            constructor(properties?: INamePart) {
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -11804,16 +11804,16 @@ export namespace google.protobuf {
             /**
              * Creates a new NamePart instance using the specified properties.
              */
-            static create(properties: google.protobuf.UninterpretedOption.INamePart): NamePart {
+            static create(properties: INamePart): NamePart {
                 return new NamePart(properties);
             }
 
             /**
-             * Encodes the specified NamePart message. Does not implicitly {@link Type .google.protobuf.UninterpretedOption.NamePart.verify|verify} messages.
+             * Encodes the specified NamePart message. Does not implicitly {@link NamePart.verify|verify} messages.
              * @param message NamePartmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: google.protobuf.UninterpretedOption.INamePart, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: INamePart, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.namePart);
@@ -11822,11 +11822,11 @@ export namespace google.protobuf {
             }
 
             /**
-             * Encodes the specified NamePart message, length delimited. Does not implicitly {@link Type .google.protobuf.UninterpretedOption.NamePart.verify|verify} messages.
+             * Encodes the specified NamePart message, length delimited. Does not implicitly {@link NamePart.verify|verify} messages.
              * @param message NamePartmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: google.protobuf.UninterpretedOption.INamePart, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: INamePart, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -11837,7 +11837,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.UninterpretedOption.NamePart {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): NamePart {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.UninterpretedOption.NamePart();
@@ -11868,7 +11868,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.UninterpretedOption.NamePart {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): NamePart {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -11893,7 +11893,7 @@ export namespace google.protobuf {
              * Creates a NamePart message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): google.protobuf.UninterpretedOption.INamePart {
+            static fromObject(object): INamePart {
                 if (object instanceof google.protobuf.UninterpretedOption.NamePart)
                     return object;
                 var message = new google.protobuf.UninterpretedOption.NamePart();
@@ -11910,7 +11910,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: google.protobuf.UninterpretedOption.INamePart, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: INamePart, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults) {
                     object.namePart = "";
@@ -11933,7 +11933,7 @@ export namespace google.protobuf {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: google.protobuf.UninterpretedOption.INamePart, b?: google.protobuf.UninterpretedOption.INamePart): boolean {
+            static equals(a?: INamePart, b?: INamePart): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -11952,11 +11952,11 @@ export namespace google.protobuf {
     /**
      * Represents a SourceCodeInfo.
      */
-    export class SourceCodeInfo implements google.protobuf.ISourceCodeInfo {
+    export class SourceCodeInfo implements ISourceCodeInfo {
         /**
          * Constructs a new SourceCodeInfo.
          */
-        constructor(properties?: google.protobuf.ISourceCodeInfo) {
+        constructor(properties?: ISourceCodeInfo) {
             this.location = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -11968,16 +11968,16 @@ export namespace google.protobuf {
         /**
          * Creates a new SourceCodeInfo instance using the specified properties.
          */
-        static create(properties: google.protobuf.ISourceCodeInfo): SourceCodeInfo {
+        static create(properties: ISourceCodeInfo): SourceCodeInfo {
             return new SourceCodeInfo(properties);
         }
 
         /**
-         * Encodes the specified SourceCodeInfo message. Does not implicitly {@link Type .google.protobuf.SourceCodeInfo.verify|verify} messages.
+         * Encodes the specified SourceCodeInfo message. Does not implicitly {@link SourceCodeInfo.verify|verify} messages.
          * @param message SourceCodeInfomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.ISourceCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISourceCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.location != null && message.location.length)
@@ -11987,11 +11987,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified SourceCodeInfo message, length delimited. Does not implicitly {@link Type .google.protobuf.SourceCodeInfo.verify|verify} messages.
+         * Encodes the specified SourceCodeInfo message, length delimited. Does not implicitly {@link SourceCodeInfo.verify|verify} messages.
          * @param message SourceCodeInfomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.ISourceCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISourceCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -12002,7 +12002,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.SourceCodeInfo {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): SourceCodeInfo {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.SourceCodeInfo();
@@ -12028,7 +12028,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.SourceCodeInfo {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): SourceCodeInfo {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -12058,7 +12058,7 @@ export namespace google.protobuf {
          * Creates a SourceCodeInfo message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.ISourceCodeInfo {
+        static fromObject(object): ISourceCodeInfo {
             if (object instanceof google.protobuf.SourceCodeInfo)
                 return object;
             var message = new google.protobuf.SourceCodeInfo();
@@ -12081,7 +12081,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.ISourceCodeInfo, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISourceCodeInfo, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.location = [];
@@ -12103,7 +12103,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.ISourceCodeInfo, b?: google.protobuf.ISourceCodeInfo): boolean {
+        static equals(a?: ISourceCodeInfo, b?: ISourceCodeInfo): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -12127,11 +12127,11 @@ export namespace google.protobuf {
         /**
          * Represents a Location.
          */
-        export class Location implements google.protobuf.SourceCodeInfo.ILocation {
+        export class Location implements ILocation {
             /**
              * Constructs a new Location.
              */
-            constructor(properties?: google.protobuf.SourceCodeInfo.ILocation) {
+            constructor(properties?: ILocation) {
                 this.path = [];
                 this.span = [];
                 this.leadingDetachedComments = [];
@@ -12149,16 +12149,16 @@ export namespace google.protobuf {
             /**
              * Creates a new Location instance using the specified properties.
              */
-            static create(properties: google.protobuf.SourceCodeInfo.ILocation): Location {
+            static create(properties: ILocation): Location {
                 return new Location(properties);
             }
 
             /**
-             * Encodes the specified Location message. Does not implicitly {@link Type .google.protobuf.SourceCodeInfo.Location.verify|verify} messages.
+             * Encodes the specified Location message. Does not implicitly {@link Location.verify|verify} messages.
              * @param message Locationmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: google.protobuf.SourceCodeInfo.ILocation, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: ILocation, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.path != null && message.path.length) {
@@ -12184,11 +12184,11 @@ export namespace google.protobuf {
             }
 
             /**
-             * Encodes the specified Location message, length delimited. Does not implicitly {@link Type .google.protobuf.SourceCodeInfo.Location.verify|verify} messages.
+             * Encodes the specified Location message, length delimited. Does not implicitly {@link Location.verify|verify} messages.
              * @param message Locationmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: google.protobuf.SourceCodeInfo.ILocation, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: ILocation, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -12199,7 +12199,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.SourceCodeInfo.Location {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Location {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.SourceCodeInfo.Location();
@@ -12251,7 +12251,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.SourceCodeInfo.Location {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Location {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -12299,7 +12299,7 @@ export namespace google.protobuf {
              * Creates a Location message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): google.protobuf.SourceCodeInfo.ILocation {
+            static fromObject(object): ILocation {
                 if (object instanceof google.protobuf.SourceCodeInfo.Location)
                     return object;
                 var message = new google.protobuf.SourceCodeInfo.Location();
@@ -12337,7 +12337,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: google.protobuf.SourceCodeInfo.ILocation, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: ILocation, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.arrays || options.defaults) {
                     object.path = [];
@@ -12380,7 +12380,7 @@ export namespace google.protobuf {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: google.protobuf.SourceCodeInfo.ILocation, b?: google.protobuf.SourceCodeInfo.ILocation): boolean {
+            static equals(a?: ILocation, b?: ILocation): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)
@@ -12405,11 +12405,11 @@ export namespace google.protobuf {
     /**
      * Represents a GeneratedCodeInfo.
      */
-    export class GeneratedCodeInfo implements google.protobuf.IGeneratedCodeInfo {
+    export class GeneratedCodeInfo implements IGeneratedCodeInfo {
         /**
          * Constructs a new GeneratedCodeInfo.
          */
-        constructor(properties?: google.protobuf.IGeneratedCodeInfo) {
+        constructor(properties?: IGeneratedCodeInfo) {
             this.annotation = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -12421,16 +12421,16 @@ export namespace google.protobuf {
         /**
          * Creates a new GeneratedCodeInfo instance using the specified properties.
          */
-        static create(properties: google.protobuf.IGeneratedCodeInfo): GeneratedCodeInfo {
+        static create(properties: IGeneratedCodeInfo): GeneratedCodeInfo {
             return new GeneratedCodeInfo(properties);
         }
 
         /**
-         * Encodes the specified GeneratedCodeInfo message. Does not implicitly {@link Type .google.protobuf.GeneratedCodeInfo.verify|verify} messages.
+         * Encodes the specified GeneratedCodeInfo message. Does not implicitly {@link GeneratedCodeInfo.verify|verify} messages.
          * @param message GeneratedCodeInfomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: google.protobuf.IGeneratedCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IGeneratedCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.annotation != null && message.annotation.length)
@@ -12440,11 +12440,11 @@ export namespace google.protobuf {
         }
 
         /**
-         * Encodes the specified GeneratedCodeInfo message, length delimited. Does not implicitly {@link Type .google.protobuf.GeneratedCodeInfo.verify|verify} messages.
+         * Encodes the specified GeneratedCodeInfo message, length delimited. Does not implicitly {@link GeneratedCodeInfo.verify|verify} messages.
          * @param message GeneratedCodeInfomessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: google.protobuf.IGeneratedCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IGeneratedCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -12455,7 +12455,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.GeneratedCodeInfo {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): GeneratedCodeInfo {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.GeneratedCodeInfo();
@@ -12481,7 +12481,7 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.GeneratedCodeInfo {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): GeneratedCodeInfo {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -12511,7 +12511,7 @@ export namespace google.protobuf {
          * Creates a GeneratedCodeInfo message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): google.protobuf.IGeneratedCodeInfo {
+        static fromObject(object): IGeneratedCodeInfo {
             if (object instanceof google.protobuf.GeneratedCodeInfo)
                 return object;
             var message = new google.protobuf.GeneratedCodeInfo();
@@ -12534,7 +12534,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: google.protobuf.IGeneratedCodeInfo, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IGeneratedCodeInfo, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.annotation = [];
@@ -12556,7 +12556,7 @@ export namespace google.protobuf {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: google.protobuf.IGeneratedCodeInfo, b?: google.protobuf.IGeneratedCodeInfo): boolean {
+        static equals(a?: IGeneratedCodeInfo, b?: IGeneratedCodeInfo): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
@@ -12579,11 +12579,11 @@ export namespace google.protobuf {
         /**
          * Represents an Annotation.
          */
-        export class Annotation implements google.protobuf.GeneratedCodeInfo.IAnnotation {
+        export class Annotation implements IAnnotation {
             /**
              * Constructs a new Annotation.
              */
-            constructor(properties?: google.protobuf.GeneratedCodeInfo.IAnnotation) {
+            constructor(properties?: IAnnotation) {
                 this.path = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
@@ -12598,16 +12598,16 @@ export namespace google.protobuf {
             /**
              * Creates a new Annotation instance using the specified properties.
              */
-            static create(properties: google.protobuf.GeneratedCodeInfo.IAnnotation): Annotation {
+            static create(properties: IAnnotation): Annotation {
                 return new Annotation(properties);
             }
 
             /**
-             * Encodes the specified Annotation message. Does not implicitly {@link Type .google.protobuf.GeneratedCodeInfo.Annotation.verify|verify} messages.
+             * Encodes the specified Annotation message. Does not implicitly {@link Annotation.verify|verify} messages.
              * @param message Annotationmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encode(message: google.protobuf.GeneratedCodeInfo.IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.path != null && message.path.length) {
@@ -12626,11 +12626,11 @@ export namespace google.protobuf {
             }
 
             /**
-             * Encodes the specified Annotation message, length delimited. Does not implicitly {@link Type .google.protobuf.GeneratedCodeInfo.Annotation.verify|verify} messages.
+             * Encodes the specified Annotation message, length delimited. Does not implicitly {@link Annotation.verify|verify} messages.
              * @param message Annotationmessage or plain object to encode
              * @param writer Writer to encode to
              */
-            static encodeDelimited(message: google.protobuf.GeneratedCodeInfo.IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer {
                 return this.encode(message, writer).ldelim();
             }
 
@@ -12641,7 +12641,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): google.protobuf.GeneratedCodeInfo.Annotation {
+            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Annotation {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
                 var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.GeneratedCodeInfo.Annotation();
@@ -12681,7 +12681,7 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): google.protobuf.GeneratedCodeInfo.Annotation {
+            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Annotation {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -12718,7 +12718,7 @@ export namespace google.protobuf {
              * Creates an Annotation message from a plain object. Also converts values to their respective internal types.
              * @param object Plain object
              */
-            static fromObject(object): google.protobuf.GeneratedCodeInfo.IAnnotation {
+            static fromObject(object): IAnnotation {
                 if (object instanceof google.protobuf.GeneratedCodeInfo.Annotation)
                     return object;
                 var message = new google.protobuf.GeneratedCodeInfo.Annotation();
@@ -12744,7 +12744,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: google.protobuf.GeneratedCodeInfo.IAnnotation, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IAnnotation, options: $protobuf.IConversionOptions = {}) {
                 let object: any = {};
                 if (options.arrays || options.defaults)
                     object.path = [];
@@ -12777,7 +12777,7 @@ export namespace google.protobuf {
             /**
              * Compares two messages, checking for strict equality.
              */
-            static equals(a?: google.protobuf.GeneratedCodeInfo.IAnnotation, b?: google.protobuf.GeneratedCodeInfo.IAnnotation): boolean {
+            static equals(a?: IAnnotation, b?: IAnnotation): boolean {
                 if (!a || !b)
                     return a === b;
                 if (a === b)

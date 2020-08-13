@@ -106,20 +106,31 @@ function exportName(object, asInterface) {
     return object[asInterface ? "__interfaceName" : "__exportName"] = parts.join(".");
 }
 
-function typeName(object, asInterface, context) {
-  let parentPath = '';
+function typeName(object, asInterface, context, omitParentPath) {
+  let messagePath = [''];
+  var ptr = object.parent;
+  if (!config.namespaces) {
+    while (ptr && ptr instanceof Type) {
+        messagePath.unshift(ptr.name);
+        ptr = ptr.parent;
+    }
+    messagePath = messagePath.join('');
+  }
 
   // TODO: Look at including parents in the name to avoid conflicting names
-  let referenceName = !(object instanceof Enum) && asInterface ? `I${object.name}` : escapeName(object.name);
+  let referenceName = !(object instanceof Enum) && asInterface ? `I${messagePath}${object.name}` : escapeName(messagePath + object.name);
 
-  parentPath = [''];
-  var ptr = object.parent;
-  while (ptr && ptr.name && !ptr.isFileRoot) {
-      parentPath.unshift(ptr.name);
-      ptr = ptr.parent;
+
+  let parentPath = '';
+
+  if (!omitParentPath) {
+    parentPath = [''];
+    while (ptr && ptr.name && !ptr.isFileRoot) {
+        parentPath.unshift(ptr.name);
+        ptr = ptr.parent;
+    }
+    parentPath = parentPath.join('.');
   }
-  parentPath = parentPath.join('.');
-
 
   return `${parentPath}${referenceName}`;
 }
@@ -141,18 +152,27 @@ function buildNamespace(ref, ns) {
         return;
 
     var emitNamespace;
+    var baseEmitted;
     if (ns instanceof Type) {
         buildType(ns);
+        baseEmitted = true;
     } else if (ns instanceof Service) {
         buildService(ns);
+        baseEmitted = true;
     }
 
-    if (ns.name !== "" && ns.nestedArray.length) {
-        emitNamespace = true;
-        push('');
-        push(`export namespace ${escapeName(ns.name)} {`);
-        indent++;
+    if (
+      (!baseEmitted || config.namespaces) &&
+      ns.name !== '' &&
+      ns.nestedArray.length &&
+      !ns.isFileRoot
+    ) {
+      emitNamespace = true;
+      push('');
+      push(`export namespace ${escapeName(ns.name)} {`);
+      indent++;
     }
+
     ns.nestedArray.forEach(function(nested) {
         if (nested instanceof Enum) {
             buildEnum(nested);
@@ -276,7 +296,7 @@ function buildFunction(type, functionName, gen) {
             )
                 return {
                     "type": "Identifier",
-                    "name": typeName(type, false, type)
+                    "name": typeName(type, false, type, false)
                 };
             // replace types[N] with the field's actual type
             if (
@@ -286,7 +306,7 @@ function buildFunction(type, functionName, gen) {
             )
                 return {
                     "type": "Identifier",
-                    "name": typeName(type.fieldsArray[node.property.value].resolvedType, false, type)
+                    "name": typeName(type.fieldsArray[node.property.value].resolvedType, false, type, false)
                 };
             return undefined;
         }
@@ -372,7 +392,11 @@ function toJsType(field) {
 function buildType(type) {
     push(`/** Properties of ${aOrAn(type.name)}. */`);
 
-    push(`export interface I${type.name} {`);
+    var className = typeName(type, false, undefined, !config.namespace);
+    var interfaceName = typeName(type, true, undefined, !config.namespace);
+    var dataName = config.forceMessage ? className : interfaceName;
+
+    push(`export interface ${interfaceName} {`);
     indent++;
     type.fieldsArray.forEach(function(field) {
         var prop = util.safeProp(field.name); // either .name or ["name"]
@@ -386,13 +410,13 @@ function buildType(type) {
     // constructor
     push("");
     pushComment([type.comment || "Represents " + aOrAn(type.name) + "."]);
-    push(`export class ${type.name} implements ${typeName(type, true)} {`);
+    push(`export class ${className} implements ${interfaceName} {`);
     indent++;
 
     pushComment([
         "Constructs a new " + type.name + ".",
     ]);
-    push(`constructor(properties?: ${typeName(type, true)}) {`);
+    push(`constructor(properties?: ${interfaceName}) {`);
     buildFunction(type, type.name, Type.generateConstructor(type));
     push("}");
 
@@ -449,12 +473,12 @@ function buildType(type) {
         push(`static oneOf_${escapeName(oneof.name)}Set = $util.oneOfSetter([${oneof.oneof.map(JSON.stringify).join(", ")}]);`);
         push(`get ${escapeName(oneof.name)}(): ${childTypes} {`);
         ++indent;
-            push(`return ${escapeName(type.name)}.oneOf_${escapeName(oneof.name)}Get();`);
+            push(`return ${className}.oneOf_${escapeName(oneof.name)}Get();`);
         --indent;
         push("}");
         push(`set ${escapeName(oneof.name)}(value: ${childTypes}) {`);
         ++indent;
-            push(`${escapeName(type.name)}.oneOf_${escapeName(oneof.name)}Set(value);`);
+            push(`${className}.oneOf_${escapeName(oneof.name)}Set(value);`);
         --indent;
         push("}");
     });
@@ -465,10 +489,10 @@ function buildType(type) {
             "Creates a new " + type.name + " instance using the specified properties.",
         ]);
         push(
-          `static create(properties: ${typeName(type, true)}): ${escapeName(type.name)} {`
+          `static create(properties: ${interfaceName}): ${className} {`
         );
             ++indent;
-            push("return new " + escapeName(type.name) + "(properties);");
+            push("return new " + className + "(properties);");
             --indent;
         push("}");
     }
@@ -476,22 +500,22 @@ function buildType(type) {
     if (config.encode) {
         push("");
         pushComment([
-            "Encodes the specified " + type.name + " message. Does not implicitly {@link " + escapeName(type) + ".verify|verify} messages.",
+            "Encodes the specified " + type.name + " message. Does not implicitly {@link " + className + ".verify|verify} messages.",
             "@param message " + type.name + "message or plain object to encode",
             "@param writer Writer to encode to",
         ]);
-        push(`static encode(message: ${typeName(type, !config.forceMessage)}, writer?: $protobuf.Writer): $protobuf.Writer {`);
+        push(`static encode(message: ${dataName}, writer?: $protobuf.Writer): $protobuf.Writer {`);
         buildFunction(type, "encode", protobuf.encoder(type));
         push("}");
 
         if (config.delimited) {
             push("");
             pushComment([
-                "Encodes the specified " + type.name + " message, length delimited. Does not implicitly {@link " + escapeName(type) + ".verify|verify} messages.",
+                "Encodes the specified " + type.name + " message, length delimited. Does not implicitly {@link " + className + ".verify|verify} messages.",
                 "@param message " + type.name + "message or plain object to encode",
                 "@param writer Writer to encode to",
             ]);
-            push(`static encodeDelimited(message: ${typeName(type, !config.forceMessage)}, writer?: $protobuf.Writer): $protobuf.Writer {`);
+            push(`static encodeDelimited(message: ${dataName}, writer?: $protobuf.Writer): $protobuf.Writer {`);
             ++indent;
             push("return this.encode(message, writer).ldelim();");
             --indent;
@@ -508,7 +532,7 @@ function buildType(type) {
             "@throws {Error} If the payload is not a reader or valid buffer",
             "@throws {$protobuf.util.ProtocolError} If required fields are missing"
         ]);
-        push(`static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ${typeName(type)} {`);
+        push(`static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ${className} {`);
         buildFunction(type, "decode", protobuf.decoder(type));
         push("}");
 
@@ -520,7 +544,7 @@ function buildType(type) {
                 "@throws {Error} If the payload is not a reader or valid buffer",
                 "@throws {$protobuf.util.ProtocolError} If required fields are missing"
             ]);
-            push(`static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ${typeName(type)} {`);
+            push(`static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ${className} {`);
             ++indent;
                 push("if (!(reader instanceof $Reader))");
                 ++indent;
@@ -550,7 +574,7 @@ function buildType(type) {
             "Creates " + aOrAn(type.name) + " message from a plain object. Also converts values to their respective internal types.",
             "@param object Plain object",
         ]);
-        push(`static fromObject(object): ${typeName(type, !config.forceMessage)} {`);
+        push(`static fromObject(object): ${dataName} {`);
         buildFunction(type, "fromObject", protobuf.converter.fromObject(type));
         push("}");
 
@@ -561,17 +585,17 @@ function buildType(type) {
             "@param optionsConversion options",
             "@returns Plain object"
         ]);
-        push(`static toObject(message: ${typeName(type, !config.forceMessage)}, options: $protobuf.IConversionOptions = {}) {`);
-        buildFunction(type, "toObject", protobuf.converter.toObject(type, typeName(type, !config.forceMessage)));
+        push(`static toObject(message: ${dataName}, options: $protobuf.IConversionOptions = {}) {`);
+        buildFunction(type, "toObject", protobuf.converter.toObject(type, dataName));
         push("}");
 
         push("");
         pushComment([
-            "Converts this " + type.name + " to JSON."
+            "Converts this " + className + " to JSON."
         ]);
         push("toJSON() {");
         ++indent;
-            push(`return ${type.name}.toObject(this, $protobuf.util.toJSONOptions);`);
+            push(`return ${className}.toObject(this, $protobuf.util.toJSONOptions);`);
         --indent;
         push("};");
     }
@@ -581,7 +605,7 @@ function buildType(type) {
       pushComment([
           "Compares two messages, checking for strict equality.",
       ]);
-      push(`static equals(a?: ${typeName(type, !config.forceMessage)}, b?: ${typeName(type, !config.forceMessage)}): boolean {`);
+      push(`static equals(a?: ${dataName}, b?: ${dataName}): boolean {`);
       buildFunction(type, "equals", protobuf.equals(type));
       push("}");
     }
@@ -674,7 +698,7 @@ function buildEnum(enm) {
     if (enm.comment) {
         pushComment(enm.comment);
     }
-    push(`export enum ${escapeName(enm.name)} {`);
+    push(`export enum ${typeName(enm, false, undefined, !config.namespace)} {`);
     ++indent;
         Object.keys(enm.values).forEach(function(key) {
             var valueId = enm.values[key];

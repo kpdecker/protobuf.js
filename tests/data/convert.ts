@@ -53,7 +53,7 @@ export class Message implements IMessage {
     }
 
     /**
-     * Encodes the specified Message message. Does not implicitly {@link Type .Message.verify|verify} messages.
+     * Encodes the specified Message message. Does not implicitly {@link Message.verify|verify} messages.
      * @param message Messagemessage or plain object to encode
      * @param writer Writer to encode to
      */
@@ -93,7 +93,7 @@ export class Message implements IMessage {
     }
 
     /**
-     * Encodes the specified Message message, length delimited. Does not implicitly {@link Type .Message.verify|verify} messages.
+     * Encodes the specified Message message, length delimited. Does not implicitly {@link Message.verify|verify} messages.
      * @param message Messagemessage or plain object to encode
      * @param writer Writer to encode to
      */

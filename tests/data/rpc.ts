@@ -65,7 +65,7 @@ export class MyRequest implements IMyRequest {
     }
 
     /**
-     * Encodes the specified MyRequest message. Does not implicitly {@link Type .MyRequest.verify|verify} messages.
+     * Encodes the specified MyRequest message. Does not implicitly {@link MyRequest.verify|verify} messages.
      * @param message MyRequestmessage or plain object to encode
      * @param writer Writer to encode to
      */
@@ -78,7 +78,7 @@ export class MyRequest implements IMyRequest {
     }
 
     /**
-     * Encodes the specified MyRequest message, length delimited. Does not implicitly {@link Type .MyRequest.verify|verify} messages.
+     * Encodes the specified MyRequest message, length delimited. Does not implicitly {@link MyRequest.verify|verify} messages.
      * @param message MyRequestmessage or plain object to encode
      * @param writer Writer to encode to
      */
@@ -212,7 +212,7 @@ export class MyResponse implements IMyResponse {
     }
 
     /**
-     * Encodes the specified MyResponse message. Does not implicitly {@link Type .MyResponse.verify|verify} messages.
+     * Encodes the specified MyResponse message. Does not implicitly {@link MyResponse.verify|verify} messages.
      * @param message MyResponsemessage or plain object to encode
      * @param writer Writer to encode to
      */
@@ -225,7 +225,7 @@ export class MyResponse implements IMyResponse {
     }
 
     /**
-     * Encodes the specified MyResponse message, length delimited. Does not implicitly {@link Type .MyResponse.verify|verify} messages.
+     * Encodes the specified MyResponse message, length delimited. Does not implicitly {@link MyResponse.verify|verify} messages.
      * @param message MyResponsemessage or plain object to encode
      * @param writer Writer to encode to
      */

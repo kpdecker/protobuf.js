@@ -70,7 +70,7 @@ export class Package implements IPackage {
     }
 
     /**
-     * Encodes the specified Package message. Does not implicitly {@link Type .Package.verify|verify} messages.
+     * Encodes the specified Package message. Does not implicitly {@link Package.verify|verify} messages.
      * @param message Packagemessage or plain object to encode
      * @param writer Writer to encode to
      */
@@ -121,7 +121,7 @@ export class Package implements IPackage {
     }
 
     /**
-     * Encodes the specified Package message, length delimited. Does not implicitly {@link Type .Package.verify|verify} messages.
+     * Encodes the specified Package message, length delimited. Does not implicitly {@link Package.verify|verify} messages.
      * @param message Packagemessage or plain object to encode
      * @param writer Writer to encode to
      */
@@ -592,11 +592,11 @@ export namespace Package {
     /**
      * Represents a Repository.
      */
-    export class Repository implements Package.IRepository {
+    export class Repository implements IRepository {
         /**
          * Constructs a new Repository.
          */
-        constructor(properties?: Package.IRepository) {
+        constructor(properties?: IRepository) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -608,16 +608,16 @@ export namespace Package {
         /**
          * Creates a new Repository instance using the specified properties.
          */
-        static create(properties: Package.IRepository): Repository {
+        static create(properties: IRepository): Repository {
             return new Repository(properties);
         }
 
         /**
-         * Encodes the specified Repository message. Does not implicitly {@link Type .Package.Repository.verify|verify} messages.
+         * Encodes the specified Repository message. Does not implicitly {@link Repository.verify|verify} messages.
          * @param message Repositorymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encode(message: Package.IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
@@ -628,11 +628,11 @@ export namespace Package {
         }
 
         /**
-         * Encodes the specified Repository message, length delimited. Does not implicitly {@link Type .Package.Repository.verify|verify} messages.
+         * Encodes the specified Repository message, length delimited. Does not implicitly {@link Repository.verify|verify} messages.
          * @param message Repositorymessage or plain object to encode
          * @param writer Writer to encode to
          */
-        static encodeDelimited(message: Package.IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
             return this.encode(message, writer).ldelim();
         }
 
@@ -643,7 +643,7 @@ export namespace Package {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Package.Repository {
+        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Repository {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new Package.Repository();
@@ -670,7 +670,7 @@ export namespace Package {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Package.Repository {
+        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Repository {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, (reader as $protobuf.Reader).uint32());
@@ -697,7 +697,7 @@ export namespace Package {
          * Creates a Repository message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
          */
-        static fromObject(object): Package.IRepository {
+        static fromObject(object): IRepository {
             if (object instanceof Package.Repository)
                 return object;
             var message = new Package.Repository();
@@ -714,7 +714,7 @@ export namespace Package {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: Package.IRepository, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IRepository, options: $protobuf.IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.type = "";
@@ -737,7 +737,7 @@ export namespace Package {
         /**
          * Compares two messages, checking for strict equality.
          */
-        static equals(a?: Package.IRepository, b?: Package.IRepository): boolean {
+        static equals(a?: IRepository, b?: IRepository): boolean {
             if (!a || !b)
                 return a === b;
             if (a === b)
