@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v6.10.0 (c) 2016, daniel wirtz
- * compiled wed, 15 jul 2020 23:34:13 utc
+ * protobuf.js v6.10.1 (c) 2016, daniel wirtz
+ * compiled thu, 13 aug 2020 18:52:28 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -1109,6 +1109,310 @@ utf8.write = function utf8_write(string, buffer, offset) {
 };
 
 },{}],11:[function(require,module,exports){
+// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+// backported and transplited with Babel, with backwards-compat fixes
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  if (path.length === 0) return '.';
+  var code = path.charCodeAt(0);
+  var hasRoot = code === 47 /*/*/;
+  var end = -1;
+  var matchedSlash = true;
+  for (var i = path.length - 1; i >= 1; --i) {
+    code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        if (!matchedSlash) {
+          end = i;
+          break;
+        }
+      } else {
+      // We saw the first non-path separator
+      matchedSlash = false;
+    }
+  }
+
+  if (end === -1) return hasRoot ? '/' : '.';
+  if (hasRoot && end === 1) {
+    // return '//';
+    // Backwards-compat fix:
+    return '/';
+  }
+  return path.slice(0, end);
+};
+
+function basename(path) {
+  if (typeof path !== 'string') path = path + '';
+
+  var start = 0;
+  var end = -1;
+  var matchedSlash = true;
+  var i;
+
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path.charCodeAt(i) === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          start = i + 1;
+          break;
+        }
+      } else if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // path component
+      matchedSlash = false;
+      end = i + 1;
+    }
+  }
+
+  if (end === -1) return '';
+  return path.slice(start, end);
+}
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+// in new Node.js versions, so only basename() above is backported here
+exports.basename = function (path, ext) {
+  var f = basename(path);
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+exports.extname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  var startDot = -1;
+  var startPart = 0;
+  var end = -1;
+  var matchedSlash = true;
+  // Track the state of characters (if any) we see before our first dot and
+  // after any path separator we find
+  var preDotState = 0;
+  for (var i = path.length - 1; i >= 0; --i) {
+    var code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          startPart = i + 1;
+          break;
+        }
+        continue;
+      }
+    if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // extension
+      matchedSlash = false;
+      end = i + 1;
+    }
+    if (code === 46 /*.*/) {
+        // If this is our first dot, mark it as the start of our extension
+        if (startDot === -1)
+          startDot = i;
+        else if (preDotState !== 1)
+          preDotState = 1;
+    } else if (startDot !== -1) {
+      // We saw a non-dot and non-path separator before our dot, so we should
+      // have a good chance at having a non-empty extension
+      preDotState = -1;
+    }
+  }
+
+  if (startDot === -1 || end === -1 ||
+      // We saw a non-dot character immediately before the dot
+      preDotState === 0 ||
+      // The (right-most) trimmed path component is exactly '..'
+      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+    return '';
+  }
+  return path.slice(startDot, end);
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+},{}],12:[function(require,module,exports){
 "use strict";
 /**
  * Runtime message from/to plain object converters.
@@ -1116,8 +1420,8 @@ utf8.write = function utf8_write(string, buffer, offset) {
  */
 var converter = exports;
 
-var Enum = require(14),
-    util = require(33);
+var Enum = require(15),
+    util = require(35);
 
 /**
  * Generates a partial value fromObject conveter.
@@ -1177,7 +1481,7 @@ function genValuePartial_fromObject(gen, field, fieldIndex, prop) {
                 ("else if(typeof d%s===\"number\")", prop)
                     ("m%s=d%s", prop, prop)
                 ("else if(typeof d%s===\"object\")", prop)
-                    ("m%s=new util.LongBits(d%s.low>>>0,d%s.high>>>0).toNumber(%s)", prop, prop, prop, isUnsigned ? "true" : "");
+                    ("m%s=new util.LongBits(d%s).toNumber(%s)", prop, prop, isUnsigned ? "true" : "");
                 break;
             case "bytes": gen
                 ("if(typeof d%s===\"string\")", prop)
@@ -1287,7 +1591,7 @@ function genValuePartial_toObject(gen, field, fieldIndex, prop) {
             ("if(typeof m%s===\"number\")", prop)
                 ("d%s=o.longs===String?String(m%s):m%s", prop, prop, prop)
             ("else") // Long-like
-                ("d%s=o.longs===String?util.Long.prototype.toString.call(m%s):o.longs===Number?new util.LongBits(m%s.low>>>0,m%s.high>>>0).toNumber(%s):m%s", prop, prop, prop, prop, isUnsigned ? "true": "", prop);
+                ("d%s=o.longs===String?util.Long.prototype.toString.call(m%s):o.longs===Number?new util.LongBits(m%s).toNumber(%s):m%s", prop, prop, prop, isUnsigned ? "true": "", prop);
                 break;
             case "bytes": gen
             ("d%s=o.bytes===String?util.base64.encode(m%s,0,m%s.length):o.bytes===Array?Array.prototype.slice.call(m%s):m%s", prop, prop, prop, prop, prop);
@@ -1304,17 +1608,23 @@ function genValuePartial_toObject(gen, field, fieldIndex, prop) {
 /**
  * Generates a runtime message to plain object converter specific to the specified message type.
  * @param {Type} mtype Message type
+ * @param {boolean} isTypescript true if the code target is typescript (implies parameter defaults and higher order enums)
  * @returns {Codegen} Codegen instance
  */
-converter.toObject = function toObject(mtype) {
+converter.toObject = function toObject(mtype, isTypescript) {
     /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
     var fields = mtype.fieldsArray.slice().sort(util.compareFieldsById);
     if (!fields.length)
         return util.codegen()("return {}");
-    var gen = util.codegen(["m", "o"], mtype.name + "$toObject")
-    ("if(!o)")
-        ("o={}")
-    ("var d={}");
+    var gen = util.codegen(["m", "o"], mtype.name + "$toObject");
+
+    if (!isTypescript) {
+        gen("if(!o)")
+            ("o={}")
+        ("var d={}");
+    } else {
+        gen("var d={}");
+    }
 
     var repeatedFields = [],
         mapFields = [],
@@ -1347,7 +1657,7 @@ converter.toObject = function toObject(mtype) {
         for (i = 0; i < normalFields.length; ++i) {
             var field = normalFields[i],
                 prop  = util.safeProp(field.name);
-            if (field.resolvedType instanceof Enum) gen
+            if (field.resolvedType instanceof Enum && !isTypescript) gen
         ("d%s=o.enums===String?%j:%j", prop, field.resolvedType.valuesById[field.typeDefault], field.typeDefault);
             else if (field.long) gen
         ("if(util.Long){")
@@ -1403,13 +1713,13 @@ converter.toObject = function toObject(mtype) {
     /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
 };
 
-},{"14":14,"33":33}],12:[function(require,module,exports){
+},{"15":15,"35":35}],13:[function(require,module,exports){
 "use strict";
 module.exports = decoder;
 
-var Enum    = require(14),
-    types   = require(32),
-    util    = require(33);
+var Enum    = require(15),
+    types   = require(34),
+    util    = require(35);
 
 function missing(field) {
     return "missing required '" + field.name + "'";
@@ -1443,7 +1753,7 @@ function decoder(mtype) {
 
         // Map fields
         if (field.map) { gen
-                ("if(%s===util.emptyObject)", ref)
+                ("if(%s===util.emptyObject || !%s)", ref, ref)
                     ("%s={}", ref)
                 ("var c2 = r.uint32()+r.pos");
 
@@ -1525,7 +1835,7 @@ function decoder(mtype) {
         var rfield = mtype._fieldsArray[i];
         if (rfield.required) gen
     ("if(!m.hasOwnProperty(%j))", rfield.name)
-        ("throw util.ProtocolError(%j,{instance:m})", missing(rfield));
+        ("throw new util.ProtocolError(%j,{instance:m})", missing(rfield));
     }
 
     return gen
@@ -1533,13 +1843,13 @@ function decoder(mtype) {
     /* eslint-enable no-unexpected-multiline */
 }
 
-},{"14":14,"32":32,"33":33}],13:[function(require,module,exports){
+},{"15":15,"34":34,"35":35}],14:[function(require,module,exports){
 "use strict";
 module.exports = encoder;
 
-var Enum     = require(14),
-    types    = require(32),
-    util     = require(33);
+var Enum     = require(15),
+    types    = require(34),
+    util     = require(35);
 
 /**
  * Generates a partial message type encoder.
@@ -1635,16 +1945,16 @@ function encoder(mtype) {
     /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
 }
 
-},{"14":14,"32":32,"33":33}],14:[function(require,module,exports){
+},{"15":15,"34":34,"35":35}],15:[function(require,module,exports){
 "use strict";
 module.exports = Enum;
 
 // extends ReflectionObject
-var ReflectionObject = require(22);
+var ReflectionObject = require(24);
 ((Enum.prototype = Object.create(ReflectionObject.prototype)).constructor = Enum).className = "Enum";
 
-var Namespace = require(21),
-    util = require(33);
+var Namespace = require(23),
+    util = require(35);
 
 /**
  * Constructs a new enum instance.
@@ -1698,9 +2008,16 @@ function Enum(name, values, options, comment, comments) {
     // static and reflection code alike instead of emitting generic object definitions.
 
     if (values)
-        for (var keys = Object.keys(values), i = 0; i < keys.length; ++i)
-            if (typeof values[keys[i]] === "number") // use forward entries only
-                this.valuesById[ this.values[keys[i]] = values[keys[i]] ] = keys[i];
+        for (var keys = Object.keys(values), i = 0; i < keys.length; ++i) {
+            var originalKey = keys[i];
+            var key = originalKey;
+            if (key.startsWith(this.name + "_"))
+                key = key.slice(this.name.length + 1);
+
+            if (typeof values[originalKey] === "number") { // use forward entries only
+                this.valuesById[ this.values[key] = values[originalKey] ] = key;
+            }
+        }
 }
 
 /**
@@ -1766,6 +2083,9 @@ Enum.prototype.add = function add(name, id, comment) {
     if (this.isReservedName(name))
         throw Error("name '" + name + "' is reserved in " + this);
 
+    if (name.startsWith(this.name + "_"))
+        name = name.slice(this.name.length + 1);
+
     if (this.valuesById[id] !== undefined) {
         if (!(this.options && this.options.allow_alias))
             throw Error("duplicate id " + id + " in " + this);
@@ -1818,17 +2138,159 @@ Enum.prototype.isReservedName = function isReservedName(name) {
     return Namespace.isReservedName(this.reserved, name);
 };
 
-},{"21":21,"22":22,"33":33}],15:[function(require,module,exports){
+},{"23":23,"24":24,"35":35}],16:[function(require,module,exports){
+"use strict";
+
+var Enum = require(15),
+    util = require(35);
+
+function genValuePartial_equals(gen, field, fieldIndex, prop, index) {
+  index = index || "";
+
+  /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
+  if (field.resolvedType) {
+    if (index) {
+      if (field.resolvedType instanceof Enum) {
+        gen("(a%s && a%s%s)===(b%s && b%s%s)", prop, prop, index, prop, prop, index);
+      } else gen("types[%i].equals(a%s && a%s%s, b%s && b%s%s)", fieldIndex, prop, prop, index, prop, prop, index);
+    } else {
+      if (field.resolvedType instanceof Enum) {
+        gen("a%s===b%s", prop, prop);
+      } else gen("types[%i].equals(a%s, b%s)", fieldIndex, prop, prop);
+    }
+  } else {
+    switch (field.type) {
+      case "double":
+      case "float":
+      case "uint32":
+      case "fixed32":
+      case "int32":
+      case "sint32":
+      case "sfixed32":
+      case "string":
+      case "bool":
+        if (index) {
+          gen("(a%s && a%s%s) === (b%s && b%s%s)", prop, prop, index, prop, prop, index);
+        } else {
+          gen("a%s===b%s", prop, prop);
+        }
+        break;
+      case "uint64":
+      case "int64":
+      case "sint64":
+      case "fixed64":
+      case "sfixed64":
+        if (index) {
+          gen("$util.longEquals(a%s && a%s%s, b%s && b%s%s)", prop, prop, index, prop, prop, index);
+        } else {
+          gen("$util.longEquals(a%s, b%s)", prop, prop);
+        }
+        break;
+      case "bytes":
+        if (index) {
+          gen("$util.bytesEquals(a%s && a%s%s, b%s && b%s%s)", prop, prop, index, prop, prop, index);
+        } else {
+          gen("$util.bytesEquals(a%s, b%s)", prop, prop);
+        }
+        break;
+      default:
+        throw new Error("Unexpected type: " + field.type);
+    }
+  }
+  return gen;
+  /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
+}
+
+/**
+ * Generates a plain object to runtime message equality check specific to the specified message type.
+ * @param {Type} mtype Message type
+ * @returns {Codegen} Codegen instance
+ */
+module.exports = function equals(mtype) {
+  /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
+  var fields = mtype.fieldsArray;
+  var gen = util.codegen([], mtype.name + "$equals");
+
+  gen("if (!a || !b) { return a === b }")("if (a === b) { return true }");
+
+  if (fields.length) {
+    gen("return (");
+
+    for (var i = 0; i < fields.length; ++i) {
+      var field = fields[i].resolve(),
+        prop = util.safeProp(field.name);
+
+      // Map fields
+      if (field.map) {
+        if (i) {
+          gen("&&");
+        }
+
+        gen(
+          "$util.mapEquals(a%s, b%s, function(keyName) { return !!b%s && (!(keyName in b%s) && ",
+          prop,
+          prop,
+          prop,
+          prop
+        );
+        genValuePartial_equals(
+          gen,
+          field,
+          /* not sorted */ i,
+          prop,
+          "[keyName]"
+        );
+        gen(");})");
+
+        // Repeated fields
+      } else if (field.repeated) {
+        if (i) {
+          gen("&&");
+        }
+
+        gen(
+          "(!!a%s && !!b%s && a%s.length === b%s.length && !a%s.find(function (aValue, i){ return (",
+          prop,
+          prop,
+          prop,
+          prop,
+          prop
+        );
+        genValuePartial_equals(
+          gen,
+          field,
+          /* not sorted */ i,
+          prop,
+          "[i]"
+        )(");}))");
+
+        // Non-repeated fields
+      } else {
+        if (i) {
+          gen("&&");
+        }
+        genValuePartial_equals(gen, field, /* not sorted */ i, prop);
+      }
+    }
+    gen(")");
+  } else {
+    gen("return true;");
+  }
+  return gen;
+  /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
+};
+
+},{"15":15,"35":35}],17:[function(require,module,exports){
 "use strict";
 module.exports = Field;
 
 // extends ReflectionObject
-var ReflectionObject = require(22);
+var ReflectionObject = require(24);
 ((Field.prototype = Object.create(ReflectionObject.prototype)).constructor = Field).className = "Field";
 
-var Enum  = require(14),
-    types = require(32),
-    util  = require(33);
+var Enum  = require(15),
+    types = require(34),
+    util  = require(35);
 
 var Type; // cyclic
 
@@ -2191,9 +2653,9 @@ Field._configure = function configure(Type_) {
     Type = Type_;
 };
 
-},{"14":14,"22":22,"32":32,"33":33}],16:[function(require,module,exports){
+},{"15":15,"24":24,"34":34,"35":35}],18:[function(require,module,exports){
 "use strict";
-var protobuf = module.exports = require(17);
+var protobuf = module.exports = require(19);
 
 protobuf.build = "light";
 
@@ -2266,30 +2728,31 @@ function loadSync(filename, root) {
 protobuf.loadSync = loadSync;
 
 // Serialization
-protobuf.encoder          = require(13);
-protobuf.decoder          = require(12);
-protobuf.verifier         = require(36);
-protobuf.converter        = require(11);
+protobuf.encoder          = require(14);
+protobuf.decoder          = require(13);
+protobuf.verifier         = require(38);
+protobuf.converter        = require(12);
 
 // Reflection
-protobuf.ReflectionObject = require(22);
-protobuf.Namespace        = require(21);
-protobuf.Root             = require(26);
-protobuf.Enum             = require(14);
-protobuf.Type             = require(31);
-protobuf.Field            = require(15);
-protobuf.OneOf            = require(23);
-protobuf.MapField         = require(18);
-protobuf.Service          = require(30);
-protobuf.Method           = require(20);
+protobuf.ReflectionObject = require(24);
+protobuf.Namespace        = require(23);
+protobuf.Root             = require(28);
+protobuf.Enum             = require(15);
+protobuf.Type             = require(33);
+protobuf.Field            = require(17);
+protobuf.OneOf            = require(25);
+protobuf.MapField         = require(20);
+protobuf.Service          = require(32);
+protobuf.Method           = require(22);
 
 // Runtime
-protobuf.Message          = require(19);
-protobuf.wrappers         = require(37);
+protobuf.Message          = require(21);
+protobuf.wrappers         = require(39);
 
 // Utility
-protobuf.types            = require(32);
-protobuf.util             = require(33);
+protobuf.equals           = require(16);
+protobuf.types            = require(34);
+protobuf.util             = require(35);
 
 // Set up possibly cyclic reflection dependencies
 protobuf.ReflectionObject._configure(protobuf.Root);
@@ -2297,7 +2760,7 @@ protobuf.Namespace._configure(protobuf.Type, protobuf.Service, protobuf.Enum);
 protobuf.Root._configure(protobuf.Type);
 protobuf.Field._configure(protobuf.Type);
 
-},{"11":11,"12":12,"13":13,"14":14,"15":15,"17":17,"18":18,"19":19,"20":20,"21":21,"22":22,"23":23,"26":26,"30":30,"31":31,"32":32,"33":33,"36":36,"37":37}],17:[function(require,module,exports){
+},{"12":12,"13":13,"14":14,"15":15,"16":16,"17":17,"19":19,"20":20,"21":21,"22":22,"23":23,"24":24,"25":25,"28":28,"32":32,"33":33,"34":34,"35":35,"38":38,"39":39}],19:[function(require,module,exports){
 "use strict";
 var protobuf = exports;
 
@@ -2310,15 +2773,15 @@ var protobuf = exports;
 protobuf.build = "minimal";
 
 // Serialization
-protobuf.Writer       = require(38);
-protobuf.BufferWriter = require(39);
-protobuf.Reader       = require(24);
-protobuf.BufferReader = require(25);
+protobuf.Writer       = require(40);
+protobuf.BufferWriter = require(41);
+protobuf.Reader       = require(26);
+protobuf.BufferReader = require(27);
 
 // Utility
-protobuf.util         = require(35);
-protobuf.rpc          = require(28);
-protobuf.roots        = require(27);
+protobuf.util         = require(37);
+protobuf.rpc          = require(30);
+protobuf.roots        = require(29);
 protobuf.configure    = configure;
 
 /* istanbul ignore next */
@@ -2335,16 +2798,16 @@ function configure() {
 // Set up buffer utility according to the environment
 configure();
 
-},{"24":24,"25":25,"27":27,"28":28,"35":35,"38":38,"39":39}],18:[function(require,module,exports){
+},{"26":26,"27":27,"29":29,"30":30,"37":37,"40":40,"41":41}],20:[function(require,module,exports){
 "use strict";
 module.exports = MapField;
 
 // extends Field
-var Field = require(15);
+var Field = require(17);
 ((MapField.prototype = Object.create(Field.prototype)).constructor = MapField).className = "MapField";
 
-var types   = require(32),
-    util    = require(33);
+var types   = require(34),
+    util    = require(35);
 
 /**
  * Constructs a new map field instance.
@@ -2463,11 +2926,11 @@ MapField.d = function decorateMapField(fieldId, fieldKeyType, fieldValueType) {
     };
 };
 
-},{"15":15,"32":32,"33":33}],19:[function(require,module,exports){
+},{"17":17,"34":34,"35":35}],21:[function(require,module,exports){
 "use strict";
 module.exports = Message;
 
-var util = require(35);
+var util = require(37);
 
 /**
  * Constructs a new message instance.
@@ -2603,15 +3066,15 @@ Message.prototype.toJSON = function toJSON() {
 };
 
 /*eslint-enable valid-jsdoc*/
-},{"35":35}],20:[function(require,module,exports){
+},{"37":37}],22:[function(require,module,exports){
 "use strict";
 module.exports = Method;
 
 // extends ReflectionObject
-var ReflectionObject = require(22);
+var ReflectionObject = require(24);
 ((Method.prototype = Object.create(ReflectionObject.prototype)).constructor = Method).className = "Method";
 
-var util = require(33);
+var util = require(35);
 
 /**
  * Constructs a new service method instance.
@@ -2756,16 +3219,16 @@ Method.prototype.resolve = function resolve() {
     return ReflectionObject.prototype.resolve.call(this);
 };
 
-},{"22":22,"33":33}],21:[function(require,module,exports){
+},{"24":24,"35":35}],23:[function(require,module,exports){
 "use strict";
 module.exports = Namespace;
 
 // extends ReflectionObject
-var ReflectionObject = require(22);
+var ReflectionObject = require(24);
 ((Namespace.prototype = Object.create(ReflectionObject.prototype)).constructor = Namespace).className = "Namespace";
 
-var Field    = require(15),
-    util     = require(33);
+var Field    = require(17),
+    util     = require(35);
 
 var Type,    // cyclic
     Service,
@@ -2868,10 +3331,11 @@ function Namespace(name, options) {
     this._nestedArray = null;
 }
 
-function clearCache(namespace) {
-    namespace._nestedArray = null;
-    return namespace;
-}
+Namespace.prototype.clearCache = function clearCache() {
+    this._nestedArray = null;
+    this._pathMap = null;
+    return this;
+};
 
 /**
  * Nested objects of this namespace as an array for iteration.
@@ -2950,8 +3414,66 @@ Namespace.prototype.addJSON = function addJSON(nestedJson) {
  * @returns {ReflectionObject|null} The reflection object or `null` if it doesn't exist
  */
 Namespace.prototype.get = function get(name) {
-    return this.nested && this.nested[name]
-        || null;
+    if (!Array.isArray(name)) {
+        name = name.split(/\./g);
+    }
+
+    var pathMap = this._loadPathMap();
+    var ptr = pathMap;
+    var walkPath = name.slice();
+    while (ptr && walkPath.length) {
+        ptr = ptr.children && ptr.children.find(function (child) {
+            return child.name === walkPath[0];
+        });
+        if (ptr) {
+            walkPath.shift();
+        }
+    }
+
+    if (!walkPath.length && ptr) {
+        return ptr.node;
+    }
+
+    // Special case direct lookup of . inclusive field names
+    // This is used primarily for extended fields.
+    if (name.length > 1) {
+        name = name.join(".");
+        ptr = pathMap.children.find(function (child) {
+        return child.name === name;
+        });
+        if (ptr) {
+            return ptr.node;
+        }
+    }
+    return null;
+};
+
+Namespace.prototype._loadPathMap = function _loadPathMap() {
+    var pathMap = { children: [] };
+    this.nestedArray.forEach(function (child) {
+        var nameComponents = child.name.split(/\./g);
+        var ptr = pathMap;
+        nameComponents.slice(0, -1).forEach(function (component) {
+            var existing = ptr.children.find(function (mapEl) {
+                return mapEl.name === component;
+            });
+            if (existing) {
+                ptr = existing;
+            } else {
+                var newEl = { name: component, children: [] };
+                ptr.children.push(newEl);
+                ptr = newEl;
+            }
+        });
+
+        var childPathMap = child._loadPathMap && child._loadPathMap();
+        ptr.children.push({
+            name: nameComponents[nameComponents.length - 1],
+            node: child,
+            children: childPathMap && childPathMap.children,
+        });
+    });
+    return pathMap;
 };
 
 /**
@@ -2999,8 +3521,9 @@ Namespace.prototype.add = function add(object) {
         }
     }
     this.nested[object.name] = object;
+    this.clearCache();
     object.onAdd(this);
-    return clearCache(this);
+    return this;
 };
 
 /**
@@ -3021,34 +3544,38 @@ Namespace.prototype.remove = function remove(object) {
     if (!Object.keys(this.nested).length)
         this.nested = undefined;
 
+    this.clearCache();
+
     object.onRemove(this);
-    return clearCache(this);
+    return this;
 };
 
 /**
  * Defines additial namespaces within this one if not yet existing.
  * @param {string|string[]} path Path to create
  * @param {*} [json] Nested types to create from JSON
+ * @param {string} [filename] Filename defining namespace
  * @returns {Namespace} Pointer to the last namespace created or `this` if path is empty
  */
-Namespace.prototype.define = function define(path, json) {
+Namespace.prototype.define = function define(path, json, filename) {
 
-    if (util.isString(path))
-        path = path.split(".");
-    else if (!Array.isArray(path))
+    if (Array.isArray(path))
+        path = path.join(".");
+    else if (!util.isString(path))
         throw TypeError("illegal path");
-    if (path && path.length && path[0] === "")
+    if (path.startsWith("."))
         throw Error("path must be relative");
 
     var ptr = this;
-    while (path.length > 0) {
-        var part = path.shift();
-        if (ptr.nested && ptr.nested[part]) {
-            ptr = ptr.nested[part];
-            if (!(ptr instanceof Namespace))
-                throw Error("path conflicts with non-namespace objects");
-        } else
-            ptr.add(ptr = new Namespace(part));
+    if (ptr.nested && ptr.nested[path]) {
+        ptr = ptr.nested[path];
+        ptr.filenames.push(filename);
+        if (!(ptr instanceof Namespace))
+            throw Error("path conflicts with non-namespace objects");
+    } else {
+        ptr.add(ptr = new Namespace(path));
+        ptr.filename = filename;
+        ptr.filenames = [ filename ];
     }
     if (json)
         ptr.addJSON(json);
@@ -3097,12 +3624,9 @@ Namespace.prototype.lookup = function lookup(path, filterTypes, parentAlreadyChe
         return this.root.lookup(path.slice(1), filterTypes);
 
     // Test if the first part matches any nested object, and if so, traverse if path contains more
-    var found = this.get(path[0]);
+    var found = this.get(path);
     if (found) {
-        if (path.length === 1) {
-            if (!filterTypes || filterTypes.indexOf(found.constructor) > -1)
-                return found;
-        } else if (found instanceof Namespace && (found = found.lookup(path.slice(1), filterTypes, true)))
+        if (!filterTypes || filterTypes.indexOf(found.constructor) > -1)
             return found;
 
     // Otherwise try each nested namespace
@@ -3191,13 +3715,13 @@ Namespace._configure = function(Type_, Service_, Enum_) {
     Enum    = Enum_;
 };
 
-},{"15":15,"22":22,"33":33}],22:[function(require,module,exports){
+},{"17":17,"24":24,"35":35}],24:[function(require,module,exports){
 "use strict";
 module.exports = ReflectionObject;
 
 ReflectionObject.className = "ReflectionObject";
 
-var util = require(33);
+var util = require(35);
 
 var Root; // cyclic
 
@@ -3287,7 +3811,7 @@ Object.defineProperties(ReflectionObject.prototype, {
         get: function() {
             var path = [ this.name ],
                 ptr = this.parent;
-            while (ptr) {
+            while (ptr && !ptr.isFileRoot) {
                 path.unshift(ptr.name);
                 ptr = ptr.parent;
             }
@@ -3436,16 +3960,16 @@ ReflectionObject._configure = function(Root_) {
     Root = Root_;
 };
 
-},{"33":33}],23:[function(require,module,exports){
+},{"35":35}],25:[function(require,module,exports){
 "use strict";
 module.exports = OneOf;
 
 // extends ReflectionObject
-var ReflectionObject = require(22);
+var ReflectionObject = require(24);
 ((OneOf.prototype = Object.create(ReflectionObject.prototype)).constructor = OneOf).className = "OneOf";
 
-var Field = require(15),
-    util  = require(33);
+var Field = require(17),
+    util  = require(35);
 
 /**
  * Constructs a new oneof instance.
@@ -3641,11 +4165,11 @@ OneOf.d = function decorateOneOf() {
     };
 };
 
-},{"15":15,"22":22,"33":33}],24:[function(require,module,exports){
+},{"17":17,"24":24,"35":35}],26:[function(require,module,exports){
 "use strict";
 module.exports = Reader;
 
-var util      = require(35);
+var util      = require(37);
 
 var BufferReader; // cyclic
 
@@ -4054,15 +4578,15 @@ Reader._configure = function(BufferReader_) {
     });
 };
 
-},{"35":35}],25:[function(require,module,exports){
+},{"37":37}],27:[function(require,module,exports){
 "use strict";
 module.exports = BufferReader;
 
 // extends Reader
-var Reader = require(24);
+var Reader = require(26);
 (BufferReader.prototype = Object.create(Reader.prototype)).constructor = BufferReader;
 
-var util = require(35);
+var util = require(37);
 
 /**
  * Constructs a new buffer reader instance.
@@ -4107,18 +4631,20 @@ BufferReader.prototype.string = function read_string_buffer() {
 
 BufferReader._configure();
 
-},{"24":24,"35":35}],26:[function(require,module,exports){
+},{"26":26,"37":37}],28:[function(require,module,exports){
 "use strict";
 module.exports = Root;
 
+var Path = require(11);
+
 // extends Namespace
-var Namespace = require(21);
+var Namespace = require(23);
 ((Root.prototype = Object.create(Namespace.prototype)).constructor = Root).className = "Root";
 
-var Field   = require(15),
-    Enum    = require(14),
-    OneOf   = require(23),
-    util    = require(33);
+var Field   = require(17),
+    Enum    = require(15),
+    OneOf   = require(25),
+    util    = require(35);
 
 var Type,   // cyclic
     parse,  // might be excluded
@@ -4226,25 +4752,26 @@ Root.prototype.load = function load(filename, options, callback) {
     }
 
     // Processes a single file
-    function process(filename, source) {
+    function process(filename, source, referenced) {
         try {
             if (util.isString(source) && source.charAt(0) === "{")
                 source = JSON.parse(source);
+
             if (!util.isString(source))
                 self.setOptions(source.options).addJSON(source.nested);
             else {
-                parse.filename = filename;
+                parse.filename = referenced;
                 var parsed = parse(source, self, options),
                     resolved,
                     i = 0;
                 if (parsed.imports)
                     for (; i < parsed.imports.length; ++i)
                         if (resolved = getBundledFileName(parsed.imports[i]) || self.resolvePath(filename, parsed.imports[i]))
-                            fetch(resolved);
+                            fetch(resolved, false, parsed.imports[i].replace(/\//g, "_"));
                 if (parsed.weakImports)
                     for (i = 0; i < parsed.weakImports.length; ++i)
                         if (resolved = getBundledFileName(parsed.weakImports[i]) || self.resolvePath(filename, parsed.weakImports[i]))
-                            fetch(resolved, true);
+                            fetch(resolved, true, parsed.weakImports[i].replace(/\//g, "_"));
             }
         } catch (err) {
             finish(err);
@@ -4254,22 +4781,23 @@ Root.prototype.load = function load(filename, options, callback) {
     }
 
     // Fetches a single file
-    function fetch(filename, weak) {
+    function fetch(filename, weak, referenced) {
+        referenced = referenced || filename;
 
         // Skip if already loaded / attempted
-        if (self.files.indexOf(filename) > -1)
+        if (self.files.indexOf(referenced) > -1)
             return;
-        self.files.push(filename);
+        self.files.push(referenced);
 
         // Shortcut bundled definitions
         if (filename in common) {
             if (sync)
-                process(filename, common[filename]);
+                process(filename, common[filename], referenced);
             else {
                 ++queued;
                 setTimeout(function() {
                     --queued;
-                    process(filename, common[filename]);
+                    process(filename, common[filename], referenced);
                 });
             }
             return;
@@ -4285,7 +4813,7 @@ Root.prototype.load = function load(filename, options, callback) {
                     finish(err);
                 return;
             }
-            process(filename, source);
+            process(filename, source, referenced);
         } else {
             ++queued;
             self.fetch(filename, function(err, source) {
@@ -4301,7 +4829,7 @@ Root.prototype.load = function load(filename, options, callback) {
                         finish(null, self);
                     return;
                 }
-                process(filename, source);
+                process(filename, source, referenced);
             });
         }
     }
@@ -4313,7 +4841,7 @@ Root.prototype.load = function load(filename, options, callback) {
         filename = [ filename ];
     for (var i = 0, resolved; i < filename.length; ++i)
         if (resolved = self.resolvePath("", filename[i]))
-            fetch(resolved);
+            fetch(resolved, false, Path.basename(filename[i]));
 
     if (sync)
         return self;
@@ -4472,7 +5000,7 @@ Root._configure = function(Type_, parse_, common_) {
     common = common_;
 };
 
-},{"14":14,"15":15,"21":21,"23":23,"33":33}],27:[function(require,module,exports){
+},{"11":11,"15":15,"17":17,"23":23,"25":25,"35":35}],29:[function(require,module,exports){
 "use strict";
 module.exports = {};
 
@@ -4492,7 +5020,7 @@ module.exports = {};
  * var root = protobuf.roots["myroot"];
  */
 
-},{}],28:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 
 /**
@@ -4528,13 +5056,13 @@ var rpc = exports;
  * @returns {undefined}
  */
 
-rpc.Service = require(29);
+rpc.Service = require(31);
 
-},{"29":29}],29:[function(require,module,exports){
+},{"31":31}],31:[function(require,module,exports){
 "use strict";
 module.exports = Service;
 
-var util = require(35);
+var util = require(37);
 
 // Extends EventEmitter
 (Service.prototype = Object.create(util.EventEmitter.prototype)).constructor = Service;
@@ -4674,17 +5202,17 @@ Service.prototype.end = function end(endedByRPC) {
     return this;
 };
 
-},{"35":35}],30:[function(require,module,exports){
+},{"37":37}],32:[function(require,module,exports){
 "use strict";
 module.exports = Service;
 
 // extends Namespace
-var Namespace = require(21);
+var Namespace = require(23);
 ((Service.prototype = Object.create(Namespace.prototype)).constructor = Service).className = "Service";
 
-var Method = require(20),
-    util   = require(33),
-    rpc    = require(28);
+var Method = require(22),
+    util   = require(35),
+    rpc    = require(30);
 
 /**
  * Constructs a new service instance.
@@ -4766,17 +5294,20 @@ Object.defineProperty(Service.prototype, "methodsArray", {
     }
 });
 
-function clearCache(service) {
-    service._methodsArray = null;
-    return service;
-}
+Service.prototype.clearCache = function clearCache() {
+    this._methodsArray = null;
+    return Namespace.prototype.clearCache.call(this);
+};
 
-/**
- * @override
- */
-Service.prototype.get = function get(name) {
-    return this.methods[name]
-        || Namespace.prototype.get.call(this, name);
+Service.prototype._loadPathMap = function _loadPathMap() {
+    var pathMap = Namespace.prototype._loadPathMap.call(this);
+    pathMap.children = pathMap.children.concat(this.methodsArray.map(function (method) {
+        return {
+            name: method.name,
+            node: method
+        };
+    }));
+    return pathMap;
 };
 
 /**
@@ -4801,7 +5332,7 @@ Service.prototype.add = function add(object) {
     if (object instanceof Method) {
         this.methods[object.name] = object;
         object.parent = this;
-        return clearCache(this);
+        return this.clearCache();
     }
     return Namespace.prototype.add.call(this, object);
 };
@@ -4818,7 +5349,7 @@ Service.prototype.remove = function remove(object) {
 
         delete this.methods[object.name];
         object.parent = null;
-        return clearCache(this);
+        return this.clearCache();
     }
     return Namespace.prototype.remove.call(this, object);
 };
@@ -4843,28 +5374,28 @@ Service.prototype.create = function create(rpcImpl, requestDelimited, responseDe
     return rpcService;
 };
 
-},{"20":20,"21":21,"28":28,"33":33}],31:[function(require,module,exports){
+},{"22":22,"23":23,"30":30,"35":35}],33:[function(require,module,exports){
 "use strict";
 module.exports = Type;
 
 // extends Namespace
-var Namespace = require(21);
+var Namespace = require(23);
 ((Type.prototype = Object.create(Namespace.prototype)).constructor = Type).className = "Type";
 
-var Enum      = require(14),
-    OneOf     = require(23),
-    Field     = require(15),
-    MapField  = require(18),
-    Service   = require(30),
-    Message   = require(19),
-    Reader    = require(24),
-    Writer    = require(38),
-    util      = require(33),
-    encoder   = require(13),
-    decoder   = require(12),
-    verifier  = require(36),
-    converter = require(11),
-    wrappers  = require(37);
+var Enum      = require(15),
+    OneOf     = require(25),
+    Field     = require(17),
+    MapField  = require(20),
+    Service   = require(32),
+    Message   = require(21),
+    Reader    = require(26),
+    Writer    = require(40),
+    util      = require(35),
+    encoder   = require(14),
+    decoder   = require(13),
+    verifier  = require(38),
+    converter = require(12),
+    wrappers  = require(39);
 
 /**
  * Constructs a new reflected message type instance.
@@ -5045,9 +5576,9 @@ Type.generateConstructor = function generateConstructor(mtype) {
     var gen = util.codegen(["p"], mtype.name);
     // explicitly initialize mutable object/array fields so that these aren't just inherited from the prototype
     for (var i = 0, field; i < mtype.fieldsArray.length; ++i)
-        if ((field = mtype._fieldsArray[i]).map) gen
+        if ((field = mtype._fieldsArray[i]).map && !field.optional) gen
             ("this%s={}", util.safeProp(field.name));
-        else if (field.repeated) gen
+        else if (field.repeated && !field.optional) gen
             ("this%s=[]", util.safeProp(field.name));
     return gen
     ("if(p)for(var ks=Object.keys(p),i=0;i<ks.length;++i)if(p[ks[i]]!=null)") // omit undefined or null
@@ -5055,13 +5586,13 @@ Type.generateConstructor = function generateConstructor(mtype) {
     /* eslint-enable no-unexpected-multiline */
 };
 
-function clearCache(type) {
-    type._fieldsById = type._fieldsArray = type._oneofsArray = null;
-    delete type.encode;
-    delete type.decode;
-    delete type.verify;
-    return type;
-}
+Type.prototype.clearCache = function clearCache() {
+    this._fieldsById = this._fieldsArray = this._oneofsArray = null;
+    delete this.encode;
+    delete this.decode;
+    delete this.verify;
+    return Namespace.prototype.clearCache.call(this);
+};
 
 /**
  * Message type descriptor.
@@ -5154,14 +5685,26 @@ Type.prototype.resolveAll = function resolveAll() {
     return Namespace.prototype.resolveAll.call(this);
 };
 
-/**
- * @override
- */
-Type.prototype.get = function get(name) {
-    return this.fields[name]
-        || this.oneofs && this.oneofs[name]
-        || this.nested && this.nested[name]
-        || null;
+Type.prototype._loadPathMap = function _loadPathMap() {
+    var pathMap = Namespace.prototype._loadPathMap.call(this);
+    pathMap.children = pathMap.children.concat(this.fieldsArray.map(function (field) {
+        return {
+            name: field.name,
+            node: field
+        };
+    }));
+    if (this.oneofsArray) {
+      pathMap.children = pathMap.children.concat(
+        this.oneofsArray.map(function (oneOf) {
+          return {
+            name: oneOf.name,
+            node: oneOf,
+          };
+        })
+      );
+    }
+
+    return pathMap;
 };
 
 /**
@@ -5194,14 +5737,14 @@ Type.prototype.add = function add(object) {
         this.fields[object.name] = object;
         object.message = this;
         object.onAdd(this);
-        return clearCache(this);
+        return this.clearCache();
     }
     if (object instanceof OneOf) {
         if (!this.oneofs)
             this.oneofs = {};
         this.oneofs[object.name] = object;
         object.onAdd(this);
-        return clearCache(this);
+        return this.clearCache();
     }
     return Namespace.prototype.add.call(this, object);
 };
@@ -5224,7 +5767,7 @@ Type.prototype.remove = function remove(object) {
         delete this.fields[object.name];
         object.parent = null;
         object.onRemove(this);
-        return clearCache(this);
+        return this.clearCache();
     }
     if (object instanceof OneOf) {
 
@@ -5235,7 +5778,7 @@ Type.prototype.remove = function remove(object) {
         delete this.oneofs[object.name];
         object.parent = null;
         object.onRemove(this);
-        return clearCache(this);
+        return this.clearCache();
     }
     return Namespace.prototype.remove.call(this, object);
 };
@@ -5434,7 +5977,7 @@ Type.d = function decorateType(typeName) {
     };
 };
 
-},{"11":11,"12":12,"13":13,"14":14,"15":15,"18":18,"19":19,"21":21,"23":23,"24":24,"30":30,"33":33,"36":36,"37":37,"38":38}],32:[function(require,module,exports){
+},{"12":12,"13":13,"14":14,"15":15,"17":17,"20":20,"21":21,"23":23,"25":25,"26":26,"32":32,"35":35,"38":38,"39":39,"40":40}],34:[function(require,module,exports){
 "use strict";
 
 /**
@@ -5443,7 +5986,7 @@ Type.d = function decorateType(typeName) {
  */
 var types = exports;
 
-var util = require(33);
+var util = require(35);
 
 var s = [
     "double",   // 0
@@ -5632,16 +6175,16 @@ types.packed = bake([
     /* bool     */ 0
 ]);
 
-},{"33":33}],33:[function(require,module,exports){
+},{"35":35}],35:[function(require,module,exports){
 "use strict";
 
 /**
  * Various utility functions.
  * @namespace
  */
-var util = module.exports = require(35);
+var util = module.exports = require(37);
 
-var roots = require(27);
+var roots = require(29);
 
 var Type, // cyclic
     Enum;
@@ -5767,7 +6310,7 @@ util.decorateType = function decorateType(ctor, typeName) {
 
     /* istanbul ignore next */
     if (!Type)
-        Type = require(31);
+        Type = require(33);
 
     var type = new Type(typeName || ctor.name);
     util.decorateRoot.add(type);
@@ -5792,7 +6335,7 @@ util.decorateEnum = function decorateEnum(object) {
 
     /* istanbul ignore next */
     if (!Enum)
-        Enum = require(14);
+        Enum = require(15);
 
     var enm = new Enum("Enum" + decorateEnumIndex++, object);
     util.decorateRoot.add(enm);
@@ -5839,40 +6382,45 @@ util.setProperty = function setProperty(dst, path, value) {
  */
 Object.defineProperty(util, "decorateRoot", {
     get: function() {
-        return roots["decorated"] || (roots["decorated"] = new (require(26))());
+        return roots["decorated"] || (roots["decorated"] = new (require(28))());
     }
 });
 
-},{"14":14,"26":26,"27":27,"3":3,"31":31,"35":35,"5":5,"8":8}],34:[function(require,module,exports){
+},{"15":15,"28":28,"29":29,"3":3,"33":33,"37":37,"5":5,"8":8}],36:[function(require,module,exports){
 "use strict";
 module.exports = LongBits;
 
-var util = require(35);
+var util = require(37);
 
 /**
  * Constructs new long bits.
  * @classdesc Helper class for working with the low and high bits of a 64 bit value.
  * @memberof util
  * @constructor
- * @param {number} lo Low 32 bits, unsigned
- * @param {number} hi High 32 bits, unsigned
+ * @param {number|Long|LongBits} lo Low 32 bits, unsigned or long object to copy
+ * @param {number} [hi] High 32 bits, unsigned
  */
 function LongBits(lo, hi) {
 
     // note that the casts below are theoretically unnecessary as of today, but older statically
     // generated converter code might still call the ctor with signed 32bits. kept for compat.
 
-    /**
-     * Low bits.
-     * @type {number}
-     */
-    this.lo = lo >>> 0;
+    if (typeof lo === "object") {
+        this.lo = lo.low != null ? lo.low : lo.lo;
+        this.hi = lo.high != null ? lo.high : lo.hi;
+    } else {
+        /**
+         * Low bits.
+         * @type {number}
+         */
+        this.lo = lo >>> 0;
 
-    /**
-     * High bits.
-     * @type {number}
-     */
-    this.hi = hi >>> 0;
+        /**
+         * High bits.
+         * @type {number}
+         */
+        this.hi = hi >>> 0;
+    }
 }
 
 /**
@@ -6045,7 +6593,7 @@ LongBits.prototype.length = function length() {
          : part2 < 128 ? 9 : 10;
 };
 
-},{"35":35}],35:[function(require,module,exports){
+},{"37":37}],37:[function(require,module,exports){
 "use strict";
 var util = exports;
 
@@ -6071,7 +6619,7 @@ util.utf8 = require(10);
 util.pool = require(9);
 
 // utility to work with the low and high bits of a 64 bit value
-util.LongBits = require(34);
+util.LongBits = require(36);
 
 /**
  * Whether running within node or not.
@@ -6207,6 +6755,62 @@ util.newBuffer = function newBuffer(sizeOrArray) {
 };
 
 /**
+ * Equality check for byte data fields.
+ * @param {Uint8Array|Buffer|number[]|string} [a] Left side
+ * @param {Uint8Array|Buffer|number[]|string} [b] Right side
+ * @returns {boolean} true if equals
+ */
+util.bytesEquals = function bytesEquals(a, b) {
+    if (a === b)
+        return true;
+
+    if (!a || !b)
+        return false;
+
+    return a.length === b.length && a.findIndex(function(aValue, index) {
+        return aValue !== b[index];
+    }) < 0;
+};
+
+
+/**
+ * Equality check for map data fields.
+ * @param {object|null|undefined} a Left side
+ * @param {object|null|undefined} b Right side
+ * @param {function} fn Key comparison check. Returns true if a given key name is a mismatch.
+ * @returns {boolean} true if equals
+ */
+util.mapEquals = function mapEquals(a, b, fn) {
+    if (a === b)
+        return true;
+
+    if (!a || !b)
+        return false;
+
+    var aKeys = Object.keys(a);
+    return aKeys.length === Object.keys(b).length && aKeys.findIndex(fn) < 0;
+};
+
+
+/**
+ * Equality check for long data fields.
+ * @param {number|Long} [a] Left side
+ * @param {number|Long} [b] Right side
+ * @returns {boolean} true if equals
+ */
+util.longEquals = function longEquals(a, b) {
+    if (a === b)
+        return true;
+
+    if (a == null || b == null)
+        return false;
+
+    // If the checks above did not resolve, then this is either an object that may be equal
+    // or a primitive that is not equal
+    return util.Long && util.Long.isLong(a) ? a.equals(b) : false;
+};
+
+/**
  * Array implementation used in the browser. `Uint8Array` if supported, otherwise `Array`.
  * @type {Constructor<Uint8Array>}
  */
@@ -6219,6 +6823,10 @@ util.Array = typeof Uint8Array !== "undefined" ? Uint8Array /* istanbul ignore n
  * @property {number} low Low bits
  * @property {number} high High bits
  * @property {boolean} unsigned Whether unsigned or not
+ */
+/**
+ * @method Long#toNumber
+ * @returns {number}
  */
 
 /**
@@ -6370,7 +6978,7 @@ util.ProtocolError = newError("ProtocolError");
  * A OneOf getter as returned by {@link util.oneOfGetter}.
  * @typedef OneOfGetter
  * @type {function}
- * @returns {string|undefined} Set field name, if any
+ * @returns {any|undefined} Set field name, if any
  */
 
 /**
@@ -6399,7 +7007,7 @@ util.oneOfGetter = function getOneOf(fieldNames) {
  * A OneOf setter as returned by {@link util.oneOfSetter}.
  * @typedef OneOfSetter
  * @type {function}
- * @param {string|undefined} value Field name
+ * @param {any|undefined} value Field name
  * @returns {undefined}
  */
 
@@ -6468,12 +7076,12 @@ util._configure = function() {
         };
 };
 
-},{"1":1,"10":10,"2":2,"34":34,"4":4,"6":6,"7":7,"9":9}],36:[function(require,module,exports){
+},{"1":1,"10":10,"2":2,"36":36,"4":4,"6":6,"7":7,"9":9}],38:[function(require,module,exports){
 "use strict";
 module.exports = verifier;
 
-var Enum      = require(14),
-    util      = require(33);
+var Enum      = require(15),
+    util      = require(35);
 
 function invalid(field, expected) {
     return field.name + ": " + expected + (field.repeated && expected !== "array" ? "[]" : field.map && expected !== "object" ? "{k:"+field.keyType+"}" : "") + " expected";
@@ -6646,7 +7254,7 @@ function verifier(mtype) {
     ("return null");
     /* eslint-enable no-unexpected-multiline */
 }
-},{"14":14,"33":33}],37:[function(require,module,exports){
+},{"15":15,"35":35}],39:[function(require,module,exports){
 "use strict";
 
 /**
@@ -6656,7 +7264,7 @@ function verifier(mtype) {
  */
 var wrappers = exports;
 
-var Message = require(19);
+var Message = require(21);
 
 /**
  * From object converter part of an {@link IWrapper}.
@@ -6750,11 +7358,11 @@ wrappers[".google.protobuf.Any"] = {
     }
 };
 
-},{"19":19}],38:[function(require,module,exports){
+},{"21":21}],40:[function(require,module,exports){
 "use strict";
 module.exports = Writer;
 
-var util      = require(35);
+var util      = require(37);
 
 var BufferWriter; // cyclic
 
@@ -6954,10 +7562,14 @@ VarintOp.prototype.fn = writeVarint32;
 
 /**
  * Writes an unsigned 32 bit value as a varint.
- * @param {number} value Value to write
+ * @param {number | string} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.uint32 = function write_uint32(value) {
+    if (typeof value === "string") {
+      value = parseFloat(value);
+    }
+
     // here, the call to this.push has been inlined and a varint specific Op subclass is used.
     // uint32 is by far the most frequently used operation and benefits significantly from this.
     this.len += (this.tail = this.tail.next = new VarintOp(
@@ -6974,10 +7586,13 @@ Writer.prototype.uint32 = function write_uint32(value) {
 /**
  * Writes a signed 32 bit value as a varint.
  * @function
- * @param {number} value Value to write
+ * @param {number | string} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.int32 = function write_int32(value) {
+    if (typeof value === "string") {
+        value = parseFloat(value);
+    }
     return value < 0
         ? this._push(writeVarint64, 10, LongBits.fromNumber(value)) // 10 bytes per spec
         : this.uint32(value);
@@ -7038,7 +7653,7 @@ Writer.prototype.sint64 = function write_sint64(value) {
 
 /**
  * Writes a boolish value as a varint.
- * @param {boolean} value Value to write
+ * @param {boolean|any} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.bool = function write_bool(value) {
@@ -7217,15 +7832,15 @@ Writer._configure = function(BufferWriter_) {
     BufferWriter._configure();
 };
 
-},{"35":35}],39:[function(require,module,exports){
+},{"37":37}],41:[function(require,module,exports){
 "use strict";
 module.exports = BufferWriter;
 
 // extends Writer
-var Writer = require(38);
+var Writer = require(40);
 (BufferWriter.prototype = Object.create(Writer.prototype)).constructor = BufferWriter;
 
-var util = require(35);
+var util = require(37);
 
 /**
  * Constructs a new buffer writer instance.
@@ -7304,7 +7919,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 
 BufferWriter._configure();
 
-},{"35":35,"38":38}]},{},[16])
+},{"37":37,"40":40}]},{},[18])
 
 })();
 //# sourceMappingURL=protobuf.js.map

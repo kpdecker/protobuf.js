@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v6.10.0 (c) 2016, daniel wirtz
- * compiled wed, 15 jul 2020 23:34:13 utc
+ * protobuf.js v6.10.1 (c) 2016, daniel wirtz
+ * compiled thu, 13 aug 2020 18:52:28 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -1540,25 +1540,30 @@ var util = require(15);
  * @classdesc Helper class for working with the low and high bits of a 64 bit value.
  * @memberof util
  * @constructor
- * @param {number} lo Low 32 bits, unsigned
- * @param {number} hi High 32 bits, unsigned
+ * @param {number|Long|LongBits} lo Low 32 bits, unsigned or long object to copy
+ * @param {number} [hi] High 32 bits, unsigned
  */
 function LongBits(lo, hi) {
 
     // note that the casts below are theoretically unnecessary as of today, but older statically
     // generated converter code might still call the ctor with signed 32bits. kept for compat.
 
-    /**
-     * Low bits.
-     * @type {number}
-     */
-    this.lo = lo >>> 0;
+    if (typeof lo === "object") {
+        this.lo = lo.low != null ? lo.low : lo.lo;
+        this.hi = lo.high != null ? lo.high : lo.hi;
+    } else {
+        /**
+         * Low bits.
+         * @type {number}
+         */
+        this.lo = lo >>> 0;
 
-    /**
-     * High bits.
-     * @type {number}
-     */
-    this.hi = hi >>> 0;
+        /**
+         * High bits.
+         * @type {number}
+         */
+        this.hi = hi >>> 0;
+    }
 }
 
 /**
@@ -1893,6 +1898,62 @@ util.newBuffer = function newBuffer(sizeOrArray) {
 };
 
 /**
+ * Equality check for byte data fields.
+ * @param {Uint8Array|Buffer|number[]|string} [a] Left side
+ * @param {Uint8Array|Buffer|number[]|string} [b] Right side
+ * @returns {boolean} true if equals
+ */
+util.bytesEquals = function bytesEquals(a, b) {
+    if (a === b)
+        return true;
+
+    if (!a || !b)
+        return false;
+
+    return a.length === b.length && a.findIndex(function(aValue, index) {
+        return aValue !== b[index];
+    }) < 0;
+};
+
+
+/**
+ * Equality check for map data fields.
+ * @param {object|null|undefined} a Left side
+ * @param {object|null|undefined} b Right side
+ * @param {function} fn Key comparison check. Returns true if a given key name is a mismatch.
+ * @returns {boolean} true if equals
+ */
+util.mapEquals = function mapEquals(a, b, fn) {
+    if (a === b)
+        return true;
+
+    if (!a || !b)
+        return false;
+
+    var aKeys = Object.keys(a);
+    return aKeys.length === Object.keys(b).length && aKeys.findIndex(fn) < 0;
+};
+
+
+/**
+ * Equality check for long data fields.
+ * @param {number|Long} [a] Left side
+ * @param {number|Long} [b] Right side
+ * @returns {boolean} true if equals
+ */
+util.longEquals = function longEquals(a, b) {
+    if (a === b)
+        return true;
+
+    if (a == null || b == null)
+        return false;
+
+    // If the checks above did not resolve, then this is either an object that may be equal
+    // or a primitive that is not equal
+    return util.Long && util.Long.isLong(a) ? a.equals(b) : false;
+};
+
+/**
  * Array implementation used in the browser. `Uint8Array` if supported, otherwise `Array`.
  * @type {Constructor<Uint8Array>}
  */
@@ -1905,6 +1966,10 @@ util.Array = typeof Uint8Array !== "undefined" ? Uint8Array /* istanbul ignore n
  * @property {number} low Low bits
  * @property {number} high High bits
  * @property {boolean} unsigned Whether unsigned or not
+ */
+/**
+ * @method Long#toNumber
+ * @returns {number}
  */
 
 /**
@@ -2056,7 +2121,7 @@ util.ProtocolError = newError("ProtocolError");
  * A OneOf getter as returned by {@link util.oneOfGetter}.
  * @typedef OneOfGetter
  * @type {function}
- * @returns {string|undefined} Set field name, if any
+ * @returns {any|undefined} Set field name, if any
  */
 
 /**
@@ -2085,7 +2150,7 @@ util.oneOfGetter = function getOneOf(fieldNames) {
  * A OneOf setter as returned by {@link util.oneOfSetter}.
  * @typedef OneOfSetter
  * @type {function}
- * @param {string|undefined} value Field name
+ * @param {any|undefined} value Field name
  * @returns {undefined}
  */
 
@@ -2358,10 +2423,14 @@ VarintOp.prototype.fn = writeVarint32;
 
 /**
  * Writes an unsigned 32 bit value as a varint.
- * @param {number} value Value to write
+ * @param {number | string} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.uint32 = function write_uint32(value) {
+    if (typeof value === "string") {
+      value = parseFloat(value);
+    }
+
     // here, the call to this.push has been inlined and a varint specific Op subclass is used.
     // uint32 is by far the most frequently used operation and benefits significantly from this.
     this.len += (this.tail = this.tail.next = new VarintOp(
@@ -2378,10 +2447,13 @@ Writer.prototype.uint32 = function write_uint32(value) {
 /**
  * Writes a signed 32 bit value as a varint.
  * @function
- * @param {number} value Value to write
+ * @param {number | string} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.int32 = function write_int32(value) {
+    if (typeof value === "string") {
+        value = parseFloat(value);
+    }
     return value < 0
         ? this._push(writeVarint64, 10, LongBits.fromNumber(value)) // 10 bytes per spec
         : this.uint32(value);
@@ -2442,7 +2514,7 @@ Writer.prototype.sint64 = function write_sint64(value) {
 
 /**
  * Writes a boolish value as a varint.
- * @param {boolean} value Value to write
+ * @param {boolean|any} value Value to write
  * @returns {Writer} `this`
  */
 Writer.prototype.bool = function write_bool(value) {
