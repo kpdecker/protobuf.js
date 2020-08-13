@@ -17,7 +17,6 @@ export class FileDescriptorSet implements IFileDescriptorSet {
      * Constructs a new FileDescriptorSet.
      */
     constructor(properties?: IFileDescriptorSet) {
-        this.file = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -198,20 +197,13 @@ export class FileDescriptorProto implements IFileDescriptorProto {
      * Constructs a new FileDescriptorProto.
      */
     constructor(properties?: IFileDescriptorProto) {
-        this.dependency = [];
-        this.publicDependency = [];
-        this.weakDependency = [];
-        this.messageType = [];
-        this.enumType = [];
-        this.service = [];
-        this.extension = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
-    ["package"]?: string = "";
+    name?: string;
+    ["package"]?: string;
     dependency?: string[];
     publicDependency?: number[];
     weakDependency?: number[];
@@ -221,7 +213,7 @@ export class FileDescriptorProto implements IFileDescriptorProto {
     extension?: IFieldDescriptorProto[];
     options?: IFileOptions;
     sourceCodeInfo?: ISourceCodeInfo;
-    syntax?: string = "";
+    syntax?: string;
 
     /**
      * Creates a new FileDescriptorProto instance using the specified properties.
@@ -677,20 +669,12 @@ export class DescriptorProto implements IDescriptorProto {
      * Constructs a new DescriptorProto.
      */
     constructor(properties?: IDescriptorProto) {
-        this.field = [];
-        this.extension = [];
-        this.nestedType = [];
-        this.enumType = [];
-        this.extensionRange = [];
-        this.oneofDecl = [];
-        this.reservedRange = [];
-        this.reservedName = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
+    name?: string;
     field?: IFieldDescriptorProto[];
     extension?: IFieldDescriptorProto[];
     nestedType?: IDescriptorProto[];
@@ -1144,8 +1128,8 @@ export namespace DescriptorProto {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        start?: number = 0;
-        end?: number = 0;
+        start?: number;
+        end?: number;
 
         /**
          * Creates a new ExtensionRange instance using the specified properties.
@@ -1307,8 +1291,8 @@ export namespace DescriptorProto {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        start?: number = 0;
-        end?: number = 0;
+        start?: number;
+        end?: number;
 
         /**
          * Creates a new ReservedRange instance using the specified properties.
@@ -1480,15 +1464,15 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
-    number?: number = 0;
-    label?: FieldDescriptorProto.Label = 1;
-    type?: FieldDescriptorProto.Type = 1;
-    typeName?: string = "";
-    extendee?: string = "";
-    defaultValue?: string = "";
-    oneofIndex?: number = 0;
-    jsonName?: string = "";
+    name?: string;
+    number?: number;
+    label?: FieldDescriptorProto.Label;
+    type?: FieldDescriptorProto.Type;
+    typeName?: string;
+    extendee?: string;
+    defaultValue?: string;
+    oneofIndex?: number;
+    jsonName?: string;
     options?: IFieldOptions;
 
     /**
@@ -1901,7 +1885,7 @@ export class OneofDescriptorProto implements IOneofDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
+    name?: string;
     options?: IOneofOptions;
 
     /**
@@ -2065,13 +2049,12 @@ export class EnumDescriptorProto implements IEnumDescriptorProto {
      * Constructs a new EnumDescriptorProto.
      */
     constructor(properties?: IEnumDescriptorProto) {
-        this.value = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
+    name?: string;
     value?: IEnumValueDescriptorProto[];
     options?: IEnumOptions;
 
@@ -2277,8 +2260,8 @@ export class EnumValueDescriptorProto implements IEnumValueDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
-    number?: number = 0;
+    name?: string;
+    number?: number;
     options?: IEnumValueOptions;
 
     /**
@@ -2455,13 +2438,12 @@ export class ServiceDescriptorProto implements IServiceDescriptorProto {
      * Constructs a new ServiceDescriptorProto.
      */
     constructor(properties?: IServiceDescriptorProto) {
-        this.method = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
+    name?: string;
     method?: IMethodDescriptorProto[];
     options?: IServiceOptions;
 
@@ -2670,12 +2652,12 @@ export class MethodDescriptorProto implements IMethodDescriptorProto {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
-    inputType?: string = "";
-    outputType?: string = "";
+    name?: string;
+    inputType?: string;
+    outputType?: string;
     options?: IMethodOptions;
-    clientStreaming?: boolean = false;
-    serverStreaming?: boolean = false;
+    clientStreaming?: boolean;
+    serverStreaming?: boolean;
 
     /**
      * Creates a new MethodDescriptorProto instance using the specified properties.
@@ -2902,26 +2884,25 @@ export class FileOptions implements IFileOptions {
      * Constructs a new FileOptions.
      */
     constructor(properties?: IFileOptions) {
-        this.uninterpretedOption = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    javaPackage?: string = "";
-    javaOuterClassname?: string = "";
-    javaMultipleFiles?: boolean = false;
-    javaGenerateEqualsAndHash?: boolean = false;
-    javaStringCheckUtf8?: boolean = false;
-    optimizeFor?: FileOptions.OptimizeMode = 1;
-    goPackage?: string = "";
-    ccGenericServices?: boolean = false;
-    javaGenericServices?: boolean = false;
-    pyGenericServices?: boolean = false;
-    deprecated?: boolean = false;
-    ccEnableArenas?: boolean = false;
-    objcClassPrefix?: string = "";
-    csharpNamespace?: string = "";
+    javaPackage?: string;
+    javaOuterClassname?: string;
+    javaMultipleFiles?: boolean;
+    javaGenerateEqualsAndHash?: boolean;
+    javaStringCheckUtf8?: boolean;
+    optimizeFor?: FileOptions.OptimizeMode;
+    goPackage?: string;
+    ccGenericServices?: boolean;
+    javaGenericServices?: boolean;
+    pyGenericServices?: boolean;
+    deprecated?: boolean;
+    ccEnableArenas?: boolean;
+    objcClassPrefix?: string;
+    csharpNamespace?: string;
     uninterpretedOption?: IUninterpretedOption[];
 
     /**
@@ -3301,16 +3282,15 @@ export class MessageOptions implements IMessageOptions {
      * Constructs a new MessageOptions.
      */
     constructor(properties?: IMessageOptions) {
-        this.uninterpretedOption = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    messageSetWireFormat?: boolean = false;
-    noStandardDescriptorAccessor?: boolean = false;
-    deprecated?: boolean = false;
-    mapEntry?: boolean = false;
+    messageSetWireFormat?: boolean;
+    noStandardDescriptorAccessor?: boolean;
+    deprecated?: boolean;
+    mapEntry?: boolean;
     uninterpretedOption?: IUninterpretedOption[];
 
     /**
@@ -3535,18 +3515,17 @@ export class FieldOptions implements IFieldOptions {
      * Constructs a new FieldOptions.
      */
     constructor(properties?: IFieldOptions) {
-        this.uninterpretedOption = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    ctype?: FieldOptions.CType = 0;
-    packed?: boolean = false;
-    jstype?: FieldOptions.JSType = 0;
-    lazy?: boolean = false;
-    deprecated?: boolean = false;
-    weak?: boolean = false;
+    ctype?: FieldOptions.CType;
+    packed?: boolean;
+    jstype?: FieldOptions.JSType;
+    lazy?: boolean;
+    deprecated?: boolean;
+    weak?: boolean;
     uninterpretedOption?: IUninterpretedOption[];
 
     /**
@@ -3842,7 +3821,6 @@ export class OneofOptions implements IOneofOptions {
      * Constructs a new OneofOptions.
      */
     constructor(properties?: IOneofOptions) {
-        this.uninterpretedOption = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -4015,16 +3993,15 @@ export class EnumOptions implements IEnumOptions {
      * Constructs a new EnumOptions.
      */
     constructor(properties?: IEnumOptions) {
-        this.uninterpretedOption = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    allowAlias?: boolean = false;
-    deprecated?: boolean = false;
+    allowAlias?: boolean;
+    deprecated?: boolean;
     uninterpretedOption?: IUninterpretedOption[];
-    ["IsExtension.simpleOption"]?: string = "";
+    ["IsExtension.simpleOption"]?: string;
 
     /**
      * Creates a new EnumOptions instance using the specified properties.
@@ -4230,13 +4207,12 @@ export class EnumValueOptions implements IEnumValueOptions {
      * Constructs a new EnumValueOptions.
      */
     constructor(properties?: IEnumValueOptions) {
-        this.uninterpretedOption = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    deprecated?: boolean = false;
+    deprecated?: boolean;
     uninterpretedOption?: IUninterpretedOption[];
 
     /**
@@ -4416,13 +4392,12 @@ export class ServiceOptions implements IServiceOptions {
      * Constructs a new ServiceOptions.
      */
     constructor(properties?: IServiceOptions) {
-        this.uninterpretedOption = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    deprecated?: boolean = false;
+    deprecated?: boolean;
     uninterpretedOption?: IUninterpretedOption[];
 
     /**
@@ -4603,14 +4578,13 @@ export class MethodOptions implements IMethodOptions {
      * Constructs a new MethodOptions.
      */
     constructor(properties?: IMethodOptions) {
-        this.uninterpretedOption = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    deprecated?: boolean = false;
-    idempotencyLevel?: MethodOptions.IdempotencyLevel = 0;
+    deprecated?: boolean;
+    idempotencyLevel?: MethodOptions.IdempotencyLevel;
     uninterpretedOption?: IUninterpretedOption[];
 
     /**
@@ -4836,19 +4810,18 @@ export class UninterpretedOption implements IUninterpretedOption {
      * Constructs a new UninterpretedOption.
      */
     constructor(properties?: IUninterpretedOption) {
-        this.name = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
     name?: UninterpretedOption.INamePart[];
-    identifierValue?: string = "";
-    positiveIntValue?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(0, 0, true) : 0;
-    negativeIntValue?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(0, 0, false) : 0;
-    doubleValue?: number = 0;
-    stringValue?: Uint8Array= $util.newBuffer([]);
-    aggregateValue?: string = "";
+    identifierValue?: string;
+    positiveIntValue?: (number|$protobuf.Long);
+    negativeIntValue?: (number|$protobuf.Long);
+    doubleValue?: number;
+    stringValue?: Uint8Array;
+    aggregateValue?: string;
 
     /**
      * Creates a new UninterpretedOption instance using the specified properties.
@@ -5295,7 +5268,6 @@ export class SourceCodeInfo implements ISourceCodeInfo {
      * Constructs a new SourceCodeInfo.
      */
     constructor(properties?: ISourceCodeInfo) {
-        this.location = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -5470,9 +5442,6 @@ export namespace SourceCodeInfo {
          * Constructs a new Location.
          */
         constructor(properties?: ILocation) {
-            this.path = [];
-            this.span = [];
-            this.leadingDetachedComments = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -5480,8 +5449,8 @@ export namespace SourceCodeInfo {
         }
         path?: number[];
         span?: number[];
-        leadingComments?: string = "";
-        trailingComments?: string = "";
+        leadingComments?: string;
+        trailingComments?: string;
         leadingDetachedComments?: string[];
 
         /**
@@ -5748,7 +5717,6 @@ export class GeneratedCodeInfo implements IGeneratedCodeInfo {
      * Constructs a new GeneratedCodeInfo.
      */
     constructor(properties?: IGeneratedCodeInfo) {
-        this.annotation = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -5922,16 +5890,15 @@ export namespace GeneratedCodeInfo {
          * Constructs a new Annotation.
          */
         constructor(properties?: IAnnotation) {
-            this.path = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
         path?: number[];
-        sourceFile?: string = "";
-        begin?: number = 0;
-        end?: number = 0;
+        sourceFile?: string;
+        begin?: number;
+        end?: number;
 
         /**
          * Creates a new Annotation instance using the specified properties.

@@ -445,18 +445,19 @@ function buildType(type) {
                 field.comment
             ]);
         }
-        if (field.repeated || field.map || field.typeDefault == null)
+
+        if (field.repeated || field.map || field.optional || field.typeDefault == null)
             push(`${prop}${field.optional ? '?' : ''}: ${jsType};`); // overwritten in constructor
         else if (field.long)
-            push(`${prop}${field.optional ? "?" : ""}: ${jsType} = $util.Long ? ($util.Long as any).fromBits(${
+            push(`${prop}: ${jsType} = $util.Long ? ($util.Long as any).fromBits(${
                     JSON.stringify(field.typeDefault.low)}, ${
                     JSON.stringify(field.typeDefault.high)}, ${
                     JSON.stringify(field.typeDefault.unsigned)
                     }) : ${field.typeDefault.toNumber(field.type.charAt(0) === "u")};`);
         else if (field.bytes) {
-            push(`${prop}${field.optional ? "?" : ""}: ${jsType}= $util.newBuffer(${JSON.stringify(Array.prototype.slice.call(field.typeDefault))});`);
+            push(`${prop}: ${jsType}= $util.newBuffer(${JSON.stringify(Array.prototype.slice.call(field.typeDefault))});`);
         } else
-            push(`${prop}${field.optional ? "?" : ""}: ${jsType} = ${JSON.stringify(field.typeDefault)};`);
+            push(`${prop}: ${jsType} = ${JSON.stringify(field.typeDefault)};`);
 
         if (field.comment) {
             push("");

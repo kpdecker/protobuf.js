@@ -158,7 +158,7 @@ export namespace jspb.test {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        outerEnum?: jspb.test.OuterEnum = 1;
+        outerEnum?: jspb.test.OuterEnum;
 
         /**
          * Creates a new EnumContainer instance using the specified properties.
@@ -316,7 +316,6 @@ export namespace jspb.test {
          * Constructs a new Simple1.
          */
         constructor(properties?: ISimple1) {
-            this.aRepeatedString = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -324,7 +323,7 @@ export namespace jspb.test {
         }
         aString: string = "";
         aRepeatedString?: string[];
-        aBoolean?: boolean = false;
+        aBoolean?: boolean;
         aSomething?: aaaa.b.ISomething;
 
         /**
@@ -531,7 +530,6 @@ export namespace jspb.test {
          * Constructs a new Simple2.
          */
         constructor(properties?: ISimple2) {
-            this.aRepeatedString = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -908,14 +906,12 @@ export namespace jspb.test {
          * Constructs a new OptionalFields.
          */
         constructor(properties?: IOptionalFields) {
-            this.aRepeatedMessage = [];
-            this.aRepeatedString = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        aString?: string = "";
+        aString?: string;
         aBool: boolean = false;
         aNestedMessage?: jspb.test.OptionalFields.INested;
         aRepeatedMessage?: jspb.test.OptionalFields.INested[];
@@ -1166,7 +1162,7 @@ export namespace jspb.test {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
-            anInt?: number = 0;
+            anInt?: number;
 
             /**
              * Creates a new Nested instance using the specified properties.
@@ -1318,19 +1314,17 @@ export namespace jspb.test {
          * Constructs a new HasExtensions.
          */
         constructor(properties?: IHasExtensions) {
-            this[".jspb.test.IndirectExtension.repeatedStr"] = [];
-            this[".jspb.test.IndirectExtension.repeatedSimple"] = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        str1?: string = "";
-        str2?: string = "";
-        str3?: string = "";
+        str1?: string;
+        str2?: string;
+        str3?: string;
         [".jspb.test.IsExtension.extField"]?: jspb.test.IIsExtension;
         [".jspb.test.IndirectExtension.simple"]?: jspb.test.ISimple1;
-        [".jspb.test.IndirectExtension.str"]?: string = "";
+        [".jspb.test.IndirectExtension.str"]?: string;
         [".jspb.test.IndirectExtension.repeatedStr"]?: string[];
         [".jspb.test.IndirectExtension.repeatedSimple"]?: jspb.test.ISimple1[];
         [".jspb.test.simple1"]?: jspb.test.ISimple1;
@@ -1640,8 +1634,6 @@ export namespace jspb.test {
          * Constructs a new Complex.
          */
         constructor(properties?: IComplex) {
-            this.aRepeatedMessage = [];
-            this.aRepeatedString = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2177,7 +2169,7 @@ export namespace jspb.test {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
-            innerComplexField?: number = 0;
+            innerComplexField?: number;
 
             /**
              * Creates a new Complex instance using the specified properties.
@@ -2326,7 +2318,7 @@ export namespace jspb.test {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        ext1?: string = "";
+        ext1?: string;
 
         /**
          * Creates a new IsExtension instance using the specified properties.
@@ -2620,12 +2612,12 @@ export namespace jspb.test {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        stringField?: string = "default<>abc";
-        boolField?: boolean = true;
-        intField?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(11, 0, false) : 11;
-        enumField?: jspb.test.DefaultValues.Enum = 13;
-        emptyField?: string = "";
-        bytesField?: Uint8Array= $util.newBuffer([109,111,111]);
+        stringField?: string;
+        boolField?: boolean;
+        intField?: (number|$protobuf.Long);
+        enumField?: jspb.test.DefaultValues.Enum;
+        emptyField?: string;
+        bytesField?: Uint8Array;
 
         /**
          * Creates a new DefaultValues instance using the specified properties.
@@ -2888,21 +2880,19 @@ export namespace jspb.test {
          * Constructs a new FloatingPointFields.
          */
         constructor(properties?: IFloatingPointFields) {
-            this.repeatedFloatField = [];
-            this.repeatedDoubleField = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        optionalFloatField?: number = 0;
+        optionalFloatField?: number;
         requiredFloatField: number = 0;
         repeatedFloatField?: number[];
-        defaultFloatField?: number = 2;
-        optionalDoubleField?: number = 0;
+        defaultFloatField?: number;
+        optionalDoubleField?: number;
         requiredDoubleField: number = 0;
         repeatedDoubleField?: number[];
-        defaultDoubleField?: number = 2;
+        defaultDoubleField?: number;
 
         /**
          * Creates a new FloatingPointFields instance using the specified properties.
@@ -3187,17 +3177,16 @@ export namespace jspb.test {
          * Constructs a new TestClone.
          */
         constructor(properties?: ITestClone) {
-            this.simple2 = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        str?: string = "";
+        str?: string;
         simple1?: jspb.test.ISimple1;
         simple2?: jspb.test.ISimple1[];
-        bytesField?: Uint8Array= $util.newBuffer([]);
-        unused?: string = "";
+        bytesField?: Uint8Array;
+        unused?: string;
         [".jspb.test.CloneExtension.extField"]?: jspb.test.ICloneExtension;
 
         /**
@@ -3453,7 +3442,7 @@ export namespace jspb.test {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        ext?: string = "";
+        ext?: string;
 
         /**
          * Creates a new CloneExtension instance using the specified properties.
@@ -3604,7 +3593,6 @@ export namespace jspb.test {
          * Constructs a new TestGroup.
          */
         constructor(properties?: ITestGroup) {
-            this.repeatedGroup = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -3613,7 +3601,7 @@ export namespace jspb.test {
         repeatedGroup?: jspb.test.TestGroup.IRepeatedGroup[];
         requiredGroup: jspb.test.TestGroup.IRequiredGroup;
         optionalGroup?: jspb.test.TestGroup.IOptionalGroup;
-        id?: string = "";
+        id?: string;
         requiredSimple: jspb.test.ISimple2;
         optionalSimple?: jspb.test.ISimple2;
 
@@ -3870,7 +3858,6 @@ export namespace jspb.test {
              * Constructs a new RepeatedGroup.
              */
             constructor(properties?: IRepeatedGroup) {
-                this.someBool = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -4515,8 +4502,8 @@ export namespace jspb.test {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        extension?: number = 0;
-        [".jspb.test.TestReservedNamesExtension.foo"]?: number = 0;
+        extension?: number;
+        [".jspb.test.TestReservedNamesExtension.foo"]?: number;
 
         /**
          * Creates a new TestReservedNames instance using the specified properties.
@@ -4814,22 +4801,21 @@ export namespace jspb.test {
          * Constructs a new TestMessageWithOneof.
          */
         constructor(properties?: ITestMessageWithOneof) {
-            this.repeatedField = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        pone?: string = "";
-        pthree?: string = "";
+        pone?: string;
+        pthree?: string;
         rone?: jspb.test.ITestMessageWithOneof;
-        rtwo?: string = "";
-        normalField?: boolean = false;
+        rtwo?: string;
+        normalField?: boolean;
         repeatedField?: string[];
-        aone?: number = 1234;
-        atwo?: number = 0;
-        bone?: number = 0;
-        btwo?: number = 1234;
+        aone?: number;
+        atwo?: number;
+        bone?: number;
+        btwo?: number;
 
         // OneOf field names bound to virtual getters and setters
 
@@ -5197,8 +5183,8 @@ export namespace jspb.test {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        value?: number = 0;
-        data?: Uint8Array= $util.newBuffer([]);
+        value?: number;
+        data?: Uint8Array;
 
         /**
          * Creates a new TestEndsWithBytes instance using the specified properties.
@@ -5374,17 +5360,6 @@ export namespace jspb.test {
          * Constructs a new TestMapFieldsNoBinary.
          */
         constructor(properties?: ITestMapFieldsNoBinary) {
-            this.mapStringString = {};
-            this.mapStringInt32 = {};
-            this.mapStringInt64 = {};
-            this.mapStringBool = {};
-            this.mapStringDouble = {};
-            this.mapStringEnum = {};
-            this.mapStringMsg = {};
-            this.mapInt32String = {};
-            this.mapInt64String = {};
-            this.mapBoolString = {};
-            this.mapStringTestmapfields = {};
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -6142,7 +6117,7 @@ export namespace jspb.test {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        foo?: number = 0;
+        foo?: number;
 
         /**
          * Creates a new MapValueMessageNoBinary instance using the specified properties.
@@ -6549,7 +6524,7 @@ export namespace jspb.test {
                             if (properties[keys[i]] != null)
                                 this[keys[i]] = properties[keys[i]];
                 }
-                count?: number = 0;
+                count?: number;
 
                 /**
                  * Creates a new Message instance using the specified properties.
@@ -6699,7 +6674,6 @@ export namespace google.protobuf {
          * Constructs a new FileDescriptorSet.
          */
         constructor(properties?: IFileDescriptorSet) {
-            this.file = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -6880,20 +6854,13 @@ export namespace google.protobuf {
          * Constructs a new FileDescriptorProto.
          */
         constructor(properties?: IFileDescriptorProto) {
-            this.dependency = [];
-            this.publicDependency = [];
-            this.weakDependency = [];
-            this.messageType = [];
-            this.enumType = [];
-            this.service = [];
-            this.extension = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        name?: string = "";
-        ["package"]?: string = "";
+        name?: string;
+        ["package"]?: string;
         dependency?: string[];
         publicDependency?: number[];
         weakDependency?: number[];
@@ -6903,7 +6870,7 @@ export namespace google.protobuf {
         extension?: google.protobuf.IFieldDescriptorProto[];
         options?: google.protobuf.IFileOptions;
         sourceCodeInfo?: google.protobuf.ISourceCodeInfo;
-        syntax?: string = "";
+        syntax?: string;
 
         /**
          * Creates a new FileDescriptorProto instance using the specified properties.
@@ -7359,20 +7326,12 @@ export namespace google.protobuf {
          * Constructs a new DescriptorProto.
          */
         constructor(properties?: IDescriptorProto) {
-            this.field = [];
-            this.extension = [];
-            this.nestedType = [];
-            this.enumType = [];
-            this.extensionRange = [];
-            this.oneofDecl = [];
-            this.reservedRange = [];
-            this.reservedName = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        name?: string = "";
+        name?: string;
         field?: google.protobuf.IFieldDescriptorProto[];
         extension?: google.protobuf.IFieldDescriptorProto[];
         nestedType?: google.protobuf.IDescriptorProto[];
@@ -7826,8 +7785,8 @@ export namespace google.protobuf {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
-            start?: number = 0;
-            end?: number = 0;
+            start?: number;
+            end?: number;
 
             /**
              * Creates a new ExtensionRange instance using the specified properties.
@@ -7989,8 +7948,8 @@ export namespace google.protobuf {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
-            start?: number = 0;
-            end?: number = 0;
+            start?: number;
+            end?: number;
 
             /**
              * Creates a new ReservedRange instance using the specified properties.
@@ -8162,15 +8121,15 @@ export namespace google.protobuf {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        name?: string = "";
-        number?: number = 0;
-        label?: google.protobuf.FieldDescriptorProto.Label = 1;
-        type?: google.protobuf.FieldDescriptorProto.Type = 1;
-        typeName?: string = "";
-        extendee?: string = "";
-        defaultValue?: string = "";
-        oneofIndex?: number = 0;
-        jsonName?: string = "";
+        name?: string;
+        number?: number;
+        label?: google.protobuf.FieldDescriptorProto.Label;
+        type?: google.protobuf.FieldDescriptorProto.Type;
+        typeName?: string;
+        extendee?: string;
+        defaultValue?: string;
+        oneofIndex?: number;
+        jsonName?: string;
         options?: google.protobuf.IFieldOptions;
 
         /**
@@ -8583,7 +8542,7 @@ export namespace google.protobuf {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        name?: string = "";
+        name?: string;
         options?: google.protobuf.IOneofOptions;
 
         /**
@@ -8747,13 +8706,12 @@ export namespace google.protobuf {
          * Constructs a new EnumDescriptorProto.
          */
         constructor(properties?: IEnumDescriptorProto) {
-            this.value = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        name?: string = "";
+        name?: string;
         value?: google.protobuf.IEnumValueDescriptorProto[];
         options?: google.protobuf.IEnumOptions;
 
@@ -8959,8 +8917,8 @@ export namespace google.protobuf {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        name?: string = "";
-        number?: number = 0;
+        name?: string;
+        number?: number;
         options?: google.protobuf.IEnumValueOptions;
 
         /**
@@ -9137,13 +9095,12 @@ export namespace google.protobuf {
          * Constructs a new ServiceDescriptorProto.
          */
         constructor(properties?: IServiceDescriptorProto) {
-            this.method = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        name?: string = "";
+        name?: string;
         method?: google.protobuf.IMethodDescriptorProto[];
         options?: google.protobuf.IServiceOptions;
 
@@ -9352,12 +9309,12 @@ export namespace google.protobuf {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        name?: string = "";
-        inputType?: string = "";
-        outputType?: string = "";
+        name?: string;
+        inputType?: string;
+        outputType?: string;
         options?: google.protobuf.IMethodOptions;
-        clientStreaming?: boolean = false;
-        serverStreaming?: boolean = false;
+        clientStreaming?: boolean;
+        serverStreaming?: boolean;
 
         /**
          * Creates a new MethodDescriptorProto instance using the specified properties.
@@ -9584,26 +9541,25 @@ export namespace google.protobuf {
          * Constructs a new FileOptions.
          */
         constructor(properties?: IFileOptions) {
-            this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        javaPackage?: string = "";
-        javaOuterClassname?: string = "";
-        javaMultipleFiles?: boolean = false;
-        javaGenerateEqualsAndHash?: boolean = false;
-        javaStringCheckUtf8?: boolean = false;
-        optimizeFor?: google.protobuf.FileOptions.OptimizeMode = 1;
-        goPackage?: string = "";
-        ccGenericServices?: boolean = false;
-        javaGenericServices?: boolean = false;
-        pyGenericServices?: boolean = false;
-        deprecated?: boolean = false;
-        ccEnableArenas?: boolean = false;
-        objcClassPrefix?: string = "";
-        csharpNamespace?: string = "";
+        javaPackage?: string;
+        javaOuterClassname?: string;
+        javaMultipleFiles?: boolean;
+        javaGenerateEqualsAndHash?: boolean;
+        javaStringCheckUtf8?: boolean;
+        optimizeFor?: google.protobuf.FileOptions.OptimizeMode;
+        goPackage?: string;
+        ccGenericServices?: boolean;
+        javaGenericServices?: boolean;
+        pyGenericServices?: boolean;
+        deprecated?: boolean;
+        ccEnableArenas?: boolean;
+        objcClassPrefix?: string;
+        csharpNamespace?: string;
         uninterpretedOption?: google.protobuf.IUninterpretedOption[];
 
         /**
@@ -9983,16 +9939,15 @@ export namespace google.protobuf {
          * Constructs a new MessageOptions.
          */
         constructor(properties?: IMessageOptions) {
-            this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        messageSetWireFormat?: boolean = false;
-        noStandardDescriptorAccessor?: boolean = false;
-        deprecated?: boolean = false;
-        mapEntry?: boolean = false;
+        messageSetWireFormat?: boolean;
+        noStandardDescriptorAccessor?: boolean;
+        deprecated?: boolean;
+        mapEntry?: boolean;
         uninterpretedOption?: google.protobuf.IUninterpretedOption[];
 
         /**
@@ -10217,18 +10172,17 @@ export namespace google.protobuf {
          * Constructs a new FieldOptions.
          */
         constructor(properties?: IFieldOptions) {
-            this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        ctype?: google.protobuf.FieldOptions.CType = 0;
-        packed?: boolean = false;
-        jstype?: google.protobuf.FieldOptions.JSType = 0;
-        lazy?: boolean = false;
-        deprecated?: boolean = false;
-        weak?: boolean = false;
+        ctype?: google.protobuf.FieldOptions.CType;
+        packed?: boolean;
+        jstype?: google.protobuf.FieldOptions.JSType;
+        lazy?: boolean;
+        deprecated?: boolean;
+        weak?: boolean;
         uninterpretedOption?: google.protobuf.IUninterpretedOption[];
 
         /**
@@ -10524,7 +10478,6 @@ export namespace google.protobuf {
          * Constructs a new OneofOptions.
          */
         constructor(properties?: IOneofOptions) {
-            this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -10697,16 +10650,15 @@ export namespace google.protobuf {
          * Constructs a new EnumOptions.
          */
         constructor(properties?: IEnumOptions) {
-            this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        allowAlias?: boolean = false;
-        deprecated?: boolean = false;
+        allowAlias?: boolean;
+        deprecated?: boolean;
         uninterpretedOption?: google.protobuf.IUninterpretedOption[];
-        [".jspb.test.IsExtension.simpleOption"]?: string = "";
+        [".jspb.test.IsExtension.simpleOption"]?: string;
 
         /**
          * Creates a new EnumOptions instance using the specified properties.
@@ -10912,13 +10864,12 @@ export namespace google.protobuf {
          * Constructs a new EnumValueOptions.
          */
         constructor(properties?: IEnumValueOptions) {
-            this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        deprecated?: boolean = false;
+        deprecated?: boolean;
         uninterpretedOption?: google.protobuf.IUninterpretedOption[];
 
         /**
@@ -11098,13 +11049,12 @@ export namespace google.protobuf {
          * Constructs a new ServiceOptions.
          */
         constructor(properties?: IServiceOptions) {
-            this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        deprecated?: boolean = false;
+        deprecated?: boolean;
         uninterpretedOption?: google.protobuf.IUninterpretedOption[];
 
         /**
@@ -11285,14 +11235,13 @@ export namespace google.protobuf {
          * Constructs a new MethodOptions.
          */
         constructor(properties?: IMethodOptions) {
-            this.uninterpretedOption = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        deprecated?: boolean = false;
-        idempotencyLevel?: google.protobuf.MethodOptions.IdempotencyLevel = 0;
+        deprecated?: boolean;
+        idempotencyLevel?: google.protobuf.MethodOptions.IdempotencyLevel;
         uninterpretedOption?: google.protobuf.IUninterpretedOption[];
 
         /**
@@ -11518,19 +11467,18 @@ export namespace google.protobuf {
          * Constructs a new UninterpretedOption.
          */
         constructor(properties?: IUninterpretedOption) {
-            this.name = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
         name?: google.protobuf.UninterpretedOption.INamePart[];
-        identifierValue?: string = "";
-        positiveIntValue?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(0, 0, true) : 0;
-        negativeIntValue?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(0, 0, false) : 0;
-        doubleValue?: number = 0;
-        stringValue?: Uint8Array= $util.newBuffer([]);
-        aggregateValue?: string = "";
+        identifierValue?: string;
+        positiveIntValue?: (number|$protobuf.Long);
+        negativeIntValue?: (number|$protobuf.Long);
+        doubleValue?: number;
+        stringValue?: Uint8Array;
+        aggregateValue?: string;
 
         /**
          * Creates a new UninterpretedOption instance using the specified properties.
@@ -11977,7 +11925,6 @@ export namespace google.protobuf {
          * Constructs a new SourceCodeInfo.
          */
         constructor(properties?: ISourceCodeInfo) {
-            this.location = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -12152,9 +12099,6 @@ export namespace google.protobuf {
              * Constructs a new Location.
              */
             constructor(properties?: ILocation) {
-                this.path = [];
-                this.span = [];
-                this.leadingDetachedComments = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -12162,8 +12106,8 @@ export namespace google.protobuf {
             }
             path?: number[];
             span?: number[];
-            leadingComments?: string = "";
-            trailingComments?: string = "";
+            leadingComments?: string;
+            trailingComments?: string;
             leadingDetachedComments?: string[];
 
             /**
@@ -12430,7 +12374,6 @@ export namespace google.protobuf {
          * Constructs a new GeneratedCodeInfo.
          */
         constructor(properties?: IGeneratedCodeInfo) {
-            this.annotation = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -12604,16 +12547,15 @@ export namespace google.protobuf {
              * Constructs a new Annotation.
              */
             constructor(properties?: IAnnotation) {
-                this.path = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
             path?: number[];
-            sourceFile?: string = "";
-            begin?: number = 0;
-            end?: number = 0;
+            sourceFile?: string;
+            begin?: number;
+            end?: number;
 
             /**
              * Creates a new Annotation instance using the specified properties.
@@ -12841,33 +12783,27 @@ export class Package implements IPackage {
      * Constructs a new Package.
      */
     constructor(properties?: IPackage) {
-        this.keywords = [];
-        this.bin = {};
-        this.scripts = {};
-        this.dependencies = {};
-        this.devDependencies = {};
-        this.cliDependencies = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
-    version?: string = "";
-    versionScheme?: string = "";
-    description?: string = "";
-    author?: string = "";
-    license?: string = "";
+    name?: string;
+    version?: string;
+    versionScheme?: string;
+    description?: string;
+    author?: string;
+    license?: string;
     repository?: Package.IRepository;
-    bugs?: string = "";
-    homepage?: string = "";
+    bugs?: string;
+    homepage?: string;
     keywords?: string[];
-    main?: string = "";
+    main?: string;
     bin?: {[key: string]: string};
     scripts?: {[key: string]: string};
     dependencies?: {[key: string]: string};
     devDependencies?: {[key: string]: string};
-    types?: string = "";
+    types?: string;
     cliDependencies?: string[];
 
     /**
@@ -13410,8 +13346,8 @@ export namespace Package {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        type?: string = "";
-        url?: string = "";
+        type?: string;
+        url?: string;
 
         /**
          * Creates a new Repository instance using the specified properties.

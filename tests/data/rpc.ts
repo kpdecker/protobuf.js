@@ -55,7 +55,7 @@ export class MyRequest implements IMyRequest {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    path?: string = "";
+    path?: string;
 
     /**
      * Creates a new MyRequest instance using the specified properties.
@@ -202,7 +202,7 @@ export class MyResponse implements IMyResponse {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    status?: number = 0;
+    status?: number;
 
     /**
      * Creates a new MyResponse instance using the specified properties.

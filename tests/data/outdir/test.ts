@@ -156,7 +156,7 @@ export class EnumContainer implements IEnumContainer {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    outerEnum?: OuterEnum = 1;
+    outerEnum?: OuterEnum;
 
     /**
      * Creates a new EnumContainer instance using the specified properties.
@@ -314,7 +314,6 @@ export class Simple1 implements ISimple1 {
      * Constructs a new Simple1.
      */
     constructor(properties?: ISimple1) {
-        this.aRepeatedString = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -322,7 +321,7 @@ export class Simple1 implements ISimple1 {
     }
     aString: string = "";
     aRepeatedString?: string[];
-    aBoolean?: boolean = false;
+    aBoolean?: boolean;
     aSomething?: ISomething;
 
     /**
@@ -529,7 +528,6 @@ export class Simple2 implements ISimple2 {
      * Constructs a new Simple2.
      */
     constructor(properties?: ISimple2) {
-        this.aRepeatedString = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -906,14 +904,12 @@ export class OptionalFields implements IOptionalFields {
      * Constructs a new OptionalFields.
      */
     constructor(properties?: IOptionalFields) {
-        this.aRepeatedMessage = [];
-        this.aRepeatedString = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    aString?: string = "";
+    aString?: string;
     aBool: boolean = false;
     aNestedMessage?: OptionalFields.INested;
     aRepeatedMessage?: OptionalFields.INested[];
@@ -1164,7 +1160,7 @@ export namespace OptionalFields {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        anInt?: number = 0;
+        anInt?: number;
 
         /**
          * Creates a new Nested instance using the specified properties.
@@ -1316,19 +1312,17 @@ export class HasExtensions implements IHasExtensions {
      * Constructs a new HasExtensions.
      */
     constructor(properties?: IHasExtensions) {
-        this["IndirectExtension.repeatedStr"] = [];
-        this["IndirectExtension.repeatedSimple"] = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    str1?: string = "";
-    str2?: string = "";
-    str3?: string = "";
+    str1?: string;
+    str2?: string;
+    str3?: string;
     ["IsExtension.extField"]?: IIsExtension;
     ["IndirectExtension.simple"]?: ISimple1;
-    ["IndirectExtension.str"]?: string = "";
+    ["IndirectExtension.str"]?: string;
     ["IndirectExtension.repeatedStr"]?: string[];
     ["IndirectExtension.repeatedSimple"]?: ISimple1[];
     simple1?: ISimple1;
@@ -1638,8 +1632,6 @@ export class Complex implements IComplex {
      * Constructs a new Complex.
      */
     constructor(properties?: IComplex) {
-        this.aRepeatedMessage = [];
-        this.aRepeatedString = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -2175,7 +2167,7 @@ export namespace OuterMessage {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        innerComplexField?: number = 0;
+        innerComplexField?: number;
 
         /**
          * Creates a new Complex instance using the specified properties.
@@ -2324,7 +2316,7 @@ export class IsExtension implements IIsExtension {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    ext1?: string = "";
+    ext1?: string;
 
     /**
      * Creates a new IsExtension instance using the specified properties.
@@ -2618,12 +2610,12 @@ export class DefaultValues implements IDefaultValues {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    stringField?: string = "default<>abc";
-    boolField?: boolean = true;
-    intField?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(11, 0, false) : 11;
-    enumField?: DefaultValues.Enum = 13;
-    emptyField?: string = "";
-    bytesField?: Uint8Array= $util.newBuffer([109,111,111]);
+    stringField?: string;
+    boolField?: boolean;
+    intField?: (number|$protobuf.Long);
+    enumField?: DefaultValues.Enum;
+    emptyField?: string;
+    bytesField?: Uint8Array;
 
     /**
      * Creates a new DefaultValues instance using the specified properties.
@@ -2886,21 +2878,19 @@ export class FloatingPointFields implements IFloatingPointFields {
      * Constructs a new FloatingPointFields.
      */
     constructor(properties?: IFloatingPointFields) {
-        this.repeatedFloatField = [];
-        this.repeatedDoubleField = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    optionalFloatField?: number = 0;
+    optionalFloatField?: number;
     requiredFloatField: number = 0;
     repeatedFloatField?: number[];
-    defaultFloatField?: number = 2;
-    optionalDoubleField?: number = 0;
+    defaultFloatField?: number;
+    optionalDoubleField?: number;
     requiredDoubleField: number = 0;
     repeatedDoubleField?: number[];
-    defaultDoubleField?: number = 2;
+    defaultDoubleField?: number;
 
     /**
      * Creates a new FloatingPointFields instance using the specified properties.
@@ -3185,17 +3175,16 @@ export class TestClone implements ITestClone {
      * Constructs a new TestClone.
      */
     constructor(properties?: ITestClone) {
-        this.simple2 = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    str?: string = "";
+    str?: string;
     simple1?: ISimple1;
     simple2?: ISimple1[];
-    bytesField?: Uint8Array= $util.newBuffer([]);
-    unused?: string = "";
+    bytesField?: Uint8Array;
+    unused?: string;
     ["CloneExtension.extField"]?: ICloneExtension;
 
     /**
@@ -3451,7 +3440,7 @@ export class CloneExtension implements ICloneExtension {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    ext?: string = "";
+    ext?: string;
 
     /**
      * Creates a new CloneExtension instance using the specified properties.
@@ -3602,7 +3591,6 @@ export class TestGroup implements ITestGroup {
      * Constructs a new TestGroup.
      */
     constructor(properties?: ITestGroup) {
-        this.repeatedGroup = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -3611,7 +3599,7 @@ export class TestGroup implements ITestGroup {
     repeatedGroup?: TestGroup.IRepeatedGroup[];
     requiredGroup: TestGroup.IRequiredGroup;
     optionalGroup?: TestGroup.IOptionalGroup;
-    id?: string = "";
+    id?: string;
     requiredSimple: ISimple2;
     optionalSimple?: ISimple2;
 
@@ -3868,7 +3856,6 @@ export namespace TestGroup {
          * Constructs a new RepeatedGroup.
          */
         constructor(properties?: IRepeatedGroup) {
-            this.someBool = [];
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -4513,8 +4500,8 @@ export class TestReservedNames implements ITestReservedNames {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    extension?: number = 0;
-    ["TestReservedNamesExtension.foo"]?: number = 0;
+    extension?: number;
+    ["TestReservedNamesExtension.foo"]?: number;
 
     /**
      * Creates a new TestReservedNames instance using the specified properties.
@@ -4812,22 +4799,21 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
      * Constructs a new TestMessageWithOneof.
      */
     constructor(properties?: ITestMessageWithOneof) {
-        this.repeatedField = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    pone?: string = "";
-    pthree?: string = "";
+    pone?: string;
+    pthree?: string;
     rone?: ITestMessageWithOneof;
-    rtwo?: string = "";
-    normalField?: boolean = false;
+    rtwo?: string;
+    normalField?: boolean;
     repeatedField?: string[];
-    aone?: number = 1234;
-    atwo?: number = 0;
-    bone?: number = 0;
-    btwo?: number = 1234;
+    aone?: number;
+    atwo?: number;
+    bone?: number;
+    btwo?: number;
 
     // OneOf field names bound to virtual getters and setters
 
@@ -5195,8 +5181,8 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    value?: number = 0;
-    data?: Uint8Array= $util.newBuffer([]);
+    value?: number;
+    data?: Uint8Array;
 
     /**
      * Creates a new TestEndsWithBytes instance using the specified properties.
@@ -5372,17 +5358,6 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
      * Constructs a new TestMapFieldsNoBinary.
      */
     constructor(properties?: ITestMapFieldsNoBinary) {
-        this.mapStringString = {};
-        this.mapStringInt32 = {};
-        this.mapStringInt64 = {};
-        this.mapStringBool = {};
-        this.mapStringDouble = {};
-        this.mapStringEnum = {};
-        this.mapStringMsg = {};
-        this.mapInt32String = {};
-        this.mapInt64String = {};
-        this.mapBoolString = {};
-        this.mapStringTestmapfields = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -6140,7 +6115,7 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    foo?: number = 0;
+    foo?: number;
 
     /**
      * Creates a new MapValueMessageNoBinary instance using the specified properties.
@@ -6547,7 +6522,7 @@ export namespace Deeply {
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
-            count?: number = 0;
+            count?: number;
 
             /**
              * Creates a new Message instance using the specified properties.

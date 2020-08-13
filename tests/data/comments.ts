@@ -32,13 +32,13 @@ export class Test1 implements ITest1 {
     /**
      * Field with a comment.
      */
-    field1?: string = "";
+    field1?: string;
 
-    field2?: number = 0;
+    field2?: number;
     /**
      * Field with a comment and a <a href="http://example.com/foo/">link</a>
      */
-    field3?: boolean = false;
+    field3?: boolean;
 
 
     /**

@@ -25,23 +25,18 @@ export class Message implements IMessage {
      * Constructs a new Message.
      */
     constructor(properties?: IMessage) {
-        this.stringRepeated = [];
-        this.uint64Repeated = [];
-        this.bytesRepeated = [];
-        this.enumRepeated = [];
-        this.int64Map = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    stringVal?: string = "";
+    stringVal?: string;
     stringRepeated?: string[];
-    uint64Val?: (number|$protobuf.Long) = $util.Long ? ($util.Long as any).fromBits(0, 0, true) : 0;
+    uint64Val?: (number|$protobuf.Long);
     uint64Repeated?: (number|$protobuf.Long)[];
-    bytesVal?: Uint8Array= $util.newBuffer([]);
+    bytesVal?: Uint8Array;
     bytesRepeated?: Uint8Array[];
-    enumVal?: Message.SomeEnum = 1;
+    enumVal?: Message.SomeEnum;
     enumRepeated?: Message.SomeEnum[];
     int64Map?: {[key: string]: (number|$protobuf.Long)};
 

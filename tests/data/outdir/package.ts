@@ -33,33 +33,27 @@ export class Package implements IPackage {
      * Constructs a new Package.
      */
     constructor(properties?: IPackage) {
-        this.keywords = [];
-        this.bin = {};
-        this.scripts = {};
-        this.dependencies = {};
-        this.devDependencies = {};
-        this.cliDependencies = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
-    name?: string = "";
-    version?: string = "";
-    versionScheme?: string = "";
-    description?: string = "";
-    author?: string = "";
-    license?: string = "";
+    name?: string;
+    version?: string;
+    versionScheme?: string;
+    description?: string;
+    author?: string;
+    license?: string;
     repository?: Package.IRepository;
-    bugs?: string = "";
-    homepage?: string = "";
+    bugs?: string;
+    homepage?: string;
     keywords?: string[];
-    main?: string = "";
+    main?: string;
     bin?: {[key: string]: string};
     scripts?: {[key: string]: string};
     dependencies?: {[key: string]: string};
     devDependencies?: {[key: string]: string};
-    types?: string = "";
+    types?: string;
     cliDependencies?: string[];
 
     /**
@@ -602,8 +596,8 @@ export namespace Package {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-        type?: string = "";
-        url?: string = "";
+        type?: string;
+        url?: string;
 
         /**
          * Creates a new Repository instance using the specified properties.

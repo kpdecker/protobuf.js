@@ -422,7 +422,6 @@ $root.jspb = (function() {
              * @param {jspb.test.ISimple1=} [properties] Properties to set
              */
             function Simple1(properties) {
-                this.aRepeatedString = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -696,7 +695,6 @@ $root.jspb = (function() {
              * @param {jspb.test.ISimple2=} [properties] Properties to set
              */
             function Simple2(properties) {
-                this.aRepeatedString = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -1179,8 +1177,6 @@ $root.jspb = (function() {
              * @param {jspb.test.IOptionalFields=} [properties] Properties to set
              */
             function OptionalFields(properties) {
-                this.aRepeatedMessage = [];
-                this.aRepeatedString = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -1690,8 +1686,6 @@ $root.jspb = (function() {
              * @param {jspb.test.IHasExtensions=} [properties] Properties to set
              */
             function HasExtensions(properties) {
-                this[".jspb.test.IndirectExtension.repeatedStr"] = [];
-                this[".jspb.test.IndirectExtension.repeatedSimple"] = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -2104,8 +2098,6 @@ $root.jspb = (function() {
              * @param {jspb.test.IComplex=} [properties] Properties to set
              */
             function Complex(properties) {
-                this.aRepeatedMessage = [];
-                this.aRepeatedString = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -3660,8 +3652,6 @@ $root.jspb = (function() {
              * @param {jspb.test.IFloatingPointFields=} [properties] Properties to set
              */
             function FloatingPointFields(properties) {
-                this.repeatedFloatField = [];
-                this.repeatedDoubleField = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -4044,7 +4034,6 @@ $root.jspb = (function() {
              * @param {jspb.test.ITestClone=} [properties] Properties to set
              */
             function TestClone(properties) {
-                this.simple2 = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -4570,7 +4559,6 @@ $root.jspb = (function() {
              * @param {jspb.test.ITestGroup=} [properties] Properties to set
              */
             function TestGroup(properties) {
-                this.repeatedGroup = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -4905,7 +4893,6 @@ $root.jspb = (function() {
                  * @param {jspb.test.TestGroup.IRepeatedGroup=} [properties] Properties to set
                  */
                 function RepeatedGroup(properties) {
-                    this.someBool = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -6089,7 +6076,6 @@ $root.jspb = (function() {
              * @param {jspb.test.ITestMessageWithOneof=} [properties] Properties to set
              */
             function TestMessageWithOneof(properties) {
-                this.repeatedField = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -6806,17 +6792,6 @@ $root.jspb = (function() {
              * @param {jspb.test.ITestMapFieldsNoBinary=} [properties] Properties to set
              */
             function TestMapFieldsNoBinary(properties) {
-                this.mapStringString = {};
-                this.mapStringInt32 = {};
-                this.mapStringInt64 = {};
-                this.mapStringBool = {};
-                this.mapStringDouble = {};
-                this.mapStringEnum = {};
-                this.mapStringMsg = {};
-                this.mapInt32String = {};
-                this.mapInt64String = {};
-                this.mapBoolString = {};
-                this.mapStringTestmapfields = {};
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -8392,7 +8367,6 @@ $root.google = (function() {
              * @param {google.protobuf.IFileDescriptorSet=} [properties] Properties to set
              */
             function FileDescriptorSet(properties) {
-                this.file = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -8611,13 +8585,6 @@ $root.google = (function() {
              * @param {google.protobuf.IFileDescriptorProto=} [properties] Properties to set
              */
             function FileDescriptorProto(properties) {
-                this.dependency = [];
-                this.publicDependency = [];
-                this.weakDependency = [];
-                this.messageType = [];
-                this.enumType = [];
-                this.service = [];
-                this.extension = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -9193,14 +9160,6 @@ $root.google = (function() {
              * @param {google.protobuf.IDescriptorProto=} [properties] Properties to set
              */
             function DescriptorProto(properties) {
-                this.field = [];
-                this.extension = [];
-                this.nestedType = [];
-                this.enumType = [];
-                this.extensionRange = [];
-                this.oneofDecl = [];
-                this.reservedRange = [];
-                this.reservedName = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -10941,7 +10900,6 @@ $root.google = (function() {
              * @param {google.protobuf.IEnumDescriptorProto=} [properties] Properties to set
              */
             function EnumDescriptorProto(properties) {
-                this.value = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -11437,7 +11395,6 @@ $root.google = (function() {
              * @param {google.protobuf.IServiceDescriptorProto=} [properties] Properties to set
              */
             function ServiceDescriptorProto(properties) {
-                this.method = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -12011,7 +11968,6 @@ $root.google = (function() {
              * @param {google.protobuf.IFileOptions=} [properties] Properties to set
              */
             function FileOptions(properties) {
-                this.uninterpretedOption = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -12553,7 +12509,6 @@ $root.google = (function() {
              * @param {google.protobuf.IMessageOptions=} [properties] Properties to set
              */
             function MessageOptions(properties) {
-                this.uninterpretedOption = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -12853,7 +12808,6 @@ $root.google = (function() {
              * @param {google.protobuf.IFieldOptions=} [properties] Properties to set
              */
             function FieldOptions(properties) {
-                this.uninterpretedOption = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -13257,7 +13211,6 @@ $root.google = (function() {
              * @param {google.protobuf.IOneofOptions=} [properties] Properties to set
              */
             function OneofOptions(properties) {
-                this.uninterpretedOption = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -13468,7 +13421,6 @@ $root.google = (function() {
              * @param {google.protobuf.IEnumOptions=} [properties] Properties to set
              */
             function EnumOptions(properties) {
-                this.uninterpretedOption = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -13742,7 +13694,6 @@ $root.google = (function() {
              * @param {google.protobuf.IEnumValueOptions=} [properties] Properties to set
              */
             function EnumValueOptions(properties) {
-                this.uninterpretedOption = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -13973,7 +13924,6 @@ $root.google = (function() {
              * @param {google.protobuf.IServiceOptions=} [properties] Properties to set
              */
             function ServiceOptions(properties) {
-                this.uninterpretedOption = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -14205,7 +14155,6 @@ $root.google = (function() {
              * @param {google.protobuf.IMethodOptions=} [properties] Properties to set
              */
             function MethodOptions(properties) {
-                this.uninterpretedOption = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -14497,7 +14446,6 @@ $root.google = (function() {
              * @param {google.protobuf.IUninterpretedOption=} [properties] Properties to set
              */
             function UninterpretedOption(properties) {
-                this.name = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -15080,7 +15028,6 @@ $root.google = (function() {
              * @param {google.protobuf.ISourceCodeInfo=} [properties] Properties to set
              */
             function SourceCodeInfo(properties) {
-                this.location = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -15289,9 +15236,6 @@ $root.google = (function() {
                  * @param {google.protobuf.SourceCodeInfo.ILocation=} [properties] Properties to set
                  */
                 function Location(properties) {
-                    this.path = [];
-                    this.span = [];
-                    this.leadingDetachedComments = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -15630,7 +15574,6 @@ $root.google = (function() {
              * @param {google.protobuf.IGeneratedCodeInfo=} [properties] Properties to set
              */
             function GeneratedCodeInfo(properties) {
-                this.annotation = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -15838,7 +15781,6 @@ $root.google = (function() {
                  * @param {google.protobuf.GeneratedCodeInfo.IAnnotation=} [properties] Properties to set
                  */
                 function Annotation(properties) {
-                    this.path = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -16139,12 +16081,6 @@ $root.Package = (function() {
      * @param {IPackage=} [properties] Properties to set
      */
     function Package(properties) {
-        this.keywords = [];
-        this.bin = {};
-        this.scripts = {};
-        this.dependencies = {};
-        this.devDependencies = {};
-        this.cliDependencies = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)

@@ -43,12 +43,6 @@ $root.Package = (function() {
      * @param {IPackage=} [properties] Properties to set
      */
     function Package(properties) {
-        this.keywords = [];
-        this.bin = {};
-        this.scripts = {};
-        this.dependencies = {};
-        this.devDependencies = {};
-        this.cliDependencies = [];
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
