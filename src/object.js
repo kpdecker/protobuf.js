@@ -93,7 +93,7 @@ Object.defineProperties(ReflectionObject.prototype, {
         get: function() {
             var path = [ this.name ],
                 ptr = this.parent;
-            while (ptr) {
+            while (ptr && !ptr.isFileRoot) {
                 path.unshift(ptr.name);
                 ptr = ptr.parent;
             }

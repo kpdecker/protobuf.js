@@ -8,9 +8,15 @@ function genValuePartial_equals(gen, field, fieldIndex, prop, index) {
 
   /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
   if (field.resolvedType) {
-    if (field.resolvedType instanceof Enum) {
-      gen("a%s===b%s", prop, prop);
-    } else gen("types[%i].equals(a%s, b%s)", fieldIndex, prop, prop);
+    if (index) {
+      if (field.resolvedType instanceof Enum) {
+        gen("(a%s && a%s%s)===(b%s && b%s%s)", prop, prop, index, prop, prop, index);
+      } else gen("types[%i].equals(a%s && a%s%s, b%s && b%s%s)", fieldIndex, prop, prop, index, prop, prop, index);
+    } else {
+      if (field.resolvedType instanceof Enum) {
+        gen("a%s===b%s", prop, prop);
+      } else gen("types[%i].equals(a%s, b%s)", fieldIndex, prop, prop);
+    }
   } else {
     switch (field.type) {
       case "double":

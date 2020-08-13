@@ -30,8 +30,8 @@ tape.test("load sync", function(test) {
     }, Error, "should throw when trying to load invalid json");
 
     root = protobuf.loadSync("tests/data/weak.proto");
-    test.ok(root.files.indexOf("tests/data/NOT_FOUND") > -1, "should ignore missing weak protos and remember them");
-    test.ok(root.files.indexOf("google/protobuf/any.proto") > -1, "should still load other protos when ignoring weak protos");
+    test.ok(root.files.indexOf("NOT_FOUND") > -1, "should ignore missing weak protos and remember them");
+    test.ok(root.files.indexOf("google_protobuf_any.proto") > -1, "should still load other protos when ignoring weak protos");
 
     test.end();
 });

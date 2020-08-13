@@ -248,7 +248,7 @@ $root.Message = (function() {
                     message.enumRepeated.push(reader.int32());
                 break;
             case 9:
-                if (message.int64Map === $util.emptyObject)
+                if (message.int64Map === $util.emptyObject || !message.int64Map)
                     message.int64Map = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";

@@ -1,6 +1,8 @@
 "use strict";
 module.exports = Root;
 
+var Path = require("path");
+
 // extends Namespace
 var Namespace = require("./namespace");
 ((Root.prototype = Object.create(Namespace.prototype)).constructor = Root).className = "Root";
@@ -116,25 +118,26 @@ Root.prototype.load = function load(filename, options, callback) {
     }
 
     // Processes a single file
-    function process(filename, source) {
+    function process(filename, source, referenced) {
         try {
             if (util.isString(source) && source.charAt(0) === "{")
                 source = JSON.parse(source);
+
             if (!util.isString(source))
                 self.setOptions(source.options).addJSON(source.nested);
             else {
-                parse.filename = filename;
+                parse.filename = referenced;
                 var parsed = parse(source, self, options),
                     resolved,
                     i = 0;
                 if (parsed.imports)
                     for (; i < parsed.imports.length; ++i)
                         if (resolved = getBundledFileName(parsed.imports[i]) || self.resolvePath(filename, parsed.imports[i]))
-                            fetch(resolved);
+                            fetch(resolved, false, parsed.imports[i].replace(/\//g, "_"));
                 if (parsed.weakImports)
                     for (i = 0; i < parsed.weakImports.length; ++i)
                         if (resolved = getBundledFileName(parsed.weakImports[i]) || self.resolvePath(filename, parsed.weakImports[i]))
-                            fetch(resolved, true);
+                            fetch(resolved, true, parsed.weakImports[i].replace(/\//g, "_"));
             }
         } catch (err) {
             finish(err);
@@ -144,22 +147,23 @@ Root.prototype.load = function load(filename, options, callback) {
     }
 
     // Fetches a single file
-    function fetch(filename, weak) {
+    function fetch(filename, weak, referenced) {
+        referenced = referenced || filename;
 
         // Skip if already loaded / attempted
-        if (self.files.indexOf(filename) > -1)
+        if (self.files.indexOf(referenced) > -1)
             return;
-        self.files.push(filename);
+        self.files.push(referenced);
 
         // Shortcut bundled definitions
         if (filename in common) {
             if (sync)
-                process(filename, common[filename]);
+                process(filename, common[filename], referenced);
             else {
                 ++queued;
                 setTimeout(function() {
                     --queued;
-                    process(filename, common[filename]);
+                    process(filename, common[filename], referenced);
                 });
             }
             return;
@@ -175,7 +179,7 @@ Root.prototype.load = function load(filename, options, callback) {
                     finish(err);
                 return;
             }
-            process(filename, source);
+            process(filename, source, referenced);
         } else {
             ++queued;
             self.fetch(filename, function(err, source) {
@@ -191,7 +195,7 @@ Root.prototype.load = function load(filename, options, callback) {
                         finish(null, self);
                     return;
                 }
-                process(filename, source);
+                process(filename, source, referenced);
             });
         }
     }
@@ -203,7 +207,7 @@ Root.prototype.load = function load(filename, options, callback) {
         filename = [ filename ];
     for (var i = 0, resolved; i < filename.length; ++i)
         if (resolved = self.resolvePath("", filename[i]))
-            fetch(resolved);
+            fetch(resolved, false, Path.basename(filename[i]));
 
     if (sync)
         return self;

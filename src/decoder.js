@@ -37,7 +37,7 @@ function decoder(mtype) {
 
         // Map fields
         if (field.map) { gen
-                ("if(%s===util.emptyObject)", ref)
+                ("if(%s===util.emptyObject || !%s)", ref, ref)
                     ("%s={}", ref)
                 ("var c2 = r.uint32()+r.pos");
 

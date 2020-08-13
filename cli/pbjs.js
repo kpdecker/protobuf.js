@@ -35,6 +35,7 @@ exports.main = function main(args, callback) {
         alias: {
             target: "t",
             out: "o",
+            outdir: "d",
             path: "p",
             wrap: "w",
             root: "r",
@@ -43,8 +44,8 @@ exports.main = function main(args, callback) {
             "force-long": "strict-long",
             "force-message": "strict-message"
         },
-        string: [ "target", "out", "path", "wrap", "dependency", "root", "lint" ],
-        boolean: [ "create", "encode", "decode", "verify", "convert", "equals", "delimited", "beautify", "comments", "es6", "sparse", "keep-case", "force-long", "force-number", "force-enum-string", "force-message" ],
+        string: [ "target", "out", "outdir", "path", "wrap", "dependency", "root", "lint" ],
+        boolean: [ "create", "encode", "decode", "verify", "convert", "equals", "delimited", "beautify", "comments", "namespaces", "es6", "sparse", "keep-case", "force-long", "force-number", "force-enum-string", "force-message" ],
         default: {
             target: "json",
             create: true,
@@ -56,6 +57,7 @@ exports.main = function main(args, callback) {
             delimited: true,
             beautify: true,
             comments: true,
+            namespaces: true,
             es6: null,
             lint: lintDefault,
             "keep-case": false,
@@ -99,6 +101,7 @@ exports.main = function main(args, callback) {
                 "  -p, --path       Adds a directory to the include path.",
                 "",
                 "  -o, --out        Saves to a file instead of writing to stdout.",
+                "  -d, --outdir     Directory to write mutliple file artifacts to.",
                 "",
                 "  --sparse         Exports only those types referenced from a main file (experimental).",
                 "",
@@ -136,6 +139,7 @@ exports.main = function main(args, callback) {
                 "  --no-delimited   Does not generate delimited encode/decode functions.",
                 "  --no-beautify    Does not beautify generated code.",
                 "  --no-comments    Does not output any JSDoc comments.",
+                "  --no-namepsaces  Does not output any namespaces in typescript compilation.",
                 "",
                 "  --force-long     Enfores the use of 'Long' for s-/u-/int64 and s-/fixed64 fields.",
                 "  --force-number   Enfores the use of 'number' for s-/u-/int64 and s-/fixed64 fields.",
@@ -201,7 +205,8 @@ exports.main = function main(args, callback) {
     }
 
     var parseOptions = {
-        "keepCase": argv["keep-case"] || false
+        "keepCase": argv["keep-case"] || false,
+        flattenNamespace: !!argv.outdir || argv.target === "typescript"
     };
 
     // Read from stdin
@@ -303,26 +308,65 @@ exports.main = function main(args, callback) {
     }
 
     function callTarget() {
-        target(root, argv, function targetCallback(err, output) {
-            if (err) {
-                if (callback)
-                    return callback(err);
-                throw err;
+        if (argv.outdir) {
+            if (callback) {
+                throw new Error("Callback not supported in mutli-file mode");
             }
-            try {
-                if (argv.out)
-                    fs.writeFileSync(argv.out, output, { encoding: "utf8" });
-                else if (!callback)
-                    process.stdout.write(output, "utf8");
-                return callback
-                    ? callback(null, output)
-                    : undefined;
-            } catch (err) {
-                if (callback)
-                    return callback(err);
-                throw err;
-            }
-        });
+
+            root.files.forEach(function(filename) {
+                var outName = path.join(argv.outdir, filename.replace(/\.proto$/, argv.target === "typescript" ? ".ts" : ".js"));
+                var nodes = root.nestedArray.filter(function(pkg) {
+                    return pkg.filename === filename || (pkg.filenames && pkg.filenames.includes(filename));
+                });
+                var fileRoot = new protobuf.Namespace(filename);
+                fileRoot.isFileRoot = true;
+
+                root.add(fileRoot);
+
+                nodes.forEach(function (node) {
+                    if (node instanceof protobuf.Type || !(node instanceof protobuf.Namespace)) {
+                        fileRoot.add(node);
+                    } else {
+                        // Namespace but not type
+                        node.nestedArray
+                            .filter(function (childName) {
+                                return childName.filename === filename;
+                            })
+                            .forEach(function (childNode) {
+                                return fileRoot.add(childNode);
+                            });
+                    }
+                });
+
+                target(fileRoot, argv, function targetCallback(err, output) {
+                    if (err) {
+                        throw err;
+                    }
+                    fs.writeFileSync(outName, output, { encoding: "utf8" });
+                });
+            });
+        } else {
+            target(root, argv, function targetCallback(err, output) {
+                if (err) {
+                    if (callback)
+                        return callback(err);
+                    throw err;
+                }
+                try {
+                    if (argv.out)
+                        fs.writeFileSync(argv.out, output, { encoding: "utf8" });
+                    else if (!callback)
+                        process.stdout.write(output, "utf8");
+                    return callback
+                        ? callback(null, output)
+                        : undefined;
+                } catch (err) {
+                    if (callback)
+                        return callback(err);
+                    throw err;
+                }
+            });
+        }
     }
 
     return undefined;

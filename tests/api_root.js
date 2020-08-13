@@ -42,7 +42,7 @@ tape.test("reflected roots", function(test) {
                 return test.fail("should not return an error when loading JSON files: " + err.message);
             test.ok(root.lookupType("google.protobuf.Any"), "should load JSON files");
             root.load("tests/data/common.json", function(err) {
-                test.same(root.files, [ "tests/data/common.json" ], "should not attempt to load the same file twice");
+                test.same(root.files, [ "common.json" ], "should not attempt to load the same file twice");
                 test.notOk(err, "should not return an error when loading files twice");
                 test.end();
             });

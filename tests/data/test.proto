@@ -35,6 +35,8 @@ syntax = "proto2";
 option java_package = "com.google.apps.jspb.proto";
 
 import "google/protobuf/descriptor.proto";
+import "package.proto";
+import "package-a.proto";
 
 package jspb.test;
 
@@ -54,6 +56,7 @@ message Simple1 {
   required string a_string = 1;
   repeated string a_repeated_string = 2;
   optional bool a_boolean = 3;
+  optional aaaa.b.Something a_something = 4;
 }
 
 // A message that differs from Simple1 only by name

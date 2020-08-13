@@ -325,7 +325,7 @@ $root.Package = (function() {
                 message.main = reader.string();
                 break;
             case 11:
-                if (message.bin === $util.emptyObject)
+                if (message.bin === $util.emptyObject || !message.bin)
                     message.bin = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
@@ -347,7 +347,7 @@ $root.Package = (function() {
                 message.bin[key] = value;
                 break;
             case 12:
-                if (message.scripts === $util.emptyObject)
+                if (message.scripts === $util.emptyObject || !message.scripts)
                     message.scripts = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
@@ -369,7 +369,7 @@ $root.Package = (function() {
                 message.scripts[key] = value;
                 break;
             case 13:
-                if (message.dependencies === $util.emptyObject)
+                if (message.dependencies === $util.emptyObject || !message.dependencies)
                     message.dependencies = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
@@ -391,7 +391,7 @@ $root.Package = (function() {
                 message.dependencies[key] = value;
                 break;
             case 15:
-                if (message.devDependencies === $util.emptyObject)
+                if (message.devDependencies === $util.emptyObject || !message.devDependencies)
                     message.devDependencies = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";

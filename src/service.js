@@ -89,17 +89,20 @@ Object.defineProperty(Service.prototype, "methodsArray", {
     }
 });
 
-function clearCache(service) {
-    service._methodsArray = null;
-    return service;
-}
+Service.prototype.clearCache = function clearCache() {
+    this._methodsArray = null;
+    return Namespace.prototype.clearCache.call(this);
+};
 
-/**
- * @override
- */
-Service.prototype.get = function get(name) {
-    return this.methods[name]
-        || Namespace.prototype.get.call(this, name);
+Service.prototype._loadPathMap = function _loadPathMap() {
+    var pathMap = Namespace.prototype._loadPathMap.call(this);
+    pathMap.children = pathMap.children.concat(this.methodsArray.map(function (method) {
+        return {
+            name: method.name,
+            node: method
+        };
+    }));
+    return pathMap;
 };
 
 /**
@@ -124,7 +127,7 @@ Service.prototype.add = function add(object) {
     if (object instanceof Method) {
         this.methods[object.name] = object;
         object.parent = this;
-        return clearCache(this);
+        return this.clearCache();
     }
     return Namespace.prototype.add.call(this, object);
 };
@@ -141,7 +144,7 @@ Service.prototype.remove = function remove(object) {
 
         delete this.methods[object.name];
         object.parent = null;
-        return clearCache(this);
+        return this.clearCache();
     }
     return Namespace.prototype.remove.call(this, object);
 };
