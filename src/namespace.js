@@ -196,7 +196,7 @@ Namespace.prototype.get = function get(name) {
         name = name.split(/\./g);
     }
 
-    var pathMap = this._loadPathMap()
+    var pathMap = this._loadPathMap();
     var ptr = pathMap;
     var walkPath = name.slice();
     while (ptr && walkPath.length) {
