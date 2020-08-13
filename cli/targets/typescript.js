@@ -18,11 +18,14 @@ var Type      = protobuf.Type,
 var out = [];
 var indent = 0;
 var config = {};
+var imports = {};
 
 static_target.description = "Static code without reflection (non-functional on its own)";
 
 function static_target(root, options, callback) {
     config = options;
+    imports = {};
+
     try {
         var aliases = [];
         if (config.decode)
@@ -46,8 +49,10 @@ function static_target(root, options, callback) {
         buildNamespace(null, root);
 
         out = out.join("\n");
-        out = `import * as $protobuf from "${options.dependency || 'protobufjs/minimal'}";
-${/\bStream\b/.test(out) ? `import Stream from 'stream';` : ''}
+        out = `import * as $protobuf from "${options.dependency || '@kpdecker/protobufjs/minimal'}";
+${Object.keys(imports).map((path) => 
+    `import { ${Object.keys(imports[path]).join(', ')} } from "./${path.replace(/\.proto$/, '')}";`
+).join('\n')}
 
 ${out};
 `;
@@ -641,16 +646,19 @@ function buildService(service) {
             push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", request);");
             --indent;
         } else if (method.requestStream && method.responseStream) {
+            imports.stream = { Stream: true };
             push(`async ${escapeName(lcName)}(): Promise<Stream.Duplex> {`);
             ++indent;
             push("return (this.rpcImpl as any)(this." + escapeName(lcName) + ");");
             --indent;
         } else if (!method.requestStream && method.responseStream) {
+            imports.stream = { Stream: true };
             push(`async ${escapeName(lcName)}(request: ${typeName(method.resolvedRequestType, !config.forceMessage)}): Promise<Stream.Readable> {`);
             ++indent;
             push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", request);");
             --indent;
         } else if (method.requestStream && !method.responseStream) {
+            imports.stream = { Stream: true };
             push(`async ${escapeName(lcName)}(callback: (err?: Error, response?: ${typeName(method.resolvedResponseType)}) => void): Promise<Stream.Writable> {`);
             ++indent;
             push("return (this.rpcCall as any)(this." + escapeName(lcName) + ", " + exportName(method.resolvedRequestType) + ", " + exportName(method.resolvedResponseType) + ", undefined, callback);");
