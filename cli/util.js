@@ -8,7 +8,7 @@ var semver;
 try {
     // installed as a peer dependency
     require.resolve("@kpdecker/protobufjs");
-    exports.pathToProtobufJs = '@kpdecker/protobufjs';
+    exports.pathToProtobufJs = "@kpdecker/protobufjs";
 } catch (e) {
     // local development, i.e. forked from github
     exports.pathToProtobufJs = "..";
