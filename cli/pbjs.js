@@ -323,8 +323,14 @@ exports.main = function main(args, callback) {
 
                 root.add(fileRoot);
 
+                var rpcFileRoot = new protobuf.Namespace(filename + '-rpc');
+                rpcFileRoot.isFileRoot = true;
+
                 nodes.forEach(function (node) {
-                    if (node instanceof protobuf.Type || !(node instanceof protobuf.Namespace)) {
+                    if (node instanceof protobuf.Service) {
+                        // Pull services into their own file.
+                        rpcFileRoot.add(node);
+                    } else if (node instanceof protobuf.Type || !(node instanceof protobuf.Namespace)) {
                         fileRoot.add(node);
                     } else {
                         // Namespace but not type
@@ -333,16 +339,38 @@ exports.main = function main(args, callback) {
                                 return childName.filename === filename;
                             })
                             .forEach(function (childNode) {
-                                return fileRoot.add(childNode);
+                                if (childNode instanceof protobuf.Service) {
+                                    // Pull services into their own file.
+                                    childNode.filename = rpcFileRoot.name;
+                                    rpcFileRoot.add(childNode);
+                                } else {
+                                    fileRoot.add(childNode);
+                                }
                             });
                     }
                 });
+
+                if (rpcFileRoot.nestedArray.length) {
+                    root.add(rpcFileRoot);
+                }
+
+                // validate that everything is fine
+                root.resolveAll();
 
                 target(fileRoot, argv, function targetCallback(err, output) {
                     if (err) {
                         throw err;
                     }
                     fs.writeFileSync(outName, output, { encoding: "utf8" });
+
+                    if (rpcFileRoot.nestedArray.length) {
+                        target(rpcFileRoot, argv, function targetCallback(err, output) {
+                            if (err) {
+                                throw err;
+                            }
+                            fs.writeFileSync(outName.replace(/(\.[tj]s)$/, '-rpc$1'), output, { encoding: "utf8" });
+                        });
+                    }
                 });
             });
         } else {
