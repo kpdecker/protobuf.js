@@ -206,7 +206,7 @@ exports.main = function main(args, callback) {
 
     var parseOptions = {
         "keepCase": argv["keep-case"] || false,
-        flattenNamespace: !!argv.outdir || argv.target === "typescript"
+        flattenNamespace: Boolean(argv.outdir) || argv.target === "typescript"
     };
 
     // Read from stdin
@@ -316,14 +316,15 @@ exports.main = function main(args, callback) {
             root.files.forEach(function(filename) {
                 var outName = path.join(argv.outdir, filename.replace(/\.proto$/, argv.target === "typescript" ? ".ts" : ".js"));
                 var nodes = root.nestedArray.filter(function(pkg) {
-                    return pkg.filename === filename || (pkg.filenames && pkg.filenames.includes(filename));
+                    return pkg.filename === filename
+                        || pkg.filenames && pkg.filenames.includes(filename);
                 });
                 var fileRoot = new protobuf.Namespace(filename);
                 fileRoot.isFileRoot = true;
 
                 root.add(fileRoot);
 
-                var rpcFileRoot = new protobuf.Namespace(filename + '-rpc');
+                var rpcFileRoot = new protobuf.Namespace(filename + "-rpc");
                 rpcFileRoot.isFileRoot = true;
 
                 nodes.forEach(function (node) {
@@ -368,7 +369,7 @@ exports.main = function main(args, callback) {
                             if (err) {
                                 throw err;
                             }
-                            fs.writeFileSync(outName.replace(/(\.[tj]s)$/, '-rpc$1'), output, { encoding: "utf8" });
+                            fs.writeFileSync(outName.replace(/(\.[tj]s)$/, "-rpc$1"), output, { encoding: "utf8" });
                         });
                     }
                 });

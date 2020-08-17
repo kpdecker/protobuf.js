@@ -244,15 +244,15 @@ util.Long = /* istanbul ignore next */ util.global.dcodeIO && /* istanbul ignore
 
 /**
  * Generates long representation from a variety of source formats.
- * 
+ *
  * @param {number|object|Long|LongBits} value value to convert
  * @param {boolean} isUnsigned Whether unsigned or not, default false
- * @returns {number|Long}
+ * @returns {number|Long} Hydrated value
  */
 util.longValue = function longValue(value, isUnsigned) {
     if (util.Long) {
-        var ret = util.Long.fromValue(value)
-        ret.unsigned = !!isUnsigned;
+        var ret = util.Long.fromValue(value);
+        ret.unsigned = Boolean(isUnsigned);
         return ret;
     } else if (typeof value === "string")
         return parseInt(value, 10);
@@ -260,7 +260,8 @@ util.longValue = function longValue(value, isUnsigned) {
         return value;
     else if (typeof value === "object")
         return new util.LongBits(value).toNumber();
-}
+    return undefined;
+};
 
 /**
  * Regular expression used to verify 2 bit (`bool`) map keys.
