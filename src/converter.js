@@ -59,14 +59,7 @@ function genValuePartial_fromObject(gen, field, fieldIndex, prop) {
             case "sint64":
             case "fixed64":
             case "sfixed64": gen
-                ("if(util.Long)")
-                    ("(m%s=util.Long.fromValue(d%s)).unsigned=%j", prop, prop, isUnsigned)
-                ("else if(typeof d%s===\"string\")", prop)
-                    ("m%s=parseInt(d%s,10)", prop, prop)
-                ("else if(typeof d%s===\"number\")", prop)
-                    ("m%s=d%s", prop, prop)
-                ("else if(typeof d%s===\"object\")", prop)
-                    ("m%s=new util.LongBits(d%s).toNumber(%s)", prop, prop, isUnsigned ? "true" : "");
+                ("m%s=util.longValue(d%s, %j)", prop, prop, isUnsigned);
                 break;
             case "bytes": gen
                 ("if(typeof d%s===\"string\")", prop)

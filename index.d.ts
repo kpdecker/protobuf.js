@@ -2051,6 +2051,14 @@ export namespace util {
     /** Long.js's Long class if available. */
     let Long: Constructor<Long>;
 
+    /**
+     * Generates long representation from a variety of source formats.
+     *
+     * @param value value to convert
+     * @param isUnsigned Whether unsigned or not, default false
+     */
+    function longValue(value: (number|object|Long|LongBits), isUnsigned: boolean): (number|Long);
+
     /** Regular expression used to verify 2 bit (`bool`) map keys. */
     const key2Re: RegExp;
 

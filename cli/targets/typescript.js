@@ -402,12 +402,6 @@ function buildFunction(type, functionName, gen) {
 
     code = beautifyCode(code)
       .replace(/ {4}/g, "\t")
-      // The AST tools don't cleanly support typing this and typescript dislikes it,
-      // so hack it in after our JS transformations.
-      .replace(/\$util\.Long\.fromValue/g, function () {
-        defineImport("protobufjs", "Long", "$Long");
-        return "($Long as any).fromValue";
-      })
       .replace(/let object = \{\}/g, "let object: any = {}")
       .replace(/let properties = \{\}/g, "let properties: any = {}");
 
