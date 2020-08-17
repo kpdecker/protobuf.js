@@ -2056,6 +2056,7 @@ export namespace util {
      *
      * @param value value to convert
      * @param isUnsigned Whether unsigned or not, default false
+     * @returns Hydrated value
      */
     function longValue(value: (number|object|Long|LongBits), isUnsigned: boolean): (number|Long);
 

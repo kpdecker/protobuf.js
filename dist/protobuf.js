@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v6.10.1 (c) 2016, daniel wirtz
- * compiled thu, 13 aug 2020 18:52:28 utc
+ * protobuf.js v8.0.0 (c) 2016, daniel wirtz
+ * compiled mon, 17 aug 2020 18:58:14 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -1875,14 +1875,7 @@ function genValuePartial_fromObject(gen, field, fieldIndex, prop) {
             case "sint64":
             case "fixed64":
             case "sfixed64": gen
-                ("if(util.Long)")
-                    ("(m%s=util.Long.fromValue(d%s)).unsigned=%j", prop, prop, isUnsigned)
-                ("else if(typeof d%s===\"string\")", prop)
-                    ("m%s=parseInt(d%s,10)", prop, prop)
-                ("else if(typeof d%s===\"number\")", prop)
-                    ("m%s=d%s", prop, prop)
-                ("else if(typeof d%s===\"object\")", prop)
-                    ("m%s=new util.LongBits(d%s).toNumber(%s)", prop, prop, isUnsigned ? "true" : "");
+                ("m%s=util.longValue(d%s, %j)", prop, prop, isUnsigned);
                 break;
             case "bytes": gen
                 ("if(typeof d%s===\"string\")", prop)
@@ -2150,7 +2143,7 @@ function decoder(mtype) {
         var field = mtype._fieldsArray[i].resolve(),
             type  = field.resolvedType instanceof Enum ? "int32" : field.type,
             ref   = "m" + util.safeProp(field.name); gen
-            ("case %i:", field.id);
+            ("case %i: {", field.id);
 
         // Map fields
         if (field.map) { gen
@@ -2221,7 +2214,8 @@ function decoder(mtype) {
         else gen
                 ("%s=r.%s()", ref, type);
         gen
-                ("break");
+                ("break")
+            ("}");
     // Unknown fields
     } gen
             ("default:")
@@ -8461,6 +8455,28 @@ util.Array = typeof Uint8Array !== "undefined" ? Uint8Array /* istanbul ignore n
 util.Long = /* istanbul ignore next */ util.global.dcodeIO && /* istanbul ignore next */ util.global.dcodeIO.Long
          || /* istanbul ignore next */ util.global.Long
          || util.inquire("long");
+
+
+/**
+ * Generates long representation from a variety of source formats.
+ *
+ * @param {number|object|Long|LongBits} value value to convert
+ * @param {boolean} isUnsigned Whether unsigned or not, default false
+ * @returns {number|Long} Hydrated value
+ */
+util.longValue = function longValue(value, isUnsigned) {
+    if (util.Long) {
+        var ret = util.Long.fromValue(value);
+        ret.unsigned = Boolean(isUnsigned);
+        return ret;
+    } else if (typeof value === "string")
+        return parseInt(value, 10);
+    else if (typeof value === "number")
+        return value;
+    else if (typeof value === "object")
+        return new util.LongBits(value).toNumber();
+    return undefined;
+};
 
 /**
  * Regular expression used to verify 2 bit (`bool`) map keys.
