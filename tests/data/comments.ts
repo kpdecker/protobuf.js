@@ -1,8 +1,4 @@
-import * as $protobuf from "../../minimal";
-
-
-// Common aliases
-const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+import { Writer as $Writer, Reader as $Reader, util as $util, IConversionOptions as $IConversionOptions } from "../../minimal";
 
 /** Properties of a Test1. */
 export interface ITest1 {
@@ -38,7 +34,7 @@ export class Test1 implements ITest1 {
      */
     constructor(properties?: ITest1) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -54,10 +50,10 @@ export class Test1 implements ITest1 {
     // #region encode
     /**
      * Encodes the specified Test1 message. Does not implicitly {@link Test1.verify|verify} messages.
-     * @param message Test1message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITest1, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITest1, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.field1 != null && Object.hasOwnProperty.call(message, "field1"))
@@ -71,10 +67,10 @@ export class Test1 implements ITest1 {
 
     /**
      * Encodes the specified Test1 message, length delimited. Does not implicitly {@link Test1.verify|verify} messages.
-     * @param message Test1message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITest1, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITest1, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -87,22 +83,25 @@ export class Test1 implements ITest1 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Test1 {
+    static decode(reader: $Reader|Uint8Array, length?: number): Test1 {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Test1();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Test1();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.field1 = reader.string();
-                break;
-            case 2:
-                message.field2 = reader.uint32();
-                break;
-            case 3:
-                message.field3 = reader.bool();
-                break;
+            case 1: {
+                    message.field1 = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.field2 = reader.uint32();
+                    break;
+                }
+            case 3: {
+                    message.field3 = reader.bool();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -117,10 +116,10 @@ export class Test1 implements ITest1 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Test1 {
+    static decodeDelimited(reader: $Reader|Uint8Array): Test1 {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -154,7 +153,7 @@ export class Test1 implements ITest1 {
     static fromObject(object): ITest1 {
         if (object instanceof Test1)
             return object;
-        var message = new Test1();
+        let message = new Test1();
         if (object.field1 != null)
             message.field1 = String(object.field1);
         if (object.field2 != null)
@@ -170,7 +169,7 @@ export class Test1 implements ITest1 {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITest1, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITest1, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults) {
             object.field1 = "";
@@ -190,7 +189,7 @@ export class Test1 implements ITest1 {
      * Converts this Test1 to JSON.
      */
     toJSON() {
-        return Test1.toObject(this, $protobuf.util.toJSONOptions);
+        return Test1.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -223,7 +222,7 @@ export class Test2 implements ITest2 {
      */
     constructor(properties?: ITest2) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -239,10 +238,10 @@ export class Test2 implements ITest2 {
     // #region encode
     /**
      * Encodes the specified Test2 message. Does not implicitly {@link Test2.verify|verify} messages.
-     * @param message Test2message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITest2, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITest2, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         return writer;
@@ -250,10 +249,10 @@ export class Test2 implements ITest2 {
 
     /**
      * Encodes the specified Test2 message, length delimited. Does not implicitly {@link Test2.verify|verify} messages.
-     * @param message Test2message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITest2, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITest2, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -266,12 +265,12 @@ export class Test2 implements ITest2 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Test2 {
+    static decode(reader: $Reader|Uint8Array, length?: number): Test2 {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Test2();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Test2();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             default:
                 reader.skipType(tag & 7);
@@ -287,10 +286,10 @@ export class Test2 implements ITest2 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Test2 {
+    static decodeDelimited(reader: $Reader|Uint8Array): Test2 {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -324,7 +323,7 @@ export class Test2 implements ITest2 {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITest2, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITest2, options: $IConversionOptions = {}) {
         return {};
     }
 
@@ -332,7 +331,7 @@ export class Test2 implements ITest2 {
      * Converts this Test2 to JSON.
      */
     toJSON() {
-        return Test2.toObject(this, $protobuf.util.toJSONOptions);
+        return Test2.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 

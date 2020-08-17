@@ -111,11 +111,12 @@ $root.vector_tile = (function() {
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 3:
-                    if (!(message.layers && message.layers.length))
-                        message.layers = [];
-                    message.layers.push($root.vector_tile.Tile.Layer.decode(reader, reader.uint32()));
-                    break;
+                case 3: {
+                        if (!(message.layers && message.layers.length))
+                            message.layers = [];
+                        message.layers.push($root.vector_tile.Tile.Layer.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -398,27 +399,34 @@ $root.vector_tile = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.stringValue = reader.string();
-                        break;
-                    case 2:
-                        message.floatValue = reader.float();
-                        break;
-                    case 3:
-                        message.doubleValue = reader.double();
-                        break;
-                    case 4:
-                        message.intValue = reader.int64();
-                        break;
-                    case 5:
-                        message.uintValue = reader.uint64();
-                        break;
-                    case 6:
-                        message.sintValue = reader.sint64();
-                        break;
-                    case 7:
-                        message.boolValue = reader.bool();
-                        break;
+                    case 1: {
+                            message.stringValue = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.floatValue = reader.float();
+                            break;
+                        }
+                    case 3: {
+                            message.doubleValue = reader.double();
+                            break;
+                        }
+                    case 4: {
+                            message.intValue = reader.int64();
+                            break;
+                        }
+                    case 5: {
+                            message.uintValue = reader.uint64();
+                            break;
+                        }
+                    case 6: {
+                            message.sintValue = reader.sint64();
+                            break;
+                        }
+                    case 7: {
+                            message.boolValue = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -497,32 +505,11 @@ $root.vector_tile = (function() {
                 if (object.doubleValue != null)
                     message.doubleValue = Number(object.doubleValue);
                 if (object.intValue != null)
-                    if ($util.Long)
-                        (message.intValue = $util.Long.fromValue(object.intValue)).unsigned = false;
-                    else if (typeof object.intValue === "string")
-                        message.intValue = parseInt(object.intValue, 10);
-                    else if (typeof object.intValue === "number")
-                        message.intValue = object.intValue;
-                    else if (typeof object.intValue === "object")
-                        message.intValue = new $util.LongBits(object.intValue).toNumber();
+                    message.intValue = $util.longValue(object.intValue, false);
                 if (object.uintValue != null)
-                    if ($util.Long)
-                        (message.uintValue = $util.Long.fromValue(object.uintValue)).unsigned = true;
-                    else if (typeof object.uintValue === "string")
-                        message.uintValue = parseInt(object.uintValue, 10);
-                    else if (typeof object.uintValue === "number")
-                        message.uintValue = object.uintValue;
-                    else if (typeof object.uintValue === "object")
-                        message.uintValue = new $util.LongBits(object.uintValue).toNumber(true);
+                    message.uintValue = $util.longValue(object.uintValue, true);
                 if (object.sintValue != null)
-                    if ($util.Long)
-                        (message.sintValue = $util.Long.fromValue(object.sintValue)).unsigned = false;
-                    else if (typeof object.sintValue === "string")
-                        message.sintValue = parseInt(object.sintValue, 10);
-                    else if (typeof object.sintValue === "number")
-                        message.sintValue = object.sintValue;
-                    else if (typeof object.sintValue === "object")
-                        message.sintValue = new $util.LongBits(object.sintValue).toNumber();
+                    message.sintValue = $util.longValue(object.sintValue, false);
                 if (object.boolValue != null)
                     message.boolValue = Boolean(object.boolValue);
                 return message;
@@ -735,32 +722,36 @@ $root.vector_tile = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.id = reader.uint64();
-                        break;
-                    case 2:
-                        if (!(message.tags && message.tags.length))
-                            message.tags = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                    case 1: {
+                            message.id = reader.uint64();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.tags && message.tags.length))
+                                message.tags = [];
+                            if ((tag & 7) === 2) {
+                                var end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.tags.push(reader.uint32());
+                            } else
                                 message.tags.push(reader.uint32());
-                        } else
-                            message.tags.push(reader.uint32());
-                        break;
-                    case 3:
-                        message.type = reader.int32();
-                        break;
-                    case 4:
-                        if (!(message.geometry && message.geometry.length))
-                            message.geometry = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                            break;
+                        }
+                    case 3: {
+                            message.type = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.geometry && message.geometry.length))
+                                message.geometry = [];
+                            if ((tag & 7) === 2) {
+                                var end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.geometry.push(reader.uint32());
+                            } else
                                 message.geometry.push(reader.uint32());
-                        } else
-                            message.geometry.push(reader.uint32());
-                        break;
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -839,14 +830,7 @@ $root.vector_tile = (function() {
                     return object;
                 var message = new $root.vector_tile.Tile.Feature();
                 if (object.id != null)
-                    if ($util.Long)
-                        (message.id = $util.Long.fromValue(object.id)).unsigned = true;
-                    else if (typeof object.id === "string")
-                        message.id = parseInt(object.id, 10);
-                    else if (typeof object.id === "number")
-                        message.id = object.id;
-                    else if (typeof object.id === "object")
-                        message.id = new $util.LongBits(object.id).toNumber(true);
+                    message.id = $util.longValue(object.id, true);
                 if (object.tags) {
                     if (!Array.isArray(object.tags))
                         throw TypeError(".vector_tile.Tile.Feature.tags: array expected");
@@ -1089,30 +1073,36 @@ $root.vector_tile = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 15:
-                        message.version = reader.uint32();
-                        break;
-                    case 1:
-                        message.name = reader.string();
-                        break;
-                    case 2:
-                        if (!(message.features && message.features.length))
-                            message.features = [];
-                        message.features.push($root.vector_tile.Tile.Feature.decode(reader, reader.uint32()));
-                        break;
-                    case 3:
-                        if (!(message.keys && message.keys.length))
-                            message.keys = [];
-                        message.keys.push(reader.string());
-                        break;
-                    case 4:
-                        if (!(message.values && message.values.length))
-                            message.values = [];
-                        message.values.push($root.vector_tile.Tile.Value.decode(reader, reader.uint32()));
-                        break;
-                    case 5:
-                        message.extent = reader.uint32();
-                        break;
+                    case 15: {
+                            message.version = reader.uint32();
+                            break;
+                        }
+                    case 1: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.features && message.features.length))
+                                message.features = [];
+                            message.features.push($root.vector_tile.Tile.Feature.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.keys && message.keys.length))
+                                message.keys = [];
+                            message.keys.push(reader.string());
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.values && message.values.length))
+                                message.values = [];
+                            message.values.push($root.vector_tile.Tile.Value.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 5: {
+                            message.extent = reader.uint32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;

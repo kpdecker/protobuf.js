@@ -1,17 +1,13 @@
-import * as $protobuf from "../../minimal";
+import { rpc as $rpc, RPCImpl as $RPCImpl, Writer as $Writer, Reader as $Reader, util as $util, IConversionOptions as $IConversionOptions } from "../../minimal";
 
-
-// Common aliases
-const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
-
-export class MyService extends $protobuf.rpc.Service {
+export class MyService extends $rpc.Service {
     /**
      * Constructs a new MyService service.
      * @param rpcImpl RPC implementation
      * @param requestDelimited Whether requests are length-delimited
      * @param responseDelimited Whether responses are length-delimited
      */
-    constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited: boolean = false, responseDelimited: boolean = false) {
+    constructor(rpcImpl: $RPCImpl, requestDelimited: boolean = false, responseDelimited: boolean = false) {
         super(rpcImpl, requestDelimited, responseDelimited);
 
         (this.myMethod as any).requestCtor = MyRequest;
@@ -28,7 +24,7 @@ export class MyService extends $protobuf.rpc.Service {
      * @param responseDelimited Whether responses are length-delimited
      * @returns RPC service. Useful where requests and/or responses are streamed.
      */
-    static create(rpcImpl: $protobuf.RPCImpl, requestDelimited: boolean = false, responseDelimited: boolean = false): MyService {
+    static create(rpcImpl: $RPCImpl, requestDelimited: boolean = false, responseDelimited: boolean = false): MyService {
         return new MyService(rpcImpl, requestDelimited, responseDelimited);
     };
 
@@ -54,7 +50,7 @@ export class MyRequest implements IMyRequest {
      */
     constructor(properties?: IMyRequest) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -70,10 +66,10 @@ export class MyRequest implements IMyRequest {
     // #region encode
     /**
      * Encodes the specified MyRequest message. Does not implicitly {@link MyRequest.verify|verify} messages.
-     * @param message MyRequestmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IMyRequest, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IMyRequest, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.path != null && Object.hasOwnProperty.call(message, "path"))
@@ -83,10 +79,10 @@ export class MyRequest implements IMyRequest {
 
     /**
      * Encodes the specified MyRequest message, length delimited. Does not implicitly {@link MyRequest.verify|verify} messages.
-     * @param message MyRequestmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IMyRequest, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IMyRequest, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -99,16 +95,17 @@ export class MyRequest implements IMyRequest {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MyRequest {
+    static decode(reader: $Reader|Uint8Array, length?: number): MyRequest {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new MyRequest();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new MyRequest();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.path = reader.string();
-                break;
+            case 1: {
+                    message.path = reader.string();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -123,10 +120,10 @@ export class MyRequest implements IMyRequest {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MyRequest {
+    static decodeDelimited(reader: $Reader|Uint8Array): MyRequest {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -154,7 +151,7 @@ export class MyRequest implements IMyRequest {
     static fromObject(object): IMyRequest {
         if (object instanceof MyRequest)
             return object;
-        var message = new MyRequest();
+        let message = new MyRequest();
         if (object.path != null)
             message.path = String(object.path);
         return message;
@@ -166,7 +163,7 @@ export class MyRequest implements IMyRequest {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IMyRequest, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IMyRequest, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.path = "";
@@ -179,7 +176,7 @@ export class MyRequest implements IMyRequest {
      * Converts this MyRequest to JSON.
      */
     toJSON() {
-        return MyRequest.toObject(this, $protobuf.util.toJSONOptions);
+        return MyRequest.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -214,7 +211,7 @@ export class MyResponse implements IMyResponse {
      */
     constructor(properties?: IMyResponse) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -230,10 +227,10 @@ export class MyResponse implements IMyResponse {
     // #region encode
     /**
      * Encodes the specified MyResponse message. Does not implicitly {@link MyResponse.verify|verify} messages.
-     * @param message MyResponsemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IMyResponse, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IMyResponse, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.status != null && Object.hasOwnProperty.call(message, "status"))
@@ -243,10 +240,10 @@ export class MyResponse implements IMyResponse {
 
     /**
      * Encodes the specified MyResponse message, length delimited. Does not implicitly {@link MyResponse.verify|verify} messages.
-     * @param message MyResponsemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IMyResponse, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IMyResponse, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -259,16 +256,17 @@ export class MyResponse implements IMyResponse {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MyResponse {
+    static decode(reader: $Reader|Uint8Array, length?: number): MyResponse {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new MyResponse();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new MyResponse();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 2:
-                message.status = reader.int32();
-                break;
+            case 2: {
+                    message.status = reader.int32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -283,10 +281,10 @@ export class MyResponse implements IMyResponse {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MyResponse {
+    static decodeDelimited(reader: $Reader|Uint8Array): MyResponse {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -314,7 +312,7 @@ export class MyResponse implements IMyResponse {
     static fromObject(object): IMyResponse {
         if (object instanceof MyResponse)
             return object;
-        var message = new MyResponse();
+        let message = new MyResponse();
         if (object.status != null)
             message.status = object.status | 0;
         return message;
@@ -326,7 +324,7 @@ export class MyResponse implements IMyResponse {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IMyResponse, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IMyResponse, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.status = 0;
@@ -339,7 +337,7 @@ export class MyResponse implements IMyResponse {
      * Converts this MyResponse to JSON.
      */
     toJSON() {
-        return MyResponse.toObject(this, $protobuf.util.toJSONOptions);
+        return MyResponse.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 

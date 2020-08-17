@@ -1,8 +1,5 @@
-import * as $protobuf from "../../../minimal";
+import { Writer as $Writer, Reader as $Reader, IConversionOptions as $IConversionOptions, util as $util, Long as $Long } from "../../../minimal";
 import { ISomething, Something } from "./package-a";
-
-// Common aliases
-const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 /** Properties of an Empty. */
 export interface IEmpty {
@@ -19,7 +16,7 @@ export class Empty implements IEmpty {
      */
     constructor(properties?: IEmpty) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -35,10 +32,10 @@ export class Empty implements IEmpty {
     // #region encode
     /**
      * Encodes the specified Empty message. Does not implicitly {@link Empty.verify|verify} messages.
-     * @param message Emptymessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IEmpty, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         return writer;
@@ -46,10 +43,10 @@ export class Empty implements IEmpty {
 
     /**
      * Encodes the specified Empty message, length delimited. Does not implicitly {@link Empty.verify|verify} messages.
-     * @param message Emptymessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IEmpty, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -62,12 +59,12 @@ export class Empty implements IEmpty {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Empty {
+    static decode(reader: $Reader|Uint8Array, length?: number): Empty {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Empty();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Empty();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             default:
                 reader.skipType(tag & 7);
@@ -83,10 +80,10 @@ export class Empty implements IEmpty {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Empty {
+    static decodeDelimited(reader: $Reader|Uint8Array): Empty {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -120,7 +117,7 @@ export class Empty implements IEmpty {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IEmpty, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IEmpty, options: $IConversionOptions = {}) {
         return {};
     }
 
@@ -128,7 +125,7 @@ export class Empty implements IEmpty {
      * Converts this Empty to JSON.
      */
     toJSON() {
-        return Empty.toObject(this, $protobuf.util.toJSONOptions);
+        return Empty.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -168,7 +165,7 @@ export class EnumContainer implements IEnumContainer {
      */
     constructor(properties?: IEnumContainer) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -184,10 +181,10 @@ export class EnumContainer implements IEnumContainer {
     // #region encode
     /**
      * Encodes the specified EnumContainer message. Does not implicitly {@link EnumContainer.verify|verify} messages.
-     * @param message EnumContainermessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IEnumContainer, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.outerEnum != null && Object.hasOwnProperty.call(message, "outerEnum"))
@@ -197,10 +194,10 @@ export class EnumContainer implements IEnumContainer {
 
     /**
      * Encodes the specified EnumContainer message, length delimited. Does not implicitly {@link EnumContainer.verify|verify} messages.
-     * @param message EnumContainermessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IEnumContainer, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -213,16 +210,17 @@ export class EnumContainer implements IEnumContainer {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumContainer {
+    static decode(reader: $Reader|Uint8Array, length?: number): EnumContainer {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new EnumContainer();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new EnumContainer();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.outerEnum = reader.int32();
-                break;
+            case 1: {
+                    message.outerEnum = reader.int32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -237,10 +235,10 @@ export class EnumContainer implements IEnumContainer {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumContainer {
+    static decodeDelimited(reader: $Reader|Uint8Array): EnumContainer {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -273,7 +271,7 @@ export class EnumContainer implements IEnumContainer {
     static fromObject(object): IEnumContainer {
         if (object instanceof EnumContainer)
             return object;
-        var message = new EnumContainer();
+        let message = new EnumContainer();
         switch (object.outerEnum) {
         case "FOO":
         case 1:
@@ -293,7 +291,7 @@ export class EnumContainer implements IEnumContainer {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IEnumContainer, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IEnumContainer, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.outerEnum = 1;
@@ -306,7 +304,7 @@ export class EnumContainer implements IEnumContainer {
      * Converts this EnumContainer to JSON.
      */
     toJSON() {
-        return EnumContainer.toObject(this, $protobuf.util.toJSONOptions);
+        return EnumContainer.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -347,7 +345,7 @@ export class Simple1 implements ISimple1 {
      */
     constructor(properties?: ISimple1) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -363,15 +361,15 @@ export class Simple1 implements ISimple1 {
     // #region encode
     /**
      * Encodes the specified Simple1 message. Does not implicitly {@link Simple1.verify|verify} messages.
-     * @param message Simple1message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ISimple1, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
         if (message.aRepeatedString != null && message.aRepeatedString.length)
-            for (var i = 0; i < message.aRepeatedString.length; ++i)
+            for (let i = 0; i < message.aRepeatedString.length; ++i)
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.aRepeatedString[i]);
         if (message.aBoolean != null && Object.hasOwnProperty.call(message, "aBoolean"))
             writer.uint32(/* id 3, wireType 0 =*/24).bool(message.aBoolean);
@@ -382,10 +380,10 @@ export class Simple1 implements ISimple1 {
 
     /**
      * Encodes the specified Simple1 message, length delimited. Does not implicitly {@link Simple1.verify|verify} messages.
-     * @param message Simple1message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ISimple1, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -398,27 +396,31 @@ export class Simple1 implements ISimple1 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Simple1 {
+    static decode(reader: $Reader|Uint8Array, length?: number): Simple1 {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Simple1();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Simple1();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.aString = reader.string();
-                break;
-            case 2:
-                if (!(message.aRepeatedString && message.aRepeatedString.length))
-                    message.aRepeatedString = [];
-                message.aRepeatedString.push(reader.string());
-                break;
-            case 3:
-                message.aBoolean = reader.bool();
-                break;
-            case 4:
-                message.aSomething = Something.decode(reader, reader.uint32());
-                break;
+            case 1: {
+                    message.aString = reader.string();
+                    break;
+                }
+            case 2: {
+                    if (!(message.aRepeatedString && message.aRepeatedString.length))
+                        message.aRepeatedString = [];
+                    message.aRepeatedString.push(reader.string());
+                    break;
+                }
+            case 3: {
+                    message.aBoolean = reader.bool();
+                    break;
+                }
+            case 4: {
+                    message.aSomething = Something.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -435,10 +437,10 @@ export class Simple1 implements ISimple1 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Simple1 {
+    static decodeDelimited(reader: $Reader|Uint8Array): Simple1 {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -456,7 +458,7 @@ export class Simple1 implements ISimple1 {
         if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
             if (!Array.isArray(message.aRepeatedString))
                 return "aRepeatedString: array expected";
-            for (var i = 0; i < message.aRepeatedString.length; ++i)
+            for (let i = 0; i < message.aRepeatedString.length; ++i)
                 if (!$util.isString(message.aRepeatedString[i]))
                     return "aRepeatedString: string[] expected";
         }
@@ -464,7 +466,7 @@ export class Simple1 implements ISimple1 {
             if (typeof message.aBoolean !== "boolean")
                 return "aBoolean: boolean expected";
         if (message.aSomething != null && message.hasOwnProperty("aSomething")) {
-            var error = Something.verify(message.aSomething);
+            let error = Something.verify(message.aSomething);
             if (error)
                 return "aSomething." + error;
         }
@@ -480,14 +482,14 @@ export class Simple1 implements ISimple1 {
     static fromObject(object): ISimple1 {
         if (object instanceof Simple1)
             return object;
-        var message = new Simple1();
+        let message = new Simple1();
         if (object.aString != null)
             message.aString = String(object.aString);
         if (object.aRepeatedString) {
             if (!Array.isArray(object.aRepeatedString))
                 throw TypeError("Simple1.aRepeatedString: array expected");
             message.aRepeatedString = [];
-            for (var i = 0; i < object.aRepeatedString.length; ++i)
+            for (let i = 0; i < object.aRepeatedString.length; ++i)
                 message.aRepeatedString[i] = String(object.aRepeatedString[i]);
         }
         if (object.aBoolean != null)
@@ -506,7 +508,7 @@ export class Simple1 implements ISimple1 {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ISimple1, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ISimple1, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults)
             object.aRepeatedString = [];
@@ -519,7 +521,7 @@ export class Simple1 implements ISimple1 {
             object.aString = message.aString;
         if (message.aRepeatedString && message.aRepeatedString.length) {
             object.aRepeatedString = [];
-            for (var j = 0; j < message.aRepeatedString.length; ++j)
+            for (let j = 0; j < message.aRepeatedString.length; ++j)
                 object.aRepeatedString[j] = message.aRepeatedString[j];
         }
         if (message.aBoolean != null && message.hasOwnProperty("aBoolean"))
@@ -533,7 +535,7 @@ export class Simple1 implements ISimple1 {
      * Converts this Simple1 to JSON.
      */
     toJSON() {
-        return Simple1.toObject(this, $protobuf.util.toJSONOptions);
+        return Simple1.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -572,7 +574,7 @@ export class Simple2 implements ISimple2 {
      */
     constructor(properties?: ISimple2) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -588,25 +590,25 @@ export class Simple2 implements ISimple2 {
     // #region encode
     /**
      * Encodes the specified Simple2 message. Does not implicitly {@link Simple2.verify|verify} messages.
-     * @param message Simple2message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ISimple2, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
         if (message.aRepeatedString != null && message.aRepeatedString.length)
-            for (var i = 0; i < message.aRepeatedString.length; ++i)
+            for (let i = 0; i < message.aRepeatedString.length; ++i)
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.aRepeatedString[i]);
         return writer;
     }
 
     /**
      * Encodes the specified Simple2 message, length delimited. Does not implicitly {@link Simple2.verify|verify} messages.
-     * @param message Simple2message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ISimple2, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -619,21 +621,23 @@ export class Simple2 implements ISimple2 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Simple2 {
+    static decode(reader: $Reader|Uint8Array, length?: number): Simple2 {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Simple2();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Simple2();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.aString = reader.string();
-                break;
-            case 2:
-                if (!(message.aRepeatedString && message.aRepeatedString.length))
-                    message.aRepeatedString = [];
-                message.aRepeatedString.push(reader.string());
-                break;
+            case 1: {
+                    message.aString = reader.string();
+                    break;
+                }
+            case 2: {
+                    if (!(message.aRepeatedString && message.aRepeatedString.length))
+                        message.aRepeatedString = [];
+                    message.aRepeatedString.push(reader.string());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -650,10 +654,10 @@ export class Simple2 implements ISimple2 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Simple2 {
+    static decodeDelimited(reader: $Reader|Uint8Array): Simple2 {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -671,7 +675,7 @@ export class Simple2 implements ISimple2 {
         if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
             if (!Array.isArray(message.aRepeatedString))
                 return "aRepeatedString: array expected";
-            for (var i = 0; i < message.aRepeatedString.length; ++i)
+            for (let i = 0; i < message.aRepeatedString.length; ++i)
                 if (!$util.isString(message.aRepeatedString[i]))
                     return "aRepeatedString: string[] expected";
         }
@@ -687,14 +691,14 @@ export class Simple2 implements ISimple2 {
     static fromObject(object): ISimple2 {
         if (object instanceof Simple2)
             return object;
-        var message = new Simple2();
+        let message = new Simple2();
         if (object.aString != null)
             message.aString = String(object.aString);
         if (object.aRepeatedString) {
             if (!Array.isArray(object.aRepeatedString))
                 throw TypeError("Simple2.aRepeatedString: array expected");
             message.aRepeatedString = [];
-            for (var i = 0; i < object.aRepeatedString.length; ++i)
+            for (let i = 0; i < object.aRepeatedString.length; ++i)
                 message.aRepeatedString[i] = String(object.aRepeatedString[i]);
         }
         return message;
@@ -706,7 +710,7 @@ export class Simple2 implements ISimple2 {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ISimple2, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ISimple2, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults)
             object.aRepeatedString = [];
@@ -716,7 +720,7 @@ export class Simple2 implements ISimple2 {
             object.aString = message.aString;
         if (message.aRepeatedString && message.aRepeatedString.length) {
             object.aRepeatedString = [];
-            for (var j = 0; j < message.aRepeatedString.length; ++j)
+            for (let j = 0; j < message.aRepeatedString.length; ++j)
                 object.aRepeatedString[j] = message.aRepeatedString[j];
         }
         return object;
@@ -726,7 +730,7 @@ export class Simple2 implements ISimple2 {
      * Converts this Simple2 to JSON.
      */
     toJSON() {
-        return Simple2.toObject(this, $protobuf.util.toJSONOptions);
+        return Simple2.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -769,7 +773,7 @@ export class SpecialCases implements ISpecialCases {
      */
     constructor(properties?: ISpecialCases) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -785,10 +789,10 @@ export class SpecialCases implements ISpecialCases {
     // #region encode
     /**
      * Encodes the specified SpecialCases message. Does not implicitly {@link SpecialCases.verify|verify} messages.
-     * @param message SpecialCasesmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ISpecialCases, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         writer.uint32(/* id 1, wireType 2 =*/10).string(message.normal);
@@ -800,10 +804,10 @@ export class SpecialCases implements ISpecialCases {
 
     /**
      * Encodes the specified SpecialCases message, length delimited. Does not implicitly {@link SpecialCases.verify|verify} messages.
-     * @param message SpecialCasesmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ISpecialCases, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -816,25 +820,29 @@ export class SpecialCases implements ISpecialCases {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): SpecialCases {
+    static decode(reader: $Reader|Uint8Array, length?: number): SpecialCases {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new SpecialCases();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new SpecialCases();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.normal = reader.string();
-                break;
-            case 2:
-                message["default"] = reader.string();
-                break;
-            case 3:
-                message["function"] = reader.string();
-                break;
-            case 4:
-                message["var"] = reader.string();
-                break;
+            case 1: {
+                    message.normal = reader.string();
+                    break;
+                }
+            case 2: {
+                    message["default"] = reader.string();
+                    break;
+                }
+            case 3: {
+                    message["function"] = reader.string();
+                    break;
+                }
+            case 4: {
+                    message["var"] = reader.string();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -857,10 +865,10 @@ export class SpecialCases implements ISpecialCases {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): SpecialCases {
+    static decodeDelimited(reader: $Reader|Uint8Array): SpecialCases {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -893,7 +901,7 @@ export class SpecialCases implements ISpecialCases {
     static fromObject(object): ISpecialCases {
         if (object instanceof SpecialCases)
             return object;
-        var message = new SpecialCases();
+        let message = new SpecialCases();
         if (object.normal != null)
             message.normal = String(object.normal);
         if (object["default"] != null)
@@ -911,7 +919,7 @@ export class SpecialCases implements ISpecialCases {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ISpecialCases, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ISpecialCases, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults) {
             object.normal = "";
@@ -934,7 +942,7 @@ export class SpecialCases implements ISpecialCases {
      * Converts this SpecialCases to JSON.
      */
     toJSON() {
-        return SpecialCases.toObject(this, $protobuf.util.toJSONOptions);
+        return SpecialCases.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -977,7 +985,7 @@ export class OptionalFields implements IOptionalFields {
      */
     constructor(properties?: IOptionalFields) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -993,10 +1001,10 @@ export class OptionalFields implements IOptionalFields {
     // #region encode
     /**
      * Encodes the specified OptionalFields message. Does not implicitly {@link OptionalFields.verify|verify} messages.
-     * @param message OptionalFieldsmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IOptionalFields, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.aString != null && Object.hasOwnProperty.call(message, "aString"))
@@ -1005,20 +1013,20 @@ export class OptionalFields implements IOptionalFields {
         if (message.aNestedMessage != null && Object.hasOwnProperty.call(message, "aNestedMessage"))
             OptionalFields.Nested.encode(message.aNestedMessage, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
         if (message.aRepeatedMessage != null && message.aRepeatedMessage.length)
-            for (var i = 0; i < message.aRepeatedMessage.length; ++i)
+            for (let i = 0; i < message.aRepeatedMessage.length; ++i)
                 OptionalFields.Nested.encode(message.aRepeatedMessage[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
         if (message.aRepeatedString != null && message.aRepeatedString.length)
-            for (var i = 0; i < message.aRepeatedString.length; ++i)
+            for (let i = 0; i < message.aRepeatedString.length; ++i)
                 writer.uint32(/* id 5, wireType 2 =*/42).string(message.aRepeatedString[i]);
         return writer;
     }
 
     /**
      * Encodes the specified OptionalFields message, length delimited. Does not implicitly {@link OptionalFields.verify|verify} messages.
-     * @param message OptionalFieldsmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IOptionalFields, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -1031,32 +1039,37 @@ export class OptionalFields implements IOptionalFields {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OptionalFields {
+    static decode(reader: $Reader|Uint8Array, length?: number): OptionalFields {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new OptionalFields();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new OptionalFields();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.aString = reader.string();
-                break;
-            case 2:
-                message.aBool = reader.bool();
-                break;
-            case 3:
-                message.aNestedMessage = OptionalFields.Nested.decode(reader, reader.uint32());
-                break;
-            case 4:
-                if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
-                    message.aRepeatedMessage = [];
-                message.aRepeatedMessage.push(OptionalFields.Nested.decode(reader, reader.uint32()));
-                break;
-            case 5:
-                if (!(message.aRepeatedString && message.aRepeatedString.length))
-                    message.aRepeatedString = [];
-                message.aRepeatedString.push(reader.string());
-                break;
+            case 1: {
+                    message.aString = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.aBool = reader.bool();
+                    break;
+                }
+            case 3: {
+                    message.aNestedMessage = OptionalFields.Nested.decode(reader, reader.uint32());
+                    break;
+                }
+            case 4: {
+                    if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
+                        message.aRepeatedMessage = [];
+                    message.aRepeatedMessage.push(OptionalFields.Nested.decode(reader, reader.uint32()));
+                    break;
+                }
+            case 5: {
+                    if (!(message.aRepeatedString && message.aRepeatedString.length))
+                        message.aRepeatedString = [];
+                    message.aRepeatedString.push(reader.string());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -1073,10 +1086,10 @@ export class OptionalFields implements IOptionalFields {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OptionalFields {
+    static decodeDelimited(reader: $Reader|Uint8Array): OptionalFields {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -1095,15 +1108,15 @@ export class OptionalFields implements IOptionalFields {
         if (typeof message.aBool !== "boolean")
             return "aBool: boolean expected";
         if (message.aNestedMessage != null && message.hasOwnProperty("aNestedMessage")) {
-            var error = OptionalFields.Nested.verify(message.aNestedMessage);
+            let error = OptionalFields.Nested.verify(message.aNestedMessage);
             if (error)
                 return "aNestedMessage." + error;
         }
         if (message.aRepeatedMessage != null && message.hasOwnProperty("aRepeatedMessage")) {
             if (!Array.isArray(message.aRepeatedMessage))
                 return "aRepeatedMessage: array expected";
-            for (var i = 0; i < message.aRepeatedMessage.length; ++i) {
-                var error = OptionalFields.Nested.verify(message.aRepeatedMessage[i]);
+            for (let i = 0; i < message.aRepeatedMessage.length; ++i) {
+                let error = OptionalFields.Nested.verify(message.aRepeatedMessage[i]);
                 if (error)
                     return "aRepeatedMessage." + error;
             }
@@ -1111,7 +1124,7 @@ export class OptionalFields implements IOptionalFields {
         if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
             if (!Array.isArray(message.aRepeatedString))
                 return "aRepeatedString: array expected";
-            for (var i = 0; i < message.aRepeatedString.length; ++i)
+            for (let i = 0; i < message.aRepeatedString.length; ++i)
                 if (!$util.isString(message.aRepeatedString[i]))
                     return "aRepeatedString: string[] expected";
         }
@@ -1127,7 +1140,7 @@ export class OptionalFields implements IOptionalFields {
     static fromObject(object): IOptionalFields {
         if (object instanceof OptionalFields)
             return object;
-        var message = new OptionalFields();
+        let message = new OptionalFields();
         if (object.aString != null)
             message.aString = String(object.aString);
         if (object.aBool != null)
@@ -1141,7 +1154,7 @@ export class OptionalFields implements IOptionalFields {
             if (!Array.isArray(object.aRepeatedMessage))
                 throw TypeError("OptionalFields.aRepeatedMessage: array expected");
             message.aRepeatedMessage = [];
-            for (var i = 0; i < object.aRepeatedMessage.length; ++i) {
+            for (let i = 0; i < object.aRepeatedMessage.length; ++i) {
                 if (typeof object.aRepeatedMessage[i] !== "object")
                     throw TypeError("OptionalFields.aRepeatedMessage: object expected");
                 message.aRepeatedMessage[i] = OptionalFields.Nested.fromObject(object.aRepeatedMessage[i]);
@@ -1151,7 +1164,7 @@ export class OptionalFields implements IOptionalFields {
             if (!Array.isArray(object.aRepeatedString))
                 throw TypeError("OptionalFields.aRepeatedString: array expected");
             message.aRepeatedString = [];
-            for (var i = 0; i < object.aRepeatedString.length; ++i)
+            for (let i = 0; i < object.aRepeatedString.length; ++i)
                 message.aRepeatedString[i] = String(object.aRepeatedString[i]);
         }
         return message;
@@ -1163,7 +1176,7 @@ export class OptionalFields implements IOptionalFields {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IOptionalFields, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IOptionalFields, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults) {
             object.aRepeatedMessage = [];
@@ -1182,12 +1195,12 @@ export class OptionalFields implements IOptionalFields {
             object.aNestedMessage = OptionalFields.Nested.toObject(message.aNestedMessage, options);
         if (message.aRepeatedMessage && message.aRepeatedMessage.length) {
             object.aRepeatedMessage = [];
-            for (var j = 0; j < message.aRepeatedMessage.length; ++j)
+            for (let j = 0; j < message.aRepeatedMessage.length; ++j)
                 object.aRepeatedMessage[j] = OptionalFields.Nested.toObject(message.aRepeatedMessage[j], options);
         }
         if (message.aRepeatedString && message.aRepeatedString.length) {
             object.aRepeatedString = [];
-            for (var j = 0; j < message.aRepeatedString.length; ++j)
+            for (let j = 0; j < message.aRepeatedString.length; ++j)
                 object.aRepeatedString[j] = message.aRepeatedString[j];
         }
         return object;
@@ -1197,7 +1210,7 @@ export class OptionalFields implements IOptionalFields {
      * Converts this OptionalFields to JSON.
      */
     toJSON() {
-        return OptionalFields.toObject(this, $protobuf.util.toJSONOptions);
+        return OptionalFields.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -1237,7 +1250,7 @@ export namespace OptionalFields {
          */
         constructor(properties?: INested) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -1253,10 +1266,10 @@ export namespace OptionalFields {
         // #region encode
         /**
          * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
-         * @param message Nestedmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: INested, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.anInt != null && Object.hasOwnProperty.call(message, "anInt"))
@@ -1266,10 +1279,10 @@ export namespace OptionalFields {
 
         /**
          * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
-         * @param message Nestedmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: INested, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -1282,16 +1295,17 @@ export namespace OptionalFields {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
+        static decode(reader: $Reader|Uint8Array, length?: number): Nested {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new OptionalFields.Nested();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new OptionalFields.Nested();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.anInt = reader.int32();
-                    break;
+                case 1: {
+                        message.anInt = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1306,10 +1320,10 @@ export namespace OptionalFields {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
+        static decodeDelimited(reader: $Reader|Uint8Array): Nested {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -1337,7 +1351,7 @@ export namespace OptionalFields {
         static fromObject(object): INested {
             if (object instanceof OptionalFields.Nested)
                 return object;
-            var message = new OptionalFields.Nested();
+            let message = new OptionalFields.Nested();
             if (object.anInt != null)
                 message.anInt = object.anInt | 0;
             return message;
@@ -1349,7 +1363,7 @@ export namespace OptionalFields {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: INested, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.anInt = 0;
@@ -1362,7 +1376,7 @@ export namespace OptionalFields {
          * Converts this Nested to JSON.
          */
         toJSON() {
-            return Nested.toObject(this, $protobuf.util.toJSONOptions);
+            return Nested.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -1415,7 +1429,7 @@ export class HasExtensions implements IHasExtensions {
      */
     constructor(properties?: IHasExtensions) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -1431,10 +1445,10 @@ export class HasExtensions implements IHasExtensions {
     // #region encode
     /**
      * Encodes the specified HasExtensions message. Does not implicitly {@link HasExtensions.verify|verify} messages.
-     * @param message HasExtensionsmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IHasExtensions, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.str1 != null && Object.hasOwnProperty.call(message, "str1"))
@@ -1450,10 +1464,10 @@ export class HasExtensions implements IHasExtensions {
         if (message["IndirectExtension.str"] != null && Object.hasOwnProperty.call(message, "IndirectExtension.str"))
             writer.uint32(/* id 102, wireType 2 =*/818).string(message["IndirectExtension.str"]);
         if (message["IndirectExtension.repeatedStr"] != null && message["IndirectExtension.repeatedStr"].length)
-            for (var i = 0; i < message["IndirectExtension.repeatedStr"].length; ++i)
+            for (let i = 0; i < message["IndirectExtension.repeatedStr"].length; ++i)
                 writer.uint32(/* id 103, wireType 2 =*/826).string(message["IndirectExtension.repeatedStr"][i]);
         if (message["IndirectExtension.repeatedSimple"] != null && message["IndirectExtension.repeatedSimple"].length)
-            for (var i = 0; i < message["IndirectExtension.repeatedSimple"].length; ++i)
+            for (let i = 0; i < message["IndirectExtension.repeatedSimple"].length; ++i)
                 Simple1.encode(message["IndirectExtension.repeatedSimple"][i], writer.uint32(/* id 104, wireType 2 =*/834).fork()).ldelim();
         if (message.simple1 != null && Object.hasOwnProperty.call(message, "simple1"))
             Simple1.encode(message.simple1, writer.uint32(/* id 105, wireType 2 =*/842).fork()).ldelim();
@@ -1462,10 +1476,10 @@ export class HasExtensions implements IHasExtensions {
 
     /**
      * Encodes the specified HasExtensions message, length delimited. Does not implicitly {@link HasExtensions.verify|verify} messages.
-     * @param message HasExtensionsmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IHasExtensions, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -1478,44 +1492,53 @@ export class HasExtensions implements IHasExtensions {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): HasExtensions {
+    static decode(reader: $Reader|Uint8Array, length?: number): HasExtensions {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new HasExtensions();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new HasExtensions();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.str1 = reader.string();
-                break;
-            case 2:
-                message.str2 = reader.string();
-                break;
-            case 3:
-                message.str3 = reader.string();
-                break;
-            case 100:
-                message["IsExtension.extField"] = IsExtension.decode(reader, reader.uint32());
-                break;
-            case 101:
-                message["IndirectExtension.simple"] = Simple1.decode(reader, reader.uint32());
-                break;
-            case 102:
-                message["IndirectExtension.str"] = reader.string();
-                break;
-            case 103:
-                if (!(message["IndirectExtension.repeatedStr"] && message["IndirectExtension.repeatedStr"].length))
-                    message["IndirectExtension.repeatedStr"] = [];
-                message["IndirectExtension.repeatedStr"].push(reader.string());
-                break;
-            case 104:
-                if (!(message["IndirectExtension.repeatedSimple"] && message["IndirectExtension.repeatedSimple"].length))
-                    message["IndirectExtension.repeatedSimple"] = [];
-                message["IndirectExtension.repeatedSimple"].push(Simple1.decode(reader, reader.uint32()));
-                break;
-            case 105:
-                message.simple1 = Simple1.decode(reader, reader.uint32());
-                break;
+            case 1: {
+                    message.str1 = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.str2 = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.str3 = reader.string();
+                    break;
+                }
+            case 100: {
+                    message["IsExtension.extField"] = IsExtension.decode(reader, reader.uint32());
+                    break;
+                }
+            case 101: {
+                    message["IndirectExtension.simple"] = Simple1.decode(reader, reader.uint32());
+                    break;
+                }
+            case 102: {
+                    message["IndirectExtension.str"] = reader.string();
+                    break;
+                }
+            case 103: {
+                    if (!(message["IndirectExtension.repeatedStr"] && message["IndirectExtension.repeatedStr"].length))
+                        message["IndirectExtension.repeatedStr"] = [];
+                    message["IndirectExtension.repeatedStr"].push(reader.string());
+                    break;
+                }
+            case 104: {
+                    if (!(message["IndirectExtension.repeatedSimple"] && message["IndirectExtension.repeatedSimple"].length))
+                        message["IndirectExtension.repeatedSimple"] = [];
+                    message["IndirectExtension.repeatedSimple"].push(Simple1.decode(reader, reader.uint32()));
+                    break;
+                }
+            case 105: {
+                    message.simple1 = Simple1.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -1530,10 +1553,10 @@ export class HasExtensions implements IHasExtensions {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): HasExtensions {
+    static decodeDelimited(reader: $Reader|Uint8Array): HasExtensions {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -1556,12 +1579,12 @@ export class HasExtensions implements IHasExtensions {
             if (!$util.isString(message.str3))
                 return "str3: string expected";
         if (message["IsExtension.extField"] != null && message.hasOwnProperty("IsExtension.extField")) {
-            var error = IsExtension.verify(message["IsExtension.extField"]);
+            let error = IsExtension.verify(message["IsExtension.extField"]);
             if (error)
                 return "IsExtension.extField." + error;
         }
         if (message["IndirectExtension.simple"] != null && message.hasOwnProperty("IndirectExtension.simple")) {
-            var error = Simple1.verify(message["IndirectExtension.simple"]);
+            let error = Simple1.verify(message["IndirectExtension.simple"]);
             if (error)
                 return "IndirectExtension.simple." + error;
         }
@@ -1571,21 +1594,21 @@ export class HasExtensions implements IHasExtensions {
         if (message["IndirectExtension.repeatedStr"] != null && message.hasOwnProperty("IndirectExtension.repeatedStr")) {
             if (!Array.isArray(message["IndirectExtension.repeatedStr"]))
                 return "IndirectExtension.repeatedStr: array expected";
-            for (var i = 0; i < message["IndirectExtension.repeatedStr"].length; ++i)
+            for (let i = 0; i < message["IndirectExtension.repeatedStr"].length; ++i)
                 if (!$util.isString(message["IndirectExtension.repeatedStr"][i]))
                     return "IndirectExtension.repeatedStr: string[] expected";
         }
         if (message["IndirectExtension.repeatedSimple"] != null && message.hasOwnProperty("IndirectExtension.repeatedSimple")) {
             if (!Array.isArray(message["IndirectExtension.repeatedSimple"]))
                 return "IndirectExtension.repeatedSimple: array expected";
-            for (var i = 0; i < message["IndirectExtension.repeatedSimple"].length; ++i) {
-                var error = Simple1.verify(message["IndirectExtension.repeatedSimple"][i]);
+            for (let i = 0; i < message["IndirectExtension.repeatedSimple"].length; ++i) {
+                let error = Simple1.verify(message["IndirectExtension.repeatedSimple"][i]);
                 if (error)
                     return "IndirectExtension.repeatedSimple." + error;
             }
         }
         if (message.simple1 != null && message.hasOwnProperty("simple1")) {
-            var error = Simple1.verify(message.simple1);
+            let error = Simple1.verify(message.simple1);
             if (error)
                 return "simple1." + error;
         }
@@ -1601,7 +1624,7 @@ export class HasExtensions implements IHasExtensions {
     static fromObject(object): IHasExtensions {
         if (object instanceof HasExtensions)
             return object;
-        var message = new HasExtensions();
+        let message = new HasExtensions();
         if (object.str1 != null)
             message.str1 = String(object.str1);
         if (object.str2 != null)
@@ -1624,14 +1647,14 @@ export class HasExtensions implements IHasExtensions {
             if (!Array.isArray(object["IndirectExtension.repeatedStr"]))
                 throw TypeError("HasExtensions.IndirectExtension.repeatedStr: array expected");
             message["IndirectExtension.repeatedStr"] = [];
-            for (var i = 0; i < object["IndirectExtension.repeatedStr"].length; ++i)
+            for (let i = 0; i < object["IndirectExtension.repeatedStr"].length; ++i)
                 message["IndirectExtension.repeatedStr"][i] = String(object["IndirectExtension.repeatedStr"][i]);
         }
         if (object["IndirectExtension.repeatedSimple"]) {
             if (!Array.isArray(object["IndirectExtension.repeatedSimple"]))
                 throw TypeError("HasExtensions.IndirectExtension.repeatedSimple: array expected");
             message["IndirectExtension.repeatedSimple"] = [];
-            for (var i = 0; i < object["IndirectExtension.repeatedSimple"].length; ++i) {
+            for (let i = 0; i < object["IndirectExtension.repeatedSimple"].length; ++i) {
                 if (typeof object["IndirectExtension.repeatedSimple"][i] !== "object")
                     throw TypeError("HasExtensions.IndirectExtension.repeatedSimple: object expected");
                 message["IndirectExtension.repeatedSimple"][i] = Simple1.fromObject(object["IndirectExtension.repeatedSimple"][i]);
@@ -1651,7 +1674,7 @@ export class HasExtensions implements IHasExtensions {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IHasExtensions, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IHasExtensions, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults) {
             object["IndirectExtension.repeatedStr"] = [];
@@ -1680,12 +1703,12 @@ export class HasExtensions implements IHasExtensions {
             object["IndirectExtension.str"] = message["IndirectExtension.str"];
         if (message["IndirectExtension.repeatedStr"] && message["IndirectExtension.repeatedStr"].length) {
             object["IndirectExtension.repeatedStr"] = [];
-            for (var j = 0; j < message["IndirectExtension.repeatedStr"].length; ++j)
+            for (let j = 0; j < message["IndirectExtension.repeatedStr"].length; ++j)
                 object["IndirectExtension.repeatedStr"][j] = message["IndirectExtension.repeatedStr"][j];
         }
         if (message["IndirectExtension.repeatedSimple"] && message["IndirectExtension.repeatedSimple"].length) {
             object["IndirectExtension.repeatedSimple"] = [];
-            for (var j = 0; j < message["IndirectExtension.repeatedSimple"].length; ++j)
+            for (let j = 0; j < message["IndirectExtension.repeatedSimple"].length; ++j)
                 object["IndirectExtension.repeatedSimple"][j] = Simple1.toObject(message["IndirectExtension.repeatedSimple"][j], options);
         }
         if (message.simple1 != null && message.hasOwnProperty("simple1"))
@@ -1697,7 +1720,7 @@ export class HasExtensions implements IHasExtensions {
      * Converts this HasExtensions to JSON.
      */
     toJSON() {
-        return HasExtensions.toObject(this, $protobuf.util.toJSONOptions);
+        return HasExtensions.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -1744,7 +1767,7 @@ export class Complex implements IComplex {
      */
     constructor(properties?: IComplex) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -1760,20 +1783,20 @@ export class Complex implements IComplex {
     // #region encode
     /**
      * Encodes the specified Complex message. Does not implicitly {@link Complex.verify|verify} messages.
-     * @param message Complexmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IComplex, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
         if (message.aNestedMessage != null && Object.hasOwnProperty.call(message, "aNestedMessage"))
             Complex.Nested.encode(message.aNestedMessage, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
         if (message.aRepeatedMessage != null && message.aRepeatedMessage.length)
-            for (var i = 0; i < message.aRepeatedMessage.length; ++i)
+            for (let i = 0; i < message.aRepeatedMessage.length; ++i)
                 Complex.Nested.encode(message.aRepeatedMessage[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
         if (message.aRepeatedString != null && message.aRepeatedString.length)
-            for (var i = 0; i < message.aRepeatedString.length; ++i)
+            for (let i = 0; i < message.aRepeatedString.length; ++i)
                 writer.uint32(/* id 7, wireType 2 =*/58).string(message.aRepeatedString[i]);
         writer.uint32(/* id 9, wireType 0 =*/72).bool(message.anOutOfOrderBool);
         return writer;
@@ -1781,10 +1804,10 @@ export class Complex implements IComplex {
 
     /**
      * Encodes the specified Complex message, length delimited. Does not implicitly {@link Complex.verify|verify} messages.
-     * @param message Complexmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IComplex, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -1797,32 +1820,37 @@ export class Complex implements IComplex {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Complex {
+    static decode(reader: $Reader|Uint8Array, length?: number): Complex {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Complex();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Complex();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.aString = reader.string();
-                break;
-            case 9:
-                message.anOutOfOrderBool = reader.bool();
-                break;
-            case 4:
-                message.aNestedMessage = Complex.Nested.decode(reader, reader.uint32());
-                break;
-            case 5:
-                if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
-                    message.aRepeatedMessage = [];
-                message.aRepeatedMessage.push(Complex.Nested.decode(reader, reader.uint32()));
-                break;
-            case 7:
-                if (!(message.aRepeatedString && message.aRepeatedString.length))
-                    message.aRepeatedString = [];
-                message.aRepeatedString.push(reader.string());
-                break;
+            case 1: {
+                    message.aString = reader.string();
+                    break;
+                }
+            case 9: {
+                    message.anOutOfOrderBool = reader.bool();
+                    break;
+                }
+            case 4: {
+                    message.aNestedMessage = Complex.Nested.decode(reader, reader.uint32());
+                    break;
+                }
+            case 5: {
+                    if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
+                        message.aRepeatedMessage = [];
+                    message.aRepeatedMessage.push(Complex.Nested.decode(reader, reader.uint32()));
+                    break;
+                }
+            case 7: {
+                    if (!(message.aRepeatedString && message.aRepeatedString.length))
+                        message.aRepeatedString = [];
+                    message.aRepeatedString.push(reader.string());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -1841,10 +1869,10 @@ export class Complex implements IComplex {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Complex {
+    static decodeDelimited(reader: $Reader|Uint8Array): Complex {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -1862,15 +1890,15 @@ export class Complex implements IComplex {
         if (typeof message.anOutOfOrderBool !== "boolean")
             return "anOutOfOrderBool: boolean expected";
         if (message.aNestedMessage != null && message.hasOwnProperty("aNestedMessage")) {
-            var error = Complex.Nested.verify(message.aNestedMessage);
+            let error = Complex.Nested.verify(message.aNestedMessage);
             if (error)
                 return "aNestedMessage." + error;
         }
         if (message.aRepeatedMessage != null && message.hasOwnProperty("aRepeatedMessage")) {
             if (!Array.isArray(message.aRepeatedMessage))
                 return "aRepeatedMessage: array expected";
-            for (var i = 0; i < message.aRepeatedMessage.length; ++i) {
-                var error = Complex.Nested.verify(message.aRepeatedMessage[i]);
+            for (let i = 0; i < message.aRepeatedMessage.length; ++i) {
+                let error = Complex.Nested.verify(message.aRepeatedMessage[i]);
                 if (error)
                     return "aRepeatedMessage." + error;
             }
@@ -1878,7 +1906,7 @@ export class Complex implements IComplex {
         if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
             if (!Array.isArray(message.aRepeatedString))
                 return "aRepeatedString: array expected";
-            for (var i = 0; i < message.aRepeatedString.length; ++i)
+            for (let i = 0; i < message.aRepeatedString.length; ++i)
                 if (!$util.isString(message.aRepeatedString[i]))
                     return "aRepeatedString: string[] expected";
         }
@@ -1894,7 +1922,7 @@ export class Complex implements IComplex {
     static fromObject(object): IComplex {
         if (object instanceof Complex)
             return object;
-        var message = new Complex();
+        let message = new Complex();
         if (object.aString != null)
             message.aString = String(object.aString);
         if (object.anOutOfOrderBool != null)
@@ -1908,7 +1936,7 @@ export class Complex implements IComplex {
             if (!Array.isArray(object.aRepeatedMessage))
                 throw TypeError("Complex.aRepeatedMessage: array expected");
             message.aRepeatedMessage = [];
-            for (var i = 0; i < object.aRepeatedMessage.length; ++i) {
+            for (let i = 0; i < object.aRepeatedMessage.length; ++i) {
                 if (typeof object.aRepeatedMessage[i] !== "object")
                     throw TypeError("Complex.aRepeatedMessage: object expected");
                 message.aRepeatedMessage[i] = Complex.Nested.fromObject(object.aRepeatedMessage[i]);
@@ -1918,7 +1946,7 @@ export class Complex implements IComplex {
             if (!Array.isArray(object.aRepeatedString))
                 throw TypeError("Complex.aRepeatedString: array expected");
             message.aRepeatedString = [];
-            for (var i = 0; i < object.aRepeatedString.length; ++i)
+            for (let i = 0; i < object.aRepeatedString.length; ++i)
                 message.aRepeatedString[i] = String(object.aRepeatedString[i]);
         }
         return message;
@@ -1930,7 +1958,7 @@ export class Complex implements IComplex {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IComplex, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IComplex, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults) {
             object.aRepeatedMessage = [];
@@ -1947,12 +1975,12 @@ export class Complex implements IComplex {
             object.aNestedMessage = Complex.Nested.toObject(message.aNestedMessage, options);
         if (message.aRepeatedMessage && message.aRepeatedMessage.length) {
             object.aRepeatedMessage = [];
-            for (var j = 0; j < message.aRepeatedMessage.length; ++j)
+            for (let j = 0; j < message.aRepeatedMessage.length; ++j)
                 object.aRepeatedMessage[j] = Complex.Nested.toObject(message.aRepeatedMessage[j], options);
         }
         if (message.aRepeatedString && message.aRepeatedString.length) {
             object.aRepeatedString = [];
-            for (var j = 0; j < message.aRepeatedString.length; ++j)
+            for (let j = 0; j < message.aRepeatedString.length; ++j)
                 object.aRepeatedString[j] = message.aRepeatedString[j];
         }
         if (message.anOutOfOrderBool != null && message.hasOwnProperty("anOutOfOrderBool"))
@@ -1964,7 +1992,7 @@ export class Complex implements IComplex {
      * Converts this Complex to JSON.
      */
     toJSON() {
-        return Complex.toObject(this, $protobuf.util.toJSONOptions);
+        return Complex.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -2004,7 +2032,7 @@ export namespace Complex {
          */
         constructor(properties?: INested) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2020,10 +2048,10 @@ export namespace Complex {
         // #region encode
         /**
          * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
-         * @param message Nestedmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: INested, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.anInt);
@@ -2032,10 +2060,10 @@ export namespace Complex {
 
         /**
          * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
-         * @param message Nestedmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: INested, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -2048,16 +2076,17 @@ export namespace Complex {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
+        static decode(reader: $Reader|Uint8Array, length?: number): Nested {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new Complex.Nested();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new Complex.Nested();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 2:
-                    message.anInt = reader.int32();
-                    break;
+                case 2: {
+                        message.anInt = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2074,10 +2103,10 @@ export namespace Complex {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
+        static decodeDelimited(reader: $Reader|Uint8Array): Nested {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -2104,7 +2133,7 @@ export namespace Complex {
         static fromObject(object): INested {
             if (object instanceof Complex.Nested)
                 return object;
-            var message = new Complex.Nested();
+            let message = new Complex.Nested();
             if (object.anInt != null)
                 message.anInt = object.anInt | 0;
             return message;
@@ -2116,7 +2145,7 @@ export namespace Complex {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: INested, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.anInt = 0;
@@ -2129,7 +2158,7 @@ export namespace Complex {
          * Converts this Nested to JSON.
          */
         toJSON() {
-            return Nested.toObject(this, $protobuf.util.toJSONOptions);
+            return Nested.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -2164,7 +2193,7 @@ export class OuterMessage implements IOuterMessage {
      */
     constructor(properties?: IOuterMessage) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -2180,10 +2209,10 @@ export class OuterMessage implements IOuterMessage {
     // #region encode
     /**
      * Encodes the specified OuterMessage message. Does not implicitly {@link OuterMessage.verify|verify} messages.
-     * @param message OuterMessagemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IOuterMessage, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         return writer;
@@ -2191,10 +2220,10 @@ export class OuterMessage implements IOuterMessage {
 
     /**
      * Encodes the specified OuterMessage message, length delimited. Does not implicitly {@link OuterMessage.verify|verify} messages.
-     * @param message OuterMessagemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IOuterMessage, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -2207,12 +2236,12 @@ export class OuterMessage implements IOuterMessage {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OuterMessage {
+    static decode(reader: $Reader|Uint8Array, length?: number): OuterMessage {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new OuterMessage();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new OuterMessage();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             default:
                 reader.skipType(tag & 7);
@@ -2228,10 +2257,10 @@ export class OuterMessage implements IOuterMessage {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OuterMessage {
+    static decodeDelimited(reader: $Reader|Uint8Array): OuterMessage {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -2265,7 +2294,7 @@ export class OuterMessage implements IOuterMessage {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IOuterMessage, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IOuterMessage, options: $IConversionOptions = {}) {
         return {};
     }
 
@@ -2273,7 +2302,7 @@ export class OuterMessage implements IOuterMessage {
      * Converts this OuterMessage to JSON.
      */
     toJSON() {
-        return OuterMessage.toObject(this, $protobuf.util.toJSONOptions);
+        return OuterMessage.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -2309,7 +2338,7 @@ export namespace OuterMessage {
          */
         constructor(properties?: IComplex) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2325,10 +2354,10 @@ export namespace OuterMessage {
         // #region encode
         /**
          * Encodes the specified Complex message. Does not implicitly {@link Complex.verify|verify} messages.
-         * @param message Complexmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IComplex, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.innerComplexField != null && Object.hasOwnProperty.call(message, "innerComplexField"))
@@ -2338,10 +2367,10 @@ export namespace OuterMessage {
 
         /**
          * Encodes the specified Complex message, length delimited. Does not implicitly {@link Complex.verify|verify} messages.
-         * @param message Complexmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IComplex, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -2354,16 +2383,17 @@ export namespace OuterMessage {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Complex {
+        static decode(reader: $Reader|Uint8Array, length?: number): Complex {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new OuterMessage.Complex();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new OuterMessage.Complex();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.innerComplexField = reader.int32();
-                    break;
+                case 1: {
+                        message.innerComplexField = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2378,10 +2408,10 @@ export namespace OuterMessage {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Complex {
+        static decodeDelimited(reader: $Reader|Uint8Array): Complex {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -2409,7 +2439,7 @@ export namespace OuterMessage {
         static fromObject(object): IComplex {
             if (object instanceof OuterMessage.Complex)
                 return object;
-            var message = new OuterMessage.Complex();
+            let message = new OuterMessage.Complex();
             if (object.innerComplexField != null)
                 message.innerComplexField = object.innerComplexField | 0;
             return message;
@@ -2421,7 +2451,7 @@ export namespace OuterMessage {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IComplex, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IComplex, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.innerComplexField = 0;
@@ -2434,7 +2464,7 @@ export namespace OuterMessage {
          * Converts this Complex to JSON.
          */
         toJSON() {
-            return Complex.toObject(this, $protobuf.util.toJSONOptions);
+            return Complex.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -2471,7 +2501,7 @@ export class IsExtension implements IIsExtension {
      */
     constructor(properties?: IIsExtension) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -2487,10 +2517,10 @@ export class IsExtension implements IIsExtension {
     // #region encode
     /**
      * Encodes the specified IsExtension message. Does not implicitly {@link IsExtension.verify|verify} messages.
-     * @param message IsExtensionmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IIsExtension, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.ext1 != null && Object.hasOwnProperty.call(message, "ext1"))
@@ -2500,10 +2530,10 @@ export class IsExtension implements IIsExtension {
 
     /**
      * Encodes the specified IsExtension message, length delimited. Does not implicitly {@link IsExtension.verify|verify} messages.
-     * @param message IsExtensionmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IIsExtension, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -2516,16 +2546,17 @@ export class IsExtension implements IIsExtension {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): IsExtension {
+    static decode(reader: $Reader|Uint8Array, length?: number): IsExtension {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new IsExtension();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new IsExtension();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.ext1 = reader.string();
-                break;
+            case 1: {
+                    message.ext1 = reader.string();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -2540,10 +2571,10 @@ export class IsExtension implements IIsExtension {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): IsExtension {
+    static decodeDelimited(reader: $Reader|Uint8Array): IsExtension {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -2571,7 +2602,7 @@ export class IsExtension implements IIsExtension {
     static fromObject(object): IIsExtension {
         if (object instanceof IsExtension)
             return object;
-        var message = new IsExtension();
+        let message = new IsExtension();
         if (object.ext1 != null)
             message.ext1 = String(object.ext1);
         return message;
@@ -2583,7 +2614,7 @@ export class IsExtension implements IIsExtension {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IIsExtension, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IIsExtension, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.ext1 = "";
@@ -2596,7 +2627,7 @@ export class IsExtension implements IIsExtension {
      * Converts this IsExtension to JSON.
      */
     toJSON() {
-        return IsExtension.toObject(this, $protobuf.util.toJSONOptions);
+        return IsExtension.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -2634,7 +2665,7 @@ export class IndirectExtension implements IIndirectExtension {
      */
     constructor(properties?: IIndirectExtension) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -2650,10 +2681,10 @@ export class IndirectExtension implements IIndirectExtension {
     // #region encode
     /**
      * Encodes the specified IndirectExtension message. Does not implicitly {@link IndirectExtension.verify|verify} messages.
-     * @param message IndirectExtensionmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IIndirectExtension, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         return writer;
@@ -2661,10 +2692,10 @@ export class IndirectExtension implements IIndirectExtension {
 
     /**
      * Encodes the specified IndirectExtension message, length delimited. Does not implicitly {@link IndirectExtension.verify|verify} messages.
-     * @param message IndirectExtensionmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IIndirectExtension, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -2677,12 +2708,12 @@ export class IndirectExtension implements IIndirectExtension {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): IndirectExtension {
+    static decode(reader: $Reader|Uint8Array, length?: number): IndirectExtension {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new IndirectExtension();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new IndirectExtension();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             default:
                 reader.skipType(tag & 7);
@@ -2698,10 +2729,10 @@ export class IndirectExtension implements IIndirectExtension {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): IndirectExtension {
+    static decodeDelimited(reader: $Reader|Uint8Array): IndirectExtension {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -2735,7 +2766,7 @@ export class IndirectExtension implements IIndirectExtension {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IIndirectExtension, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IIndirectExtension, options: $IConversionOptions = {}) {
         return {};
     }
 
@@ -2743,7 +2774,7 @@ export class IndirectExtension implements IIndirectExtension {
      * Converts this IndirectExtension to JSON.
      */
     toJSON() {
-        return IndirectExtension.toObject(this, $protobuf.util.toJSONOptions);
+        return IndirectExtension.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -2773,7 +2804,7 @@ export namespace IndirectExtension {
 export interface IDefaultValues {
     stringField?: string;
     boolField?: boolean;
-    intField?: (number|$protobuf.Long);
+    intField?: (number|$Long);
     enumField?: DefaultValues.Enum;
     emptyField?: string;
     bytesField?: Uint8Array;
@@ -2785,7 +2816,7 @@ export interface IDefaultValues {
 export class DefaultValues implements IDefaultValues {
     stringField?: string;
     boolField?: boolean;
-    intField?: (number|$protobuf.Long);
+    intField?: (number|$Long);
     enumField?: DefaultValues.Enum;
     emptyField?: string;
     bytesField?: Uint8Array;
@@ -2796,7 +2827,7 @@ export class DefaultValues implements IDefaultValues {
      */
     constructor(properties?: IDefaultValues) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -2812,10 +2843,10 @@ export class DefaultValues implements IDefaultValues {
     // #region encode
     /**
      * Encodes the specified DefaultValues message. Does not implicitly {@link DefaultValues.verify|verify} messages.
-     * @param message DefaultValuesmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IDefaultValues, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.stringField != null && Object.hasOwnProperty.call(message, "stringField"))
@@ -2835,10 +2866,10 @@ export class DefaultValues implements IDefaultValues {
 
     /**
      * Encodes the specified DefaultValues message, length delimited. Does not implicitly {@link DefaultValues.verify|verify} messages.
-     * @param message DefaultValuesmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IDefaultValues, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -2851,31 +2882,37 @@ export class DefaultValues implements IDefaultValues {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): DefaultValues {
+    static decode(reader: $Reader|Uint8Array, length?: number): DefaultValues {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new DefaultValues();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new DefaultValues();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.stringField = reader.string();
-                break;
-            case 2:
-                message.boolField = reader.bool();
-                break;
-            case 3:
-                message.intField = reader.int64();
-                break;
-            case 4:
-                message.enumField = reader.int32();
-                break;
-            case 6:
-                message.emptyField = reader.string();
-                break;
-            case 8:
-                message.bytesField = reader.bytes();
-                break;
+            case 1: {
+                    message.stringField = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.boolField = reader.bool();
+                    break;
+                }
+            case 3: {
+                    message.intField = reader.int64();
+                    break;
+                }
+            case 4: {
+                    message.enumField = reader.int32();
+                    break;
+                }
+            case 6: {
+                    message.emptyField = reader.string();
+                    break;
+                }
+            case 8: {
+                    message.bytesField = reader.bytes();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -2890,10 +2927,10 @@ export class DefaultValues implements IDefaultValues {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): DefaultValues {
+    static decodeDelimited(reader: $Reader|Uint8Array): DefaultValues {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -2941,20 +2978,13 @@ export class DefaultValues implements IDefaultValues {
     static fromObject(object): IDefaultValues {
         if (object instanceof DefaultValues)
             return object;
-        var message = new DefaultValues();
+        let message = new DefaultValues();
         if (object.stringField != null)
             message.stringField = String(object.stringField);
         if (object.boolField != null)
             message.boolField = Boolean(object.boolField);
         if (object.intField != null)
-            if ($util.Long)
-                (message.intField = ($util.Long as any).fromValue(object.intField)).unsigned = false;
-            else if (typeof object.intField === "string")
-                message.intField = parseInt(object.intField, 10);
-            else if (typeof object.intField === "number")
-                message.intField = object.intField;
-            else if (typeof object.intField === "object")
-                message.intField = new $util.LongBits(object.intField).toNumber();
+            message.intField = $util.longValue(object.intField, false);
         switch (object.enumField) {
         case "E1":
         case 13:
@@ -2981,13 +3011,13 @@ export class DefaultValues implements IDefaultValues {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IDefaultValues, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IDefaultValues, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults) {
             object.stringField = "default<>abc";
             object.boolField = true;
             if ($util.Long) {
-                var long = new $util.Long(11, 0, false);
+                let long = new $util.Long(11, 0, false);
                 object.intField = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
             } else
                 object.intField = options.longs === String ? "11" : 11;
@@ -3027,7 +3057,7 @@ export class DefaultValues implements IDefaultValues {
      * Converts this DefaultValues to JSON.
      */
     toJSON() {
-        return DefaultValues.toObject(this, $protobuf.util.toJSONOptions);
+        return DefaultValues.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -3084,7 +3114,7 @@ export class FloatingPointFields implements IFloatingPointFields {
      */
     constructor(properties?: IFloatingPointFields) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -3100,17 +3130,17 @@ export class FloatingPointFields implements IFloatingPointFields {
     // #region encode
     /**
      * Encodes the specified FloatingPointFields message. Does not implicitly {@link FloatingPointFields.verify|verify} messages.
-     * @param message FloatingPointFieldsmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IFloatingPointFields, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.optionalFloatField != null && Object.hasOwnProperty.call(message, "optionalFloatField"))
             writer.uint32(/* id 1, wireType 5 =*/13).float(message.optionalFloatField);
         writer.uint32(/* id 2, wireType 5 =*/21).float(message.requiredFloatField);
         if (message.repeatedFloatField != null && message.repeatedFloatField.length)
-            for (var i = 0; i < message.repeatedFloatField.length; ++i)
+            for (let i = 0; i < message.repeatedFloatField.length; ++i)
                 writer.uint32(/* id 3, wireType 5 =*/29).float(message.repeatedFloatField[i]);
         if (message.defaultFloatField != null && Object.hasOwnProperty.call(message, "defaultFloatField"))
             writer.uint32(/* id 4, wireType 5 =*/37).float(message.defaultFloatField);
@@ -3118,7 +3148,7 @@ export class FloatingPointFields implements IFloatingPointFields {
             writer.uint32(/* id 5, wireType 1 =*/41).double(message.optionalDoubleField);
         writer.uint32(/* id 6, wireType 1 =*/49).double(message.requiredDoubleField);
         if (message.repeatedDoubleField != null && message.repeatedDoubleField.length)
-            for (var i = 0; i < message.repeatedDoubleField.length; ++i)
+            for (let i = 0; i < message.repeatedDoubleField.length; ++i)
                 writer.uint32(/* id 7, wireType 1 =*/57).double(message.repeatedDoubleField[i]);
         if (message.defaultDoubleField != null && Object.hasOwnProperty.call(message, "defaultDoubleField"))
             writer.uint32(/* id 8, wireType 1 =*/65).double(message.defaultDoubleField);
@@ -3127,10 +3157,10 @@ export class FloatingPointFields implements IFloatingPointFields {
 
     /**
      * Encodes the specified FloatingPointFields message, length delimited. Does not implicitly {@link FloatingPointFields.verify|verify} messages.
-     * @param message FloatingPointFieldsmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IFloatingPointFields, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -3143,51 +3173,59 @@ export class FloatingPointFields implements IFloatingPointFields {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FloatingPointFields {
+    static decode(reader: $Reader|Uint8Array, length?: number): FloatingPointFields {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new FloatingPointFields();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new FloatingPointFields();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.optionalFloatField = reader.float();
-                break;
-            case 2:
-                message.requiredFloatField = reader.float();
-                break;
-            case 3:
-                if (!(message.repeatedFloatField && message.repeatedFloatField.length))
-                    message.repeatedFloatField = [];
-                if ((tag & 7) === 2) {
-                    var end2 = reader.uint32() + reader.pos;
-                    while (reader.pos < end2)
+            case 1: {
+                    message.optionalFloatField = reader.float();
+                    break;
+                }
+            case 2: {
+                    message.requiredFloatField = reader.float();
+                    break;
+                }
+            case 3: {
+                    if (!(message.repeatedFloatField && message.repeatedFloatField.length))
+                        message.repeatedFloatField = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.repeatedFloatField.push(reader.float());
+                    } else
                         message.repeatedFloatField.push(reader.float());
-                } else
-                    message.repeatedFloatField.push(reader.float());
-                break;
-            case 4:
-                message.defaultFloatField = reader.float();
-                break;
-            case 5:
-                message.optionalDoubleField = reader.double();
-                break;
-            case 6:
-                message.requiredDoubleField = reader.double();
-                break;
-            case 7:
-                if (!(message.repeatedDoubleField && message.repeatedDoubleField.length))
-                    message.repeatedDoubleField = [];
-                if ((tag & 7) === 2) {
-                    var end2 = reader.uint32() + reader.pos;
-                    while (reader.pos < end2)
+                    break;
+                }
+            case 4: {
+                    message.defaultFloatField = reader.float();
+                    break;
+                }
+            case 5: {
+                    message.optionalDoubleField = reader.double();
+                    break;
+                }
+            case 6: {
+                    message.requiredDoubleField = reader.double();
+                    break;
+                }
+            case 7: {
+                    if (!(message.repeatedDoubleField && message.repeatedDoubleField.length))
+                        message.repeatedDoubleField = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.repeatedDoubleField.push(reader.double());
+                    } else
                         message.repeatedDoubleField.push(reader.double());
-                } else
-                    message.repeatedDoubleField.push(reader.double());
-                break;
-            case 8:
-                message.defaultDoubleField = reader.double();
-                break;
+                    break;
+                }
+            case 8: {
+                    message.defaultDoubleField = reader.double();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -3206,10 +3244,10 @@ export class FloatingPointFields implements IFloatingPointFields {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FloatingPointFields {
+    static decodeDelimited(reader: $Reader|Uint8Array): FloatingPointFields {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -3230,7 +3268,7 @@ export class FloatingPointFields implements IFloatingPointFields {
         if (message.repeatedFloatField != null && message.hasOwnProperty("repeatedFloatField")) {
             if (!Array.isArray(message.repeatedFloatField))
                 return "repeatedFloatField: array expected";
-            for (var i = 0; i < message.repeatedFloatField.length; ++i)
+            for (let i = 0; i < message.repeatedFloatField.length; ++i)
                 if (typeof message.repeatedFloatField[i] !== "number")
                     return "repeatedFloatField: number[] expected";
         }
@@ -3245,7 +3283,7 @@ export class FloatingPointFields implements IFloatingPointFields {
         if (message.repeatedDoubleField != null && message.hasOwnProperty("repeatedDoubleField")) {
             if (!Array.isArray(message.repeatedDoubleField))
                 return "repeatedDoubleField: array expected";
-            for (var i = 0; i < message.repeatedDoubleField.length; ++i)
+            for (let i = 0; i < message.repeatedDoubleField.length; ++i)
                 if (typeof message.repeatedDoubleField[i] !== "number")
                     return "repeatedDoubleField: number[] expected";
         }
@@ -3264,7 +3302,7 @@ export class FloatingPointFields implements IFloatingPointFields {
     static fromObject(object): IFloatingPointFields {
         if (object instanceof FloatingPointFields)
             return object;
-        var message = new FloatingPointFields();
+        let message = new FloatingPointFields();
         if (object.optionalFloatField != null)
             message.optionalFloatField = Number(object.optionalFloatField);
         if (object.requiredFloatField != null)
@@ -3273,7 +3311,7 @@ export class FloatingPointFields implements IFloatingPointFields {
             if (!Array.isArray(object.repeatedFloatField))
                 throw TypeError("FloatingPointFields.repeatedFloatField: array expected");
             message.repeatedFloatField = [];
-            for (var i = 0; i < object.repeatedFloatField.length; ++i)
+            for (let i = 0; i < object.repeatedFloatField.length; ++i)
                 message.repeatedFloatField[i] = Number(object.repeatedFloatField[i]);
         }
         if (object.defaultFloatField != null)
@@ -3286,7 +3324,7 @@ export class FloatingPointFields implements IFloatingPointFields {
             if (!Array.isArray(object.repeatedDoubleField))
                 throw TypeError("FloatingPointFields.repeatedDoubleField: array expected");
             message.repeatedDoubleField = [];
-            for (var i = 0; i < object.repeatedDoubleField.length; ++i)
+            for (let i = 0; i < object.repeatedDoubleField.length; ++i)
                 message.repeatedDoubleField[i] = Number(object.repeatedDoubleField[i]);
         }
         if (object.defaultDoubleField != null)
@@ -3300,7 +3338,7 @@ export class FloatingPointFields implements IFloatingPointFields {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IFloatingPointFields, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IFloatingPointFields, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults) {
             object.repeatedFloatField = [];
@@ -3320,7 +3358,7 @@ export class FloatingPointFields implements IFloatingPointFields {
             object.requiredFloatField = options.json && !isFinite(message.requiredFloatField) ? String(message.requiredFloatField) : message.requiredFloatField;
         if (message.repeatedFloatField && message.repeatedFloatField.length) {
             object.repeatedFloatField = [];
-            for (var j = 0; j < message.repeatedFloatField.length; ++j)
+            for (let j = 0; j < message.repeatedFloatField.length; ++j)
                 object.repeatedFloatField[j] = options.json && !isFinite(message.repeatedFloatField[j]) ? String(message.repeatedFloatField[j]) : message.repeatedFloatField[j];
         }
         if (message.defaultFloatField != null && message.hasOwnProperty("defaultFloatField"))
@@ -3331,7 +3369,7 @@ export class FloatingPointFields implements IFloatingPointFields {
             object.requiredDoubleField = options.json && !isFinite(message.requiredDoubleField) ? String(message.requiredDoubleField) : message.requiredDoubleField;
         if (message.repeatedDoubleField && message.repeatedDoubleField.length) {
             object.repeatedDoubleField = [];
-            for (var j = 0; j < message.repeatedDoubleField.length; ++j)
+            for (let j = 0; j < message.repeatedDoubleField.length; ++j)
                 object.repeatedDoubleField[j] = options.json && !isFinite(message.repeatedDoubleField[j]) ? String(message.repeatedDoubleField[j]) : message.repeatedDoubleField[j];
         }
         if (message.defaultDoubleField != null && message.hasOwnProperty("defaultDoubleField"))
@@ -3343,7 +3381,7 @@ export class FloatingPointFields implements IFloatingPointFields {
      * Converts this FloatingPointFields to JSON.
      */
     toJSON() {
-        return FloatingPointFields.toObject(this, $protobuf.util.toJSONOptions);
+        return FloatingPointFields.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -3392,7 +3430,7 @@ export class TestClone implements ITestClone {
      */
     constructor(properties?: ITestClone) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -3408,10 +3446,10 @@ export class TestClone implements ITestClone {
     // #region encode
     /**
      * Encodes the specified TestClone message. Does not implicitly {@link TestClone.verify|verify} messages.
-     * @param message TestClonemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITestClone, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.str != null && Object.hasOwnProperty.call(message, "str"))
@@ -3419,7 +3457,7 @@ export class TestClone implements ITestClone {
         if (message.simple1 != null && Object.hasOwnProperty.call(message, "simple1"))
             Simple1.encode(message.simple1, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
         if (message.simple2 != null && message.simple2.length)
-            for (var i = 0; i < message.simple2.length; ++i)
+            for (let i = 0; i < message.simple2.length; ++i)
                 Simple1.encode(message.simple2[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
         if (message.bytesField != null && Object.hasOwnProperty.call(message, "bytesField"))
             writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.bytesField);
@@ -3432,10 +3470,10 @@ export class TestClone implements ITestClone {
 
     /**
      * Encodes the specified TestClone message, length delimited. Does not implicitly {@link TestClone.verify|verify} messages.
-     * @param message TestClonemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITestClone, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -3448,33 +3486,39 @@ export class TestClone implements ITestClone {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestClone {
+    static decode(reader: $Reader|Uint8Array, length?: number): TestClone {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new TestClone();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new TestClone();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.str = reader.string();
-                break;
-            case 3:
-                message.simple1 = Simple1.decode(reader, reader.uint32());
-                break;
-            case 5:
-                if (!(message.simple2 && message.simple2.length))
-                    message.simple2 = [];
-                message.simple2.push(Simple1.decode(reader, reader.uint32()));
-                break;
-            case 6:
-                message.bytesField = reader.bytes();
-                break;
-            case 7:
-                message.unused = reader.string();
-                break;
-            case 100:
-                message["CloneExtension.extField"] = CloneExtension.decode(reader, reader.uint32());
-                break;
+            case 1: {
+                    message.str = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.simple1 = Simple1.decode(reader, reader.uint32());
+                    break;
+                }
+            case 5: {
+                    if (!(message.simple2 && message.simple2.length))
+                        message.simple2 = [];
+                    message.simple2.push(Simple1.decode(reader, reader.uint32()));
+                    break;
+                }
+            case 6: {
+                    message.bytesField = reader.bytes();
+                    break;
+                }
+            case 7: {
+                    message.unused = reader.string();
+                    break;
+                }
+            case 100: {
+                    message["CloneExtension.extField"] = CloneExtension.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -3489,10 +3533,10 @@ export class TestClone implements ITestClone {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestClone {
+    static decodeDelimited(reader: $Reader|Uint8Array): TestClone {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -3509,15 +3553,15 @@ export class TestClone implements ITestClone {
             if (!$util.isString(message.str))
                 return "str: string expected";
         if (message.simple1 != null && message.hasOwnProperty("simple1")) {
-            var error = Simple1.verify(message.simple1);
+            let error = Simple1.verify(message.simple1);
             if (error)
                 return "simple1." + error;
         }
         if (message.simple2 != null && message.hasOwnProperty("simple2")) {
             if (!Array.isArray(message.simple2))
                 return "simple2: array expected";
-            for (var i = 0; i < message.simple2.length; ++i) {
-                var error = Simple1.verify(message.simple2[i]);
+            for (let i = 0; i < message.simple2.length; ++i) {
+                let error = Simple1.verify(message.simple2[i]);
                 if (error)
                     return "simple2." + error;
             }
@@ -3529,7 +3573,7 @@ export class TestClone implements ITestClone {
             if (!$util.isString(message.unused))
                 return "unused: string expected";
         if (message["CloneExtension.extField"] != null && message.hasOwnProperty("CloneExtension.extField")) {
-            var error = CloneExtension.verify(message["CloneExtension.extField"]);
+            let error = CloneExtension.verify(message["CloneExtension.extField"]);
             if (error)
                 return "CloneExtension.extField." + error;
         }
@@ -3545,7 +3589,7 @@ export class TestClone implements ITestClone {
     static fromObject(object): ITestClone {
         if (object instanceof TestClone)
             return object;
-        var message = new TestClone();
+        let message = new TestClone();
         if (object.str != null)
             message.str = String(object.str);
         if (object.simple1 != null) {
@@ -3557,7 +3601,7 @@ export class TestClone implements ITestClone {
             if (!Array.isArray(object.simple2))
                 throw TypeError("TestClone.simple2: array expected");
             message.simple2 = [];
-            for (var i = 0; i < object.simple2.length; ++i) {
+            for (let i = 0; i < object.simple2.length; ++i) {
                 if (typeof object.simple2[i] !== "object")
                     throw TypeError("TestClone.simple2: object expected");
                 message.simple2[i] = Simple1.fromObject(object.simple2[i]);
@@ -3584,7 +3628,7 @@ export class TestClone implements ITestClone {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITestClone, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITestClone, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults)
             object.simple2 = [];
@@ -3607,7 +3651,7 @@ export class TestClone implements ITestClone {
             object.simple1 = Simple1.toObject(message.simple1, options);
         if (message.simple2 && message.simple2.length) {
             object.simple2 = [];
-            for (var j = 0; j < message.simple2.length; ++j)
+            for (let j = 0; j < message.simple2.length; ++j)
                 object.simple2[j] = Simple1.toObject(message.simple2[j], options);
         }
         if (message.bytesField != null && message.hasOwnProperty("bytesField"))
@@ -3623,7 +3667,7 @@ export class TestClone implements ITestClone {
      * Converts this TestClone to JSON.
      */
     toJSON() {
-        return TestClone.toObject(this, $protobuf.util.toJSONOptions);
+        return TestClone.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -3660,7 +3704,7 @@ export class CloneExtension implements ICloneExtension {
      */
     constructor(properties?: ICloneExtension) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -3676,10 +3720,10 @@ export class CloneExtension implements ICloneExtension {
     // #region encode
     /**
      * Encodes the specified CloneExtension message. Does not implicitly {@link CloneExtension.verify|verify} messages.
-     * @param message CloneExtensionmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ICloneExtension, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.ext != null && Object.hasOwnProperty.call(message, "ext"))
@@ -3689,10 +3733,10 @@ export class CloneExtension implements ICloneExtension {
 
     /**
      * Encodes the specified CloneExtension message, length delimited. Does not implicitly {@link CloneExtension.verify|verify} messages.
-     * @param message CloneExtensionmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ICloneExtension, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -3705,16 +3749,17 @@ export class CloneExtension implements ICloneExtension {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): CloneExtension {
+    static decode(reader: $Reader|Uint8Array, length?: number): CloneExtension {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new CloneExtension();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new CloneExtension();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 2:
-                message.ext = reader.string();
-                break;
+            case 2: {
+                    message.ext = reader.string();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -3729,10 +3774,10 @@ export class CloneExtension implements ICloneExtension {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): CloneExtension {
+    static decodeDelimited(reader: $Reader|Uint8Array): CloneExtension {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -3760,7 +3805,7 @@ export class CloneExtension implements ICloneExtension {
     static fromObject(object): ICloneExtension {
         if (object instanceof CloneExtension)
             return object;
-        var message = new CloneExtension();
+        let message = new CloneExtension();
         if (object.ext != null)
             message.ext = String(object.ext);
         return message;
@@ -3772,7 +3817,7 @@ export class CloneExtension implements ICloneExtension {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ICloneExtension, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ICloneExtension, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.ext = "";
@@ -3785,7 +3830,7 @@ export class CloneExtension implements ICloneExtension {
      * Converts this CloneExtension to JSON.
      */
     toJSON() {
-        return CloneExtension.toObject(this, $protobuf.util.toJSONOptions);
+        return CloneExtension.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -3834,7 +3879,7 @@ export class TestGroup implements ITestGroup {
      */
     constructor(properties?: ITestGroup) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -3850,14 +3895,14 @@ export class TestGroup implements ITestGroup {
     // #region encode
     /**
      * Encodes the specified TestGroup message. Does not implicitly {@link TestGroup.verify|verify} messages.
-     * @param message TestGroupmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITestGroup, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.repeatedGroup != null && message.repeatedGroup.length)
-            for (var i = 0; i < message.repeatedGroup.length; ++i)
+            for (let i = 0; i < message.repeatedGroup.length; ++i)
                 TestGroup.RepeatedGroup.encode(message.repeatedGroup[i], writer.uint32(/* id 1, wireType 3 =*/11)).uint32(/* id 1, wireType 4 =*/12);
         TestGroup.RequiredGroup.encode(message.requiredGroup, writer.uint32(/* id 2, wireType 3 =*/19)).uint32(/* id 2, wireType 4 =*/20);
         if (message.optionalGroup != null && Object.hasOwnProperty.call(message, "optionalGroup"))
@@ -3872,10 +3917,10 @@ export class TestGroup implements ITestGroup {
 
     /**
      * Encodes the specified TestGroup message, length delimited. Does not implicitly {@link TestGroup.verify|verify} messages.
-     * @param message TestGroupmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITestGroup, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -3888,33 +3933,39 @@ export class TestGroup implements ITestGroup {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestGroup {
+    static decode(reader: $Reader|Uint8Array, length?: number): TestGroup {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                if (!(message.repeatedGroup && message.repeatedGroup.length))
-                    message.repeatedGroup = [];
-                message.repeatedGroup.push(TestGroup.RepeatedGroup.decode(reader));
-                break;
-            case 2:
-                message.requiredGroup = TestGroup.RequiredGroup.decode(reader);
-                break;
-            case 3:
-                message.optionalGroup = TestGroup.OptionalGroup.decode(reader);
-                break;
-            case 4:
-                message.id = reader.string();
-                break;
-            case 5:
-                message.requiredSimple = Simple2.decode(reader, reader.uint32());
-                break;
-            case 6:
-                message.optionalSimple = Simple2.decode(reader, reader.uint32());
-                break;
+            case 1: {
+                    if (!(message.repeatedGroup && message.repeatedGroup.length))
+                        message.repeatedGroup = [];
+                    message.repeatedGroup.push(TestGroup.RepeatedGroup.decode(reader));
+                    break;
+                }
+            case 2: {
+                    message.requiredGroup = TestGroup.RequiredGroup.decode(reader);
+                    break;
+                }
+            case 3: {
+                    message.optionalGroup = TestGroup.OptionalGroup.decode(reader);
+                    break;
+                }
+            case 4: {
+                    message.id = reader.string();
+                    break;
+                }
+            case 5: {
+                    message.requiredSimple = Simple2.decode(reader, reader.uint32());
+                    break;
+                }
+            case 6: {
+                    message.optionalSimple = Simple2.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -3933,10 +3984,10 @@ export class TestGroup implements ITestGroup {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestGroup {
+    static decodeDelimited(reader: $Reader|Uint8Array): TestGroup {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -3952,19 +4003,19 @@ export class TestGroup implements ITestGroup {
         if (message.repeatedGroup != null && message.hasOwnProperty("repeatedGroup")) {
             if (!Array.isArray(message.repeatedGroup))
                 return "repeatedGroup: array expected";
-            for (var i = 0; i < message.repeatedGroup.length; ++i) {
-                var error = TestGroup.RepeatedGroup.verify(message.repeatedGroup[i]);
+            for (let i = 0; i < message.repeatedGroup.length; ++i) {
+                let error = TestGroup.RepeatedGroup.verify(message.repeatedGroup[i]);
                 if (error)
                     return "repeatedGroup." + error;
             }
         }
         {
-            var error = TestGroup.RequiredGroup.verify(message.requiredGroup);
+            let error = TestGroup.RequiredGroup.verify(message.requiredGroup);
             if (error)
                 return "requiredGroup." + error;
         }
         if (message.optionalGroup != null && message.hasOwnProperty("optionalGroup")) {
-            var error = TestGroup.OptionalGroup.verify(message.optionalGroup);
+            let error = TestGroup.OptionalGroup.verify(message.optionalGroup);
             if (error)
                 return "optionalGroup." + error;
         }
@@ -3972,12 +4023,12 @@ export class TestGroup implements ITestGroup {
             if (!$util.isString(message.id))
                 return "id: string expected";
         {
-            var error = Simple2.verify(message.requiredSimple);
+            let error = Simple2.verify(message.requiredSimple);
             if (error)
                 return "requiredSimple." + error;
         }
         if (message.optionalSimple != null && message.hasOwnProperty("optionalSimple")) {
-            var error = Simple2.verify(message.optionalSimple);
+            let error = Simple2.verify(message.optionalSimple);
             if (error)
                 return "optionalSimple." + error;
         }
@@ -3993,12 +4044,12 @@ export class TestGroup implements ITestGroup {
     static fromObject(object): ITestGroup {
         if (object instanceof TestGroup)
             return object;
-        var message = new TestGroup();
+        let message = new TestGroup();
         if (object.repeatedGroup) {
             if (!Array.isArray(object.repeatedGroup))
                 throw TypeError("TestGroup.repeatedGroup: array expected");
             message.repeatedGroup = [];
-            for (var i = 0; i < object.repeatedGroup.length; ++i) {
+            for (let i = 0; i < object.repeatedGroup.length; ++i) {
                 if (typeof object.repeatedGroup[i] !== "object")
                     throw TypeError("TestGroup.repeatedGroup: object expected");
                 message.repeatedGroup[i] = TestGroup.RepeatedGroup.fromObject(object.repeatedGroup[i]);
@@ -4035,7 +4086,7 @@ export class TestGroup implements ITestGroup {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITestGroup, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITestGroup, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults)
             object.repeatedGroup = [];
@@ -4048,7 +4099,7 @@ export class TestGroup implements ITestGroup {
         }
         if (message.repeatedGroup && message.repeatedGroup.length) {
             object.repeatedGroup = [];
-            for (var j = 0; j < message.repeatedGroup.length; ++j)
+            for (let j = 0; j < message.repeatedGroup.length; ++j)
                 object.repeatedGroup[j] = TestGroup.RepeatedGroup.toObject(message.repeatedGroup[j], options);
         }
         if (message.requiredGroup != null && message.hasOwnProperty("requiredGroup"))
@@ -4068,7 +4119,7 @@ export class TestGroup implements ITestGroup {
      * Converts this TestGroup to JSON.
      */
     toJSON() {
-        return TestGroup.toObject(this, $protobuf.util.toJSONOptions);
+        return TestGroup.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -4108,7 +4159,7 @@ export namespace TestGroup {
          */
         constructor(properties?: IRepeatedGroup) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4124,25 +4175,25 @@ export namespace TestGroup {
         // #region encode
         /**
          * Encodes the specified RepeatedGroup message. Does not implicitly {@link RepeatedGroup.verify|verify} messages.
-         * @param message RepeatedGroupmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IRepeatedGroup, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
             if (message.someBool != null && message.someBool.length)
-                for (var i = 0; i < message.someBool.length; ++i)
+                for (let i = 0; i < message.someBool.length; ++i)
                     writer.uint32(/* id 2, wireType 0 =*/16).bool(message.someBool[i]);
             return writer;
         }
 
         /**
          * Encodes the specified RepeatedGroup message, length delimited. Does not implicitly {@link RepeatedGroup.verify|verify} messages.
-         * @param message RepeatedGroupmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IRepeatedGroup, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -4155,28 +4206,30 @@ export namespace TestGroup {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): RepeatedGroup {
+        static decode(reader: $Reader|Uint8Array, length?: number): RepeatedGroup {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup.RepeatedGroup();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup.RepeatedGroup();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if ((tag & 7) === 4)
                     break;
                 switch (tag >>> 3) {
-                case 1:
-                    message.id = reader.string();
-                    break;
-                case 2:
-                    if (!(message.someBool && message.someBool.length))
-                        message.someBool = [];
-                    if ((tag & 7) === 2) {
-                        var end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
+                case 1: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.someBool && message.someBool.length))
+                            message.someBool = [];
+                        if ((tag & 7) === 2) {
+                            let end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.someBool.push(reader.bool());
+                        } else
                             message.someBool.push(reader.bool());
-                    } else
-                        message.someBool.push(reader.bool());
-                    break;
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4193,10 +4246,10 @@ export namespace TestGroup {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): RepeatedGroup {
+        static decodeDelimited(reader: $Reader|Uint8Array): RepeatedGroup {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -4214,7 +4267,7 @@ export namespace TestGroup {
             if (message.someBool != null && message.hasOwnProperty("someBool")) {
                 if (!Array.isArray(message.someBool))
                     return "someBool: array expected";
-                for (var i = 0; i < message.someBool.length; ++i)
+                for (let i = 0; i < message.someBool.length; ++i)
                     if (typeof message.someBool[i] !== "boolean")
                         return "someBool: boolean[] expected";
             }
@@ -4230,14 +4283,14 @@ export namespace TestGroup {
         static fromObject(object): IRepeatedGroup {
             if (object instanceof TestGroup.RepeatedGroup)
                 return object;
-            var message = new TestGroup.RepeatedGroup();
+            let message = new TestGroup.RepeatedGroup();
             if (object.id != null)
                 message.id = String(object.id);
             if (object.someBool) {
                 if (!Array.isArray(object.someBool))
                     throw TypeError("TestGroup.RepeatedGroup.someBool: array expected");
                 message.someBool = [];
-                for (var i = 0; i < object.someBool.length; ++i)
+                for (let i = 0; i < object.someBool.length; ++i)
                     message.someBool[i] = Boolean(object.someBool[i]);
             }
             return message;
@@ -4249,7 +4302,7 @@ export namespace TestGroup {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IRepeatedGroup, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IRepeatedGroup, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.someBool = [];
@@ -4259,7 +4312,7 @@ export namespace TestGroup {
                 object.id = message.id;
             if (message.someBool && message.someBool.length) {
                 object.someBool = [];
-                for (var j = 0; j < message.someBool.length; ++j)
+                for (let j = 0; j < message.someBool.length; ++j)
                     object.someBool[j] = message.someBool[j];
             }
             return object;
@@ -4269,7 +4322,7 @@ export namespace TestGroup {
          * Converts this RepeatedGroup to JSON.
          */
         toJSON() {
-            return RepeatedGroup.toObject(this, $protobuf.util.toJSONOptions);
+            return RepeatedGroup.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -4306,7 +4359,7 @@ export namespace TestGroup {
          */
         constructor(properties?: IRequiredGroup) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4322,10 +4375,10 @@ export namespace TestGroup {
         // #region encode
         /**
          * Encodes the specified RequiredGroup message. Does not implicitly {@link RequiredGroup.verify|verify} messages.
-         * @param message RequiredGroupmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IRequiredGroup, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
@@ -4334,10 +4387,10 @@ export namespace TestGroup {
 
         /**
          * Encodes the specified RequiredGroup message, length delimited. Does not implicitly {@link RequiredGroup.verify|verify} messages.
-         * @param message RequiredGroupmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IRequiredGroup, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -4350,18 +4403,19 @@ export namespace TestGroup {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): RequiredGroup {
+        static decode(reader: $Reader|Uint8Array, length?: number): RequiredGroup {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup.RequiredGroup();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup.RequiredGroup();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if ((tag & 7) === 4)
                     break;
                 switch (tag >>> 3) {
-                case 1:
-                    message.id = reader.string();
-                    break;
+                case 1: {
+                        message.id = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4378,10 +4432,10 @@ export namespace TestGroup {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): RequiredGroup {
+        static decodeDelimited(reader: $Reader|Uint8Array): RequiredGroup {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -4408,7 +4462,7 @@ export namespace TestGroup {
         static fromObject(object): IRequiredGroup {
             if (object instanceof TestGroup.RequiredGroup)
                 return object;
-            var message = new TestGroup.RequiredGroup();
+            let message = new TestGroup.RequiredGroup();
             if (object.id != null)
                 message.id = String(object.id);
             return message;
@@ -4420,7 +4474,7 @@ export namespace TestGroup {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IRequiredGroup, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IRequiredGroup, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.id = "";
@@ -4433,7 +4487,7 @@ export namespace TestGroup {
          * Converts this RequiredGroup to JSON.
          */
         toJSON() {
-            return RequiredGroup.toObject(this, $protobuf.util.toJSONOptions);
+            return RequiredGroup.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -4468,7 +4522,7 @@ export namespace TestGroup {
          */
         constructor(properties?: IOptionalGroup) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4484,10 +4538,10 @@ export namespace TestGroup {
         // #region encode
         /**
          * Encodes the specified OptionalGroup message. Does not implicitly {@link OptionalGroup.verify|verify} messages.
-         * @param message OptionalGroupmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOptionalGroup, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
@@ -4496,10 +4550,10 @@ export namespace TestGroup {
 
         /**
          * Encodes the specified OptionalGroup message, length delimited. Does not implicitly {@link OptionalGroup.verify|verify} messages.
-         * @param message OptionalGroupmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOptionalGroup, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -4512,18 +4566,19 @@ export namespace TestGroup {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OptionalGroup {
+        static decode(reader: $Reader|Uint8Array, length?: number): OptionalGroup {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup.OptionalGroup();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup.OptionalGroup();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if ((tag & 7) === 4)
                     break;
                 switch (tag >>> 3) {
-                case 1:
-                    message.id = reader.string();
-                    break;
+                case 1: {
+                        message.id = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4540,10 +4595,10 @@ export namespace TestGroup {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OptionalGroup {
+        static decodeDelimited(reader: $Reader|Uint8Array): OptionalGroup {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -4570,7 +4625,7 @@ export namespace TestGroup {
         static fromObject(object): IOptionalGroup {
             if (object instanceof TestGroup.OptionalGroup)
                 return object;
-            var message = new TestGroup.OptionalGroup();
+            let message = new TestGroup.OptionalGroup();
             if (object.id != null)
                 message.id = String(object.id);
             return message;
@@ -4582,7 +4637,7 @@ export namespace TestGroup {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IOptionalGroup, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOptionalGroup, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.id = "";
@@ -4595,7 +4650,7 @@ export namespace TestGroup {
          * Converts this OptionalGroup to JSON.
          */
         toJSON() {
-            return OptionalGroup.toObject(this, $protobuf.util.toJSONOptions);
+            return OptionalGroup.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -4632,7 +4687,7 @@ export class TestGroup1 implements ITestGroup1 {
      */
     constructor(properties?: ITestGroup1) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -4648,10 +4703,10 @@ export class TestGroup1 implements ITestGroup1 {
     // #region encode
     /**
      * Encodes the specified TestGroup1 message. Does not implicitly {@link TestGroup1.verify|verify} messages.
-     * @param message TestGroup1message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITestGroup1, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.group != null && Object.hasOwnProperty.call(message, "group"))
@@ -4661,10 +4716,10 @@ export class TestGroup1 implements ITestGroup1 {
 
     /**
      * Encodes the specified TestGroup1 message, length delimited. Does not implicitly {@link TestGroup1.verify|verify} messages.
-     * @param message TestGroup1message or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITestGroup1, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -4677,16 +4732,17 @@ export class TestGroup1 implements ITestGroup1 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestGroup1 {
+    static decode(reader: $Reader|Uint8Array, length?: number): TestGroup1 {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup1();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new TestGroup1();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.group = TestGroup.RepeatedGroup.decode(reader);
-                break;
+            case 1: {
+                    message.group = TestGroup.RepeatedGroup.decode(reader);
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -4701,10 +4757,10 @@ export class TestGroup1 implements ITestGroup1 {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestGroup1 {
+    static decodeDelimited(reader: $Reader|Uint8Array): TestGroup1 {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -4718,7 +4774,7 @@ export class TestGroup1 implements ITestGroup1 {
         if (typeof message !== "object" || message === null)
             return "object expected";
         if (message.group != null && message.hasOwnProperty("group")) {
-            var error = TestGroup.RepeatedGroup.verify(message.group);
+            let error = TestGroup.RepeatedGroup.verify(message.group);
             if (error)
                 return "group." + error;
         }
@@ -4734,7 +4790,7 @@ export class TestGroup1 implements ITestGroup1 {
     static fromObject(object): ITestGroup1 {
         if (object instanceof TestGroup1)
             return object;
-        var message = new TestGroup1();
+        let message = new TestGroup1();
         if (object.group != null) {
             if (typeof object.group !== "object")
                 throw TypeError("TestGroup1.group: object expected");
@@ -4749,7 +4805,7 @@ export class TestGroup1 implements ITestGroup1 {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITestGroup1, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITestGroup1, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.group = null;
@@ -4762,7 +4818,7 @@ export class TestGroup1 implements ITestGroup1 {
      * Converts this TestGroup1 to JSON.
      */
     toJSON() {
-        return TestGroup1.toObject(this, $protobuf.util.toJSONOptions);
+        return TestGroup1.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -4799,7 +4855,7 @@ export class TestReservedNames implements ITestReservedNames {
      */
     constructor(properties?: ITestReservedNames) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -4815,10 +4871,10 @@ export class TestReservedNames implements ITestReservedNames {
     // #region encode
     /**
      * Encodes the specified TestReservedNames message. Does not implicitly {@link TestReservedNames.verify|verify} messages.
-     * @param message TestReservedNamesmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITestReservedNames, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.extension != null && Object.hasOwnProperty.call(message, "extension"))
@@ -4830,10 +4886,10 @@ export class TestReservedNames implements ITestReservedNames {
 
     /**
      * Encodes the specified TestReservedNames message, length delimited. Does not implicitly {@link TestReservedNames.verify|verify} messages.
-     * @param message TestReservedNamesmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITestReservedNames, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -4846,19 +4902,21 @@ export class TestReservedNames implements ITestReservedNames {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestReservedNames {
+    static decode(reader: $Reader|Uint8Array, length?: number): TestReservedNames {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new TestReservedNames();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new TestReservedNames();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.extension = reader.int32();
-                break;
-            case 10:
-                message["TestReservedNamesExtension.foo"] = reader.int32();
-                break;
+            case 1: {
+                    message.extension = reader.int32();
+                    break;
+                }
+            case 10: {
+                    message["TestReservedNamesExtension.foo"] = reader.int32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -4873,10 +4931,10 @@ export class TestReservedNames implements ITestReservedNames {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestReservedNames {
+    static decodeDelimited(reader: $Reader|Uint8Array): TestReservedNames {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -4907,7 +4965,7 @@ export class TestReservedNames implements ITestReservedNames {
     static fromObject(object): ITestReservedNames {
         if (object instanceof TestReservedNames)
             return object;
-        var message = new TestReservedNames();
+        let message = new TestReservedNames();
         if (object.extension != null)
             message.extension = object.extension | 0;
         if (object["TestReservedNamesExtension.foo"] != null)
@@ -4921,7 +4979,7 @@ export class TestReservedNames implements ITestReservedNames {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITestReservedNames, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITestReservedNames, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults) {
             object.extension = 0;
@@ -4938,7 +4996,7 @@ export class TestReservedNames implements ITestReservedNames {
      * Converts this TestReservedNames to JSON.
      */
     toJSON() {
-        return TestReservedNames.toObject(this, $protobuf.util.toJSONOptions);
+        return TestReservedNames.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -4971,7 +5029,7 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
      */
     constructor(properties?: ITestReservedNamesExtension) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -4987,10 +5045,10 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
     // #region encode
     /**
      * Encodes the specified TestReservedNamesExtension message. Does not implicitly {@link TestReservedNamesExtension.verify|verify} messages.
-     * @param message TestReservedNamesExtensionmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITestReservedNamesExtension, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         return writer;
@@ -4998,10 +5056,10 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
 
     /**
      * Encodes the specified TestReservedNamesExtension message, length delimited. Does not implicitly {@link TestReservedNamesExtension.verify|verify} messages.
-     * @param message TestReservedNamesExtensionmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITestReservedNamesExtension, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -5014,12 +5072,12 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestReservedNamesExtension {
+    static decode(reader: $Reader|Uint8Array, length?: number): TestReservedNamesExtension {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new TestReservedNamesExtension();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new TestReservedNamesExtension();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             default:
                 reader.skipType(tag & 7);
@@ -5035,10 +5093,10 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestReservedNamesExtension {
+    static decodeDelimited(reader: $Reader|Uint8Array): TestReservedNamesExtension {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -5072,7 +5130,7 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITestReservedNamesExtension, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITestReservedNamesExtension, options: $IConversionOptions = {}) {
         return {};
     }
 
@@ -5080,7 +5138,7 @@ export class TestReservedNamesExtension implements ITestReservedNamesExtension {
      * Converts this TestReservedNamesExtension to JSON.
      */
     toJSON() {
-        return TestReservedNamesExtension.toObject(this, $protobuf.util.toJSONOptions);
+        return TestReservedNamesExtension.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -5175,7 +5233,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
      */
     constructor(properties?: ITestMessageWithOneof) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -5191,10 +5249,10 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
     // #region encode
     /**
      * Encodes the specified TestMessageWithOneof message. Does not implicitly {@link TestMessageWithOneof.verify|verify} messages.
-     * @param message TestMessageWithOneofmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITestMessageWithOneof, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.pone != null && Object.hasOwnProperty.call(message, "pone"))
@@ -5208,7 +5266,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
         if (message.normalField != null && Object.hasOwnProperty.call(message, "normalField"))
             writer.uint32(/* id 8, wireType 0 =*/64).bool(message.normalField);
         if (message.repeatedField != null && message.repeatedField.length)
-            for (var i = 0; i < message.repeatedField.length; ++i)
+            for (let i = 0; i < message.repeatedField.length; ++i)
                 writer.uint32(/* id 9, wireType 2 =*/74).string(message.repeatedField[i]);
         if (message.aone != null && Object.hasOwnProperty.call(message, "aone"))
             writer.uint32(/* id 10, wireType 0 =*/80).int32(message.aone);
@@ -5223,10 +5281,10 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
 
     /**
      * Encodes the specified TestMessageWithOneof message, length delimited. Does not implicitly {@link TestMessageWithOneof.verify|verify} messages.
-     * @param message TestMessageWithOneofmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITestMessageWithOneof, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -5239,45 +5297,55 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestMessageWithOneof {
+    static decode(reader: $Reader|Uint8Array, length?: number): TestMessageWithOneof {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new TestMessageWithOneof();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new TestMessageWithOneof();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 3:
-                message.pone = reader.string();
-                break;
-            case 5:
-                message.pthree = reader.string();
-                break;
-            case 6:
-                message.rone = TestMessageWithOneof.decode(reader, reader.uint32());
-                break;
-            case 7:
-                message.rtwo = reader.string();
-                break;
-            case 8:
-                message.normalField = reader.bool();
-                break;
-            case 9:
-                if (!(message.repeatedField && message.repeatedField.length))
-                    message.repeatedField = [];
-                message.repeatedField.push(reader.string());
-                break;
-            case 10:
-                message.aone = reader.int32();
-                break;
-            case 11:
-                message.atwo = reader.int32();
-                break;
-            case 12:
-                message.bone = reader.int32();
-                break;
-            case 13:
-                message.btwo = reader.int32();
-                break;
+            case 3: {
+                    message.pone = reader.string();
+                    break;
+                }
+            case 5: {
+                    message.pthree = reader.string();
+                    break;
+                }
+            case 6: {
+                    message.rone = TestMessageWithOneof.decode(reader, reader.uint32());
+                    break;
+                }
+            case 7: {
+                    message.rtwo = reader.string();
+                    break;
+                }
+            case 8: {
+                    message.normalField = reader.bool();
+                    break;
+                }
+            case 9: {
+                    if (!(message.repeatedField && message.repeatedField.length))
+                        message.repeatedField = [];
+                    message.repeatedField.push(reader.string());
+                    break;
+                }
+            case 10: {
+                    message.aone = reader.int32();
+                    break;
+                }
+            case 11: {
+                    message.atwo = reader.int32();
+                    break;
+                }
+            case 12: {
+                    message.bone = reader.int32();
+                    break;
+                }
+            case 13: {
+                    message.btwo = reader.int32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -5292,10 +5360,10 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestMessageWithOneof {
+    static decodeDelimited(reader: $Reader|Uint8Array): TestMessageWithOneof {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -5324,7 +5392,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
         if (message.rone != null && message.hasOwnProperty("rone")) {
             properties.recursiveOneof = 1;
             {
-                var error = TestMessageWithOneof.verify(message.rone);
+                let error = TestMessageWithOneof.verify(message.rone);
                 if (error)
                     return "rone." + error;
             }
@@ -5342,7 +5410,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
         if (message.repeatedField != null && message.hasOwnProperty("repeatedField")) {
             if (!Array.isArray(message.repeatedField))
                 return "repeatedField: array expected";
-            for (var i = 0; i < message.repeatedField.length; ++i)
+            for (let i = 0; i < message.repeatedField.length; ++i)
                 if (!$util.isString(message.repeatedField[i]))
                     return "repeatedField: string[] expected";
         }
@@ -5382,7 +5450,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
     static fromObject(object): ITestMessageWithOneof {
         if (object instanceof TestMessageWithOneof)
             return object;
-        var message = new TestMessageWithOneof();
+        let message = new TestMessageWithOneof();
         if (object.pone != null)
             message.pone = String(object.pone);
         if (object.pthree != null)
@@ -5400,7 +5468,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
             if (!Array.isArray(object.repeatedField))
                 throw TypeError("TestMessageWithOneof.repeatedField: array expected");
             message.repeatedField = [];
-            for (var i = 0; i < object.repeatedField.length; ++i)
+            for (let i = 0; i < object.repeatedField.length; ++i)
                 message.repeatedField[i] = String(object.repeatedField[i]);
         }
         if (object.aone != null)
@@ -5420,7 +5488,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITestMessageWithOneof, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITestMessageWithOneof, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults)
             object.repeatedField = [];
@@ -5450,7 +5518,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
             object.normalField = message.normalField;
         if (message.repeatedField && message.repeatedField.length) {
             object.repeatedField = [];
-            for (var j = 0; j < message.repeatedField.length; ++j)
+            for (let j = 0; j < message.repeatedField.length; ++j)
                 object.repeatedField[j] = message.repeatedField[j];
         }
         if (message.aone != null && message.hasOwnProperty("aone")) {
@@ -5480,7 +5548,7 @@ export class TestMessageWithOneof implements ITestMessageWithOneof {
      * Converts this TestMessageWithOneof to JSON.
      */
     toJSON() {
-        return TestMessageWithOneof.toObject(this, $protobuf.util.toJSONOptions);
+        return TestMessageWithOneof.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -5519,7 +5587,7 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
      */
     constructor(properties?: ITestEndsWithBytes) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -5535,10 +5603,10 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
     // #region encode
     /**
      * Encodes the specified TestEndsWithBytes message. Does not implicitly {@link TestEndsWithBytes.verify|verify} messages.
-     * @param message TestEndsWithBytesmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITestEndsWithBytes, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.value != null && Object.hasOwnProperty.call(message, "value"))
@@ -5550,10 +5618,10 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
 
     /**
      * Encodes the specified TestEndsWithBytes message, length delimited. Does not implicitly {@link TestEndsWithBytes.verify|verify} messages.
-     * @param message TestEndsWithBytesmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITestEndsWithBytes, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -5566,19 +5634,21 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestEndsWithBytes {
+    static decode(reader: $Reader|Uint8Array, length?: number): TestEndsWithBytes {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new TestEndsWithBytes();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new TestEndsWithBytes();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.value = reader.int32();
-                break;
-            case 2:
-                message.data = reader.bytes();
-                break;
+            case 1: {
+                    message.value = reader.int32();
+                    break;
+                }
+            case 2: {
+                    message.data = reader.bytes();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -5593,10 +5663,10 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestEndsWithBytes {
+    static decodeDelimited(reader: $Reader|Uint8Array): TestEndsWithBytes {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -5627,7 +5697,7 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
     static fromObject(object): ITestEndsWithBytes {
         if (object instanceof TestEndsWithBytes)
             return object;
-        var message = new TestEndsWithBytes();
+        let message = new TestEndsWithBytes();
         if (object.value != null)
             message.value = object.value | 0;
         if (object.data != null)
@@ -5644,7 +5714,7 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITestEndsWithBytes, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITestEndsWithBytes, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults) {
             object.value = 0;
@@ -5667,7 +5737,7 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
      * Converts this TestEndsWithBytes to JSON.
      */
     toJSON() {
-        return TestEndsWithBytes.toObject(this, $protobuf.util.toJSONOptions);
+        return TestEndsWithBytes.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -5689,7 +5759,7 @@ export class TestEndsWithBytes implements ITestEndsWithBytes {
 export interface ITestMapFieldsNoBinary {
     mapStringString?: {[key: string]: string};
     mapStringInt32?: {[key: string]: number};
-    mapStringInt64?: {[key: string]: (number|$protobuf.Long)};
+    mapStringInt64?: {[key: string]: (number|$Long)};
     mapStringBool?: {[key: string]: boolean};
     mapStringDouble?: {[key: string]: number};
     mapStringEnum?: {[key: string]: MapValueEnumNoBinary};
@@ -5707,7 +5777,7 @@ export interface ITestMapFieldsNoBinary {
 export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
     mapStringString?: {[key: string]: string};
     mapStringInt32?: {[key: string]: number};
-    mapStringInt64?: {[key: string]: (number|$protobuf.Long)};
+    mapStringInt64?: {[key: string]: (number|$Long)};
     mapStringBool?: {[key: string]: boolean};
     mapStringDouble?: {[key: string]: number};
     mapStringEnum?: {[key: string]: MapValueEnumNoBinary};
@@ -5724,7 +5794,7 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
      */
     constructor(properties?: ITestMapFieldsNoBinary) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -5740,48 +5810,48 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
     // #region encode
     /**
      * Encodes the specified TestMapFieldsNoBinary message. Does not implicitly {@link TestMapFieldsNoBinary.verify|verify} messages.
-     * @param message TestMapFieldsNoBinarymessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ITestMapFieldsNoBinary, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.mapStringString != null && Object.hasOwnProperty.call(message, "mapStringString"))
-            for (var keys = Object.keys(message.mapStringString), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapStringString), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.mapStringString[keys[i]]).ldelim();
         if (message.mapStringInt32 != null && Object.hasOwnProperty.call(message, "mapStringInt32"))
-            for (var keys = Object.keys(message.mapStringInt32), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapStringInt32), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.mapStringInt32[keys[i]]).ldelim();
         if (message.mapStringInt64 != null && Object.hasOwnProperty.call(message, "mapStringInt64"))
-            for (var keys = Object.keys(message.mapStringInt64), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapStringInt64), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 3, wireType 2 =*/26).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int64(message.mapStringInt64[keys[i]]).ldelim();
         if (message.mapStringBool != null && Object.hasOwnProperty.call(message, "mapStringBool"))
-            for (var keys = Object.keys(message.mapStringBool), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapStringBool), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).bool(message.mapStringBool[keys[i]]).ldelim();
         if (message.mapStringDouble != null && Object.hasOwnProperty.call(message, "mapStringDouble"))
-            for (var keys = Object.keys(message.mapStringDouble), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapStringDouble), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 1 =*/17).double(message.mapStringDouble[keys[i]]).ldelim();
         if (message.mapStringEnum != null && Object.hasOwnProperty.call(message, "mapStringEnum"))
-            for (var keys = Object.keys(message.mapStringEnum), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapStringEnum), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 6, wireType 2 =*/50).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.mapStringEnum[keys[i]]).ldelim();
         if (message.mapStringMsg != null && Object.hasOwnProperty.call(message, "mapStringMsg"))
-            for (var keys = Object.keys(message.mapStringMsg), i = 0; i < keys.length; ++i) {
+            for (let keys = Object.keys(message.mapStringMsg), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 7, wireType 2 =*/58).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
                 MapValueMessageNoBinary.encode(message.mapStringMsg[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
             }
         if (message.mapInt32String != null && Object.hasOwnProperty.call(message, "mapInt32String"))
-            for (var keys = Object.keys(message.mapInt32String), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapInt32String), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 8, wireType 2 =*/66).fork().uint32(/* id 1, wireType 0 =*/8).int32(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.mapInt32String[keys[i]]).ldelim();
         if (message.mapInt64String != null && Object.hasOwnProperty.call(message, "mapInt64String"))
-            for (var keys = Object.keys(message.mapInt64String), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapInt64String), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 9, wireType 2 =*/74).fork().uint32(/* id 1, wireType 0 =*/8).int64(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.mapInt64String[keys[i]]).ldelim();
         if (message.mapBoolString != null && Object.hasOwnProperty.call(message, "mapBoolString"))
-            for (var keys = Object.keys(message.mapBoolString), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.mapBoolString), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 10, wireType 2 =*/82).fork().uint32(/* id 1, wireType 0 =*/8).bool(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.mapBoolString[keys[i]]).ldelim();
         if (message.testMapFields != null && Object.hasOwnProperty.call(message, "testMapFields"))
             TestMapFieldsNoBinary.encode(message.testMapFields, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
         if (message.mapStringTestmapfields != null && Object.hasOwnProperty.call(message, "mapStringTestmapfields"))
-            for (var keys = Object.keys(message.mapStringTestmapfields), i = 0; i < keys.length; ++i) {
+            for (let keys = Object.keys(message.mapStringTestmapfields), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 12, wireType 2 =*/98).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
                 TestMapFieldsNoBinary.encode(message.mapStringTestmapfields[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
             }
@@ -5790,10 +5860,10 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
 
     /**
      * Encodes the specified TestMapFieldsNoBinary message, length delimited. Does not implicitly {@link TestMapFieldsNoBinary.verify|verify} messages.
-     * @param message TestMapFieldsNoBinarymessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ITestMapFieldsNoBinary, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -5806,258 +5876,270 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestMapFieldsNoBinary {
+    static decode(reader: $Reader|Uint8Array, length?: number): TestMapFieldsNoBinary {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new TestMapFieldsNoBinary(), key, value;
+        let end = length === undefined ? reader.len : reader.pos + length, message = new TestMapFieldsNoBinary(), key, value;
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                if (message.mapStringString === $util.emptyObject || !message.mapStringString)
-                    message.mapStringString = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 1: {
+                    if (message.mapStringString === $util.emptyObject || !message.mapStringString)
+                        message.mapStringString = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = "";
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapStringString[key] = value;
+                    break;
                 }
-                message.mapStringString[key] = value;
-                break;
-            case 2:
-                if (message.mapStringInt32 === $util.emptyObject || !message.mapStringInt32)
-                    message.mapStringInt32 = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = 0;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.int32();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 2: {
+                    if (message.mapStringInt32 === $util.emptyObject || !message.mapStringInt32)
+                        message.mapStringInt32 = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = 0;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.int32();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapStringInt32[key] = value;
+                    break;
                 }
-                message.mapStringInt32[key] = value;
-                break;
-            case 3:
-                if (message.mapStringInt64 === $util.emptyObject || !message.mapStringInt64)
-                    message.mapStringInt64 = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = 0;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.int64();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 3: {
+                    if (message.mapStringInt64 === $util.emptyObject || !message.mapStringInt64)
+                        message.mapStringInt64 = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = 0;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.int64();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapStringInt64[key] = value;
+                    break;
                 }
-                message.mapStringInt64[key] = value;
-                break;
-            case 4:
-                if (message.mapStringBool === $util.emptyObject || !message.mapStringBool)
-                    message.mapStringBool = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = false;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.bool();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 4: {
+                    if (message.mapStringBool === $util.emptyObject || !message.mapStringBool)
+                        message.mapStringBool = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = false;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.bool();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapStringBool[key] = value;
+                    break;
                 }
-                message.mapStringBool[key] = value;
-                break;
-            case 5:
-                if (message.mapStringDouble === $util.emptyObject || !message.mapStringDouble)
-                    message.mapStringDouble = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = 0;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.double();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 5: {
+                    if (message.mapStringDouble === $util.emptyObject || !message.mapStringDouble)
+                        message.mapStringDouble = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = 0;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.double();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapStringDouble[key] = value;
+                    break;
                 }
-                message.mapStringDouble[key] = value;
-                break;
-            case 6:
-                if (message.mapStringEnum === $util.emptyObject || !message.mapStringEnum)
-                    message.mapStringEnum = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = 0;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.int32();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 6: {
+                    if (message.mapStringEnum === $util.emptyObject || !message.mapStringEnum)
+                        message.mapStringEnum = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = 0;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.int32();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapStringEnum[key] = value;
+                    break;
                 }
-                message.mapStringEnum[key] = value;
-                break;
-            case 7:
-                if (message.mapStringMsg === $util.emptyObject || !message.mapStringMsg)
-                    message.mapStringMsg = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = null;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = MapValueMessageNoBinary.decode(reader, reader.uint32());
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 7: {
+                    if (message.mapStringMsg === $util.emptyObject || !message.mapStringMsg)
+                        message.mapStringMsg = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = null;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = MapValueMessageNoBinary.decode(reader, reader.uint32());
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapStringMsg[key] = value;
+                    break;
                 }
-                message.mapStringMsg[key] = value;
-                break;
-            case 8:
-                if (message.mapInt32String === $util.emptyObject || !message.mapInt32String)
-                    message.mapInt32String = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = 0;
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.int32();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 8: {
+                    if (message.mapInt32String === $util.emptyObject || !message.mapInt32String)
+                        message.mapInt32String = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = 0;
+                    value = "";
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.int32();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapInt32String[key] = value;
+                    break;
                 }
-                message.mapInt32String[key] = value;
-                break;
-            case 9:
-                if (message.mapInt64String === $util.emptyObject || !message.mapInt64String)
-                    message.mapInt64String = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = 0;
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.int64();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 9: {
+                    if (message.mapInt64String === $util.emptyObject || !message.mapInt64String)
+                        message.mapInt64String = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = 0;
+                    value = "";
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.int64();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = value;
+                    break;
                 }
-                message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = value;
-                break;
-            case 10:
-                if (message.mapBoolString === $util.emptyObject || !message.mapBoolString)
-                    message.mapBoolString = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = false;
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.bool();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 10: {
+                    if (message.mapBoolString === $util.emptyObject || !message.mapBoolString)
+                        message.mapBoolString = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = false;
+                    value = "";
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.bool();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapBoolString[key] = value;
+                    break;
                 }
-                message.mapBoolString[key] = value;
-                break;
-            case 11:
-                message.testMapFields = TestMapFieldsNoBinary.decode(reader, reader.uint32());
-                break;
-            case 12:
-                if (message.mapStringTestmapfields === $util.emptyObject || !message.mapStringTestmapfields)
-                    message.mapStringTestmapfields = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = null;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = TestMapFieldsNoBinary.decode(reader, reader.uint32());
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 11: {
+                    message.testMapFields = TestMapFieldsNoBinary.decode(reader, reader.uint32());
+                    break;
+                }
+            case 12: {
+                    if (message.mapStringTestmapfields === $util.emptyObject || !message.mapStringTestmapfields)
+                        message.mapStringTestmapfields = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = null;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = TestMapFieldsNoBinary.decode(reader, reader.uint32());
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.mapStringTestmapfields[key] = value;
+                    break;
                 }
-                message.mapStringTestmapfields[key] = value;
-                break;
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -6072,10 +6154,10 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestMapFieldsNoBinary {
+    static decodeDelimited(reader: $Reader|Uint8Array): TestMapFieldsNoBinary {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -6091,48 +6173,48 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         if (message.mapStringString != null && message.hasOwnProperty("mapStringString")) {
             if (!$util.isObject(message.mapStringString))
                 return "mapStringString: object expected";
-            var key = Object.keys(message.mapStringString);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.mapStringString);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.mapStringString[key[i]]))
                     return "mapStringString: string{k:string} expected";
         }
         if (message.mapStringInt32 != null && message.hasOwnProperty("mapStringInt32")) {
             if (!$util.isObject(message.mapStringInt32))
                 return "mapStringInt32: object expected";
-            var key = Object.keys(message.mapStringInt32);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.mapStringInt32);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isInteger(message.mapStringInt32[key[i]]))
                     return "mapStringInt32: integer{k:string} expected";
         }
         if (message.mapStringInt64 != null && message.hasOwnProperty("mapStringInt64")) {
             if (!$util.isObject(message.mapStringInt64))
                 return "mapStringInt64: object expected";
-            var key = Object.keys(message.mapStringInt64);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.mapStringInt64);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isInteger(message.mapStringInt64[key[i]]) && !(message.mapStringInt64[key[i]] && $util.isInteger(message.mapStringInt64[key[i]].low) && $util.isInteger(message.mapStringInt64[key[i]].high)))
                     return "mapStringInt64: integer|Long{k:string} expected";
         }
         if (message.mapStringBool != null && message.hasOwnProperty("mapStringBool")) {
             if (!$util.isObject(message.mapStringBool))
                 return "mapStringBool: object expected";
-            var key = Object.keys(message.mapStringBool);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.mapStringBool);
+            for (let i = 0; i < key.length; ++i)
                 if (typeof message.mapStringBool[key[i]] !== "boolean")
                     return "mapStringBool: boolean{k:string} expected";
         }
         if (message.mapStringDouble != null && message.hasOwnProperty("mapStringDouble")) {
             if (!$util.isObject(message.mapStringDouble))
                 return "mapStringDouble: object expected";
-            var key = Object.keys(message.mapStringDouble);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.mapStringDouble);
+            for (let i = 0; i < key.length; ++i)
                 if (typeof message.mapStringDouble[key[i]] !== "number")
                     return "mapStringDouble: number{k:string} expected";
         }
         if (message.mapStringEnum != null && message.hasOwnProperty("mapStringEnum")) {
             if (!$util.isObject(message.mapStringEnum))
                 return "mapStringEnum: object expected";
-            var key = Object.keys(message.mapStringEnum);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.mapStringEnum);
+            for (let i = 0; i < key.length; ++i)
                 switch (message.mapStringEnum[key[i]]) {
                 default:
                     return "mapStringEnum: enum value{k:string} expected";
@@ -6145,9 +6227,9 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         if (message.mapStringMsg != null && message.hasOwnProperty("mapStringMsg")) {
             if (!$util.isObject(message.mapStringMsg))
                 return "mapStringMsg: object expected";
-            var key = Object.keys(message.mapStringMsg);
-            for (var i = 0; i < key.length; ++i) {
-                var error = MapValueMessageNoBinary.verify(message.mapStringMsg[key[i]]);
+            let key = Object.keys(message.mapStringMsg);
+            for (let i = 0; i < key.length; ++i) {
+                let error = MapValueMessageNoBinary.verify(message.mapStringMsg[key[i]]);
                 if (error)
                     return "mapStringMsg." + error;
             }
@@ -6155,8 +6237,8 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         if (message.mapInt32String != null && message.hasOwnProperty("mapInt32String")) {
             if (!$util.isObject(message.mapInt32String))
                 return "mapInt32String: object expected";
-            var key = Object.keys(message.mapInt32String);
-            for (var i = 0; i < key.length; ++i) {
+            let key = Object.keys(message.mapInt32String);
+            for (let i = 0; i < key.length; ++i) {
                 if (!$util.key32Re.test(key[i]))
                     return "mapInt32String: integer key{k:int32} expected";
                 if (!$util.isString(message.mapInt32String[key[i]]))
@@ -6166,8 +6248,8 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         if (message.mapInt64String != null && message.hasOwnProperty("mapInt64String")) {
             if (!$util.isObject(message.mapInt64String))
                 return "mapInt64String: object expected";
-            var key = Object.keys(message.mapInt64String);
-            for (var i = 0; i < key.length; ++i) {
+            let key = Object.keys(message.mapInt64String);
+            for (let i = 0; i < key.length; ++i) {
                 if (!$util.key64Re.test(key[i]))
                     return "mapInt64String: integer|Long key{k:int64} expected";
                 if (!$util.isString(message.mapInt64String[key[i]]))
@@ -6177,8 +6259,8 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         if (message.mapBoolString != null && message.hasOwnProperty("mapBoolString")) {
             if (!$util.isObject(message.mapBoolString))
                 return "mapBoolString: object expected";
-            var key = Object.keys(message.mapBoolString);
-            for (var i = 0; i < key.length; ++i) {
+            let key = Object.keys(message.mapBoolString);
+            for (let i = 0; i < key.length; ++i) {
                 if (!$util.key2Re.test(key[i]))
                     return "mapBoolString: boolean key{k:bool} expected";
                 if (!$util.isString(message.mapBoolString[key[i]]))
@@ -6186,16 +6268,16 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
             }
         }
         if (message.testMapFields != null && message.hasOwnProperty("testMapFields")) {
-            var error = TestMapFieldsNoBinary.verify(message.testMapFields);
+            let error = TestMapFieldsNoBinary.verify(message.testMapFields);
             if (error)
                 return "testMapFields." + error;
         }
         if (message.mapStringTestmapfields != null && message.hasOwnProperty("mapStringTestmapfields")) {
             if (!$util.isObject(message.mapStringTestmapfields))
                 return "mapStringTestmapfields: object expected";
-            var key = Object.keys(message.mapStringTestmapfields);
-            for (var i = 0; i < key.length; ++i) {
-                var error = TestMapFieldsNoBinary.verify(message.mapStringTestmapfields[key[i]]);
+            let key = Object.keys(message.mapStringTestmapfields);
+            for (let i = 0; i < key.length; ++i) {
+                let error = TestMapFieldsNoBinary.verify(message.mapStringTestmapfields[key[i]]);
                 if (error)
                     return "mapStringTestmapfields." + error;
             }
@@ -6212,54 +6294,47 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
     static fromObject(object): ITestMapFieldsNoBinary {
         if (object instanceof TestMapFieldsNoBinary)
             return object;
-        var message = new TestMapFieldsNoBinary();
+        let message = new TestMapFieldsNoBinary();
         if (object.mapStringString) {
             if (typeof object.mapStringString !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapStringString: object expected");
             message.mapStringString = {};
-            for (var keys = Object.keys(object.mapStringString), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.mapStringString), i = 0; i < keys.length; ++i)
                 message.mapStringString[keys[i]] = String(object.mapStringString[keys[i]]);
         }
         if (object.mapStringInt32) {
             if (typeof object.mapStringInt32 !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapStringInt32: object expected");
             message.mapStringInt32 = {};
-            for (var keys = Object.keys(object.mapStringInt32), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.mapStringInt32), i = 0; i < keys.length; ++i)
                 message.mapStringInt32[keys[i]] = object.mapStringInt32[keys[i]] | 0;
         }
         if (object.mapStringInt64) {
             if (typeof object.mapStringInt64 !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapStringInt64: object expected");
             message.mapStringInt64 = {};
-            for (var keys = Object.keys(object.mapStringInt64), i = 0; i < keys.length; ++i)
-                if ($util.Long)
-                    (message.mapStringInt64[keys[i]] = ($util.Long as any).fromValue(object.mapStringInt64[keys[i]])).unsigned = false;
-                else if (typeof object.mapStringInt64[keys[i]] === "string")
-                    message.mapStringInt64[keys[i]] = parseInt(object.mapStringInt64[keys[i]], 10);
-                else if (typeof object.mapStringInt64[keys[i]] === "number")
-                    message.mapStringInt64[keys[i]] = object.mapStringInt64[keys[i]];
-                else if (typeof object.mapStringInt64[keys[i]] === "object")
-                    message.mapStringInt64[keys[i]] = new $util.LongBits(object.mapStringInt64[keys[i]]).toNumber();
+            for (let keys = Object.keys(object.mapStringInt64), i = 0; i < keys.length; ++i)
+                message.mapStringInt64[keys[i]] = $util.longValue(object.mapStringInt64[keys[i]], false);
         }
         if (object.mapStringBool) {
             if (typeof object.mapStringBool !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapStringBool: object expected");
             message.mapStringBool = {};
-            for (var keys = Object.keys(object.mapStringBool), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.mapStringBool), i = 0; i < keys.length; ++i)
                 message.mapStringBool[keys[i]] = Boolean(object.mapStringBool[keys[i]]);
         }
         if (object.mapStringDouble) {
             if (typeof object.mapStringDouble !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapStringDouble: object expected");
             message.mapStringDouble = {};
-            for (var keys = Object.keys(object.mapStringDouble), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.mapStringDouble), i = 0; i < keys.length; ++i)
                 message.mapStringDouble[keys[i]] = Number(object.mapStringDouble[keys[i]]);
         }
         if (object.mapStringEnum) {
             if (typeof object.mapStringEnum !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapStringEnum: object expected");
             message.mapStringEnum = {};
-            for (var keys = Object.keys(object.mapStringEnum), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.mapStringEnum), i = 0; i < keys.length; ++i)
                 switch (object.mapStringEnum[keys[i]]) {
                 case "MAP_VALUE_FOO_NOBINARY":
                 case 0:
@@ -6279,7 +6354,7 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
             if (typeof object.mapStringMsg !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapStringMsg: object expected");
             message.mapStringMsg = {};
-            for (var keys = Object.keys(object.mapStringMsg), i = 0; i < keys.length; ++i) {
+            for (let keys = Object.keys(object.mapStringMsg), i = 0; i < keys.length; ++i) {
                 if (typeof object.mapStringMsg[keys[i]] !== "object")
                     throw TypeError("TestMapFieldsNoBinary.mapStringMsg: object expected");
                 message.mapStringMsg[keys[i]] = MapValueMessageNoBinary.fromObject(object.mapStringMsg[keys[i]]);
@@ -6289,21 +6364,21 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
             if (typeof object.mapInt32String !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapInt32String: object expected");
             message.mapInt32String = {};
-            for (var keys = Object.keys(object.mapInt32String), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.mapInt32String), i = 0; i < keys.length; ++i)
                 message.mapInt32String[keys[i]] = String(object.mapInt32String[keys[i]]);
         }
         if (object.mapInt64String) {
             if (typeof object.mapInt64String !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapInt64String: object expected");
             message.mapInt64String = {};
-            for (var keys = Object.keys(object.mapInt64String), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.mapInt64String), i = 0; i < keys.length; ++i)
                 message.mapInt64String[keys[i]] = String(object.mapInt64String[keys[i]]);
         }
         if (object.mapBoolString) {
             if (typeof object.mapBoolString !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapBoolString: object expected");
             message.mapBoolString = {};
-            for (var keys = Object.keys(object.mapBoolString), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.mapBoolString), i = 0; i < keys.length; ++i)
                 message.mapBoolString[keys[i]] = String(object.mapBoolString[keys[i]]);
         }
         if (object.testMapFields != null) {
@@ -6315,7 +6390,7 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
             if (typeof object.mapStringTestmapfields !== "object")
                 throw TypeError("TestMapFieldsNoBinary.mapStringTestmapfields: object expected");
             message.mapStringTestmapfields = {};
-            for (var keys = Object.keys(object.mapStringTestmapfields), i = 0; i < keys.length; ++i) {
+            for (let keys = Object.keys(object.mapStringTestmapfields), i = 0; i < keys.length; ++i) {
                 if (typeof object.mapStringTestmapfields[keys[i]] !== "object")
                     throw TypeError("TestMapFieldsNoBinary.mapStringTestmapfields: object expected");
                 message.mapStringTestmapfields[keys[i]] = TestMapFieldsNoBinary.fromObject(object.mapStringTestmapfields[keys[i]]);
@@ -6330,7 +6405,7 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ITestMapFieldsNoBinary, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ITestMapFieldsNoBinary, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.objects || options.defaults) {
             object.mapStringString = {};
@@ -6347,20 +6422,20 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         }
         if (options.defaults)
             object.testMapFields = null;
-        var keys2;
+        let keys2;
         if (message.mapStringString && (keys2 = Object.keys(message.mapStringString)).length) {
             object.mapStringString = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapStringString[keys2[j]] = message.mapStringString[keys2[j]];
         }
         if (message.mapStringInt32 && (keys2 = Object.keys(message.mapStringInt32)).length) {
             object.mapStringInt32 = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapStringInt32[keys2[j]] = message.mapStringInt32[keys2[j]];
         }
         if (message.mapStringInt64 && (keys2 = Object.keys(message.mapStringInt64)).length) {
             object.mapStringInt64 = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 if (typeof message.mapStringInt64[keys2[j]] === "number")
                     object.mapStringInt64[keys2[j]] = options.longs === String ? String(message.mapStringInt64[keys2[j]]) : message.mapStringInt64[keys2[j]];
                 else
@@ -6368,44 +6443,44 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         }
         if (message.mapStringBool && (keys2 = Object.keys(message.mapStringBool)).length) {
             object.mapStringBool = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapStringBool[keys2[j]] = message.mapStringBool[keys2[j]];
         }
         if (message.mapStringDouble && (keys2 = Object.keys(message.mapStringDouble)).length) {
             object.mapStringDouble = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapStringDouble[keys2[j]] = options.json && !isFinite(message.mapStringDouble[keys2[j]]) ? String(message.mapStringDouble[keys2[j]]) : message.mapStringDouble[keys2[j]];
         }
         if (message.mapStringEnum && (keys2 = Object.keys(message.mapStringEnum)).length) {
             object.mapStringEnum = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapStringEnum[keys2[j]] = options.enums === String ? MapValueEnumNoBinary[message.mapStringEnum[keys2[j]]] : message.mapStringEnum[keys2[j]];
         }
         if (message.mapStringMsg && (keys2 = Object.keys(message.mapStringMsg)).length) {
             object.mapStringMsg = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapStringMsg[keys2[j]] = MapValueMessageNoBinary.toObject(message.mapStringMsg[keys2[j]], options);
         }
         if (message.mapInt32String && (keys2 = Object.keys(message.mapInt32String)).length) {
             object.mapInt32String = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapInt32String[keys2[j]] = message.mapInt32String[keys2[j]];
         }
         if (message.mapInt64String && (keys2 = Object.keys(message.mapInt64String)).length) {
             object.mapInt64String = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapInt64String[keys2[j]] = message.mapInt64String[keys2[j]];
         }
         if (message.mapBoolString && (keys2 = Object.keys(message.mapBoolString)).length) {
             object.mapBoolString = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapBoolString[keys2[j]] = message.mapBoolString[keys2[j]];
         }
         if (message.testMapFields != null && message.hasOwnProperty("testMapFields"))
             object.testMapFields = TestMapFieldsNoBinary.toObject(message.testMapFields, options);
         if (message.mapStringTestmapfields && (keys2 = Object.keys(message.mapStringTestmapfields)).length) {
             object.mapStringTestmapfields = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.mapStringTestmapfields[keys2[j]] = TestMapFieldsNoBinary.toObject(message.mapStringTestmapfields[keys2[j]], options);
         }
         return object;
@@ -6415,7 +6490,7 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
      * Converts this TestMapFieldsNoBinary to JSON.
      */
     toJSON() {
-        return TestMapFieldsNoBinary.toObject(this, $protobuf.util.toJSONOptions);
+        return TestMapFieldsNoBinary.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -6478,7 +6553,7 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
      */
     constructor(properties?: IMapValueMessageNoBinary) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -6494,10 +6569,10 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
     // #region encode
     /**
      * Encodes the specified MapValueMessageNoBinary message. Does not implicitly {@link MapValueMessageNoBinary.verify|verify} messages.
-     * @param message MapValueMessageNoBinarymessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IMapValueMessageNoBinary, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.foo != null && Object.hasOwnProperty.call(message, "foo"))
@@ -6507,10 +6582,10 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
 
     /**
      * Encodes the specified MapValueMessageNoBinary message, length delimited. Does not implicitly {@link MapValueMessageNoBinary.verify|verify} messages.
-     * @param message MapValueMessageNoBinarymessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IMapValueMessageNoBinary, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -6523,16 +6598,17 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MapValueMessageNoBinary {
+    static decode(reader: $Reader|Uint8Array, length?: number): MapValueMessageNoBinary {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new MapValueMessageNoBinary();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new MapValueMessageNoBinary();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.foo = reader.int32();
-                break;
+            case 1: {
+                    message.foo = reader.int32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -6547,10 +6623,10 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MapValueMessageNoBinary {
+    static decodeDelimited(reader: $Reader|Uint8Array): MapValueMessageNoBinary {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -6578,7 +6654,7 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
     static fromObject(object): IMapValueMessageNoBinary {
         if (object instanceof MapValueMessageNoBinary)
             return object;
-        var message = new MapValueMessageNoBinary();
+        let message = new MapValueMessageNoBinary();
         if (object.foo != null)
             message.foo = object.foo | 0;
         return message;
@@ -6590,7 +6666,7 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IMapValueMessageNoBinary, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IMapValueMessageNoBinary, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.defaults)
             object.foo = 0;
@@ -6603,7 +6679,7 @@ export class MapValueMessageNoBinary implements IMapValueMessageNoBinary {
      * Converts this MapValueMessageNoBinary to JSON.
      */
     toJSON() {
-        return MapValueMessageNoBinary.toObject(this, $protobuf.util.toJSONOptions);
+        return MapValueMessageNoBinary.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -6636,7 +6712,7 @@ export class Deeply implements IDeeply {
      */
     constructor(properties?: IDeeply) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -6652,10 +6728,10 @@ export class Deeply implements IDeeply {
     // #region encode
     /**
      * Encodes the specified Deeply message. Does not implicitly {@link Deeply.verify|verify} messages.
-     * @param message Deeplymessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IDeeply, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         return writer;
@@ -6663,10 +6739,10 @@ export class Deeply implements IDeeply {
 
     /**
      * Encodes the specified Deeply message, length delimited. Does not implicitly {@link Deeply.verify|verify} messages.
-     * @param message Deeplymessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IDeeply, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -6679,12 +6755,12 @@ export class Deeply implements IDeeply {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Deeply {
+    static decode(reader: $Reader|Uint8Array, length?: number): Deeply {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Deeply();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Deeply();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             default:
                 reader.skipType(tag & 7);
@@ -6700,10 +6776,10 @@ export class Deeply implements IDeeply {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Deeply {
+    static decodeDelimited(reader: $Reader|Uint8Array): Deeply {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -6737,7 +6813,7 @@ export class Deeply implements IDeeply {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IDeeply, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IDeeply, options: $IConversionOptions = {}) {
         return {};
     }
 
@@ -6745,7 +6821,7 @@ export class Deeply implements IDeeply {
      * Converts this Deeply to JSON.
      */
     toJSON() {
-        return Deeply.toObject(this, $protobuf.util.toJSONOptions);
+        return Deeply.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -6779,7 +6855,7 @@ export namespace Deeply {
          */
         constructor(properties?: INested) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -6795,10 +6871,10 @@ export namespace Deeply {
         // #region encode
         /**
          * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
-         * @param message Nestedmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: INested, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
@@ -6806,10 +6882,10 @@ export namespace Deeply {
 
         /**
          * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
-         * @param message Nestedmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: INested, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -6822,12 +6898,12 @@ export namespace Deeply {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
+        static decode(reader: $Reader|Uint8Array, length?: number): Nested {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new Deeply.Nested();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new Deeply.Nested();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
                     reader.skipType(tag & 7);
@@ -6843,10 +6919,10 @@ export namespace Deeply {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
+        static decodeDelimited(reader: $Reader|Uint8Array): Nested {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -6880,7 +6956,7 @@ export namespace Deeply {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: INested, options: $IConversionOptions = {}) {
             return {};
         }
 
@@ -6888,7 +6964,7 @@ export namespace Deeply {
          * Converts this Nested to JSON.
          */
         toJSON() {
-            return Nested.toObject(this, $protobuf.util.toJSONOptions);
+            return Nested.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -6924,7 +7000,7 @@ export namespace Deeply {
              */
             constructor(properties?: IMessage) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -6940,10 +7016,10 @@ export namespace Deeply {
             // #region encode
             /**
              * Encodes the specified Message message. Does not implicitly {@link Message.verify|verify} messages.
-             * @param message Messagemessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IMessage, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.count != null && Object.hasOwnProperty.call(message, "count"))
@@ -6953,10 +7029,10 @@ export namespace Deeply {
 
             /**
              * Encodes the specified Message message, length delimited. Does not implicitly {@link Message.verify|verify} messages.
-             * @param message Messagemessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IMessage, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -6969,16 +7045,17 @@ export namespace Deeply {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Message {
+            static decode(reader: $Reader|Uint8Array, length?: number): Message {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new Deeply.Nested.Message();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new Deeply.Nested.Message();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.count = reader.int32();
-                        break;
+                    case 1: {
+                            message.count = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -6993,10 +7070,10 @@ export namespace Deeply {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Message {
+            static decodeDelimited(reader: $Reader|Uint8Array): Message {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -7024,7 +7101,7 @@ export namespace Deeply {
             static fromObject(object): IMessage {
                 if (object instanceof Deeply.Nested.Message)
                     return object;
-                var message = new Deeply.Nested.Message();
+                let message = new Deeply.Nested.Message();
                 if (object.count != null)
                     message.count = object.count | 0;
                 return message;
@@ -7036,7 +7113,7 @@ export namespace Deeply {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: IMessage, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IMessage, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.count = 0;
@@ -7049,7 +7126,7 @@ export namespace Deeply {
              * Converts this Message to JSON.
              */
             toJSON() {
-                return Message.toObject(this, $protobuf.util.toJSONOptions);
+                return Message.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 

@@ -1,8 +1,4 @@
-import * as $protobuf from "../../../minimal";
-
-
-// Common aliases
-const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+import { Writer as $Writer, Reader as $Reader, IConversionOptions as $IConversionOptions, util as $util } from "../../../minimal";
 
 /** Properties of a Something. */
 export interface ISomething {
@@ -19,7 +15,7 @@ export class Something implements ISomething {
      */
     constructor(properties?: ISomething) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -35,10 +31,10 @@ export class Something implements ISomething {
     // #region encode
     /**
      * Encodes the specified Something message. Does not implicitly {@link Something.verify|verify} messages.
-     * @param message Somethingmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: ISomething, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: ISomething, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         return writer;
@@ -46,10 +42,10 @@ export class Something implements ISomething {
 
     /**
      * Encodes the specified Something message, length delimited. Does not implicitly {@link Something.verify|verify} messages.
-     * @param message Somethingmessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: ISomething, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: ISomething, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -62,12 +58,12 @@ export class Something implements ISomething {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Something {
+    static decode(reader: $Reader|Uint8Array, length?: number): Something {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Something();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Something();
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
             default:
                 reader.skipType(tag & 7);
@@ -83,10 +79,10 @@ export class Something implements ISomething {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Something {
+    static decodeDelimited(reader: $Reader|Uint8Array): Something {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -120,7 +116,7 @@ export class Something implements ISomething {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: ISomething, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: ISomething, options: $IConversionOptions = {}) {
         return {};
     }
 
@@ -128,7 +124,7 @@ export class Something implements ISomething {
      * Converts this Something to JSON.
      */
     toJSON() {
-        return Something.toObject(this, $protobuf.util.toJSONOptions);
+        return Something.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 

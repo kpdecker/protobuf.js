@@ -1,8 +1,4 @@
-import * as $protobuf from "../../minimal";
-
-
-// Common aliases
-const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+import { Writer as $Writer, Reader as $Reader, IConversionOptions as $IConversionOptions, util as $util, Long as $Long } from "../../minimal";
 
 
 export namespace jspb.test {
@@ -21,7 +17,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IEmpty) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -37,10 +33,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified Empty message. Does not implicitly {@link Empty.verify|verify} messages.
-         * @param message Emptymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEmpty, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
@@ -48,10 +44,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified Empty message, length delimited. Does not implicitly {@link Empty.verify|verify} messages.
-         * @param message Emptymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IEmpty, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEmpty, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -64,12 +60,12 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Empty {
+        static decode(reader: $Reader|Uint8Array, length?: number): Empty {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Empty();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Empty();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
                     reader.skipType(tag & 7);
@@ -85,10 +81,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Empty {
+        static decodeDelimited(reader: $Reader|Uint8Array): Empty {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -122,7 +118,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IEmpty, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEmpty, options: $IConversionOptions = {}) {
             return {};
         }
 
@@ -130,7 +126,7 @@ export namespace jspb.test {
          * Converts this Empty to JSON.
          */
         toJSON() {
-            return Empty.toObject(this, $protobuf.util.toJSONOptions);
+            return Empty.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -170,7 +166,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IEnumContainer) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -186,10 +182,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified EnumContainer message. Does not implicitly {@link EnumContainer.verify|verify} messages.
-         * @param message EnumContainermessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumContainer, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.outerEnum != null && Object.hasOwnProperty.call(message, "outerEnum"))
@@ -199,10 +195,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified EnumContainer message, length delimited. Does not implicitly {@link EnumContainer.verify|verify} messages.
-         * @param message EnumContainermessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IEnumContainer, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumContainer, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -215,16 +211,17 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumContainer {
+        static decode(reader: $Reader|Uint8Array, length?: number): EnumContainer {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.EnumContainer();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.EnumContainer();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.outerEnum = reader.int32();
-                    break;
+                case 1: {
+                        message.outerEnum = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -239,10 +236,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumContainer {
+        static decodeDelimited(reader: $Reader|Uint8Array): EnumContainer {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -275,7 +272,7 @@ export namespace jspb.test {
         static fromObject(object): IEnumContainer {
             if (object instanceof jspb.test.EnumContainer)
                 return object;
-            var message = new jspb.test.EnumContainer();
+            let message = new jspb.test.EnumContainer();
             switch (object.outerEnum) {
             case "FOO":
             case 1:
@@ -295,7 +292,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IEnumContainer, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumContainer, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.outerEnum = 1;
@@ -308,7 +305,7 @@ export namespace jspb.test {
          * Converts this EnumContainer to JSON.
          */
         toJSON() {
-            return EnumContainer.toObject(this, $protobuf.util.toJSONOptions);
+            return EnumContainer.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -349,7 +346,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ISimple1) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -365,15 +362,15 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified Simple1 message. Does not implicitly {@link Simple1.verify|verify} messages.
-         * @param message Simple1message or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISimple1, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
             if (message.aRepeatedString != null && message.aRepeatedString.length)
-                for (var i = 0; i < message.aRepeatedString.length; ++i)
+                for (let i = 0; i < message.aRepeatedString.length; ++i)
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.aRepeatedString[i]);
             if (message.aBoolean != null && Object.hasOwnProperty.call(message, "aBoolean"))
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.aBoolean);
@@ -384,10 +381,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified Simple1 message, length delimited. Does not implicitly {@link Simple1.verify|verify} messages.
-         * @param message Simple1message or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ISimple1, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISimple1, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -400,27 +397,31 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Simple1 {
+        static decode(reader: $Reader|Uint8Array, length?: number): Simple1 {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Simple1();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Simple1();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.aString = reader.string();
-                    break;
-                case 2:
-                    if (!(message.aRepeatedString && message.aRepeatedString.length))
-                        message.aRepeatedString = [];
-                    message.aRepeatedString.push(reader.string());
-                    break;
-                case 3:
-                    message.aBoolean = reader.bool();
-                    break;
-                case 4:
-                    message.aSomething = aaaa.b.Something.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.aString = reader.string();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.aRepeatedString && message.aRepeatedString.length))
+                            message.aRepeatedString = [];
+                        message.aRepeatedString.push(reader.string());
+                        break;
+                    }
+                case 3: {
+                        message.aBoolean = reader.bool();
+                        break;
+                    }
+                case 4: {
+                        message.aSomething = aaaa.b.Something.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -437,10 +438,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Simple1 {
+        static decodeDelimited(reader: $Reader|Uint8Array): Simple1 {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -458,7 +459,7 @@ export namespace jspb.test {
             if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
                 if (!Array.isArray(message.aRepeatedString))
                     return "aRepeatedString: array expected";
-                for (var i = 0; i < message.aRepeatedString.length; ++i)
+                for (let i = 0; i < message.aRepeatedString.length; ++i)
                     if (!$util.isString(message.aRepeatedString[i]))
                         return "aRepeatedString: string[] expected";
             }
@@ -466,7 +467,7 @@ export namespace jspb.test {
                 if (typeof message.aBoolean !== "boolean")
                     return "aBoolean: boolean expected";
             if (message.aSomething != null && message.hasOwnProperty("aSomething")) {
-                var error = aaaa.b.Something.verify(message.aSomething);
+                let error = aaaa.b.Something.verify(message.aSomething);
                 if (error)
                     return "aSomething." + error;
             }
@@ -482,14 +483,14 @@ export namespace jspb.test {
         static fromObject(object): ISimple1 {
             if (object instanceof jspb.test.Simple1)
                 return object;
-            var message = new jspb.test.Simple1();
+            let message = new jspb.test.Simple1();
             if (object.aString != null)
                 message.aString = String(object.aString);
             if (object.aRepeatedString) {
                 if (!Array.isArray(object.aRepeatedString))
                     throw TypeError(".jspb.test.Simple1.aRepeatedString: array expected");
                 message.aRepeatedString = [];
-                for (var i = 0; i < object.aRepeatedString.length; ++i)
+                for (let i = 0; i < object.aRepeatedString.length; ++i)
                     message.aRepeatedString[i] = String(object.aRepeatedString[i]);
             }
             if (object.aBoolean != null)
@@ -508,7 +509,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ISimple1, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISimple1, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.aRepeatedString = [];
@@ -521,7 +522,7 @@ export namespace jspb.test {
                 object.aString = message.aString;
             if (message.aRepeatedString && message.aRepeatedString.length) {
                 object.aRepeatedString = [];
-                for (var j = 0; j < message.aRepeatedString.length; ++j)
+                for (let j = 0; j < message.aRepeatedString.length; ++j)
                     object.aRepeatedString[j] = message.aRepeatedString[j];
             }
             if (message.aBoolean != null && message.hasOwnProperty("aBoolean"))
@@ -535,7 +536,7 @@ export namespace jspb.test {
          * Converts this Simple1 to JSON.
          */
         toJSON() {
-            return Simple1.toObject(this, $protobuf.util.toJSONOptions);
+            return Simple1.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -574,7 +575,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ISimple2) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -590,25 +591,25 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified Simple2 message. Does not implicitly {@link Simple2.verify|verify} messages.
-         * @param message Simple2message or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISimple2, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
             if (message.aRepeatedString != null && message.aRepeatedString.length)
-                for (var i = 0; i < message.aRepeatedString.length; ++i)
+                for (let i = 0; i < message.aRepeatedString.length; ++i)
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.aRepeatedString[i]);
             return writer;
         }
 
         /**
          * Encodes the specified Simple2 message, length delimited. Does not implicitly {@link Simple2.verify|verify} messages.
-         * @param message Simple2message or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ISimple2, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISimple2, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -621,21 +622,23 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Simple2 {
+        static decode(reader: $Reader|Uint8Array, length?: number): Simple2 {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Simple2();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Simple2();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.aString = reader.string();
-                    break;
-                case 2:
-                    if (!(message.aRepeatedString && message.aRepeatedString.length))
-                        message.aRepeatedString = [];
-                    message.aRepeatedString.push(reader.string());
-                    break;
+                case 1: {
+                        message.aString = reader.string();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.aRepeatedString && message.aRepeatedString.length))
+                            message.aRepeatedString = [];
+                        message.aRepeatedString.push(reader.string());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -652,10 +655,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Simple2 {
+        static decodeDelimited(reader: $Reader|Uint8Array): Simple2 {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -673,7 +676,7 @@ export namespace jspb.test {
             if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
                 if (!Array.isArray(message.aRepeatedString))
                     return "aRepeatedString: array expected";
-                for (var i = 0; i < message.aRepeatedString.length; ++i)
+                for (let i = 0; i < message.aRepeatedString.length; ++i)
                     if (!$util.isString(message.aRepeatedString[i]))
                         return "aRepeatedString: string[] expected";
             }
@@ -689,14 +692,14 @@ export namespace jspb.test {
         static fromObject(object): ISimple2 {
             if (object instanceof jspb.test.Simple2)
                 return object;
-            var message = new jspb.test.Simple2();
+            let message = new jspb.test.Simple2();
             if (object.aString != null)
                 message.aString = String(object.aString);
             if (object.aRepeatedString) {
                 if (!Array.isArray(object.aRepeatedString))
                     throw TypeError(".jspb.test.Simple2.aRepeatedString: array expected");
                 message.aRepeatedString = [];
-                for (var i = 0; i < object.aRepeatedString.length; ++i)
+                for (let i = 0; i < object.aRepeatedString.length; ++i)
                     message.aRepeatedString[i] = String(object.aRepeatedString[i]);
             }
             return message;
@@ -708,7 +711,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ISimple2, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISimple2, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.aRepeatedString = [];
@@ -718,7 +721,7 @@ export namespace jspb.test {
                 object.aString = message.aString;
             if (message.aRepeatedString && message.aRepeatedString.length) {
                 object.aRepeatedString = [];
-                for (var j = 0; j < message.aRepeatedString.length; ++j)
+                for (let j = 0; j < message.aRepeatedString.length; ++j)
                     object.aRepeatedString[j] = message.aRepeatedString[j];
             }
             return object;
@@ -728,7 +731,7 @@ export namespace jspb.test {
          * Converts this Simple2 to JSON.
          */
         toJSON() {
-            return Simple2.toObject(this, $protobuf.util.toJSONOptions);
+            return Simple2.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -771,7 +774,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ISpecialCases) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -787,10 +790,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified SpecialCases message. Does not implicitly {@link SpecialCases.verify|verify} messages.
-         * @param message SpecialCasesmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISpecialCases, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.normal);
@@ -802,10 +805,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified SpecialCases message, length delimited. Does not implicitly {@link SpecialCases.verify|verify} messages.
-         * @param message SpecialCasesmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ISpecialCases, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISpecialCases, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -818,25 +821,29 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): SpecialCases {
+        static decode(reader: $Reader|Uint8Array, length?: number): SpecialCases {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.SpecialCases();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.SpecialCases();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.normal = reader.string();
-                    break;
-                case 2:
-                    message["default"] = reader.string();
-                    break;
-                case 3:
-                    message["function"] = reader.string();
-                    break;
-                case 4:
-                    message["var"] = reader.string();
-                    break;
+                case 1: {
+                        message.normal = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message["default"] = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message["function"] = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message["var"] = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -859,10 +866,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): SpecialCases {
+        static decodeDelimited(reader: $Reader|Uint8Array): SpecialCases {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -895,7 +902,7 @@ export namespace jspb.test {
         static fromObject(object): ISpecialCases {
             if (object instanceof jspb.test.SpecialCases)
                 return object;
-            var message = new jspb.test.SpecialCases();
+            let message = new jspb.test.SpecialCases();
             if (object.normal != null)
                 message.normal = String(object.normal);
             if (object["default"] != null)
@@ -913,7 +920,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ISpecialCases, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISpecialCases, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.normal = "";
@@ -936,7 +943,7 @@ export namespace jspb.test {
          * Converts this SpecialCases to JSON.
          */
         toJSON() {
-            return SpecialCases.toObject(this, $protobuf.util.toJSONOptions);
+            return SpecialCases.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -979,7 +986,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IOptionalFields) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -995,10 +1002,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified OptionalFields message. Does not implicitly {@link OptionalFields.verify|verify} messages.
-         * @param message OptionalFieldsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOptionalFields, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.aString != null && Object.hasOwnProperty.call(message, "aString"))
@@ -1007,20 +1014,20 @@ export namespace jspb.test {
             if (message.aNestedMessage != null && Object.hasOwnProperty.call(message, "aNestedMessage"))
                 jspb.test.OptionalFields.Nested.encode(message.aNestedMessage, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.aRepeatedMessage != null && message.aRepeatedMessage.length)
-                for (var i = 0; i < message.aRepeatedMessage.length; ++i)
+                for (let i = 0; i < message.aRepeatedMessage.length; ++i)
                     jspb.test.OptionalFields.Nested.encode(message.aRepeatedMessage[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.aRepeatedString != null && message.aRepeatedString.length)
-                for (var i = 0; i < message.aRepeatedString.length; ++i)
+                for (let i = 0; i < message.aRepeatedString.length; ++i)
                     writer.uint32(/* id 5, wireType 2 =*/42).string(message.aRepeatedString[i]);
             return writer;
         }
 
         /**
          * Encodes the specified OptionalFields message, length delimited. Does not implicitly {@link OptionalFields.verify|verify} messages.
-         * @param message OptionalFieldsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IOptionalFields, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOptionalFields, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -1033,32 +1040,37 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OptionalFields {
+        static decode(reader: $Reader|Uint8Array, length?: number): OptionalFields {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OptionalFields();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OptionalFields();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.aString = reader.string();
-                    break;
-                case 2:
-                    message.aBool = reader.bool();
-                    break;
-                case 3:
-                    message.aNestedMessage = jspb.test.OptionalFields.Nested.decode(reader, reader.uint32());
-                    break;
-                case 4:
-                    if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
-                        message.aRepeatedMessage = [];
-                    message.aRepeatedMessage.push(jspb.test.OptionalFields.Nested.decode(reader, reader.uint32()));
-                    break;
-                case 5:
-                    if (!(message.aRepeatedString && message.aRepeatedString.length))
-                        message.aRepeatedString = [];
-                    message.aRepeatedString.push(reader.string());
-                    break;
+                case 1: {
+                        message.aString = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.aBool = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.aNestedMessage = jspb.test.OptionalFields.Nested.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 4: {
+                        if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
+                            message.aRepeatedMessage = [];
+                        message.aRepeatedMessage.push(jspb.test.OptionalFields.Nested.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        if (!(message.aRepeatedString && message.aRepeatedString.length))
+                            message.aRepeatedString = [];
+                        message.aRepeatedString.push(reader.string());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1075,10 +1087,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OptionalFields {
+        static decodeDelimited(reader: $Reader|Uint8Array): OptionalFields {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -1097,15 +1109,15 @@ export namespace jspb.test {
             if (typeof message.aBool !== "boolean")
                 return "aBool: boolean expected";
             if (message.aNestedMessage != null && message.hasOwnProperty("aNestedMessage")) {
-                var error = jspb.test.OptionalFields.Nested.verify(message.aNestedMessage);
+                let error = jspb.test.OptionalFields.Nested.verify(message.aNestedMessage);
                 if (error)
                     return "aNestedMessage." + error;
             }
             if (message.aRepeatedMessage != null && message.hasOwnProperty("aRepeatedMessage")) {
                 if (!Array.isArray(message.aRepeatedMessage))
                     return "aRepeatedMessage: array expected";
-                for (var i = 0; i < message.aRepeatedMessage.length; ++i) {
-                    var error = jspb.test.OptionalFields.Nested.verify(message.aRepeatedMessage[i]);
+                for (let i = 0; i < message.aRepeatedMessage.length; ++i) {
+                    let error = jspb.test.OptionalFields.Nested.verify(message.aRepeatedMessage[i]);
                     if (error)
                         return "aRepeatedMessage." + error;
                 }
@@ -1113,7 +1125,7 @@ export namespace jspb.test {
             if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
                 if (!Array.isArray(message.aRepeatedString))
                     return "aRepeatedString: array expected";
-                for (var i = 0; i < message.aRepeatedString.length; ++i)
+                for (let i = 0; i < message.aRepeatedString.length; ++i)
                     if (!$util.isString(message.aRepeatedString[i]))
                         return "aRepeatedString: string[] expected";
             }
@@ -1129,7 +1141,7 @@ export namespace jspb.test {
         static fromObject(object): IOptionalFields {
             if (object instanceof jspb.test.OptionalFields)
                 return object;
-            var message = new jspb.test.OptionalFields();
+            let message = new jspb.test.OptionalFields();
             if (object.aString != null)
                 message.aString = String(object.aString);
             if (object.aBool != null)
@@ -1143,7 +1155,7 @@ export namespace jspb.test {
                 if (!Array.isArray(object.aRepeatedMessage))
                     throw TypeError(".jspb.test.OptionalFields.aRepeatedMessage: array expected");
                 message.aRepeatedMessage = [];
-                for (var i = 0; i < object.aRepeatedMessage.length; ++i) {
+                for (let i = 0; i < object.aRepeatedMessage.length; ++i) {
                     if (typeof object.aRepeatedMessage[i] !== "object")
                         throw TypeError(".jspb.test.OptionalFields.aRepeatedMessage: object expected");
                     message.aRepeatedMessage[i] = jspb.test.OptionalFields.Nested.fromObject(object.aRepeatedMessage[i]);
@@ -1153,7 +1165,7 @@ export namespace jspb.test {
                 if (!Array.isArray(object.aRepeatedString))
                     throw TypeError(".jspb.test.OptionalFields.aRepeatedString: array expected");
                 message.aRepeatedString = [];
-                for (var i = 0; i < object.aRepeatedString.length; ++i)
+                for (let i = 0; i < object.aRepeatedString.length; ++i)
                     message.aRepeatedString[i] = String(object.aRepeatedString[i]);
             }
             return message;
@@ -1165,7 +1177,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IOptionalFields, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOptionalFields, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.aRepeatedMessage = [];
@@ -1184,12 +1196,12 @@ export namespace jspb.test {
                 object.aNestedMessage = jspb.test.OptionalFields.Nested.toObject(message.aNestedMessage, options);
             if (message.aRepeatedMessage && message.aRepeatedMessage.length) {
                 object.aRepeatedMessage = [];
-                for (var j = 0; j < message.aRepeatedMessage.length; ++j)
+                for (let j = 0; j < message.aRepeatedMessage.length; ++j)
                     object.aRepeatedMessage[j] = jspb.test.OptionalFields.Nested.toObject(message.aRepeatedMessage[j], options);
             }
             if (message.aRepeatedString && message.aRepeatedString.length) {
                 object.aRepeatedString = [];
-                for (var j = 0; j < message.aRepeatedString.length; ++j)
+                for (let j = 0; j < message.aRepeatedString.length; ++j)
                     object.aRepeatedString[j] = message.aRepeatedString[j];
             }
             return object;
@@ -1199,7 +1211,7 @@ export namespace jspb.test {
          * Converts this OptionalFields to JSON.
          */
         toJSON() {
-            return OptionalFields.toObject(this, $protobuf.util.toJSONOptions);
+            return OptionalFields.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -1239,7 +1251,7 @@ export namespace jspb.test {
              */
             constructor(properties?: INested) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -1255,10 +1267,10 @@ export namespace jspb.test {
             // #region encode
             /**
              * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
-             * @param message Nestedmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: INested, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.anInt != null && Object.hasOwnProperty.call(message, "anInt"))
@@ -1268,10 +1280,10 @@ export namespace jspb.test {
 
             /**
              * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
-             * @param message Nestedmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: INested, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -1284,16 +1296,17 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
+            static decode(reader: $Reader|Uint8Array, length?: number): Nested {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OptionalFields.Nested();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OptionalFields.Nested();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.anInt = reader.int32();
-                        break;
+                    case 1: {
+                            message.anInt = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -1308,10 +1321,10 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
+            static decodeDelimited(reader: $Reader|Uint8Array): Nested {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -1339,7 +1352,7 @@ export namespace jspb.test {
             static fromObject(object): INested {
                 if (object instanceof jspb.test.OptionalFields.Nested)
                     return object;
-                var message = new jspb.test.OptionalFields.Nested();
+                let message = new jspb.test.OptionalFields.Nested();
                 if (object.anInt != null)
                     message.anInt = object.anInt | 0;
                 return message;
@@ -1351,7 +1364,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: INested, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.anInt = 0;
@@ -1364,7 +1377,7 @@ export namespace jspb.test {
              * Converts this Nested to JSON.
              */
             toJSON() {
-                return Nested.toObject(this, $protobuf.util.toJSONOptions);
+                return Nested.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -1417,7 +1430,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IHasExtensions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -1433,10 +1446,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified HasExtensions message. Does not implicitly {@link HasExtensions.verify|verify} messages.
-         * @param message HasExtensionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IHasExtensions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.str1 != null && Object.hasOwnProperty.call(message, "str1"))
@@ -1452,10 +1465,10 @@ export namespace jspb.test {
             if (message[".jspb.test.IndirectExtension.str"] != null && Object.hasOwnProperty.call(message, ".jspb.test.IndirectExtension.str"))
                 writer.uint32(/* id 102, wireType 2 =*/818).string(message[".jspb.test.IndirectExtension.str"]);
             if (message[".jspb.test.IndirectExtension.repeatedStr"] != null && message[".jspb.test.IndirectExtension.repeatedStr"].length)
-                for (var i = 0; i < message[".jspb.test.IndirectExtension.repeatedStr"].length; ++i)
+                for (let i = 0; i < message[".jspb.test.IndirectExtension.repeatedStr"].length; ++i)
                     writer.uint32(/* id 103, wireType 2 =*/826).string(message[".jspb.test.IndirectExtension.repeatedStr"][i]);
             if (message[".jspb.test.IndirectExtension.repeatedSimple"] != null && message[".jspb.test.IndirectExtension.repeatedSimple"].length)
-                for (var i = 0; i < message[".jspb.test.IndirectExtension.repeatedSimple"].length; ++i)
+                for (let i = 0; i < message[".jspb.test.IndirectExtension.repeatedSimple"].length; ++i)
                     jspb.test.Simple1.encode(message[".jspb.test.IndirectExtension.repeatedSimple"][i], writer.uint32(/* id 104, wireType 2 =*/834).fork()).ldelim();
             if (message[".jspb.test.simple1"] != null && Object.hasOwnProperty.call(message, ".jspb.test.simple1"))
                 jspb.test.Simple1.encode(message[".jspb.test.simple1"], writer.uint32(/* id 105, wireType 2 =*/842).fork()).ldelim();
@@ -1464,10 +1477,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified HasExtensions message, length delimited. Does not implicitly {@link HasExtensions.verify|verify} messages.
-         * @param message HasExtensionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IHasExtensions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IHasExtensions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -1480,44 +1493,53 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): HasExtensions {
+        static decode(reader: $Reader|Uint8Array, length?: number): HasExtensions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.HasExtensions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.HasExtensions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.str1 = reader.string();
-                    break;
-                case 2:
-                    message.str2 = reader.string();
-                    break;
-                case 3:
-                    message.str3 = reader.string();
-                    break;
-                case 100:
-                    message[".jspb.test.IsExtension.extField"] = jspb.test.IsExtension.decode(reader, reader.uint32());
-                    break;
-                case 101:
-                    message[".jspb.test.IndirectExtension.simple"] = jspb.test.Simple1.decode(reader, reader.uint32());
-                    break;
-                case 102:
-                    message[".jspb.test.IndirectExtension.str"] = reader.string();
-                    break;
-                case 103:
-                    if (!(message[".jspb.test.IndirectExtension.repeatedStr"] && message[".jspb.test.IndirectExtension.repeatedStr"].length))
-                        message[".jspb.test.IndirectExtension.repeatedStr"] = [];
-                    message[".jspb.test.IndirectExtension.repeatedStr"].push(reader.string());
-                    break;
-                case 104:
-                    if (!(message[".jspb.test.IndirectExtension.repeatedSimple"] && message[".jspb.test.IndirectExtension.repeatedSimple"].length))
-                        message[".jspb.test.IndirectExtension.repeatedSimple"] = [];
-                    message[".jspb.test.IndirectExtension.repeatedSimple"].push(jspb.test.Simple1.decode(reader, reader.uint32()));
-                    break;
-                case 105:
-                    message[".jspb.test.simple1"] = jspb.test.Simple1.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.str1 = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.str2 = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.str3 = reader.string();
+                        break;
+                    }
+                case 100: {
+                        message[".jspb.test.IsExtension.extField"] = jspb.test.IsExtension.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 101: {
+                        message[".jspb.test.IndirectExtension.simple"] = jspb.test.Simple1.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 102: {
+                        message[".jspb.test.IndirectExtension.str"] = reader.string();
+                        break;
+                    }
+                case 103: {
+                        if (!(message[".jspb.test.IndirectExtension.repeatedStr"] && message[".jspb.test.IndirectExtension.repeatedStr"].length))
+                            message[".jspb.test.IndirectExtension.repeatedStr"] = [];
+                        message[".jspb.test.IndirectExtension.repeatedStr"].push(reader.string());
+                        break;
+                    }
+                case 104: {
+                        if (!(message[".jspb.test.IndirectExtension.repeatedSimple"] && message[".jspb.test.IndirectExtension.repeatedSimple"].length))
+                            message[".jspb.test.IndirectExtension.repeatedSimple"] = [];
+                        message[".jspb.test.IndirectExtension.repeatedSimple"].push(jspb.test.Simple1.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 105: {
+                        message[".jspb.test.simple1"] = jspb.test.Simple1.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1532,10 +1554,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): HasExtensions {
+        static decodeDelimited(reader: $Reader|Uint8Array): HasExtensions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -1558,12 +1580,12 @@ export namespace jspb.test {
                 if (!$util.isString(message.str3))
                     return "str3: string expected";
             if (message[".jspb.test.IsExtension.extField"] != null && message.hasOwnProperty(".jspb.test.IsExtension.extField")) {
-                var error = jspb.test.IsExtension.verify(message[".jspb.test.IsExtension.extField"]);
+                let error = jspb.test.IsExtension.verify(message[".jspb.test.IsExtension.extField"]);
                 if (error)
                     return ".jspb.test.IsExtension.extField." + error;
             }
             if (message[".jspb.test.IndirectExtension.simple"] != null && message.hasOwnProperty(".jspb.test.IndirectExtension.simple")) {
-                var error = jspb.test.Simple1.verify(message[".jspb.test.IndirectExtension.simple"]);
+                let error = jspb.test.Simple1.verify(message[".jspb.test.IndirectExtension.simple"]);
                 if (error)
                     return ".jspb.test.IndirectExtension.simple." + error;
             }
@@ -1573,21 +1595,21 @@ export namespace jspb.test {
             if (message[".jspb.test.IndirectExtension.repeatedStr"] != null && message.hasOwnProperty(".jspb.test.IndirectExtension.repeatedStr")) {
                 if (!Array.isArray(message[".jspb.test.IndirectExtension.repeatedStr"]))
                     return ".jspb.test.IndirectExtension.repeatedStr: array expected";
-                for (var i = 0; i < message[".jspb.test.IndirectExtension.repeatedStr"].length; ++i)
+                for (let i = 0; i < message[".jspb.test.IndirectExtension.repeatedStr"].length; ++i)
                     if (!$util.isString(message[".jspb.test.IndirectExtension.repeatedStr"][i]))
                         return ".jspb.test.IndirectExtension.repeatedStr: string[] expected";
             }
             if (message[".jspb.test.IndirectExtension.repeatedSimple"] != null && message.hasOwnProperty(".jspb.test.IndirectExtension.repeatedSimple")) {
                 if (!Array.isArray(message[".jspb.test.IndirectExtension.repeatedSimple"]))
                     return ".jspb.test.IndirectExtension.repeatedSimple: array expected";
-                for (var i = 0; i < message[".jspb.test.IndirectExtension.repeatedSimple"].length; ++i) {
-                    var error = jspb.test.Simple1.verify(message[".jspb.test.IndirectExtension.repeatedSimple"][i]);
+                for (let i = 0; i < message[".jspb.test.IndirectExtension.repeatedSimple"].length; ++i) {
+                    let error = jspb.test.Simple1.verify(message[".jspb.test.IndirectExtension.repeatedSimple"][i]);
                     if (error)
                         return ".jspb.test.IndirectExtension.repeatedSimple." + error;
                 }
             }
             if (message[".jspb.test.simple1"] != null && message.hasOwnProperty(".jspb.test.simple1")) {
-                var error = jspb.test.Simple1.verify(message[".jspb.test.simple1"]);
+                let error = jspb.test.Simple1.verify(message[".jspb.test.simple1"]);
                 if (error)
                     return ".jspb.test.simple1." + error;
             }
@@ -1603,7 +1625,7 @@ export namespace jspb.test {
         static fromObject(object): IHasExtensions {
             if (object instanceof jspb.test.HasExtensions)
                 return object;
-            var message = new jspb.test.HasExtensions();
+            let message = new jspb.test.HasExtensions();
             if (object.str1 != null)
                 message.str1 = String(object.str1);
             if (object.str2 != null)
@@ -1626,14 +1648,14 @@ export namespace jspb.test {
                 if (!Array.isArray(object[".jspb.test.IndirectExtension.repeatedStr"]))
                     throw TypeError(".jspb.test.HasExtensions..jspb.test.IndirectExtension.repeatedStr: array expected");
                 message[".jspb.test.IndirectExtension.repeatedStr"] = [];
-                for (var i = 0; i < object[".jspb.test.IndirectExtension.repeatedStr"].length; ++i)
+                for (let i = 0; i < object[".jspb.test.IndirectExtension.repeatedStr"].length; ++i)
                     message[".jspb.test.IndirectExtension.repeatedStr"][i] = String(object[".jspb.test.IndirectExtension.repeatedStr"][i]);
             }
             if (object[".jspb.test.IndirectExtension.repeatedSimple"]) {
                 if (!Array.isArray(object[".jspb.test.IndirectExtension.repeatedSimple"]))
                     throw TypeError(".jspb.test.HasExtensions..jspb.test.IndirectExtension.repeatedSimple: array expected");
                 message[".jspb.test.IndirectExtension.repeatedSimple"] = [];
-                for (var i = 0; i < object[".jspb.test.IndirectExtension.repeatedSimple"].length; ++i) {
+                for (let i = 0; i < object[".jspb.test.IndirectExtension.repeatedSimple"].length; ++i) {
                     if (typeof object[".jspb.test.IndirectExtension.repeatedSimple"][i] !== "object")
                         throw TypeError(".jspb.test.HasExtensions..jspb.test.IndirectExtension.repeatedSimple: object expected");
                     message[".jspb.test.IndirectExtension.repeatedSimple"][i] = jspb.test.Simple1.fromObject(object[".jspb.test.IndirectExtension.repeatedSimple"][i]);
@@ -1653,7 +1675,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IHasExtensions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IHasExtensions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object[".jspb.test.IndirectExtension.repeatedStr"] = [];
@@ -1682,12 +1704,12 @@ export namespace jspb.test {
                 object[".jspb.test.IndirectExtension.str"] = message[".jspb.test.IndirectExtension.str"];
             if (message[".jspb.test.IndirectExtension.repeatedStr"] && message[".jspb.test.IndirectExtension.repeatedStr"].length) {
                 object[".jspb.test.IndirectExtension.repeatedStr"] = [];
-                for (var j = 0; j < message[".jspb.test.IndirectExtension.repeatedStr"].length; ++j)
+                for (let j = 0; j < message[".jspb.test.IndirectExtension.repeatedStr"].length; ++j)
                     object[".jspb.test.IndirectExtension.repeatedStr"][j] = message[".jspb.test.IndirectExtension.repeatedStr"][j];
             }
             if (message[".jspb.test.IndirectExtension.repeatedSimple"] && message[".jspb.test.IndirectExtension.repeatedSimple"].length) {
                 object[".jspb.test.IndirectExtension.repeatedSimple"] = [];
-                for (var j = 0; j < message[".jspb.test.IndirectExtension.repeatedSimple"].length; ++j)
+                for (let j = 0; j < message[".jspb.test.IndirectExtension.repeatedSimple"].length; ++j)
                     object[".jspb.test.IndirectExtension.repeatedSimple"][j] = jspb.test.Simple1.toObject(message[".jspb.test.IndirectExtension.repeatedSimple"][j], options);
             }
             if (message[".jspb.test.simple1"] != null && message.hasOwnProperty(".jspb.test.simple1"))
@@ -1699,7 +1721,7 @@ export namespace jspb.test {
          * Converts this HasExtensions to JSON.
          */
         toJSON() {
-            return HasExtensions.toObject(this, $protobuf.util.toJSONOptions);
+            return HasExtensions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -1746,7 +1768,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IComplex) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -1762,20 +1784,20 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified Complex message. Does not implicitly {@link Complex.verify|verify} messages.
-         * @param message Complexmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IComplex, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.aString);
             if (message.aNestedMessage != null && Object.hasOwnProperty.call(message, "aNestedMessage"))
                 jspb.test.Complex.Nested.encode(message.aNestedMessage, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.aRepeatedMessage != null && message.aRepeatedMessage.length)
-                for (var i = 0; i < message.aRepeatedMessage.length; ++i)
+                for (let i = 0; i < message.aRepeatedMessage.length; ++i)
                     jspb.test.Complex.Nested.encode(message.aRepeatedMessage[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             if (message.aRepeatedString != null && message.aRepeatedString.length)
-                for (var i = 0; i < message.aRepeatedString.length; ++i)
+                for (let i = 0; i < message.aRepeatedString.length; ++i)
                     writer.uint32(/* id 7, wireType 2 =*/58).string(message.aRepeatedString[i]);
             writer.uint32(/* id 9, wireType 0 =*/72).bool(message.anOutOfOrderBool);
             return writer;
@@ -1783,10 +1805,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified Complex message, length delimited. Does not implicitly {@link Complex.verify|verify} messages.
-         * @param message Complexmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IComplex, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -1799,32 +1821,37 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Complex {
+        static decode(reader: $Reader|Uint8Array, length?: number): Complex {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Complex();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Complex();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.aString = reader.string();
-                    break;
-                case 9:
-                    message.anOutOfOrderBool = reader.bool();
-                    break;
-                case 4:
-                    message.aNestedMessage = jspb.test.Complex.Nested.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
-                        message.aRepeatedMessage = [];
-                    message.aRepeatedMessage.push(jspb.test.Complex.Nested.decode(reader, reader.uint32()));
-                    break;
-                case 7:
-                    if (!(message.aRepeatedString && message.aRepeatedString.length))
-                        message.aRepeatedString = [];
-                    message.aRepeatedString.push(reader.string());
-                    break;
+                case 1: {
+                        message.aString = reader.string();
+                        break;
+                    }
+                case 9: {
+                        message.anOutOfOrderBool = reader.bool();
+                        break;
+                    }
+                case 4: {
+                        message.aNestedMessage = jspb.test.Complex.Nested.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.aRepeatedMessage && message.aRepeatedMessage.length))
+                            message.aRepeatedMessage = [];
+                        message.aRepeatedMessage.push(jspb.test.Complex.Nested.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 7: {
+                        if (!(message.aRepeatedString && message.aRepeatedString.length))
+                            message.aRepeatedString = [];
+                        message.aRepeatedString.push(reader.string());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1843,10 +1870,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Complex {
+        static decodeDelimited(reader: $Reader|Uint8Array): Complex {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -1864,15 +1891,15 @@ export namespace jspb.test {
             if (typeof message.anOutOfOrderBool !== "boolean")
                 return "anOutOfOrderBool: boolean expected";
             if (message.aNestedMessage != null && message.hasOwnProperty("aNestedMessage")) {
-                var error = jspb.test.Complex.Nested.verify(message.aNestedMessage);
+                let error = jspb.test.Complex.Nested.verify(message.aNestedMessage);
                 if (error)
                     return "aNestedMessage." + error;
             }
             if (message.aRepeatedMessage != null && message.hasOwnProperty("aRepeatedMessage")) {
                 if (!Array.isArray(message.aRepeatedMessage))
                     return "aRepeatedMessage: array expected";
-                for (var i = 0; i < message.aRepeatedMessage.length; ++i) {
-                    var error = jspb.test.Complex.Nested.verify(message.aRepeatedMessage[i]);
+                for (let i = 0; i < message.aRepeatedMessage.length; ++i) {
+                    let error = jspb.test.Complex.Nested.verify(message.aRepeatedMessage[i]);
                     if (error)
                         return "aRepeatedMessage." + error;
                 }
@@ -1880,7 +1907,7 @@ export namespace jspb.test {
             if (message.aRepeatedString != null && message.hasOwnProperty("aRepeatedString")) {
                 if (!Array.isArray(message.aRepeatedString))
                     return "aRepeatedString: array expected";
-                for (var i = 0; i < message.aRepeatedString.length; ++i)
+                for (let i = 0; i < message.aRepeatedString.length; ++i)
                     if (!$util.isString(message.aRepeatedString[i]))
                         return "aRepeatedString: string[] expected";
             }
@@ -1896,7 +1923,7 @@ export namespace jspb.test {
         static fromObject(object): IComplex {
             if (object instanceof jspb.test.Complex)
                 return object;
-            var message = new jspb.test.Complex();
+            let message = new jspb.test.Complex();
             if (object.aString != null)
                 message.aString = String(object.aString);
             if (object.anOutOfOrderBool != null)
@@ -1910,7 +1937,7 @@ export namespace jspb.test {
                 if (!Array.isArray(object.aRepeatedMessage))
                     throw TypeError(".jspb.test.Complex.aRepeatedMessage: array expected");
                 message.aRepeatedMessage = [];
-                for (var i = 0; i < object.aRepeatedMessage.length; ++i) {
+                for (let i = 0; i < object.aRepeatedMessage.length; ++i) {
                     if (typeof object.aRepeatedMessage[i] !== "object")
                         throw TypeError(".jspb.test.Complex.aRepeatedMessage: object expected");
                     message.aRepeatedMessage[i] = jspb.test.Complex.Nested.fromObject(object.aRepeatedMessage[i]);
@@ -1920,7 +1947,7 @@ export namespace jspb.test {
                 if (!Array.isArray(object.aRepeatedString))
                     throw TypeError(".jspb.test.Complex.aRepeatedString: array expected");
                 message.aRepeatedString = [];
-                for (var i = 0; i < object.aRepeatedString.length; ++i)
+                for (let i = 0; i < object.aRepeatedString.length; ++i)
                     message.aRepeatedString[i] = String(object.aRepeatedString[i]);
             }
             return message;
@@ -1932,7 +1959,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IComplex, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IComplex, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.aRepeatedMessage = [];
@@ -1949,12 +1976,12 @@ export namespace jspb.test {
                 object.aNestedMessage = jspb.test.Complex.Nested.toObject(message.aNestedMessage, options);
             if (message.aRepeatedMessage && message.aRepeatedMessage.length) {
                 object.aRepeatedMessage = [];
-                for (var j = 0; j < message.aRepeatedMessage.length; ++j)
+                for (let j = 0; j < message.aRepeatedMessage.length; ++j)
                     object.aRepeatedMessage[j] = jspb.test.Complex.Nested.toObject(message.aRepeatedMessage[j], options);
             }
             if (message.aRepeatedString && message.aRepeatedString.length) {
                 object.aRepeatedString = [];
-                for (var j = 0; j < message.aRepeatedString.length; ++j)
+                for (let j = 0; j < message.aRepeatedString.length; ++j)
                     object.aRepeatedString[j] = message.aRepeatedString[j];
             }
             if (message.anOutOfOrderBool != null && message.hasOwnProperty("anOutOfOrderBool"))
@@ -1966,7 +1993,7 @@ export namespace jspb.test {
          * Converts this Complex to JSON.
          */
         toJSON() {
-            return Complex.toObject(this, $protobuf.util.toJSONOptions);
+            return Complex.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -2006,7 +2033,7 @@ export namespace jspb.test {
              */
             constructor(properties?: INested) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -2022,10 +2049,10 @@ export namespace jspb.test {
             // #region encode
             /**
              * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
-             * @param message Nestedmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: INested, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 2, wireType 0 =*/16).int32(message.anInt);
@@ -2034,10 +2061,10 @@ export namespace jspb.test {
 
             /**
              * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
-             * @param message Nestedmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: INested, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -2050,16 +2077,17 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
+            static decode(reader: $Reader|Uint8Array, length?: number): Nested {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Complex.Nested();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Complex.Nested();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 2:
-                        message.anInt = reader.int32();
-                        break;
+                    case 2: {
+                            message.anInt = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -2076,10 +2104,10 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
+            static decodeDelimited(reader: $Reader|Uint8Array): Nested {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -2106,7 +2134,7 @@ export namespace jspb.test {
             static fromObject(object): INested {
                 if (object instanceof jspb.test.Complex.Nested)
                     return object;
-                var message = new jspb.test.Complex.Nested();
+                let message = new jspb.test.Complex.Nested();
                 if (object.anInt != null)
                     message.anInt = object.anInt | 0;
                 return message;
@@ -2118,7 +2146,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: INested, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.anInt = 0;
@@ -2131,7 +2159,7 @@ export namespace jspb.test {
              * Converts this Nested to JSON.
              */
             toJSON() {
-                return Nested.toObject(this, $protobuf.util.toJSONOptions);
+                return Nested.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -2166,7 +2194,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IOuterMessage) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2182,10 +2210,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified OuterMessage message. Does not implicitly {@link OuterMessage.verify|verify} messages.
-         * @param message OuterMessagemessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOuterMessage, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
@@ -2193,10 +2221,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified OuterMessage message, length delimited. Does not implicitly {@link OuterMessage.verify|verify} messages.
-         * @param message OuterMessagemessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IOuterMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOuterMessage, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -2209,12 +2237,12 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OuterMessage {
+        static decode(reader: $Reader|Uint8Array, length?: number): OuterMessage {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OuterMessage();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OuterMessage();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
                     reader.skipType(tag & 7);
@@ -2230,10 +2258,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OuterMessage {
+        static decodeDelimited(reader: $Reader|Uint8Array): OuterMessage {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -2267,7 +2295,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IOuterMessage, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOuterMessage, options: $IConversionOptions = {}) {
             return {};
         }
 
@@ -2275,7 +2303,7 @@ export namespace jspb.test {
          * Converts this OuterMessage to JSON.
          */
         toJSON() {
-            return OuterMessage.toObject(this, $protobuf.util.toJSONOptions);
+            return OuterMessage.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -2311,7 +2339,7 @@ export namespace jspb.test {
              */
             constructor(properties?: IComplex) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -2327,10 +2355,10 @@ export namespace jspb.test {
             // #region encode
             /**
              * Encodes the specified Complex message. Does not implicitly {@link Complex.verify|verify} messages.
-             * @param message Complexmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IComplex, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.innerComplexField != null && Object.hasOwnProperty.call(message, "innerComplexField"))
@@ -2340,10 +2368,10 @@ export namespace jspb.test {
 
             /**
              * Encodes the specified Complex message, length delimited. Does not implicitly {@link Complex.verify|verify} messages.
-             * @param message Complexmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: IComplex, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IComplex, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -2356,16 +2384,17 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Complex {
+            static decode(reader: $Reader|Uint8Array, length?: number): Complex {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OuterMessage.Complex();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.OuterMessage.Complex();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.innerComplexField = reader.int32();
-                        break;
+                    case 1: {
+                            message.innerComplexField = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -2380,10 +2409,10 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Complex {
+            static decodeDelimited(reader: $Reader|Uint8Array): Complex {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -2411,7 +2440,7 @@ export namespace jspb.test {
             static fromObject(object): IComplex {
                 if (object instanceof jspb.test.OuterMessage.Complex)
                     return object;
-                var message = new jspb.test.OuterMessage.Complex();
+                let message = new jspb.test.OuterMessage.Complex();
                 if (object.innerComplexField != null)
                     message.innerComplexField = object.innerComplexField | 0;
                 return message;
@@ -2423,7 +2452,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: IComplex, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IComplex, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.innerComplexField = 0;
@@ -2436,7 +2465,7 @@ export namespace jspb.test {
              * Converts this Complex to JSON.
              */
             toJSON() {
-                return Complex.toObject(this, $protobuf.util.toJSONOptions);
+                return Complex.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -2473,7 +2502,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IIsExtension) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2489,10 +2518,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified IsExtension message. Does not implicitly {@link IsExtension.verify|verify} messages.
-         * @param message IsExtensionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IIsExtension, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.ext1 != null && Object.hasOwnProperty.call(message, "ext1"))
@@ -2502,10 +2531,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified IsExtension message, length delimited. Does not implicitly {@link IsExtension.verify|verify} messages.
-         * @param message IsExtensionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IIsExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IIsExtension, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -2518,16 +2547,17 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): IsExtension {
+        static decode(reader: $Reader|Uint8Array, length?: number): IsExtension {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.IsExtension();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.IsExtension();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.ext1 = reader.string();
-                    break;
+                case 1: {
+                        message.ext1 = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2542,10 +2572,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): IsExtension {
+        static decodeDelimited(reader: $Reader|Uint8Array): IsExtension {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -2573,7 +2603,7 @@ export namespace jspb.test {
         static fromObject(object): IIsExtension {
             if (object instanceof jspb.test.IsExtension)
                 return object;
-            var message = new jspb.test.IsExtension();
+            let message = new jspb.test.IsExtension();
             if (object.ext1 != null)
                 message.ext1 = String(object.ext1);
             return message;
@@ -2585,7 +2615,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IIsExtension, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IIsExtension, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.ext1 = "";
@@ -2598,7 +2628,7 @@ export namespace jspb.test {
          * Converts this IsExtension to JSON.
          */
         toJSON() {
-            return IsExtension.toObject(this, $protobuf.util.toJSONOptions);
+            return IsExtension.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -2636,7 +2666,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IIndirectExtension) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2652,10 +2682,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified IndirectExtension message. Does not implicitly {@link IndirectExtension.verify|verify} messages.
-         * @param message IndirectExtensionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IIndirectExtension, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
@@ -2663,10 +2693,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified IndirectExtension message, length delimited. Does not implicitly {@link IndirectExtension.verify|verify} messages.
-         * @param message IndirectExtensionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IIndirectExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IIndirectExtension, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -2679,12 +2709,12 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): IndirectExtension {
+        static decode(reader: $Reader|Uint8Array, length?: number): IndirectExtension {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.IndirectExtension();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.IndirectExtension();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
                     reader.skipType(tag & 7);
@@ -2700,10 +2730,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): IndirectExtension {
+        static decodeDelimited(reader: $Reader|Uint8Array): IndirectExtension {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -2737,7 +2767,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IIndirectExtension, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IIndirectExtension, options: $IConversionOptions = {}) {
             return {};
         }
 
@@ -2745,7 +2775,7 @@ export namespace jspb.test {
          * Converts this IndirectExtension to JSON.
          */
         toJSON() {
-            return IndirectExtension.toObject(this, $protobuf.util.toJSONOptions);
+            return IndirectExtension.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -2775,7 +2805,7 @@ export namespace jspb.test {
     export interface IDefaultValues {
         stringField?: string;
         boolField?: boolean;
-        intField?: (number|$protobuf.Long);
+        intField?: (number|$Long);
         enumField?: jspb.test.DefaultValues.Enum;
         emptyField?: string;
         bytesField?: Uint8Array;
@@ -2787,7 +2817,7 @@ export namespace jspb.test {
     export class DefaultValues implements IDefaultValues {
         stringField?: string;
         boolField?: boolean;
-        intField?: (number|$protobuf.Long);
+        intField?: (number|$Long);
         enumField?: jspb.test.DefaultValues.Enum;
         emptyField?: string;
         bytesField?: Uint8Array;
@@ -2798,7 +2828,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IDefaultValues) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2814,10 +2844,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified DefaultValues message. Does not implicitly {@link DefaultValues.verify|verify} messages.
-         * @param message DefaultValuesmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IDefaultValues, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.stringField != null && Object.hasOwnProperty.call(message, "stringField"))
@@ -2837,10 +2867,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified DefaultValues message, length delimited. Does not implicitly {@link DefaultValues.verify|verify} messages.
-         * @param message DefaultValuesmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IDefaultValues, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IDefaultValues, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -2853,31 +2883,37 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): DefaultValues {
+        static decode(reader: $Reader|Uint8Array, length?: number): DefaultValues {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.DefaultValues();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.DefaultValues();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.stringField = reader.string();
-                    break;
-                case 2:
-                    message.boolField = reader.bool();
-                    break;
-                case 3:
-                    message.intField = reader.int64();
-                    break;
-                case 4:
-                    message.enumField = reader.int32();
-                    break;
-                case 6:
-                    message.emptyField = reader.string();
-                    break;
-                case 8:
-                    message.bytesField = reader.bytes();
-                    break;
+                case 1: {
+                        message.stringField = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.boolField = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.intField = reader.int64();
+                        break;
+                    }
+                case 4: {
+                        message.enumField = reader.int32();
+                        break;
+                    }
+                case 6: {
+                        message.emptyField = reader.string();
+                        break;
+                    }
+                case 8: {
+                        message.bytesField = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -2892,10 +2928,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): DefaultValues {
+        static decodeDelimited(reader: $Reader|Uint8Array): DefaultValues {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -2943,20 +2979,13 @@ export namespace jspb.test {
         static fromObject(object): IDefaultValues {
             if (object instanceof jspb.test.DefaultValues)
                 return object;
-            var message = new jspb.test.DefaultValues();
+            let message = new jspb.test.DefaultValues();
             if (object.stringField != null)
                 message.stringField = String(object.stringField);
             if (object.boolField != null)
                 message.boolField = Boolean(object.boolField);
             if (object.intField != null)
-                if ($util.Long)
-                    (message.intField = ($util.Long as any).fromValue(object.intField)).unsigned = false;
-                else if (typeof object.intField === "string")
-                    message.intField = parseInt(object.intField, 10);
-                else if (typeof object.intField === "number")
-                    message.intField = object.intField;
-                else if (typeof object.intField === "object")
-                    message.intField = new $util.LongBits(object.intField).toNumber();
+                message.intField = $util.longValue(object.intField, false);
             switch (object.enumField) {
             case "E1":
             case 13:
@@ -2983,13 +3012,13 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IDefaultValues, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IDefaultValues, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.stringField = "default<>abc";
                 object.boolField = true;
                 if ($util.Long) {
-                    var long = new $util.Long(11, 0, false);
+                    let long = new $util.Long(11, 0, false);
                     object.intField = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.intField = options.longs === String ? "11" : 11;
@@ -3029,7 +3058,7 @@ export namespace jspb.test {
          * Converts this DefaultValues to JSON.
          */
         toJSON() {
-            return DefaultValues.toObject(this, $protobuf.util.toJSONOptions);
+            return DefaultValues.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -3086,7 +3115,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IFloatingPointFields) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -3102,17 +3131,17 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified FloatingPointFields message. Does not implicitly {@link FloatingPointFields.verify|verify} messages.
-         * @param message FloatingPointFieldsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFloatingPointFields, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.optionalFloatField != null && Object.hasOwnProperty.call(message, "optionalFloatField"))
                 writer.uint32(/* id 1, wireType 5 =*/13).float(message.optionalFloatField);
             writer.uint32(/* id 2, wireType 5 =*/21).float(message.requiredFloatField);
             if (message.repeatedFloatField != null && message.repeatedFloatField.length)
-                for (var i = 0; i < message.repeatedFloatField.length; ++i)
+                for (let i = 0; i < message.repeatedFloatField.length; ++i)
                     writer.uint32(/* id 3, wireType 5 =*/29).float(message.repeatedFloatField[i]);
             if (message.defaultFloatField != null && Object.hasOwnProperty.call(message, "defaultFloatField"))
                 writer.uint32(/* id 4, wireType 5 =*/37).float(message.defaultFloatField);
@@ -3120,7 +3149,7 @@ export namespace jspb.test {
                 writer.uint32(/* id 5, wireType 1 =*/41).double(message.optionalDoubleField);
             writer.uint32(/* id 6, wireType 1 =*/49).double(message.requiredDoubleField);
             if (message.repeatedDoubleField != null && message.repeatedDoubleField.length)
-                for (var i = 0; i < message.repeatedDoubleField.length; ++i)
+                for (let i = 0; i < message.repeatedDoubleField.length; ++i)
                     writer.uint32(/* id 7, wireType 1 =*/57).double(message.repeatedDoubleField[i]);
             if (message.defaultDoubleField != null && Object.hasOwnProperty.call(message, "defaultDoubleField"))
                 writer.uint32(/* id 8, wireType 1 =*/65).double(message.defaultDoubleField);
@@ -3129,10 +3158,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified FloatingPointFields message, length delimited. Does not implicitly {@link FloatingPointFields.verify|verify} messages.
-         * @param message FloatingPointFieldsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IFloatingPointFields, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFloatingPointFields, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -3145,51 +3174,59 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FloatingPointFields {
+        static decode(reader: $Reader|Uint8Array, length?: number): FloatingPointFields {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.FloatingPointFields();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.FloatingPointFields();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.optionalFloatField = reader.float();
-                    break;
-                case 2:
-                    message.requiredFloatField = reader.float();
-                    break;
-                case 3:
-                    if (!(message.repeatedFloatField && message.repeatedFloatField.length))
-                        message.repeatedFloatField = [];
-                    if ((tag & 7) === 2) {
-                        var end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
+                case 1: {
+                        message.optionalFloatField = reader.float();
+                        break;
+                    }
+                case 2: {
+                        message.requiredFloatField = reader.float();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.repeatedFloatField && message.repeatedFloatField.length))
+                            message.repeatedFloatField = [];
+                        if ((tag & 7) === 2) {
+                            let end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.repeatedFloatField.push(reader.float());
+                        } else
                             message.repeatedFloatField.push(reader.float());
-                    } else
-                        message.repeatedFloatField.push(reader.float());
-                    break;
-                case 4:
-                    message.defaultFloatField = reader.float();
-                    break;
-                case 5:
-                    message.optionalDoubleField = reader.double();
-                    break;
-                case 6:
-                    message.requiredDoubleField = reader.double();
-                    break;
-                case 7:
-                    if (!(message.repeatedDoubleField && message.repeatedDoubleField.length))
-                        message.repeatedDoubleField = [];
-                    if ((tag & 7) === 2) {
-                        var end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
+                        break;
+                    }
+                case 4: {
+                        message.defaultFloatField = reader.float();
+                        break;
+                    }
+                case 5: {
+                        message.optionalDoubleField = reader.double();
+                        break;
+                    }
+                case 6: {
+                        message.requiredDoubleField = reader.double();
+                        break;
+                    }
+                case 7: {
+                        if (!(message.repeatedDoubleField && message.repeatedDoubleField.length))
+                            message.repeatedDoubleField = [];
+                        if ((tag & 7) === 2) {
+                            let end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.repeatedDoubleField.push(reader.double());
+                        } else
                             message.repeatedDoubleField.push(reader.double());
-                    } else
-                        message.repeatedDoubleField.push(reader.double());
-                    break;
-                case 8:
-                    message.defaultDoubleField = reader.double();
-                    break;
+                        break;
+                    }
+                case 8: {
+                        message.defaultDoubleField = reader.double();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3208,10 +3245,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FloatingPointFields {
+        static decodeDelimited(reader: $Reader|Uint8Array): FloatingPointFields {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -3232,7 +3269,7 @@ export namespace jspb.test {
             if (message.repeatedFloatField != null && message.hasOwnProperty("repeatedFloatField")) {
                 if (!Array.isArray(message.repeatedFloatField))
                     return "repeatedFloatField: array expected";
-                for (var i = 0; i < message.repeatedFloatField.length; ++i)
+                for (let i = 0; i < message.repeatedFloatField.length; ++i)
                     if (typeof message.repeatedFloatField[i] !== "number")
                         return "repeatedFloatField: number[] expected";
             }
@@ -3247,7 +3284,7 @@ export namespace jspb.test {
             if (message.repeatedDoubleField != null && message.hasOwnProperty("repeatedDoubleField")) {
                 if (!Array.isArray(message.repeatedDoubleField))
                     return "repeatedDoubleField: array expected";
-                for (var i = 0; i < message.repeatedDoubleField.length; ++i)
+                for (let i = 0; i < message.repeatedDoubleField.length; ++i)
                     if (typeof message.repeatedDoubleField[i] !== "number")
                         return "repeatedDoubleField: number[] expected";
             }
@@ -3266,7 +3303,7 @@ export namespace jspb.test {
         static fromObject(object): IFloatingPointFields {
             if (object instanceof jspb.test.FloatingPointFields)
                 return object;
-            var message = new jspb.test.FloatingPointFields();
+            let message = new jspb.test.FloatingPointFields();
             if (object.optionalFloatField != null)
                 message.optionalFloatField = Number(object.optionalFloatField);
             if (object.requiredFloatField != null)
@@ -3275,7 +3312,7 @@ export namespace jspb.test {
                 if (!Array.isArray(object.repeatedFloatField))
                     throw TypeError(".jspb.test.FloatingPointFields.repeatedFloatField: array expected");
                 message.repeatedFloatField = [];
-                for (var i = 0; i < object.repeatedFloatField.length; ++i)
+                for (let i = 0; i < object.repeatedFloatField.length; ++i)
                     message.repeatedFloatField[i] = Number(object.repeatedFloatField[i]);
             }
             if (object.defaultFloatField != null)
@@ -3288,7 +3325,7 @@ export namespace jspb.test {
                 if (!Array.isArray(object.repeatedDoubleField))
                     throw TypeError(".jspb.test.FloatingPointFields.repeatedDoubleField: array expected");
                 message.repeatedDoubleField = [];
-                for (var i = 0; i < object.repeatedDoubleField.length; ++i)
+                for (let i = 0; i < object.repeatedDoubleField.length; ++i)
                     message.repeatedDoubleField[i] = Number(object.repeatedDoubleField[i]);
             }
             if (object.defaultDoubleField != null)
@@ -3302,7 +3339,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IFloatingPointFields, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFloatingPointFields, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.repeatedFloatField = [];
@@ -3322,7 +3359,7 @@ export namespace jspb.test {
                 object.requiredFloatField = options.json && !isFinite(message.requiredFloatField) ? String(message.requiredFloatField) : message.requiredFloatField;
             if (message.repeatedFloatField && message.repeatedFloatField.length) {
                 object.repeatedFloatField = [];
-                for (var j = 0; j < message.repeatedFloatField.length; ++j)
+                for (let j = 0; j < message.repeatedFloatField.length; ++j)
                     object.repeatedFloatField[j] = options.json && !isFinite(message.repeatedFloatField[j]) ? String(message.repeatedFloatField[j]) : message.repeatedFloatField[j];
             }
             if (message.defaultFloatField != null && message.hasOwnProperty("defaultFloatField"))
@@ -3333,7 +3370,7 @@ export namespace jspb.test {
                 object.requiredDoubleField = options.json && !isFinite(message.requiredDoubleField) ? String(message.requiredDoubleField) : message.requiredDoubleField;
             if (message.repeatedDoubleField && message.repeatedDoubleField.length) {
                 object.repeatedDoubleField = [];
-                for (var j = 0; j < message.repeatedDoubleField.length; ++j)
+                for (let j = 0; j < message.repeatedDoubleField.length; ++j)
                     object.repeatedDoubleField[j] = options.json && !isFinite(message.repeatedDoubleField[j]) ? String(message.repeatedDoubleField[j]) : message.repeatedDoubleField[j];
             }
             if (message.defaultDoubleField != null && message.hasOwnProperty("defaultDoubleField"))
@@ -3345,7 +3382,7 @@ export namespace jspb.test {
          * Converts this FloatingPointFields to JSON.
          */
         toJSON() {
-            return FloatingPointFields.toObject(this, $protobuf.util.toJSONOptions);
+            return FloatingPointFields.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -3394,7 +3431,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ITestClone) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -3410,10 +3447,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified TestClone message. Does not implicitly {@link TestClone.verify|verify} messages.
-         * @param message TestClonemessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestClone, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.str != null && Object.hasOwnProperty.call(message, "str"))
@@ -3421,7 +3458,7 @@ export namespace jspb.test {
             if (message.simple1 != null && Object.hasOwnProperty.call(message, "simple1"))
                 jspb.test.Simple1.encode(message.simple1, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.simple2 != null && message.simple2.length)
-                for (var i = 0; i < message.simple2.length; ++i)
+                for (let i = 0; i < message.simple2.length; ++i)
                     jspb.test.Simple1.encode(message.simple2[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             if (message.bytesField != null && Object.hasOwnProperty.call(message, "bytesField"))
                 writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.bytesField);
@@ -3434,10 +3471,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified TestClone message, length delimited. Does not implicitly {@link TestClone.verify|verify} messages.
-         * @param message TestClonemessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ITestClone, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestClone, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -3450,33 +3487,39 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestClone {
+        static decode(reader: $Reader|Uint8Array, length?: number): TestClone {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestClone();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestClone();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.str = reader.string();
-                    break;
-                case 3:
-                    message.simple1 = jspb.test.Simple1.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    if (!(message.simple2 && message.simple2.length))
-                        message.simple2 = [];
-                    message.simple2.push(jspb.test.Simple1.decode(reader, reader.uint32()));
-                    break;
-                case 6:
-                    message.bytesField = reader.bytes();
-                    break;
-                case 7:
-                    message.unused = reader.string();
-                    break;
-                case 100:
-                    message[".jspb.test.CloneExtension.extField"] = jspb.test.CloneExtension.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.str = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.simple1 = jspb.test.Simple1.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        if (!(message.simple2 && message.simple2.length))
+                            message.simple2 = [];
+                        message.simple2.push(jspb.test.Simple1.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 6: {
+                        message.bytesField = reader.bytes();
+                        break;
+                    }
+                case 7: {
+                        message.unused = reader.string();
+                        break;
+                    }
+                case 100: {
+                        message[".jspb.test.CloneExtension.extField"] = jspb.test.CloneExtension.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3491,10 +3534,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestClone {
+        static decodeDelimited(reader: $Reader|Uint8Array): TestClone {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -3511,15 +3554,15 @@ export namespace jspb.test {
                 if (!$util.isString(message.str))
                     return "str: string expected";
             if (message.simple1 != null && message.hasOwnProperty("simple1")) {
-                var error = jspb.test.Simple1.verify(message.simple1);
+                let error = jspb.test.Simple1.verify(message.simple1);
                 if (error)
                     return "simple1." + error;
             }
             if (message.simple2 != null && message.hasOwnProperty("simple2")) {
                 if (!Array.isArray(message.simple2))
                     return "simple2: array expected";
-                for (var i = 0; i < message.simple2.length; ++i) {
-                    var error = jspb.test.Simple1.verify(message.simple2[i]);
+                for (let i = 0; i < message.simple2.length; ++i) {
+                    let error = jspb.test.Simple1.verify(message.simple2[i]);
                     if (error)
                         return "simple2." + error;
                 }
@@ -3531,7 +3574,7 @@ export namespace jspb.test {
                 if (!$util.isString(message.unused))
                     return "unused: string expected";
             if (message[".jspb.test.CloneExtension.extField"] != null && message.hasOwnProperty(".jspb.test.CloneExtension.extField")) {
-                var error = jspb.test.CloneExtension.verify(message[".jspb.test.CloneExtension.extField"]);
+                let error = jspb.test.CloneExtension.verify(message[".jspb.test.CloneExtension.extField"]);
                 if (error)
                     return ".jspb.test.CloneExtension.extField." + error;
             }
@@ -3547,7 +3590,7 @@ export namespace jspb.test {
         static fromObject(object): ITestClone {
             if (object instanceof jspb.test.TestClone)
                 return object;
-            var message = new jspb.test.TestClone();
+            let message = new jspb.test.TestClone();
             if (object.str != null)
                 message.str = String(object.str);
             if (object.simple1 != null) {
@@ -3559,7 +3602,7 @@ export namespace jspb.test {
                 if (!Array.isArray(object.simple2))
                     throw TypeError(".jspb.test.TestClone.simple2: array expected");
                 message.simple2 = [];
-                for (var i = 0; i < object.simple2.length; ++i) {
+                for (let i = 0; i < object.simple2.length; ++i) {
                     if (typeof object.simple2[i] !== "object")
                         throw TypeError(".jspb.test.TestClone.simple2: object expected");
                     message.simple2[i] = jspb.test.Simple1.fromObject(object.simple2[i]);
@@ -3586,7 +3629,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ITestClone, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestClone, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.simple2 = [];
@@ -3609,7 +3652,7 @@ export namespace jspb.test {
                 object.simple1 = jspb.test.Simple1.toObject(message.simple1, options);
             if (message.simple2 && message.simple2.length) {
                 object.simple2 = [];
-                for (var j = 0; j < message.simple2.length; ++j)
+                for (let j = 0; j < message.simple2.length; ++j)
                     object.simple2[j] = jspb.test.Simple1.toObject(message.simple2[j], options);
             }
             if (message.bytesField != null && message.hasOwnProperty("bytesField"))
@@ -3625,7 +3668,7 @@ export namespace jspb.test {
          * Converts this TestClone to JSON.
          */
         toJSON() {
-            return TestClone.toObject(this, $protobuf.util.toJSONOptions);
+            return TestClone.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -3662,7 +3705,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ICloneExtension) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -3678,10 +3721,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified CloneExtension message. Does not implicitly {@link CloneExtension.verify|verify} messages.
-         * @param message CloneExtensionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ICloneExtension, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.ext != null && Object.hasOwnProperty.call(message, "ext"))
@@ -3691,10 +3734,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified CloneExtension message, length delimited. Does not implicitly {@link CloneExtension.verify|verify} messages.
-         * @param message CloneExtensionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ICloneExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ICloneExtension, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -3707,16 +3750,17 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): CloneExtension {
+        static decode(reader: $Reader|Uint8Array, length?: number): CloneExtension {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.CloneExtension();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.CloneExtension();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 2:
-                    message.ext = reader.string();
-                    break;
+                case 2: {
+                        message.ext = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3731,10 +3775,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): CloneExtension {
+        static decodeDelimited(reader: $Reader|Uint8Array): CloneExtension {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -3762,7 +3806,7 @@ export namespace jspb.test {
         static fromObject(object): ICloneExtension {
             if (object instanceof jspb.test.CloneExtension)
                 return object;
-            var message = new jspb.test.CloneExtension();
+            let message = new jspb.test.CloneExtension();
             if (object.ext != null)
                 message.ext = String(object.ext);
             return message;
@@ -3774,7 +3818,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ICloneExtension, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ICloneExtension, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.ext = "";
@@ -3787,7 +3831,7 @@ export namespace jspb.test {
          * Converts this CloneExtension to JSON.
          */
         toJSON() {
-            return CloneExtension.toObject(this, $protobuf.util.toJSONOptions);
+            return CloneExtension.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -3836,7 +3880,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ITestGroup) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -3852,14 +3896,14 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified TestGroup message. Does not implicitly {@link TestGroup.verify|verify} messages.
-         * @param message TestGroupmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestGroup, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.repeatedGroup != null && message.repeatedGroup.length)
-                for (var i = 0; i < message.repeatedGroup.length; ++i)
+                for (let i = 0; i < message.repeatedGroup.length; ++i)
                     jspb.test.TestGroup.RepeatedGroup.encode(message.repeatedGroup[i], writer.uint32(/* id 1, wireType 3 =*/11)).uint32(/* id 1, wireType 4 =*/12);
             jspb.test.TestGroup.RequiredGroup.encode(message.requiredGroup, writer.uint32(/* id 2, wireType 3 =*/19)).uint32(/* id 2, wireType 4 =*/20);
             if (message.optionalGroup != null && Object.hasOwnProperty.call(message, "optionalGroup"))
@@ -3874,10 +3918,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified TestGroup message, length delimited. Does not implicitly {@link TestGroup.verify|verify} messages.
-         * @param message TestGroupmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ITestGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestGroup, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -3890,33 +3934,39 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestGroup {
+        static decode(reader: $Reader|Uint8Array, length?: number): TestGroup {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    if (!(message.repeatedGroup && message.repeatedGroup.length))
-                        message.repeatedGroup = [];
-                    message.repeatedGroup.push(jspb.test.TestGroup.RepeatedGroup.decode(reader));
-                    break;
-                case 2:
-                    message.requiredGroup = jspb.test.TestGroup.RequiredGroup.decode(reader);
-                    break;
-                case 3:
-                    message.optionalGroup = jspb.test.TestGroup.OptionalGroup.decode(reader);
-                    break;
-                case 4:
-                    message.id = reader.string();
-                    break;
-                case 5:
-                    message.requiredSimple = jspb.test.Simple2.decode(reader, reader.uint32());
-                    break;
-                case 6:
-                    message.optionalSimple = jspb.test.Simple2.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        if (!(message.repeatedGroup && message.repeatedGroup.length))
+                            message.repeatedGroup = [];
+                        message.repeatedGroup.push(jspb.test.TestGroup.RepeatedGroup.decode(reader));
+                        break;
+                    }
+                case 2: {
+                        message.requiredGroup = jspb.test.TestGroup.RequiredGroup.decode(reader);
+                        break;
+                    }
+                case 3: {
+                        message.optionalGroup = jspb.test.TestGroup.OptionalGroup.decode(reader);
+                        break;
+                    }
+                case 4: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.requiredSimple = jspb.test.Simple2.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 6: {
+                        message.optionalSimple = jspb.test.Simple2.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3935,10 +3985,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestGroup {
+        static decodeDelimited(reader: $Reader|Uint8Array): TestGroup {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -3954,19 +4004,19 @@ export namespace jspb.test {
             if (message.repeatedGroup != null && message.hasOwnProperty("repeatedGroup")) {
                 if (!Array.isArray(message.repeatedGroup))
                     return "repeatedGroup: array expected";
-                for (var i = 0; i < message.repeatedGroup.length; ++i) {
-                    var error = jspb.test.TestGroup.RepeatedGroup.verify(message.repeatedGroup[i]);
+                for (let i = 0; i < message.repeatedGroup.length; ++i) {
+                    let error = jspb.test.TestGroup.RepeatedGroup.verify(message.repeatedGroup[i]);
                     if (error)
                         return "repeatedGroup." + error;
                 }
             }
             {
-                var error = jspb.test.TestGroup.RequiredGroup.verify(message.requiredGroup);
+                let error = jspb.test.TestGroup.RequiredGroup.verify(message.requiredGroup);
                 if (error)
                     return "requiredGroup." + error;
             }
             if (message.optionalGroup != null && message.hasOwnProperty("optionalGroup")) {
-                var error = jspb.test.TestGroup.OptionalGroup.verify(message.optionalGroup);
+                let error = jspb.test.TestGroup.OptionalGroup.verify(message.optionalGroup);
                 if (error)
                     return "optionalGroup." + error;
             }
@@ -3974,12 +4024,12 @@ export namespace jspb.test {
                 if (!$util.isString(message.id))
                     return "id: string expected";
             {
-                var error = jspb.test.Simple2.verify(message.requiredSimple);
+                let error = jspb.test.Simple2.verify(message.requiredSimple);
                 if (error)
                     return "requiredSimple." + error;
             }
             if (message.optionalSimple != null && message.hasOwnProperty("optionalSimple")) {
-                var error = jspb.test.Simple2.verify(message.optionalSimple);
+                let error = jspb.test.Simple2.verify(message.optionalSimple);
                 if (error)
                     return "optionalSimple." + error;
             }
@@ -3995,12 +4045,12 @@ export namespace jspb.test {
         static fromObject(object): ITestGroup {
             if (object instanceof jspb.test.TestGroup)
                 return object;
-            var message = new jspb.test.TestGroup();
+            let message = new jspb.test.TestGroup();
             if (object.repeatedGroup) {
                 if (!Array.isArray(object.repeatedGroup))
                     throw TypeError(".jspb.test.TestGroup.repeatedGroup: array expected");
                 message.repeatedGroup = [];
-                for (var i = 0; i < object.repeatedGroup.length; ++i) {
+                for (let i = 0; i < object.repeatedGroup.length; ++i) {
                     if (typeof object.repeatedGroup[i] !== "object")
                         throw TypeError(".jspb.test.TestGroup.repeatedGroup: object expected");
                     message.repeatedGroup[i] = jspb.test.TestGroup.RepeatedGroup.fromObject(object.repeatedGroup[i]);
@@ -4037,7 +4087,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ITestGroup, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestGroup, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.repeatedGroup = [];
@@ -4050,7 +4100,7 @@ export namespace jspb.test {
             }
             if (message.repeatedGroup && message.repeatedGroup.length) {
                 object.repeatedGroup = [];
-                for (var j = 0; j < message.repeatedGroup.length; ++j)
+                for (let j = 0; j < message.repeatedGroup.length; ++j)
                     object.repeatedGroup[j] = jspb.test.TestGroup.RepeatedGroup.toObject(message.repeatedGroup[j], options);
             }
             if (message.requiredGroup != null && message.hasOwnProperty("requiredGroup"))
@@ -4070,7 +4120,7 @@ export namespace jspb.test {
          * Converts this TestGroup to JSON.
          */
         toJSON() {
-            return TestGroup.toObject(this, $protobuf.util.toJSONOptions);
+            return TestGroup.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -4110,7 +4160,7 @@ export namespace jspb.test {
              */
             constructor(properties?: IRepeatedGroup) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -4126,25 +4176,25 @@ export namespace jspb.test {
             // #region encode
             /**
              * Encodes the specified RepeatedGroup message. Does not implicitly {@link RepeatedGroup.verify|verify} messages.
-             * @param message RepeatedGroupmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IRepeatedGroup, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                 if (message.someBool != null && message.someBool.length)
-                    for (var i = 0; i < message.someBool.length; ++i)
+                    for (let i = 0; i < message.someBool.length; ++i)
                         writer.uint32(/* id 2, wireType 0 =*/16).bool(message.someBool[i]);
                 return writer;
             }
 
             /**
              * Encodes the specified RepeatedGroup message, length delimited. Does not implicitly {@link RepeatedGroup.verify|verify} messages.
-             * @param message RepeatedGroupmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: IRepeatedGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IRepeatedGroup, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -4157,28 +4207,30 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): RepeatedGroup {
+            static decode(reader: $Reader|Uint8Array, length?: number): RepeatedGroup {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.RepeatedGroup();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.RepeatedGroup();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     if ((tag & 7) === 4)
                         break;
                     switch (tag >>> 3) {
-                    case 1:
-                        message.id = reader.string();
-                        break;
-                    case 2:
-                        if (!(message.someBool && message.someBool.length))
-                            message.someBool = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                    case 1: {
+                            message.id = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.someBool && message.someBool.length))
+                                message.someBool = [];
+                            if ((tag & 7) === 2) {
+                                let end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.someBool.push(reader.bool());
+                            } else
                                 message.someBool.push(reader.bool());
-                        } else
-                            message.someBool.push(reader.bool());
-                        break;
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4195,10 +4247,10 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): RepeatedGroup {
+            static decodeDelimited(reader: $Reader|Uint8Array): RepeatedGroup {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -4216,7 +4268,7 @@ export namespace jspb.test {
                 if (message.someBool != null && message.hasOwnProperty("someBool")) {
                     if (!Array.isArray(message.someBool))
                         return "someBool: array expected";
-                    for (var i = 0; i < message.someBool.length; ++i)
+                    for (let i = 0; i < message.someBool.length; ++i)
                         if (typeof message.someBool[i] !== "boolean")
                             return "someBool: boolean[] expected";
                 }
@@ -4232,14 +4284,14 @@ export namespace jspb.test {
             static fromObject(object): IRepeatedGroup {
                 if (object instanceof jspb.test.TestGroup.RepeatedGroup)
                     return object;
-                var message = new jspb.test.TestGroup.RepeatedGroup();
+                let message = new jspb.test.TestGroup.RepeatedGroup();
                 if (object.id != null)
                     message.id = String(object.id);
                 if (object.someBool) {
                     if (!Array.isArray(object.someBool))
                         throw TypeError(".jspb.test.TestGroup.RepeatedGroup.someBool: array expected");
                     message.someBool = [];
-                    for (var i = 0; i < object.someBool.length; ++i)
+                    for (let i = 0; i < object.someBool.length; ++i)
                         message.someBool[i] = Boolean(object.someBool[i]);
                 }
                 return message;
@@ -4251,7 +4303,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: IRepeatedGroup, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IRepeatedGroup, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.arrays || options.defaults)
                     object.someBool = [];
@@ -4261,7 +4313,7 @@ export namespace jspb.test {
                     object.id = message.id;
                 if (message.someBool && message.someBool.length) {
                     object.someBool = [];
-                    for (var j = 0; j < message.someBool.length; ++j)
+                    for (let j = 0; j < message.someBool.length; ++j)
                         object.someBool[j] = message.someBool[j];
                 }
                 return object;
@@ -4271,7 +4323,7 @@ export namespace jspb.test {
              * Converts this RepeatedGroup to JSON.
              */
             toJSON() {
-                return RepeatedGroup.toObject(this, $protobuf.util.toJSONOptions);
+                return RepeatedGroup.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -4308,7 +4360,7 @@ export namespace jspb.test {
              */
             constructor(properties?: IRequiredGroup) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -4324,10 +4376,10 @@ export namespace jspb.test {
             // #region encode
             /**
              * Encodes the specified RequiredGroup message. Does not implicitly {@link RequiredGroup.verify|verify} messages.
-             * @param message RequiredGroupmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IRequiredGroup, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
@@ -4336,10 +4388,10 @@ export namespace jspb.test {
 
             /**
              * Encodes the specified RequiredGroup message, length delimited. Does not implicitly {@link RequiredGroup.verify|verify} messages.
-             * @param message RequiredGroupmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: IRequiredGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IRequiredGroup, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -4352,18 +4404,19 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): RequiredGroup {
+            static decode(reader: $Reader|Uint8Array, length?: number): RequiredGroup {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.RequiredGroup();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.RequiredGroup();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     if ((tag & 7) === 4)
                         break;
                     switch (tag >>> 3) {
-                    case 1:
-                        message.id = reader.string();
-                        break;
+                    case 1: {
+                            message.id = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4380,10 +4433,10 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): RequiredGroup {
+            static decodeDelimited(reader: $Reader|Uint8Array): RequiredGroup {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -4410,7 +4463,7 @@ export namespace jspb.test {
             static fromObject(object): IRequiredGroup {
                 if (object instanceof jspb.test.TestGroup.RequiredGroup)
                     return object;
-                var message = new jspb.test.TestGroup.RequiredGroup();
+                let message = new jspb.test.TestGroup.RequiredGroup();
                 if (object.id != null)
                     message.id = String(object.id);
                 return message;
@@ -4422,7 +4475,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: IRequiredGroup, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IRequiredGroup, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.id = "";
@@ -4435,7 +4488,7 @@ export namespace jspb.test {
              * Converts this RequiredGroup to JSON.
              */
             toJSON() {
-                return RequiredGroup.toObject(this, $protobuf.util.toJSONOptions);
+                return RequiredGroup.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -4470,7 +4523,7 @@ export namespace jspb.test {
              */
             constructor(properties?: IOptionalGroup) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -4486,10 +4539,10 @@ export namespace jspb.test {
             // #region encode
             /**
              * Encodes the specified OptionalGroup message. Does not implicitly {@link OptionalGroup.verify|verify} messages.
-             * @param message OptionalGroupmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IOptionalGroup, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
@@ -4498,10 +4551,10 @@ export namespace jspb.test {
 
             /**
              * Encodes the specified OptionalGroup message, length delimited. Does not implicitly {@link OptionalGroup.verify|verify} messages.
-             * @param message OptionalGroupmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: IOptionalGroup, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IOptionalGroup, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -4514,18 +4567,19 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OptionalGroup {
+            static decode(reader: $Reader|Uint8Array, length?: number): OptionalGroup {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.OptionalGroup();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup.OptionalGroup();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     if ((tag & 7) === 4)
                         break;
                     switch (tag >>> 3) {
-                    case 1:
-                        message.id = reader.string();
-                        break;
+                    case 1: {
+                            message.id = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -4542,10 +4596,10 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OptionalGroup {
+            static decodeDelimited(reader: $Reader|Uint8Array): OptionalGroup {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -4572,7 +4626,7 @@ export namespace jspb.test {
             static fromObject(object): IOptionalGroup {
                 if (object instanceof jspb.test.TestGroup.OptionalGroup)
                     return object;
-                var message = new jspb.test.TestGroup.OptionalGroup();
+                let message = new jspb.test.TestGroup.OptionalGroup();
                 if (object.id != null)
                     message.id = String(object.id);
                 return message;
@@ -4584,7 +4638,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: IOptionalGroup, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IOptionalGroup, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults)
                     object.id = "";
@@ -4597,7 +4651,7 @@ export namespace jspb.test {
              * Converts this OptionalGroup to JSON.
              */
             toJSON() {
-                return OptionalGroup.toObject(this, $protobuf.util.toJSONOptions);
+                return OptionalGroup.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -4634,7 +4688,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ITestGroup1) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4650,10 +4704,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified TestGroup1 message. Does not implicitly {@link TestGroup1.verify|verify} messages.
-         * @param message TestGroup1message or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestGroup1, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.group != null && Object.hasOwnProperty.call(message, "group"))
@@ -4663,10 +4717,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified TestGroup1 message, length delimited. Does not implicitly {@link TestGroup1.verify|verify} messages.
-         * @param message TestGroup1message or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ITestGroup1, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestGroup1, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -4679,16 +4733,17 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestGroup1 {
+        static decode(reader: $Reader|Uint8Array, length?: number): TestGroup1 {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup1();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestGroup1();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.group = jspb.test.TestGroup.RepeatedGroup.decode(reader);
-                    break;
+                case 1: {
+                        message.group = jspb.test.TestGroup.RepeatedGroup.decode(reader);
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4703,10 +4758,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestGroup1 {
+        static decodeDelimited(reader: $Reader|Uint8Array): TestGroup1 {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -4720,7 +4775,7 @@ export namespace jspb.test {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.group != null && message.hasOwnProperty("group")) {
-                var error = jspb.test.TestGroup.RepeatedGroup.verify(message.group);
+                let error = jspb.test.TestGroup.RepeatedGroup.verify(message.group);
                 if (error)
                     return "group." + error;
             }
@@ -4736,7 +4791,7 @@ export namespace jspb.test {
         static fromObject(object): ITestGroup1 {
             if (object instanceof jspb.test.TestGroup1)
                 return object;
-            var message = new jspb.test.TestGroup1();
+            let message = new jspb.test.TestGroup1();
             if (object.group != null) {
                 if (typeof object.group !== "object")
                     throw TypeError(".jspb.test.TestGroup1.group: object expected");
@@ -4751,7 +4806,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ITestGroup1, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestGroup1, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.group = null;
@@ -4764,7 +4819,7 @@ export namespace jspb.test {
          * Converts this TestGroup1 to JSON.
          */
         toJSON() {
-            return TestGroup1.toObject(this, $protobuf.util.toJSONOptions);
+            return TestGroup1.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -4801,7 +4856,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ITestReservedNames) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4817,10 +4872,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified TestReservedNames message. Does not implicitly {@link TestReservedNames.verify|verify} messages.
-         * @param message TestReservedNamesmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestReservedNames, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.extension != null && Object.hasOwnProperty.call(message, "extension"))
@@ -4832,10 +4887,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified TestReservedNames message, length delimited. Does not implicitly {@link TestReservedNames.verify|verify} messages.
-         * @param message TestReservedNamesmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ITestReservedNames, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestReservedNames, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -4848,19 +4903,21 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestReservedNames {
+        static decode(reader: $Reader|Uint8Array, length?: number): TestReservedNames {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestReservedNames();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestReservedNames();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.extension = reader.int32();
-                    break;
-                case 10:
-                    message[".jspb.test.TestReservedNamesExtension.foo"] = reader.int32();
-                    break;
+                case 1: {
+                        message.extension = reader.int32();
+                        break;
+                    }
+                case 10: {
+                        message[".jspb.test.TestReservedNamesExtension.foo"] = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4875,10 +4932,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestReservedNames {
+        static decodeDelimited(reader: $Reader|Uint8Array): TestReservedNames {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -4909,7 +4966,7 @@ export namespace jspb.test {
         static fromObject(object): ITestReservedNames {
             if (object instanceof jspb.test.TestReservedNames)
                 return object;
-            var message = new jspb.test.TestReservedNames();
+            let message = new jspb.test.TestReservedNames();
             if (object.extension != null)
                 message.extension = object.extension | 0;
             if (object[".jspb.test.TestReservedNamesExtension.foo"] != null)
@@ -4923,7 +4980,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ITestReservedNames, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestReservedNames, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.extension = 0;
@@ -4940,7 +4997,7 @@ export namespace jspb.test {
          * Converts this TestReservedNames to JSON.
          */
         toJSON() {
-            return TestReservedNames.toObject(this, $protobuf.util.toJSONOptions);
+            return TestReservedNames.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -4973,7 +5030,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ITestReservedNamesExtension) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4989,10 +5046,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified TestReservedNamesExtension message. Does not implicitly {@link TestReservedNamesExtension.verify|verify} messages.
-         * @param message TestReservedNamesExtensionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestReservedNamesExtension, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
@@ -5000,10 +5057,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified TestReservedNamesExtension message, length delimited. Does not implicitly {@link TestReservedNamesExtension.verify|verify} messages.
-         * @param message TestReservedNamesExtensionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ITestReservedNamesExtension, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestReservedNamesExtension, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -5016,12 +5073,12 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestReservedNamesExtension {
+        static decode(reader: $Reader|Uint8Array, length?: number): TestReservedNamesExtension {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestReservedNamesExtension();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestReservedNamesExtension();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
                     reader.skipType(tag & 7);
@@ -5037,10 +5094,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestReservedNamesExtension {
+        static decodeDelimited(reader: $Reader|Uint8Array): TestReservedNamesExtension {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -5074,7 +5131,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ITestReservedNamesExtension, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestReservedNamesExtension, options: $IConversionOptions = {}) {
             return {};
         }
 
@@ -5082,7 +5139,7 @@ export namespace jspb.test {
          * Converts this TestReservedNamesExtension to JSON.
          */
         toJSON() {
-            return TestReservedNamesExtension.toObject(this, $protobuf.util.toJSONOptions);
+            return TestReservedNamesExtension.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -5177,7 +5234,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ITestMessageWithOneof) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -5193,10 +5250,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified TestMessageWithOneof message. Does not implicitly {@link TestMessageWithOneof.verify|verify} messages.
-         * @param message TestMessageWithOneofmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestMessageWithOneof, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.pone != null && Object.hasOwnProperty.call(message, "pone"))
@@ -5210,7 +5267,7 @@ export namespace jspb.test {
             if (message.normalField != null && Object.hasOwnProperty.call(message, "normalField"))
                 writer.uint32(/* id 8, wireType 0 =*/64).bool(message.normalField);
             if (message.repeatedField != null && message.repeatedField.length)
-                for (var i = 0; i < message.repeatedField.length; ++i)
+                for (let i = 0; i < message.repeatedField.length; ++i)
                     writer.uint32(/* id 9, wireType 2 =*/74).string(message.repeatedField[i]);
             if (message.aone != null && Object.hasOwnProperty.call(message, "aone"))
                 writer.uint32(/* id 10, wireType 0 =*/80).int32(message.aone);
@@ -5225,10 +5282,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified TestMessageWithOneof message, length delimited. Does not implicitly {@link TestMessageWithOneof.verify|verify} messages.
-         * @param message TestMessageWithOneofmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ITestMessageWithOneof, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestMessageWithOneof, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -5241,45 +5298,55 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestMessageWithOneof {
+        static decode(reader: $Reader|Uint8Array, length?: number): TestMessageWithOneof {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestMessageWithOneof();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestMessageWithOneof();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 3:
-                    message.pone = reader.string();
-                    break;
-                case 5:
-                    message.pthree = reader.string();
-                    break;
-                case 6:
-                    message.rone = jspb.test.TestMessageWithOneof.decode(reader, reader.uint32());
-                    break;
-                case 7:
-                    message.rtwo = reader.string();
-                    break;
-                case 8:
-                    message.normalField = reader.bool();
-                    break;
-                case 9:
-                    if (!(message.repeatedField && message.repeatedField.length))
-                        message.repeatedField = [];
-                    message.repeatedField.push(reader.string());
-                    break;
-                case 10:
-                    message.aone = reader.int32();
-                    break;
-                case 11:
-                    message.atwo = reader.int32();
-                    break;
-                case 12:
-                    message.bone = reader.int32();
-                    break;
-                case 13:
-                    message.btwo = reader.int32();
-                    break;
+                case 3: {
+                        message.pone = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.pthree = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.rone = jspb.test.TestMessageWithOneof.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 7: {
+                        message.rtwo = reader.string();
+                        break;
+                    }
+                case 8: {
+                        message.normalField = reader.bool();
+                        break;
+                    }
+                case 9: {
+                        if (!(message.repeatedField && message.repeatedField.length))
+                            message.repeatedField = [];
+                        message.repeatedField.push(reader.string());
+                        break;
+                    }
+                case 10: {
+                        message.aone = reader.int32();
+                        break;
+                    }
+                case 11: {
+                        message.atwo = reader.int32();
+                        break;
+                    }
+                case 12: {
+                        message.bone = reader.int32();
+                        break;
+                    }
+                case 13: {
+                        message.btwo = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5294,10 +5361,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestMessageWithOneof {
+        static decodeDelimited(reader: $Reader|Uint8Array): TestMessageWithOneof {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -5326,7 +5393,7 @@ export namespace jspb.test {
             if (message.rone != null && message.hasOwnProperty("rone")) {
                 properties.recursiveOneof = 1;
                 {
-                    var error = jspb.test.TestMessageWithOneof.verify(message.rone);
+                    let error = jspb.test.TestMessageWithOneof.verify(message.rone);
                     if (error)
                         return "rone." + error;
                 }
@@ -5344,7 +5411,7 @@ export namespace jspb.test {
             if (message.repeatedField != null && message.hasOwnProperty("repeatedField")) {
                 if (!Array.isArray(message.repeatedField))
                     return "repeatedField: array expected";
-                for (var i = 0; i < message.repeatedField.length; ++i)
+                for (let i = 0; i < message.repeatedField.length; ++i)
                     if (!$util.isString(message.repeatedField[i]))
                         return "repeatedField: string[] expected";
             }
@@ -5384,7 +5451,7 @@ export namespace jspb.test {
         static fromObject(object): ITestMessageWithOneof {
             if (object instanceof jspb.test.TestMessageWithOneof)
                 return object;
-            var message = new jspb.test.TestMessageWithOneof();
+            let message = new jspb.test.TestMessageWithOneof();
             if (object.pone != null)
                 message.pone = String(object.pone);
             if (object.pthree != null)
@@ -5402,7 +5469,7 @@ export namespace jspb.test {
                 if (!Array.isArray(object.repeatedField))
                     throw TypeError(".jspb.test.TestMessageWithOneof.repeatedField: array expected");
                 message.repeatedField = [];
-                for (var i = 0; i < object.repeatedField.length; ++i)
+                for (let i = 0; i < object.repeatedField.length; ++i)
                     message.repeatedField[i] = String(object.repeatedField[i]);
             }
             if (object.aone != null)
@@ -5422,7 +5489,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ITestMessageWithOneof, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestMessageWithOneof, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.repeatedField = [];
@@ -5452,7 +5519,7 @@ export namespace jspb.test {
                 object.normalField = message.normalField;
             if (message.repeatedField && message.repeatedField.length) {
                 object.repeatedField = [];
-                for (var j = 0; j < message.repeatedField.length; ++j)
+                for (let j = 0; j < message.repeatedField.length; ++j)
                     object.repeatedField[j] = message.repeatedField[j];
             }
             if (message.aone != null && message.hasOwnProperty("aone")) {
@@ -5482,7 +5549,7 @@ export namespace jspb.test {
          * Converts this TestMessageWithOneof to JSON.
          */
         toJSON() {
-            return TestMessageWithOneof.toObject(this, $protobuf.util.toJSONOptions);
+            return TestMessageWithOneof.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -5521,7 +5588,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ITestEndsWithBytes) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -5537,10 +5604,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified TestEndsWithBytes message. Does not implicitly {@link TestEndsWithBytes.verify|verify} messages.
-         * @param message TestEndsWithBytesmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestEndsWithBytes, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.value != null && Object.hasOwnProperty.call(message, "value"))
@@ -5552,10 +5619,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified TestEndsWithBytes message, length delimited. Does not implicitly {@link TestEndsWithBytes.verify|verify} messages.
-         * @param message TestEndsWithBytesmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ITestEndsWithBytes, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestEndsWithBytes, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -5568,19 +5635,21 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestEndsWithBytes {
+        static decode(reader: $Reader|Uint8Array, length?: number): TestEndsWithBytes {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestEndsWithBytes();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestEndsWithBytes();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.value = reader.int32();
-                    break;
-                case 2:
-                    message.data = reader.bytes();
-                    break;
+                case 1: {
+                        message.value = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.data = reader.bytes();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5595,10 +5664,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestEndsWithBytes {
+        static decodeDelimited(reader: $Reader|Uint8Array): TestEndsWithBytes {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -5629,7 +5698,7 @@ export namespace jspb.test {
         static fromObject(object): ITestEndsWithBytes {
             if (object instanceof jspb.test.TestEndsWithBytes)
                 return object;
-            var message = new jspb.test.TestEndsWithBytes();
+            let message = new jspb.test.TestEndsWithBytes();
             if (object.value != null)
                 message.value = object.value | 0;
             if (object.data != null)
@@ -5646,7 +5715,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ITestEndsWithBytes, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestEndsWithBytes, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.value = 0;
@@ -5669,7 +5738,7 @@ export namespace jspb.test {
          * Converts this TestEndsWithBytes to JSON.
          */
         toJSON() {
-            return TestEndsWithBytes.toObject(this, $protobuf.util.toJSONOptions);
+            return TestEndsWithBytes.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -5691,7 +5760,7 @@ export namespace jspb.test {
     export interface ITestMapFieldsNoBinary {
         mapStringString?: {[key: string]: string};
         mapStringInt32?: {[key: string]: number};
-        mapStringInt64?: {[key: string]: (number|$protobuf.Long)};
+        mapStringInt64?: {[key: string]: (number|$Long)};
         mapStringBool?: {[key: string]: boolean};
         mapStringDouble?: {[key: string]: number};
         mapStringEnum?: {[key: string]: jspb.test.MapValueEnumNoBinary};
@@ -5709,7 +5778,7 @@ export namespace jspb.test {
     export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         mapStringString?: {[key: string]: string};
         mapStringInt32?: {[key: string]: number};
-        mapStringInt64?: {[key: string]: (number|$protobuf.Long)};
+        mapStringInt64?: {[key: string]: (number|$Long)};
         mapStringBool?: {[key: string]: boolean};
         mapStringDouble?: {[key: string]: number};
         mapStringEnum?: {[key: string]: jspb.test.MapValueEnumNoBinary};
@@ -5726,7 +5795,7 @@ export namespace jspb.test {
          */
         constructor(properties?: ITestMapFieldsNoBinary) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -5742,48 +5811,48 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified TestMapFieldsNoBinary message. Does not implicitly {@link TestMapFieldsNoBinary.verify|verify} messages.
-         * @param message TestMapFieldsNoBinarymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ITestMapFieldsNoBinary, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.mapStringString != null && Object.hasOwnProperty.call(message, "mapStringString"))
-                for (var keys = Object.keys(message.mapStringString), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapStringString), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.mapStringString[keys[i]]).ldelim();
             if (message.mapStringInt32 != null && Object.hasOwnProperty.call(message, "mapStringInt32"))
-                for (var keys = Object.keys(message.mapStringInt32), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapStringInt32), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.mapStringInt32[keys[i]]).ldelim();
             if (message.mapStringInt64 != null && Object.hasOwnProperty.call(message, "mapStringInt64"))
-                for (var keys = Object.keys(message.mapStringInt64), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapStringInt64), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 3, wireType 2 =*/26).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int64(message.mapStringInt64[keys[i]]).ldelim();
             if (message.mapStringBool != null && Object.hasOwnProperty.call(message, "mapStringBool"))
-                for (var keys = Object.keys(message.mapStringBool), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapStringBool), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).bool(message.mapStringBool[keys[i]]).ldelim();
             if (message.mapStringDouble != null && Object.hasOwnProperty.call(message, "mapStringDouble"))
-                for (var keys = Object.keys(message.mapStringDouble), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapStringDouble), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 1 =*/17).double(message.mapStringDouble[keys[i]]).ldelim();
             if (message.mapStringEnum != null && Object.hasOwnProperty.call(message, "mapStringEnum"))
-                for (var keys = Object.keys(message.mapStringEnum), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapStringEnum), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 6, wireType 2 =*/50).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int32(message.mapStringEnum[keys[i]]).ldelim();
             if (message.mapStringMsg != null && Object.hasOwnProperty.call(message, "mapStringMsg"))
-                for (var keys = Object.keys(message.mapStringMsg), i = 0; i < keys.length; ++i) {
+                for (let keys = Object.keys(message.mapStringMsg), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 7, wireType 2 =*/58).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
                     jspb.test.MapValueMessageNoBinary.encode(message.mapStringMsg[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
                 }
             if (message.mapInt32String != null && Object.hasOwnProperty.call(message, "mapInt32String"))
-                for (var keys = Object.keys(message.mapInt32String), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapInt32String), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 8, wireType 2 =*/66).fork().uint32(/* id 1, wireType 0 =*/8).int32(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.mapInt32String[keys[i]]).ldelim();
             if (message.mapInt64String != null && Object.hasOwnProperty.call(message, "mapInt64String"))
-                for (var keys = Object.keys(message.mapInt64String), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapInt64String), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 9, wireType 2 =*/74).fork().uint32(/* id 1, wireType 0 =*/8).int64(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.mapInt64String[keys[i]]).ldelim();
             if (message.mapBoolString != null && Object.hasOwnProperty.call(message, "mapBoolString"))
-                for (var keys = Object.keys(message.mapBoolString), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(message.mapBoolString), i = 0; i < keys.length; ++i)
                     writer.uint32(/* id 10, wireType 2 =*/82).fork().uint32(/* id 1, wireType 0 =*/8).bool(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.mapBoolString[keys[i]]).ldelim();
             if (message.testMapFields != null && Object.hasOwnProperty.call(message, "testMapFields"))
                 jspb.test.TestMapFieldsNoBinary.encode(message.testMapFields, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
             if (message.mapStringTestmapfields != null && Object.hasOwnProperty.call(message, "mapStringTestmapfields"))
-                for (var keys = Object.keys(message.mapStringTestmapfields), i = 0; i < keys.length; ++i) {
+                for (let keys = Object.keys(message.mapStringTestmapfields), i = 0; i < keys.length; ++i) {
                     writer.uint32(/* id 12, wireType 2 =*/98).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
                     jspb.test.TestMapFieldsNoBinary.encode(message.mapStringTestmapfields[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
                 }
@@ -5792,10 +5861,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified TestMapFieldsNoBinary message, length delimited. Does not implicitly {@link TestMapFieldsNoBinary.verify|verify} messages.
-         * @param message TestMapFieldsNoBinarymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ITestMapFieldsNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ITestMapFieldsNoBinary, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -5808,258 +5877,270 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): TestMapFieldsNoBinary {
+        static decode(reader: $Reader|Uint8Array, length?: number): TestMapFieldsNoBinary {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestMapFieldsNoBinary(), key, value;
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.TestMapFieldsNoBinary(), key, value;
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    if (message.mapStringString === $util.emptyObject || !message.mapStringString)
-                        message.mapStringString = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = "";
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 1: {
+                        if (message.mapStringString === $util.emptyObject || !message.mapStringString)
+                            message.mapStringString = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = "";
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapStringString[key] = value;
+                        break;
                     }
-                    message.mapStringString[key] = value;
-                    break;
-                case 2:
-                    if (message.mapStringInt32 === $util.emptyObject || !message.mapStringInt32)
-                        message.mapStringInt32 = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = 0;
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = reader.int32();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 2: {
+                        if (message.mapStringInt32 === $util.emptyObject || !message.mapStringInt32)
+                            message.mapStringInt32 = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = 0;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.int32();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapStringInt32[key] = value;
+                        break;
                     }
-                    message.mapStringInt32[key] = value;
-                    break;
-                case 3:
-                    if (message.mapStringInt64 === $util.emptyObject || !message.mapStringInt64)
-                        message.mapStringInt64 = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = 0;
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = reader.int64();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 3: {
+                        if (message.mapStringInt64 === $util.emptyObject || !message.mapStringInt64)
+                            message.mapStringInt64 = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = 0;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.int64();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapStringInt64[key] = value;
+                        break;
                     }
-                    message.mapStringInt64[key] = value;
-                    break;
-                case 4:
-                    if (message.mapStringBool === $util.emptyObject || !message.mapStringBool)
-                        message.mapStringBool = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = false;
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = reader.bool();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 4: {
+                        if (message.mapStringBool === $util.emptyObject || !message.mapStringBool)
+                            message.mapStringBool = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = false;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.bool();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapStringBool[key] = value;
+                        break;
                     }
-                    message.mapStringBool[key] = value;
-                    break;
-                case 5:
-                    if (message.mapStringDouble === $util.emptyObject || !message.mapStringDouble)
-                        message.mapStringDouble = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = 0;
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = reader.double();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 5: {
+                        if (message.mapStringDouble === $util.emptyObject || !message.mapStringDouble)
+                            message.mapStringDouble = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = 0;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.double();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapStringDouble[key] = value;
+                        break;
                     }
-                    message.mapStringDouble[key] = value;
-                    break;
-                case 6:
-                    if (message.mapStringEnum === $util.emptyObject || !message.mapStringEnum)
-                        message.mapStringEnum = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = 0;
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = reader.int32();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 6: {
+                        if (message.mapStringEnum === $util.emptyObject || !message.mapStringEnum)
+                            message.mapStringEnum = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = 0;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = reader.int32();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapStringEnum[key] = value;
+                        break;
                     }
-                    message.mapStringEnum[key] = value;
-                    break;
-                case 7:
-                    if (message.mapStringMsg === $util.emptyObject || !message.mapStringMsg)
-                        message.mapStringMsg = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = null;
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = jspb.test.MapValueMessageNoBinary.decode(reader, reader.uint32());
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 7: {
+                        if (message.mapStringMsg === $util.emptyObject || !message.mapStringMsg)
+                            message.mapStringMsg = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = null;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = jspb.test.MapValueMessageNoBinary.decode(reader, reader.uint32());
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapStringMsg[key] = value;
+                        break;
                     }
-                    message.mapStringMsg[key] = value;
-                    break;
-                case 8:
-                    if (message.mapInt32String === $util.emptyObject || !message.mapInt32String)
-                        message.mapInt32String = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = 0;
-                    value = "";
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.int32();
-                            break;
-                        case 2:
-                            value = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 8: {
+                        if (message.mapInt32String === $util.emptyObject || !message.mapInt32String)
+                            message.mapInt32String = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = 0;
+                        value = "";
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.int32();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapInt32String[key] = value;
+                        break;
                     }
-                    message.mapInt32String[key] = value;
-                    break;
-                case 9:
-                    if (message.mapInt64String === $util.emptyObject || !message.mapInt64String)
-                        message.mapInt64String = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = 0;
-                    value = "";
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.int64();
-                            break;
-                        case 2:
-                            value = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 9: {
+                        if (message.mapInt64String === $util.emptyObject || !message.mapInt64String)
+                            message.mapInt64String = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = 0;
+                        value = "";
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.int64();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = value;
+                        break;
                     }
-                    message.mapInt64String[typeof key === "object" ? $util.longToHash(key) : key] = value;
-                    break;
-                case 10:
-                    if (message.mapBoolString === $util.emptyObject || !message.mapBoolString)
-                        message.mapBoolString = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = false;
-                    value = "";
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.bool();
-                            break;
-                        case 2:
-                            value = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 10: {
+                        if (message.mapBoolString === $util.emptyObject || !message.mapBoolString)
+                            message.mapBoolString = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = false;
+                        value = "";
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.bool();
+                                break;
+                            case 2:
+                                value = reader.string();
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapBoolString[key] = value;
+                        break;
                     }
-                    message.mapBoolString[key] = value;
-                    break;
-                case 11:
-                    message.testMapFields = jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
-                    break;
-                case 12:
-                    if (message.mapStringTestmapfields === $util.emptyObject || !message.mapStringTestmapfields)
-                        message.mapStringTestmapfields = {};
-                    var end2 = reader.uint32() + reader.pos;
-                    key = "";
-                    value = null;
-                    while (reader.pos < end2) {
-                        var tag2 = reader.uint32();
-                        switch (tag2 >>> 3) {
-                        case 1:
-                            key = reader.string();
-                            break;
-                        case 2:
-                            value = jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
-                            break;
-                        default:
-                            reader.skipType(tag2 & 7);
-                            break;
+                case 11: {
+                        message.testMapFields = jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 12: {
+                        if (message.mapStringTestmapfields === $util.emptyObject || !message.mapStringTestmapfields)
+                            message.mapStringTestmapfields = {};
+                        let end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = null;
+                        while (reader.pos < end2) {
+                            let tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = jspb.test.TestMapFieldsNoBinary.decode(reader, reader.uint32());
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
                         }
+                        message.mapStringTestmapfields[key] = value;
+                        break;
                     }
-                    message.mapStringTestmapfields[key] = value;
-                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -6074,10 +6155,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): TestMapFieldsNoBinary {
+        static decodeDelimited(reader: $Reader|Uint8Array): TestMapFieldsNoBinary {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -6093,48 +6174,48 @@ export namespace jspb.test {
             if (message.mapStringString != null && message.hasOwnProperty("mapStringString")) {
                 if (!$util.isObject(message.mapStringString))
                     return "mapStringString: object expected";
-                var key = Object.keys(message.mapStringString);
-                for (var i = 0; i < key.length; ++i)
+                let key = Object.keys(message.mapStringString);
+                for (let i = 0; i < key.length; ++i)
                     if (!$util.isString(message.mapStringString[key[i]]))
                         return "mapStringString: string{k:string} expected";
             }
             if (message.mapStringInt32 != null && message.hasOwnProperty("mapStringInt32")) {
                 if (!$util.isObject(message.mapStringInt32))
                     return "mapStringInt32: object expected";
-                var key = Object.keys(message.mapStringInt32);
-                for (var i = 0; i < key.length; ++i)
+                let key = Object.keys(message.mapStringInt32);
+                for (let i = 0; i < key.length; ++i)
                     if (!$util.isInteger(message.mapStringInt32[key[i]]))
                         return "mapStringInt32: integer{k:string} expected";
             }
             if (message.mapStringInt64 != null && message.hasOwnProperty("mapStringInt64")) {
                 if (!$util.isObject(message.mapStringInt64))
                     return "mapStringInt64: object expected";
-                var key = Object.keys(message.mapStringInt64);
-                for (var i = 0; i < key.length; ++i)
+                let key = Object.keys(message.mapStringInt64);
+                for (let i = 0; i < key.length; ++i)
                     if (!$util.isInteger(message.mapStringInt64[key[i]]) && !(message.mapStringInt64[key[i]] && $util.isInteger(message.mapStringInt64[key[i]].low) && $util.isInteger(message.mapStringInt64[key[i]].high)))
                         return "mapStringInt64: integer|Long{k:string} expected";
             }
             if (message.mapStringBool != null && message.hasOwnProperty("mapStringBool")) {
                 if (!$util.isObject(message.mapStringBool))
                     return "mapStringBool: object expected";
-                var key = Object.keys(message.mapStringBool);
-                for (var i = 0; i < key.length; ++i)
+                let key = Object.keys(message.mapStringBool);
+                for (let i = 0; i < key.length; ++i)
                     if (typeof message.mapStringBool[key[i]] !== "boolean")
                         return "mapStringBool: boolean{k:string} expected";
             }
             if (message.mapStringDouble != null && message.hasOwnProperty("mapStringDouble")) {
                 if (!$util.isObject(message.mapStringDouble))
                     return "mapStringDouble: object expected";
-                var key = Object.keys(message.mapStringDouble);
-                for (var i = 0; i < key.length; ++i)
+                let key = Object.keys(message.mapStringDouble);
+                for (let i = 0; i < key.length; ++i)
                     if (typeof message.mapStringDouble[key[i]] !== "number")
                         return "mapStringDouble: number{k:string} expected";
             }
             if (message.mapStringEnum != null && message.hasOwnProperty("mapStringEnum")) {
                 if (!$util.isObject(message.mapStringEnum))
                     return "mapStringEnum: object expected";
-                var key = Object.keys(message.mapStringEnum);
-                for (var i = 0; i < key.length; ++i)
+                let key = Object.keys(message.mapStringEnum);
+                for (let i = 0; i < key.length; ++i)
                     switch (message.mapStringEnum[key[i]]) {
                     default:
                         return "mapStringEnum: enum value{k:string} expected";
@@ -6147,9 +6228,9 @@ export namespace jspb.test {
             if (message.mapStringMsg != null && message.hasOwnProperty("mapStringMsg")) {
                 if (!$util.isObject(message.mapStringMsg))
                     return "mapStringMsg: object expected";
-                var key = Object.keys(message.mapStringMsg);
-                for (var i = 0; i < key.length; ++i) {
-                    var error = jspb.test.MapValueMessageNoBinary.verify(message.mapStringMsg[key[i]]);
+                let key = Object.keys(message.mapStringMsg);
+                for (let i = 0; i < key.length; ++i) {
+                    let error = jspb.test.MapValueMessageNoBinary.verify(message.mapStringMsg[key[i]]);
                     if (error)
                         return "mapStringMsg." + error;
                 }
@@ -6157,8 +6238,8 @@ export namespace jspb.test {
             if (message.mapInt32String != null && message.hasOwnProperty("mapInt32String")) {
                 if (!$util.isObject(message.mapInt32String))
                     return "mapInt32String: object expected";
-                var key = Object.keys(message.mapInt32String);
-                for (var i = 0; i < key.length; ++i) {
+                let key = Object.keys(message.mapInt32String);
+                for (let i = 0; i < key.length; ++i) {
                     if (!$util.key32Re.test(key[i]))
                         return "mapInt32String: integer key{k:int32} expected";
                     if (!$util.isString(message.mapInt32String[key[i]]))
@@ -6168,8 +6249,8 @@ export namespace jspb.test {
             if (message.mapInt64String != null && message.hasOwnProperty("mapInt64String")) {
                 if (!$util.isObject(message.mapInt64String))
                     return "mapInt64String: object expected";
-                var key = Object.keys(message.mapInt64String);
-                for (var i = 0; i < key.length; ++i) {
+                let key = Object.keys(message.mapInt64String);
+                for (let i = 0; i < key.length; ++i) {
                     if (!$util.key64Re.test(key[i]))
                         return "mapInt64String: integer|Long key{k:int64} expected";
                     if (!$util.isString(message.mapInt64String[key[i]]))
@@ -6179,8 +6260,8 @@ export namespace jspb.test {
             if (message.mapBoolString != null && message.hasOwnProperty("mapBoolString")) {
                 if (!$util.isObject(message.mapBoolString))
                     return "mapBoolString: object expected";
-                var key = Object.keys(message.mapBoolString);
-                for (var i = 0; i < key.length; ++i) {
+                let key = Object.keys(message.mapBoolString);
+                for (let i = 0; i < key.length; ++i) {
                     if (!$util.key2Re.test(key[i]))
                         return "mapBoolString: boolean key{k:bool} expected";
                     if (!$util.isString(message.mapBoolString[key[i]]))
@@ -6188,16 +6269,16 @@ export namespace jspb.test {
                 }
             }
             if (message.testMapFields != null && message.hasOwnProperty("testMapFields")) {
-                var error = jspb.test.TestMapFieldsNoBinary.verify(message.testMapFields);
+                let error = jspb.test.TestMapFieldsNoBinary.verify(message.testMapFields);
                 if (error)
                     return "testMapFields." + error;
             }
             if (message.mapStringTestmapfields != null && message.hasOwnProperty("mapStringTestmapfields")) {
                 if (!$util.isObject(message.mapStringTestmapfields))
                     return "mapStringTestmapfields: object expected";
-                var key = Object.keys(message.mapStringTestmapfields);
-                for (var i = 0; i < key.length; ++i) {
-                    var error = jspb.test.TestMapFieldsNoBinary.verify(message.mapStringTestmapfields[key[i]]);
+                let key = Object.keys(message.mapStringTestmapfields);
+                for (let i = 0; i < key.length; ++i) {
+                    let error = jspb.test.TestMapFieldsNoBinary.verify(message.mapStringTestmapfields[key[i]]);
                     if (error)
                         return "mapStringTestmapfields." + error;
                 }
@@ -6214,54 +6295,47 @@ export namespace jspb.test {
         static fromObject(object): ITestMapFieldsNoBinary {
             if (object instanceof jspb.test.TestMapFieldsNoBinary)
                 return object;
-            var message = new jspb.test.TestMapFieldsNoBinary();
+            let message = new jspb.test.TestMapFieldsNoBinary();
             if (object.mapStringString) {
                 if (typeof object.mapStringString !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringString: object expected");
                 message.mapStringString = {};
-                for (var keys = Object.keys(object.mapStringString), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(object.mapStringString), i = 0; i < keys.length; ++i)
                     message.mapStringString[keys[i]] = String(object.mapStringString[keys[i]]);
             }
             if (object.mapStringInt32) {
                 if (typeof object.mapStringInt32 !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringInt32: object expected");
                 message.mapStringInt32 = {};
-                for (var keys = Object.keys(object.mapStringInt32), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(object.mapStringInt32), i = 0; i < keys.length; ++i)
                     message.mapStringInt32[keys[i]] = object.mapStringInt32[keys[i]] | 0;
             }
             if (object.mapStringInt64) {
                 if (typeof object.mapStringInt64 !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringInt64: object expected");
                 message.mapStringInt64 = {};
-                for (var keys = Object.keys(object.mapStringInt64), i = 0; i < keys.length; ++i)
-                    if ($util.Long)
-                        (message.mapStringInt64[keys[i]] = ($util.Long as any).fromValue(object.mapStringInt64[keys[i]])).unsigned = false;
-                    else if (typeof object.mapStringInt64[keys[i]] === "string")
-                        message.mapStringInt64[keys[i]] = parseInt(object.mapStringInt64[keys[i]], 10);
-                    else if (typeof object.mapStringInt64[keys[i]] === "number")
-                        message.mapStringInt64[keys[i]] = object.mapStringInt64[keys[i]];
-                    else if (typeof object.mapStringInt64[keys[i]] === "object")
-                        message.mapStringInt64[keys[i]] = new $util.LongBits(object.mapStringInt64[keys[i]]).toNumber();
+                for (let keys = Object.keys(object.mapStringInt64), i = 0; i < keys.length; ++i)
+                    message.mapStringInt64[keys[i]] = $util.longValue(object.mapStringInt64[keys[i]], false);
             }
             if (object.mapStringBool) {
                 if (typeof object.mapStringBool !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringBool: object expected");
                 message.mapStringBool = {};
-                for (var keys = Object.keys(object.mapStringBool), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(object.mapStringBool), i = 0; i < keys.length; ++i)
                     message.mapStringBool[keys[i]] = Boolean(object.mapStringBool[keys[i]]);
             }
             if (object.mapStringDouble) {
                 if (typeof object.mapStringDouble !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringDouble: object expected");
                 message.mapStringDouble = {};
-                for (var keys = Object.keys(object.mapStringDouble), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(object.mapStringDouble), i = 0; i < keys.length; ++i)
                     message.mapStringDouble[keys[i]] = Number(object.mapStringDouble[keys[i]]);
             }
             if (object.mapStringEnum) {
                 if (typeof object.mapStringEnum !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringEnum: object expected");
                 message.mapStringEnum = {};
-                for (var keys = Object.keys(object.mapStringEnum), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(object.mapStringEnum), i = 0; i < keys.length; ++i)
                     switch (object.mapStringEnum[keys[i]]) {
                     case "MAP_VALUE_FOO_NOBINARY":
                     case 0:
@@ -6281,7 +6355,7 @@ export namespace jspb.test {
                 if (typeof object.mapStringMsg !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringMsg: object expected");
                 message.mapStringMsg = {};
-                for (var keys = Object.keys(object.mapStringMsg), i = 0; i < keys.length; ++i) {
+                for (let keys = Object.keys(object.mapStringMsg), i = 0; i < keys.length; ++i) {
                     if (typeof object.mapStringMsg[keys[i]] !== "object")
                         throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringMsg: object expected");
                     message.mapStringMsg[keys[i]] = jspb.test.MapValueMessageNoBinary.fromObject(object.mapStringMsg[keys[i]]);
@@ -6291,21 +6365,21 @@ export namespace jspb.test {
                 if (typeof object.mapInt32String !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapInt32String: object expected");
                 message.mapInt32String = {};
-                for (var keys = Object.keys(object.mapInt32String), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(object.mapInt32String), i = 0; i < keys.length; ++i)
                     message.mapInt32String[keys[i]] = String(object.mapInt32String[keys[i]]);
             }
             if (object.mapInt64String) {
                 if (typeof object.mapInt64String !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapInt64String: object expected");
                 message.mapInt64String = {};
-                for (var keys = Object.keys(object.mapInt64String), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(object.mapInt64String), i = 0; i < keys.length; ++i)
                     message.mapInt64String[keys[i]] = String(object.mapInt64String[keys[i]]);
             }
             if (object.mapBoolString) {
                 if (typeof object.mapBoolString !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapBoolString: object expected");
                 message.mapBoolString = {};
-                for (var keys = Object.keys(object.mapBoolString), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(object.mapBoolString), i = 0; i < keys.length; ++i)
                     message.mapBoolString[keys[i]] = String(object.mapBoolString[keys[i]]);
             }
             if (object.testMapFields != null) {
@@ -6317,7 +6391,7 @@ export namespace jspb.test {
                 if (typeof object.mapStringTestmapfields !== "object")
                     throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringTestmapfields: object expected");
                 message.mapStringTestmapfields = {};
-                for (var keys = Object.keys(object.mapStringTestmapfields), i = 0; i < keys.length; ++i) {
+                for (let keys = Object.keys(object.mapStringTestmapfields), i = 0; i < keys.length; ++i) {
                     if (typeof object.mapStringTestmapfields[keys[i]] !== "object")
                         throw TypeError(".jspb.test.TestMapFieldsNoBinary.mapStringTestmapfields: object expected");
                     message.mapStringTestmapfields[keys[i]] = jspb.test.TestMapFieldsNoBinary.fromObject(object.mapStringTestmapfields[keys[i]]);
@@ -6332,7 +6406,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ITestMapFieldsNoBinary, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ITestMapFieldsNoBinary, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.objects || options.defaults) {
                 object.mapStringString = {};
@@ -6349,20 +6423,20 @@ export namespace jspb.test {
             }
             if (options.defaults)
                 object.testMapFields = null;
-            var keys2;
+            let keys2;
             if (message.mapStringString && (keys2 = Object.keys(message.mapStringString)).length) {
                 object.mapStringString = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapStringString[keys2[j]] = message.mapStringString[keys2[j]];
             }
             if (message.mapStringInt32 && (keys2 = Object.keys(message.mapStringInt32)).length) {
                 object.mapStringInt32 = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapStringInt32[keys2[j]] = message.mapStringInt32[keys2[j]];
             }
             if (message.mapStringInt64 && (keys2 = Object.keys(message.mapStringInt64)).length) {
                 object.mapStringInt64 = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     if (typeof message.mapStringInt64[keys2[j]] === "number")
                         object.mapStringInt64[keys2[j]] = options.longs === String ? String(message.mapStringInt64[keys2[j]]) : message.mapStringInt64[keys2[j]];
                     else
@@ -6370,44 +6444,44 @@ export namespace jspb.test {
             }
             if (message.mapStringBool && (keys2 = Object.keys(message.mapStringBool)).length) {
                 object.mapStringBool = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapStringBool[keys2[j]] = message.mapStringBool[keys2[j]];
             }
             if (message.mapStringDouble && (keys2 = Object.keys(message.mapStringDouble)).length) {
                 object.mapStringDouble = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapStringDouble[keys2[j]] = options.json && !isFinite(message.mapStringDouble[keys2[j]]) ? String(message.mapStringDouble[keys2[j]]) : message.mapStringDouble[keys2[j]];
             }
             if (message.mapStringEnum && (keys2 = Object.keys(message.mapStringEnum)).length) {
                 object.mapStringEnum = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapStringEnum[keys2[j]] = options.enums === String ? jspb.test.MapValueEnumNoBinary[message.mapStringEnum[keys2[j]]] : message.mapStringEnum[keys2[j]];
             }
             if (message.mapStringMsg && (keys2 = Object.keys(message.mapStringMsg)).length) {
                 object.mapStringMsg = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapStringMsg[keys2[j]] = jspb.test.MapValueMessageNoBinary.toObject(message.mapStringMsg[keys2[j]], options);
             }
             if (message.mapInt32String && (keys2 = Object.keys(message.mapInt32String)).length) {
                 object.mapInt32String = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapInt32String[keys2[j]] = message.mapInt32String[keys2[j]];
             }
             if (message.mapInt64String && (keys2 = Object.keys(message.mapInt64String)).length) {
                 object.mapInt64String = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapInt64String[keys2[j]] = message.mapInt64String[keys2[j]];
             }
             if (message.mapBoolString && (keys2 = Object.keys(message.mapBoolString)).length) {
                 object.mapBoolString = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapBoolString[keys2[j]] = message.mapBoolString[keys2[j]];
             }
             if (message.testMapFields != null && message.hasOwnProperty("testMapFields"))
                 object.testMapFields = jspb.test.TestMapFieldsNoBinary.toObject(message.testMapFields, options);
             if (message.mapStringTestmapfields && (keys2 = Object.keys(message.mapStringTestmapfields)).length) {
                 object.mapStringTestmapfields = {};
-                for (var j = 0; j < keys2.length; ++j)
+                for (let j = 0; j < keys2.length; ++j)
                     object.mapStringTestmapfields[keys2[j]] = jspb.test.TestMapFieldsNoBinary.toObject(message.mapStringTestmapfields[keys2[j]], options);
             }
             return object;
@@ -6417,7 +6491,7 @@ export namespace jspb.test {
          * Converts this TestMapFieldsNoBinary to JSON.
          */
         toJSON() {
-            return TestMapFieldsNoBinary.toObject(this, $protobuf.util.toJSONOptions);
+            return TestMapFieldsNoBinary.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -6480,7 +6554,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IMapValueMessageNoBinary) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -6496,10 +6570,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified MapValueMessageNoBinary message. Does not implicitly {@link MapValueMessageNoBinary.verify|verify} messages.
-         * @param message MapValueMessageNoBinarymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IMapValueMessageNoBinary, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.foo != null && Object.hasOwnProperty.call(message, "foo"))
@@ -6509,10 +6583,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified MapValueMessageNoBinary message, length delimited. Does not implicitly {@link MapValueMessageNoBinary.verify|verify} messages.
-         * @param message MapValueMessageNoBinarymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IMapValueMessageNoBinary, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IMapValueMessageNoBinary, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -6525,16 +6599,17 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MapValueMessageNoBinary {
+        static decode(reader: $Reader|Uint8Array, length?: number): MapValueMessageNoBinary {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.MapValueMessageNoBinary();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.MapValueMessageNoBinary();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.foo = reader.int32();
-                    break;
+                case 1: {
+                        message.foo = reader.int32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -6549,10 +6624,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MapValueMessageNoBinary {
+        static decodeDelimited(reader: $Reader|Uint8Array): MapValueMessageNoBinary {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -6580,7 +6655,7 @@ export namespace jspb.test {
         static fromObject(object): IMapValueMessageNoBinary {
             if (object instanceof jspb.test.MapValueMessageNoBinary)
                 return object;
-            var message = new jspb.test.MapValueMessageNoBinary();
+            let message = new jspb.test.MapValueMessageNoBinary();
             if (object.foo != null)
                 message.foo = object.foo | 0;
             return message;
@@ -6592,7 +6667,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IMapValueMessageNoBinary, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IMapValueMessageNoBinary, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults)
                 object.foo = 0;
@@ -6605,7 +6680,7 @@ export namespace jspb.test {
          * Converts this MapValueMessageNoBinary to JSON.
          */
         toJSON() {
-            return MapValueMessageNoBinary.toObject(this, $protobuf.util.toJSONOptions);
+            return MapValueMessageNoBinary.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -6638,7 +6713,7 @@ export namespace jspb.test {
          */
         constructor(properties?: IDeeply) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -6654,10 +6729,10 @@ export namespace jspb.test {
         // #region encode
         /**
          * Encodes the specified Deeply message. Does not implicitly {@link Deeply.verify|verify} messages.
-         * @param message Deeplymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IDeeply, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
@@ -6665,10 +6740,10 @@ export namespace jspb.test {
 
         /**
          * Encodes the specified Deeply message, length delimited. Does not implicitly {@link Deeply.verify|verify} messages.
-         * @param message Deeplymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IDeeply, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IDeeply, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -6681,12 +6756,12 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Deeply {
+        static decode(reader: $Reader|Uint8Array, length?: number): Deeply {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
                     reader.skipType(tag & 7);
@@ -6702,10 +6777,10 @@ export namespace jspb.test {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Deeply {
+        static decodeDelimited(reader: $Reader|Uint8Array): Deeply {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -6739,7 +6814,7 @@ export namespace jspb.test {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IDeeply, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IDeeply, options: $IConversionOptions = {}) {
             return {};
         }
 
@@ -6747,7 +6822,7 @@ export namespace jspb.test {
          * Converts this Deeply to JSON.
          */
         toJSON() {
-            return Deeply.toObject(this, $protobuf.util.toJSONOptions);
+            return Deeply.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -6781,7 +6856,7 @@ export namespace jspb.test {
              */
             constructor(properties?: INested) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -6797,10 +6872,10 @@ export namespace jspb.test {
             // #region encode
             /**
              * Encodes the specified Nested message. Does not implicitly {@link Nested.verify|verify} messages.
-             * @param message Nestedmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: INested, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 return writer;
@@ -6808,10 +6883,10 @@ export namespace jspb.test {
 
             /**
              * Encodes the specified Nested message, length delimited. Does not implicitly {@link Nested.verify|verify} messages.
-             * @param message Nestedmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: INested, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: INested, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -6824,12 +6899,12 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Nested {
+            static decode(reader: $Reader|Uint8Array, length?: number): Nested {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply.Nested();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply.Nested();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
                     default:
                         reader.skipType(tag & 7);
@@ -6845,10 +6920,10 @@ export namespace jspb.test {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Nested {
+            static decodeDelimited(reader: $Reader|Uint8Array): Nested {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -6882,7 +6957,7 @@ export namespace jspb.test {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: INested, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: INested, options: $IConversionOptions = {}) {
                 return {};
             }
 
@@ -6890,7 +6965,7 @@ export namespace jspb.test {
              * Converts this Nested to JSON.
              */
             toJSON() {
-                return Nested.toObject(this, $protobuf.util.toJSONOptions);
+                return Nested.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -6926,7 +7001,7 @@ export namespace jspb.test {
                  */
                 constructor(properties?: IMessage) {
                     if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
                                 this[keys[i]] = properties[keys[i]];
                 }
@@ -6942,10 +7017,10 @@ export namespace jspb.test {
                 // #region encode
                 /**
                  * Encodes the specified Message message. Does not implicitly {@link Message.verify|verify} messages.
-                 * @param message Messagemessage or plain object to encode
-                 * @param writer Writer to encode to
+                 * @param message message or plain object to encode
+                 * @param writer to encode to
                  */
-                static encode(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+                static encode(message: IMessage, writer?: $Writer): $Writer {
                     if (!writer)
                         writer = $Writer.create();
                     if (message.count != null && Object.hasOwnProperty.call(message, "count"))
@@ -6955,10 +7030,10 @@ export namespace jspb.test {
 
                 /**
                  * Encodes the specified Message message, length delimited. Does not implicitly {@link Message.verify|verify} messages.
-                 * @param message Messagemessage or plain object to encode
-                 * @param writer Writer to encode to
+                 * @param message message or plain object to encode
+                 * @param writer to encode to
                  */
-                static encodeDelimited(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+                static encodeDelimited(message: IMessage, writer?: $Writer): $Writer {
                     return this.encode(message, writer).ldelim();
                 }
                 // #endregion
@@ -6971,16 +7046,17 @@ export namespace jspb.test {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Message {
+                static decode(reader: $Reader|Uint8Array, length?: number): Message {
                     if (!(reader instanceof $Reader))
                         reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply.Nested.Message();
+                    let end = length === undefined ? reader.len : reader.pos + length, message = new jspb.test.Deeply.Nested.Message();
                     while (reader.pos < end) {
-                        var tag = reader.uint32();
+                        let tag = reader.uint32();
                         switch (tag >>> 3) {
-                        case 1:
-                            message.count = reader.int32();
-                            break;
+                        case 1: {
+                                message.count = reader.int32();
+                                break;
+                            }
                         default:
                             reader.skipType(tag & 7);
                             break;
@@ -6995,10 +7071,10 @@ export namespace jspb.test {
                  * @throws {Error} If the payload is not a reader or valid buffer
                  * @throws {$protobuf.util.ProtocolError} If required fields are missing
                  */
-                static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Message {
+                static decodeDelimited(reader: $Reader|Uint8Array): Message {
                     if (!(reader instanceof $Reader))
                         reader = new $Reader(reader);
-                    return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                    return this.decode(reader, (reader as $Reader).uint32());
                 }
                 // #endregion
 
@@ -7026,7 +7102,7 @@ export namespace jspb.test {
                 static fromObject(object): IMessage {
                     if (object instanceof jspb.test.Deeply.Nested.Message)
                         return object;
-                    var message = new jspb.test.Deeply.Nested.Message();
+                    let message = new jspb.test.Deeply.Nested.Message();
                     if (object.count != null)
                         message.count = object.count | 0;
                     return message;
@@ -7038,7 +7114,7 @@ export namespace jspb.test {
                  * @param optionsConversion options
                  * @returns Plain object
                  */
-                static toObject(message: IMessage, options: $protobuf.IConversionOptions = {}) {
+                static toObject(message: IMessage, options: $IConversionOptions = {}) {
                     let object: any = {};
                     if (options.defaults)
                         object.count = 0;
@@ -7051,7 +7127,7 @@ export namespace jspb.test {
                  * Converts this Message to JSON.
                  */
                 toJSON() {
-                    return Message.toObject(this, $protobuf.util.toJSONOptions);
+                    return Message.toObject(this, $util.toJSONOptions);
                 };
                 // #endregion
 
@@ -7094,7 +7170,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IFileDescriptorSet) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -7110,24 +7186,24 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified FileDescriptorSet message. Does not implicitly {@link FileDescriptorSet.verify|verify} messages.
-         * @param message FileDescriptorSetmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IFileDescriptorSet, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFileDescriptorSet, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.file != null && message.file.length)
-                for (var i = 0; i < message.file.length; ++i)
+                for (let i = 0; i < message.file.length; ++i)
                     google.protobuf.FileDescriptorProto.encode(message.file[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified FileDescriptorSet message, length delimited. Does not implicitly {@link FileDescriptorSet.verify|verify} messages.
-         * @param message FileDescriptorSetmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IFileDescriptorSet, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFileDescriptorSet, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -7140,18 +7216,19 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FileDescriptorSet {
+        static decode(reader: $Reader|Uint8Array, length?: number): FileDescriptorSet {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileDescriptorSet();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileDescriptorSet();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    if (!(message.file && message.file.length))
-                        message.file = [];
-                    message.file.push(google.protobuf.FileDescriptorProto.decode(reader, reader.uint32()));
-                    break;
+                case 1: {
+                        if (!(message.file && message.file.length))
+                            message.file = [];
+                        message.file.push(google.protobuf.FileDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -7166,10 +7243,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FileDescriptorSet {
+        static decodeDelimited(reader: $Reader|Uint8Array): FileDescriptorSet {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -7185,8 +7262,8 @@ export namespace google.protobuf {
             if (message.file != null && message.hasOwnProperty("file")) {
                 if (!Array.isArray(message.file))
                     return "file: array expected";
-                for (var i = 0; i < message.file.length; ++i) {
-                    var error = google.protobuf.FileDescriptorProto.verify(message.file[i]);
+                for (let i = 0; i < message.file.length; ++i) {
+                    let error = google.protobuf.FileDescriptorProto.verify(message.file[i]);
                     if (error)
                         return "file." + error;
                 }
@@ -7203,12 +7280,12 @@ export namespace google.protobuf {
         static fromObject(object): IFileDescriptorSet {
             if (object instanceof google.protobuf.FileDescriptorSet)
                 return object;
-            var message = new google.protobuf.FileDescriptorSet();
+            let message = new google.protobuf.FileDescriptorSet();
             if (object.file) {
                 if (!Array.isArray(object.file))
                     throw TypeError(".google.protobuf.FileDescriptorSet.file: array expected");
                 message.file = [];
-                for (var i = 0; i < object.file.length; ++i) {
+                for (let i = 0; i < object.file.length; ++i) {
                     if (typeof object.file[i] !== "object")
                         throw TypeError(".google.protobuf.FileDescriptorSet.file: object expected");
                     message.file[i] = google.protobuf.FileDescriptorProto.fromObject(object.file[i]);
@@ -7223,13 +7300,13 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IFileDescriptorSet, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFileDescriptorSet, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.file = [];
             if (message.file && message.file.length) {
                 object.file = [];
-                for (var j = 0; j < message.file.length; ++j)
+                for (let j = 0; j < message.file.length; ++j)
                     object.file[j] = google.protobuf.FileDescriptorProto.toObject(message.file[j], options);
             }
             return object;
@@ -7239,7 +7316,7 @@ export namespace google.protobuf {
          * Converts this FileDescriptorSet to JSON.
          */
         toJSON() {
-            return FileDescriptorSet.toObject(this, $protobuf.util.toJSONOptions);
+            return FileDescriptorSet.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -7298,7 +7375,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IFileDescriptorProto) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -7314,10 +7391,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified FileDescriptorProto message. Does not implicitly {@link FileDescriptorProto.verify|verify} messages.
-         * @param message FileDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IFileDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFileDescriptorProto, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -7325,29 +7402,29 @@ export namespace google.protobuf {
             if (message["package"] != null && Object.hasOwnProperty.call(message, "package"))
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message["package"]);
             if (message.dependency != null && message.dependency.length)
-                for (var i = 0; i < message.dependency.length; ++i)
+                for (let i = 0; i < message.dependency.length; ++i)
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.dependency[i]);
             if (message.messageType != null && message.messageType.length)
-                for (var i = 0; i < message.messageType.length; ++i)
+                for (let i = 0; i < message.messageType.length; ++i)
                     google.protobuf.DescriptorProto.encode(message.messageType[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.enumType != null && message.enumType.length)
-                for (var i = 0; i < message.enumType.length; ++i)
+                for (let i = 0; i < message.enumType.length; ++i)
                     google.protobuf.EnumDescriptorProto.encode(message.enumType[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             if (message.service != null && message.service.length)
-                for (var i = 0; i < message.service.length; ++i)
+                for (let i = 0; i < message.service.length; ++i)
                     google.protobuf.ServiceDescriptorProto.encode(message.service[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
             if (message.extension != null && message.extension.length)
-                for (var i = 0; i < message.extension.length; ++i)
+                for (let i = 0; i < message.extension.length; ++i)
                     google.protobuf.FieldDescriptorProto.encode(message.extension[i], writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
             if (message.options != null && Object.hasOwnProperty.call(message, "options"))
                 google.protobuf.FileOptions.encode(message.options, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
             if (message.sourceCodeInfo != null && Object.hasOwnProperty.call(message, "sourceCodeInfo"))
                 google.protobuf.SourceCodeInfo.encode(message.sourceCodeInfo, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
             if (message.publicDependency != null && message.publicDependency.length)
-                for (var i = 0; i < message.publicDependency.length; ++i)
+                for (let i = 0; i < message.publicDependency.length; ++i)
                     writer.uint32(/* id 10, wireType 0 =*/80).int32(message.publicDependency[i]);
             if (message.weakDependency != null && message.weakDependency.length)
-                for (var i = 0; i < message.weakDependency.length; ++i)
+                for (let i = 0; i < message.weakDependency.length; ++i)
                     writer.uint32(/* id 11, wireType 0 =*/88).int32(message.weakDependency[i]);
             if (message.syntax != null && Object.hasOwnProperty.call(message, "syntax"))
                 writer.uint32(/* id 12, wireType 2 =*/98).string(message.syntax);
@@ -7356,10 +7433,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified FileDescriptorProto message, length delimited. Does not implicitly {@link FileDescriptorProto.verify|verify} messages.
-         * @param message FileDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IFileDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFileDescriptorProto, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -7372,73 +7449,85 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FileDescriptorProto {
+        static decode(reader: $Reader|Uint8Array, length?: number): FileDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileDescriptorProto();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileDescriptorProto();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 2:
-                    message["package"] = reader.string();
-                    break;
-                case 3:
-                    if (!(message.dependency && message.dependency.length))
-                        message.dependency = [];
-                    message.dependency.push(reader.string());
-                    break;
-                case 10:
-                    if (!(message.publicDependency && message.publicDependency.length))
-                        message.publicDependency = [];
-                    if ((tag & 7) === 2) {
-                        var end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message["package"] = reader.string();
+                        break;
+                    }
+                case 3: {
+                        if (!(message.dependency && message.dependency.length))
+                            message.dependency = [];
+                        message.dependency.push(reader.string());
+                        break;
+                    }
+                case 10: {
+                        if (!(message.publicDependency && message.publicDependency.length))
+                            message.publicDependency = [];
+                        if ((tag & 7) === 2) {
+                            let end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.publicDependency.push(reader.int32());
+                        } else
                             message.publicDependency.push(reader.int32());
-                    } else
-                        message.publicDependency.push(reader.int32());
-                    break;
-                case 11:
-                    if (!(message.weakDependency && message.weakDependency.length))
-                        message.weakDependency = [];
-                    if ((tag & 7) === 2) {
-                        var end2 = reader.uint32() + reader.pos;
-                        while (reader.pos < end2)
+                        break;
+                    }
+                case 11: {
+                        if (!(message.weakDependency && message.weakDependency.length))
+                            message.weakDependency = [];
+                        if ((tag & 7) === 2) {
+                            let end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.weakDependency.push(reader.int32());
+                        } else
                             message.weakDependency.push(reader.int32());
-                    } else
-                        message.weakDependency.push(reader.int32());
-                    break;
-                case 4:
-                    if (!(message.messageType && message.messageType.length))
-                        message.messageType = [];
-                    message.messageType.push(google.protobuf.DescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 5:
-                    if (!(message.enumType && message.enumType.length))
-                        message.enumType = [];
-                    message.enumType.push(google.protobuf.EnumDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 6:
-                    if (!(message.service && message.service.length))
-                        message.service = [];
-                    message.service.push(google.protobuf.ServiceDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 7:
-                    if (!(message.extension && message.extension.length))
-                        message.extension = [];
-                    message.extension.push(google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 8:
-                    message.options = google.protobuf.FileOptions.decode(reader, reader.uint32());
-                    break;
-                case 9:
-                    message.sourceCodeInfo = google.protobuf.SourceCodeInfo.decode(reader, reader.uint32());
-                    break;
-                case 12:
-                    message.syntax = reader.string();
-                    break;
+                        break;
+                    }
+                case 4: {
+                        if (!(message.messageType && message.messageType.length))
+                            message.messageType = [];
+                        message.messageType.push(google.protobuf.DescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        if (!(message.enumType && message.enumType.length))
+                            message.enumType = [];
+                        message.enumType.push(google.protobuf.EnumDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 6: {
+                        if (!(message.service && message.service.length))
+                            message.service = [];
+                        message.service.push(google.protobuf.ServiceDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 7: {
+                        if (!(message.extension && message.extension.length))
+                            message.extension = [];
+                        message.extension.push(google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 8: {
+                        message.options = google.protobuf.FileOptions.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 9: {
+                        message.sourceCodeInfo = google.protobuf.SourceCodeInfo.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 12: {
+                        message.syntax = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -7453,10 +7542,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FileDescriptorProto {
+        static decodeDelimited(reader: $Reader|Uint8Array): FileDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -7478,29 +7567,29 @@ export namespace google.protobuf {
             if (message.dependency != null && message.hasOwnProperty("dependency")) {
                 if (!Array.isArray(message.dependency))
                     return "dependency: array expected";
-                for (var i = 0; i < message.dependency.length; ++i)
+                for (let i = 0; i < message.dependency.length; ++i)
                     if (!$util.isString(message.dependency[i]))
                         return "dependency: string[] expected";
             }
             if (message.publicDependency != null && message.hasOwnProperty("publicDependency")) {
                 if (!Array.isArray(message.publicDependency))
                     return "publicDependency: array expected";
-                for (var i = 0; i < message.publicDependency.length; ++i)
+                for (let i = 0; i < message.publicDependency.length; ++i)
                     if (!$util.isInteger(message.publicDependency[i]))
                         return "publicDependency: integer[] expected";
             }
             if (message.weakDependency != null && message.hasOwnProperty("weakDependency")) {
                 if (!Array.isArray(message.weakDependency))
                     return "weakDependency: array expected";
-                for (var i = 0; i < message.weakDependency.length; ++i)
+                for (let i = 0; i < message.weakDependency.length; ++i)
                     if (!$util.isInteger(message.weakDependency[i]))
                         return "weakDependency: integer[] expected";
             }
             if (message.messageType != null && message.hasOwnProperty("messageType")) {
                 if (!Array.isArray(message.messageType))
                     return "messageType: array expected";
-                for (var i = 0; i < message.messageType.length; ++i) {
-                    var error = google.protobuf.DescriptorProto.verify(message.messageType[i]);
+                for (let i = 0; i < message.messageType.length; ++i) {
+                    let error = google.protobuf.DescriptorProto.verify(message.messageType[i]);
                     if (error)
                         return "messageType." + error;
                 }
@@ -7508,8 +7597,8 @@ export namespace google.protobuf {
             if (message.enumType != null && message.hasOwnProperty("enumType")) {
                 if (!Array.isArray(message.enumType))
                     return "enumType: array expected";
-                for (var i = 0; i < message.enumType.length; ++i) {
-                    var error = google.protobuf.EnumDescriptorProto.verify(message.enumType[i]);
+                for (let i = 0; i < message.enumType.length; ++i) {
+                    let error = google.protobuf.EnumDescriptorProto.verify(message.enumType[i]);
                     if (error)
                         return "enumType." + error;
                 }
@@ -7517,8 +7606,8 @@ export namespace google.protobuf {
             if (message.service != null && message.hasOwnProperty("service")) {
                 if (!Array.isArray(message.service))
                     return "service: array expected";
-                for (var i = 0; i < message.service.length; ++i) {
-                    var error = google.protobuf.ServiceDescriptorProto.verify(message.service[i]);
+                for (let i = 0; i < message.service.length; ++i) {
+                    let error = google.protobuf.ServiceDescriptorProto.verify(message.service[i]);
                     if (error)
                         return "service." + error;
                 }
@@ -7526,19 +7615,19 @@ export namespace google.protobuf {
             if (message.extension != null && message.hasOwnProperty("extension")) {
                 if (!Array.isArray(message.extension))
                     return "extension: array expected";
-                for (var i = 0; i < message.extension.length; ++i) {
-                    var error = google.protobuf.FieldDescriptorProto.verify(message.extension[i]);
+                for (let i = 0; i < message.extension.length; ++i) {
+                    let error = google.protobuf.FieldDescriptorProto.verify(message.extension[i]);
                     if (error)
                         return "extension." + error;
                 }
             }
             if (message.options != null && message.hasOwnProperty("options")) {
-                var error = google.protobuf.FileOptions.verify(message.options);
+                let error = google.protobuf.FileOptions.verify(message.options);
                 if (error)
                     return "options." + error;
             }
             if (message.sourceCodeInfo != null && message.hasOwnProperty("sourceCodeInfo")) {
-                var error = google.protobuf.SourceCodeInfo.verify(message.sourceCodeInfo);
+                let error = google.protobuf.SourceCodeInfo.verify(message.sourceCodeInfo);
                 if (error)
                     return "sourceCodeInfo." + error;
             }
@@ -7557,7 +7646,7 @@ export namespace google.protobuf {
         static fromObject(object): IFileDescriptorProto {
             if (object instanceof google.protobuf.FileDescriptorProto)
                 return object;
-            var message = new google.protobuf.FileDescriptorProto();
+            let message = new google.protobuf.FileDescriptorProto();
             if (object.name != null)
                 message.name = String(object.name);
             if (object["package"] != null)
@@ -7566,28 +7655,28 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.dependency))
                     throw TypeError(".google.protobuf.FileDescriptorProto.dependency: array expected");
                 message.dependency = [];
-                for (var i = 0; i < object.dependency.length; ++i)
+                for (let i = 0; i < object.dependency.length; ++i)
                     message.dependency[i] = String(object.dependency[i]);
             }
             if (object.publicDependency) {
                 if (!Array.isArray(object.publicDependency))
                     throw TypeError(".google.protobuf.FileDescriptorProto.publicDependency: array expected");
                 message.publicDependency = [];
-                for (var i = 0; i < object.publicDependency.length; ++i)
+                for (let i = 0; i < object.publicDependency.length; ++i)
                     message.publicDependency[i] = object.publicDependency[i] | 0;
             }
             if (object.weakDependency) {
                 if (!Array.isArray(object.weakDependency))
                     throw TypeError(".google.protobuf.FileDescriptorProto.weakDependency: array expected");
                 message.weakDependency = [];
-                for (var i = 0; i < object.weakDependency.length; ++i)
+                for (let i = 0; i < object.weakDependency.length; ++i)
                     message.weakDependency[i] = object.weakDependency[i] | 0;
             }
             if (object.messageType) {
                 if (!Array.isArray(object.messageType))
                     throw TypeError(".google.protobuf.FileDescriptorProto.messageType: array expected");
                 message.messageType = [];
-                for (var i = 0; i < object.messageType.length; ++i) {
+                for (let i = 0; i < object.messageType.length; ++i) {
                     if (typeof object.messageType[i] !== "object")
                         throw TypeError(".google.protobuf.FileDescriptorProto.messageType: object expected");
                     message.messageType[i] = google.protobuf.DescriptorProto.fromObject(object.messageType[i]);
@@ -7597,7 +7686,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.enumType))
                     throw TypeError(".google.protobuf.FileDescriptorProto.enumType: array expected");
                 message.enumType = [];
-                for (var i = 0; i < object.enumType.length; ++i) {
+                for (let i = 0; i < object.enumType.length; ++i) {
                     if (typeof object.enumType[i] !== "object")
                         throw TypeError(".google.protobuf.FileDescriptorProto.enumType: object expected");
                     message.enumType[i] = google.protobuf.EnumDescriptorProto.fromObject(object.enumType[i]);
@@ -7607,7 +7696,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.service))
                     throw TypeError(".google.protobuf.FileDescriptorProto.service: array expected");
                 message.service = [];
-                for (var i = 0; i < object.service.length; ++i) {
+                for (let i = 0; i < object.service.length; ++i) {
                     if (typeof object.service[i] !== "object")
                         throw TypeError(".google.protobuf.FileDescriptorProto.service: object expected");
                     message.service[i] = google.protobuf.ServiceDescriptorProto.fromObject(object.service[i]);
@@ -7617,7 +7706,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.extension))
                     throw TypeError(".google.protobuf.FileDescriptorProto.extension: array expected");
                 message.extension = [];
-                for (var i = 0; i < object.extension.length; ++i) {
+                for (let i = 0; i < object.extension.length; ++i) {
                     if (typeof object.extension[i] !== "object")
                         throw TypeError(".google.protobuf.FileDescriptorProto.extension: object expected");
                     message.extension[i] = google.protobuf.FieldDescriptorProto.fromObject(object.extension[i]);
@@ -7644,7 +7733,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IFileDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFileDescriptorProto, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.dependency = [];
@@ -7668,27 +7757,27 @@ export namespace google.protobuf {
                 object["package"] = message["package"];
             if (message.dependency && message.dependency.length) {
                 object.dependency = [];
-                for (var j = 0; j < message.dependency.length; ++j)
+                for (let j = 0; j < message.dependency.length; ++j)
                     object.dependency[j] = message.dependency[j];
             }
             if (message.messageType && message.messageType.length) {
                 object.messageType = [];
-                for (var j = 0; j < message.messageType.length; ++j)
+                for (let j = 0; j < message.messageType.length; ++j)
                     object.messageType[j] = google.protobuf.DescriptorProto.toObject(message.messageType[j], options);
             }
             if (message.enumType && message.enumType.length) {
                 object.enumType = [];
-                for (var j = 0; j < message.enumType.length; ++j)
+                for (let j = 0; j < message.enumType.length; ++j)
                     object.enumType[j] = google.protobuf.EnumDescriptorProto.toObject(message.enumType[j], options);
             }
             if (message.service && message.service.length) {
                 object.service = [];
-                for (var j = 0; j < message.service.length; ++j)
+                for (let j = 0; j < message.service.length; ++j)
                     object.service[j] = google.protobuf.ServiceDescriptorProto.toObject(message.service[j], options);
             }
             if (message.extension && message.extension.length) {
                 object.extension = [];
-                for (var j = 0; j < message.extension.length; ++j)
+                for (let j = 0; j < message.extension.length; ++j)
                     object.extension[j] = google.protobuf.FieldDescriptorProto.toObject(message.extension[j], options);
             }
             if (message.options != null && message.hasOwnProperty("options"))
@@ -7697,12 +7786,12 @@ export namespace google.protobuf {
                 object.sourceCodeInfo = google.protobuf.SourceCodeInfo.toObject(message.sourceCodeInfo, options);
             if (message.publicDependency && message.publicDependency.length) {
                 object.publicDependency = [];
-                for (var j = 0; j < message.publicDependency.length; ++j)
+                for (let j = 0; j < message.publicDependency.length; ++j)
                     object.publicDependency[j] = message.publicDependency[j];
             }
             if (message.weakDependency && message.weakDependency.length) {
                 object.weakDependency = [];
-                for (var j = 0; j < message.weakDependency.length; ++j)
+                for (let j = 0; j < message.weakDependency.length; ++j)
                     object.weakDependency[j] = message.weakDependency[j];
             }
             if (message.syntax != null && message.hasOwnProperty("syntax"))
@@ -7714,7 +7803,7 @@ export namespace google.protobuf {
          * Converts this FileDescriptorProto to JSON.
          */
         toJSON() {
-            return FileDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
+            return FileDescriptorProto.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -7781,7 +7870,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IDescriptorProto) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -7797,49 +7886,49 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified DescriptorProto message. Does not implicitly {@link DescriptorProto.verify|verify} messages.
-         * @param message DescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IDescriptorProto, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
             if (message.field != null && message.field.length)
-                for (var i = 0; i < message.field.length; ++i)
+                for (let i = 0; i < message.field.length; ++i)
                     google.protobuf.FieldDescriptorProto.encode(message.field[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.nestedType != null && message.nestedType.length)
-                for (var i = 0; i < message.nestedType.length; ++i)
+                for (let i = 0; i < message.nestedType.length; ++i)
                     google.protobuf.DescriptorProto.encode(message.nestedType[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.enumType != null && message.enumType.length)
-                for (var i = 0; i < message.enumType.length; ++i)
+                for (let i = 0; i < message.enumType.length; ++i)
                     google.protobuf.EnumDescriptorProto.encode(message.enumType[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
             if (message.extensionRange != null && message.extensionRange.length)
-                for (var i = 0; i < message.extensionRange.length; ++i)
+                for (let i = 0; i < message.extensionRange.length; ++i)
                     google.protobuf.DescriptorProto.ExtensionRange.encode(message.extensionRange[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             if (message.extension != null && message.extension.length)
-                for (var i = 0; i < message.extension.length; ++i)
+                for (let i = 0; i < message.extension.length; ++i)
                     google.protobuf.FieldDescriptorProto.encode(message.extension[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
             if (message.options != null && Object.hasOwnProperty.call(message, "options"))
                 google.protobuf.MessageOptions.encode(message.options, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
             if (message.oneofDecl != null && message.oneofDecl.length)
-                for (var i = 0; i < message.oneofDecl.length; ++i)
+                for (let i = 0; i < message.oneofDecl.length; ++i)
                     google.protobuf.OneofDescriptorProto.encode(message.oneofDecl[i], writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
             if (message.reservedRange != null && message.reservedRange.length)
-                for (var i = 0; i < message.reservedRange.length; ++i)
+                for (let i = 0; i < message.reservedRange.length; ++i)
                     google.protobuf.DescriptorProto.ReservedRange.encode(message.reservedRange[i], writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
             if (message.reservedName != null && message.reservedName.length)
-                for (var i = 0; i < message.reservedName.length; ++i)
+                for (let i = 0; i < message.reservedName.length; ++i)
                     writer.uint32(/* id 10, wireType 2 =*/82).string(message.reservedName[i]);
             return writer;
         }
 
         /**
          * Encodes the specified DescriptorProto message, length delimited. Does not implicitly {@link DescriptorProto.verify|verify} messages.
-         * @param message DescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IDescriptorProto, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -7852,59 +7941,69 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): DescriptorProto {
+        static decode(reader: $Reader|Uint8Array, length?: number): DescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 2:
-                    if (!(message.field && message.field.length))
-                        message.field = [];
-                    message.field.push(google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 6:
-                    if (!(message.extension && message.extension.length))
-                        message.extension = [];
-                    message.extension.push(google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 3:
-                    if (!(message.nestedType && message.nestedType.length))
-                        message.nestedType = [];
-                    message.nestedType.push(google.protobuf.DescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 4:
-                    if (!(message.enumType && message.enumType.length))
-                        message.enumType = [];
-                    message.enumType.push(google.protobuf.EnumDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 5:
-                    if (!(message.extensionRange && message.extensionRange.length))
-                        message.extensionRange = [];
-                    message.extensionRange.push(google.protobuf.DescriptorProto.ExtensionRange.decode(reader, reader.uint32()));
-                    break;
-                case 8:
-                    if (!(message.oneofDecl && message.oneofDecl.length))
-                        message.oneofDecl = [];
-                    message.oneofDecl.push(google.protobuf.OneofDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 7:
-                    message.options = google.protobuf.MessageOptions.decode(reader, reader.uint32());
-                    break;
-                case 9:
-                    if (!(message.reservedRange && message.reservedRange.length))
-                        message.reservedRange = [];
-                    message.reservedRange.push(google.protobuf.DescriptorProto.ReservedRange.decode(reader, reader.uint32()));
-                    break;
-                case 10:
-                    if (!(message.reservedName && message.reservedName.length))
-                        message.reservedName = [];
-                    message.reservedName.push(reader.string());
-                    break;
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.field && message.field.length))
+                            message.field = [];
+                        message.field.push(google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 6: {
+                        if (!(message.extension && message.extension.length))
+                            message.extension = [];
+                        message.extension.push(google.protobuf.FieldDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 3: {
+                        if (!(message.nestedType && message.nestedType.length))
+                            message.nestedType = [];
+                        message.nestedType.push(google.protobuf.DescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 4: {
+                        if (!(message.enumType && message.enumType.length))
+                            message.enumType = [];
+                        message.enumType.push(google.protobuf.EnumDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 5: {
+                        if (!(message.extensionRange && message.extensionRange.length))
+                            message.extensionRange = [];
+                        message.extensionRange.push(google.protobuf.DescriptorProto.ExtensionRange.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 8: {
+                        if (!(message.oneofDecl && message.oneofDecl.length))
+                            message.oneofDecl = [];
+                        message.oneofDecl.push(google.protobuf.OneofDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 7: {
+                        message.options = google.protobuf.MessageOptions.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 9: {
+                        if (!(message.reservedRange && message.reservedRange.length))
+                            message.reservedRange = [];
+                        message.reservedRange.push(google.protobuf.DescriptorProto.ReservedRange.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 10: {
+                        if (!(message.reservedName && message.reservedName.length))
+                            message.reservedName = [];
+                        message.reservedName.push(reader.string());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -7919,10 +8018,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): DescriptorProto {
+        static decodeDelimited(reader: $Reader|Uint8Array): DescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -7941,8 +8040,8 @@ export namespace google.protobuf {
             if (message.field != null && message.hasOwnProperty("field")) {
                 if (!Array.isArray(message.field))
                     return "field: array expected";
-                for (var i = 0; i < message.field.length; ++i) {
-                    var error = google.protobuf.FieldDescriptorProto.verify(message.field[i]);
+                for (let i = 0; i < message.field.length; ++i) {
+                    let error = google.protobuf.FieldDescriptorProto.verify(message.field[i]);
                     if (error)
                         return "field." + error;
                 }
@@ -7950,8 +8049,8 @@ export namespace google.protobuf {
             if (message.extension != null && message.hasOwnProperty("extension")) {
                 if (!Array.isArray(message.extension))
                     return "extension: array expected";
-                for (var i = 0; i < message.extension.length; ++i) {
-                    var error = google.protobuf.FieldDescriptorProto.verify(message.extension[i]);
+                for (let i = 0; i < message.extension.length; ++i) {
+                    let error = google.protobuf.FieldDescriptorProto.verify(message.extension[i]);
                     if (error)
                         return "extension." + error;
                 }
@@ -7959,8 +8058,8 @@ export namespace google.protobuf {
             if (message.nestedType != null && message.hasOwnProperty("nestedType")) {
                 if (!Array.isArray(message.nestedType))
                     return "nestedType: array expected";
-                for (var i = 0; i < message.nestedType.length; ++i) {
-                    var error = google.protobuf.DescriptorProto.verify(message.nestedType[i]);
+                for (let i = 0; i < message.nestedType.length; ++i) {
+                    let error = google.protobuf.DescriptorProto.verify(message.nestedType[i]);
                     if (error)
                         return "nestedType." + error;
                 }
@@ -7968,8 +8067,8 @@ export namespace google.protobuf {
             if (message.enumType != null && message.hasOwnProperty("enumType")) {
                 if (!Array.isArray(message.enumType))
                     return "enumType: array expected";
-                for (var i = 0; i < message.enumType.length; ++i) {
-                    var error = google.protobuf.EnumDescriptorProto.verify(message.enumType[i]);
+                for (let i = 0; i < message.enumType.length; ++i) {
+                    let error = google.protobuf.EnumDescriptorProto.verify(message.enumType[i]);
                     if (error)
                         return "enumType." + error;
                 }
@@ -7977,8 +8076,8 @@ export namespace google.protobuf {
             if (message.extensionRange != null && message.hasOwnProperty("extensionRange")) {
                 if (!Array.isArray(message.extensionRange))
                     return "extensionRange: array expected";
-                for (var i = 0; i < message.extensionRange.length; ++i) {
-                    var error = google.protobuf.DescriptorProto.ExtensionRange.verify(message.extensionRange[i]);
+                for (let i = 0; i < message.extensionRange.length; ++i) {
+                    let error = google.protobuf.DescriptorProto.ExtensionRange.verify(message.extensionRange[i]);
                     if (error)
                         return "extensionRange." + error;
                 }
@@ -7986,22 +8085,22 @@ export namespace google.protobuf {
             if (message.oneofDecl != null && message.hasOwnProperty("oneofDecl")) {
                 if (!Array.isArray(message.oneofDecl))
                     return "oneofDecl: array expected";
-                for (var i = 0; i < message.oneofDecl.length; ++i) {
-                    var error = google.protobuf.OneofDescriptorProto.verify(message.oneofDecl[i]);
+                for (let i = 0; i < message.oneofDecl.length; ++i) {
+                    let error = google.protobuf.OneofDescriptorProto.verify(message.oneofDecl[i]);
                     if (error)
                         return "oneofDecl." + error;
                 }
             }
             if (message.options != null && message.hasOwnProperty("options")) {
-                var error = google.protobuf.MessageOptions.verify(message.options);
+                let error = google.protobuf.MessageOptions.verify(message.options);
                 if (error)
                     return "options." + error;
             }
             if (message.reservedRange != null && message.hasOwnProperty("reservedRange")) {
                 if (!Array.isArray(message.reservedRange))
                     return "reservedRange: array expected";
-                for (var i = 0; i < message.reservedRange.length; ++i) {
-                    var error = google.protobuf.DescriptorProto.ReservedRange.verify(message.reservedRange[i]);
+                for (let i = 0; i < message.reservedRange.length; ++i) {
+                    let error = google.protobuf.DescriptorProto.ReservedRange.verify(message.reservedRange[i]);
                     if (error)
                         return "reservedRange." + error;
                 }
@@ -8009,7 +8108,7 @@ export namespace google.protobuf {
             if (message.reservedName != null && message.hasOwnProperty("reservedName")) {
                 if (!Array.isArray(message.reservedName))
                     return "reservedName: array expected";
-                for (var i = 0; i < message.reservedName.length; ++i)
+                for (let i = 0; i < message.reservedName.length; ++i)
                     if (!$util.isString(message.reservedName[i]))
                         return "reservedName: string[] expected";
             }
@@ -8025,14 +8124,14 @@ export namespace google.protobuf {
         static fromObject(object): IDescriptorProto {
             if (object instanceof google.protobuf.DescriptorProto)
                 return object;
-            var message = new google.protobuf.DescriptorProto();
+            let message = new google.protobuf.DescriptorProto();
             if (object.name != null)
                 message.name = String(object.name);
             if (object.field) {
                 if (!Array.isArray(object.field))
                     throw TypeError(".google.protobuf.DescriptorProto.field: array expected");
                 message.field = [];
-                for (var i = 0; i < object.field.length; ++i) {
+                for (let i = 0; i < object.field.length; ++i) {
                     if (typeof object.field[i] !== "object")
                         throw TypeError(".google.protobuf.DescriptorProto.field: object expected");
                     message.field[i] = google.protobuf.FieldDescriptorProto.fromObject(object.field[i]);
@@ -8042,7 +8141,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.extension))
                     throw TypeError(".google.protobuf.DescriptorProto.extension: array expected");
                 message.extension = [];
-                for (var i = 0; i < object.extension.length; ++i) {
+                for (let i = 0; i < object.extension.length; ++i) {
                     if (typeof object.extension[i] !== "object")
                         throw TypeError(".google.protobuf.DescriptorProto.extension: object expected");
                     message.extension[i] = google.protobuf.FieldDescriptorProto.fromObject(object.extension[i]);
@@ -8052,7 +8151,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.nestedType))
                     throw TypeError(".google.protobuf.DescriptorProto.nestedType: array expected");
                 message.nestedType = [];
-                for (var i = 0; i < object.nestedType.length; ++i) {
+                for (let i = 0; i < object.nestedType.length; ++i) {
                     if (typeof object.nestedType[i] !== "object")
                         throw TypeError(".google.protobuf.DescriptorProto.nestedType: object expected");
                     message.nestedType[i] = google.protobuf.DescriptorProto.fromObject(object.nestedType[i]);
@@ -8062,7 +8161,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.enumType))
                     throw TypeError(".google.protobuf.DescriptorProto.enumType: array expected");
                 message.enumType = [];
-                for (var i = 0; i < object.enumType.length; ++i) {
+                for (let i = 0; i < object.enumType.length; ++i) {
                     if (typeof object.enumType[i] !== "object")
                         throw TypeError(".google.protobuf.DescriptorProto.enumType: object expected");
                     message.enumType[i] = google.protobuf.EnumDescriptorProto.fromObject(object.enumType[i]);
@@ -8072,7 +8171,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.extensionRange))
                     throw TypeError(".google.protobuf.DescriptorProto.extensionRange: array expected");
                 message.extensionRange = [];
-                for (var i = 0; i < object.extensionRange.length; ++i) {
+                for (let i = 0; i < object.extensionRange.length; ++i) {
                     if (typeof object.extensionRange[i] !== "object")
                         throw TypeError(".google.protobuf.DescriptorProto.extensionRange: object expected");
                     message.extensionRange[i] = google.protobuf.DescriptorProto.ExtensionRange.fromObject(object.extensionRange[i]);
@@ -8082,7 +8181,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.oneofDecl))
                     throw TypeError(".google.protobuf.DescriptorProto.oneofDecl: array expected");
                 message.oneofDecl = [];
-                for (var i = 0; i < object.oneofDecl.length; ++i) {
+                for (let i = 0; i < object.oneofDecl.length; ++i) {
                     if (typeof object.oneofDecl[i] !== "object")
                         throw TypeError(".google.protobuf.DescriptorProto.oneofDecl: object expected");
                     message.oneofDecl[i] = google.protobuf.OneofDescriptorProto.fromObject(object.oneofDecl[i]);
@@ -8097,7 +8196,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.reservedRange))
                     throw TypeError(".google.protobuf.DescriptorProto.reservedRange: array expected");
                 message.reservedRange = [];
-                for (var i = 0; i < object.reservedRange.length; ++i) {
+                for (let i = 0; i < object.reservedRange.length; ++i) {
                     if (typeof object.reservedRange[i] !== "object")
                         throw TypeError(".google.protobuf.DescriptorProto.reservedRange: object expected");
                     message.reservedRange[i] = google.protobuf.DescriptorProto.ReservedRange.fromObject(object.reservedRange[i]);
@@ -8107,7 +8206,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.reservedName))
                     throw TypeError(".google.protobuf.DescriptorProto.reservedName: array expected");
                 message.reservedName = [];
-                for (var i = 0; i < object.reservedName.length; ++i)
+                for (let i = 0; i < object.reservedName.length; ++i)
                     message.reservedName[i] = String(object.reservedName[i]);
             }
             return message;
@@ -8119,7 +8218,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IDescriptorProto, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults) {
                 object.field = [];
@@ -8139,44 +8238,44 @@ export namespace google.protobuf {
                 object.name = message.name;
             if (message.field && message.field.length) {
                 object.field = [];
-                for (var j = 0; j < message.field.length; ++j)
+                for (let j = 0; j < message.field.length; ++j)
                     object.field[j] = google.protobuf.FieldDescriptorProto.toObject(message.field[j], options);
             }
             if (message.nestedType && message.nestedType.length) {
                 object.nestedType = [];
-                for (var j = 0; j < message.nestedType.length; ++j)
+                for (let j = 0; j < message.nestedType.length; ++j)
                     object.nestedType[j] = google.protobuf.DescriptorProto.toObject(message.nestedType[j], options);
             }
             if (message.enumType && message.enumType.length) {
                 object.enumType = [];
-                for (var j = 0; j < message.enumType.length; ++j)
+                for (let j = 0; j < message.enumType.length; ++j)
                     object.enumType[j] = google.protobuf.EnumDescriptorProto.toObject(message.enumType[j], options);
             }
             if (message.extensionRange && message.extensionRange.length) {
                 object.extensionRange = [];
-                for (var j = 0; j < message.extensionRange.length; ++j)
+                for (let j = 0; j < message.extensionRange.length; ++j)
                     object.extensionRange[j] = google.protobuf.DescriptorProto.ExtensionRange.toObject(message.extensionRange[j], options);
             }
             if (message.extension && message.extension.length) {
                 object.extension = [];
-                for (var j = 0; j < message.extension.length; ++j)
+                for (let j = 0; j < message.extension.length; ++j)
                     object.extension[j] = google.protobuf.FieldDescriptorProto.toObject(message.extension[j], options);
             }
             if (message.options != null && message.hasOwnProperty("options"))
                 object.options = google.protobuf.MessageOptions.toObject(message.options, options);
             if (message.oneofDecl && message.oneofDecl.length) {
                 object.oneofDecl = [];
-                for (var j = 0; j < message.oneofDecl.length; ++j)
+                for (let j = 0; j < message.oneofDecl.length; ++j)
                     object.oneofDecl[j] = google.protobuf.OneofDescriptorProto.toObject(message.oneofDecl[j], options);
             }
             if (message.reservedRange && message.reservedRange.length) {
                 object.reservedRange = [];
-                for (var j = 0; j < message.reservedRange.length; ++j)
+                for (let j = 0; j < message.reservedRange.length; ++j)
                     object.reservedRange[j] = google.protobuf.DescriptorProto.ReservedRange.toObject(message.reservedRange[j], options);
             }
             if (message.reservedName && message.reservedName.length) {
                 object.reservedName = [];
-                for (var j = 0; j < message.reservedName.length; ++j)
+                for (let j = 0; j < message.reservedName.length; ++j)
                     object.reservedName[j] = message.reservedName[j];
             }
             return object;
@@ -8186,7 +8285,7 @@ export namespace google.protobuf {
          * Converts this DescriptorProto to JSON.
          */
         toJSON() {
-            return DescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
+            return DescriptorProto.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -8240,7 +8339,7 @@ export namespace google.protobuf {
              */
             constructor(properties?: IExtensionRange) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -8256,10 +8355,10 @@ export namespace google.protobuf {
             // #region encode
             /**
              * Encodes the specified ExtensionRange message. Does not implicitly {@link ExtensionRange.verify|verify} messages.
-             * @param message ExtensionRangemessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: IExtensionRange, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IExtensionRange, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.start != null && Object.hasOwnProperty.call(message, "start"))
@@ -8271,10 +8370,10 @@ export namespace google.protobuf {
 
             /**
              * Encodes the specified ExtensionRange message, length delimited. Does not implicitly {@link ExtensionRange.verify|verify} messages.
-             * @param message ExtensionRangemessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: IExtensionRange, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IExtensionRange, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -8287,19 +8386,21 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ExtensionRange {
+            static decode(reader: $Reader|Uint8Array, length?: number): ExtensionRange {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto.ExtensionRange();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto.ExtensionRange();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.start = reader.int32();
-                        break;
-                    case 2:
-                        message.end = reader.int32();
-                        break;
+                    case 1: {
+                            message.start = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.end = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -8314,10 +8415,10 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ExtensionRange {
+            static decodeDelimited(reader: $Reader|Uint8Array): ExtensionRange {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -8348,7 +8449,7 @@ export namespace google.protobuf {
             static fromObject(object): IExtensionRange {
                 if (object instanceof google.protobuf.DescriptorProto.ExtensionRange)
                     return object;
-                var message = new google.protobuf.DescriptorProto.ExtensionRange();
+                let message = new google.protobuf.DescriptorProto.ExtensionRange();
                 if (object.start != null)
                     message.start = object.start | 0;
                 if (object.end != null)
@@ -8362,7 +8463,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: IExtensionRange, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IExtensionRange, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults) {
                     object.start = 0;
@@ -8379,7 +8480,7 @@ export namespace google.protobuf {
              * Converts this ExtensionRange to JSON.
              */
             toJSON() {
-                return ExtensionRange.toObject(this, $protobuf.util.toJSONOptions);
+                return ExtensionRange.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -8416,7 +8517,7 @@ export namespace google.protobuf {
              */
             constructor(properties?: IReservedRange) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -8432,10 +8533,10 @@ export namespace google.protobuf {
             // #region encode
             /**
              * Encodes the specified ReservedRange message. Does not implicitly {@link ReservedRange.verify|verify} messages.
-             * @param message ReservedRangemessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: IReservedRange, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IReservedRange, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.start != null && Object.hasOwnProperty.call(message, "start"))
@@ -8447,10 +8548,10 @@ export namespace google.protobuf {
 
             /**
              * Encodes the specified ReservedRange message, length delimited. Does not implicitly {@link ReservedRange.verify|verify} messages.
-             * @param message ReservedRangemessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: IReservedRange, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IReservedRange, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -8463,19 +8564,21 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ReservedRange {
+            static decode(reader: $Reader|Uint8Array, length?: number): ReservedRange {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto.ReservedRange();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.DescriptorProto.ReservedRange();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.start = reader.int32();
-                        break;
-                    case 2:
-                        message.end = reader.int32();
-                        break;
+                    case 1: {
+                            message.start = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.end = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -8490,10 +8593,10 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ReservedRange {
+            static decodeDelimited(reader: $Reader|Uint8Array): ReservedRange {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -8524,7 +8627,7 @@ export namespace google.protobuf {
             static fromObject(object): IReservedRange {
                 if (object instanceof google.protobuf.DescriptorProto.ReservedRange)
                     return object;
-                var message = new google.protobuf.DescriptorProto.ReservedRange();
+                let message = new google.protobuf.DescriptorProto.ReservedRange();
                 if (object.start != null)
                     message.start = object.start | 0;
                 if (object.end != null)
@@ -8538,7 +8641,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: IReservedRange, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IReservedRange, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults) {
                     object.start = 0;
@@ -8555,7 +8658,7 @@ export namespace google.protobuf {
              * Converts this ReservedRange to JSON.
              */
             toJSON() {
-                return ReservedRange.toObject(this, $protobuf.util.toJSONOptions);
+                return ReservedRange.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -8610,7 +8713,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IFieldDescriptorProto) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -8626,10 +8729,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified FieldDescriptorProto message. Does not implicitly {@link FieldDescriptorProto.verify|verify} messages.
-         * @param message FieldDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IFieldDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFieldDescriptorProto, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -8657,10 +8760,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified FieldDescriptorProto message, length delimited. Does not implicitly {@link FieldDescriptorProto.verify|verify} messages.
-         * @param message FieldDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IFieldDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFieldDescriptorProto, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -8673,43 +8776,53 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FieldDescriptorProto {
+        static decode(reader: $Reader|Uint8Array, length?: number): FieldDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FieldDescriptorProto();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FieldDescriptorProto();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 3:
-                    message.number = reader.int32();
-                    break;
-                case 4:
-                    message.label = reader.int32();
-                    break;
-                case 5:
-                    message.type = reader.int32();
-                    break;
-                case 6:
-                    message.typeName = reader.string();
-                    break;
-                case 2:
-                    message.extendee = reader.string();
-                    break;
-                case 7:
-                    message.defaultValue = reader.string();
-                    break;
-                case 9:
-                    message.oneofIndex = reader.int32();
-                    break;
-                case 10:
-                    message.jsonName = reader.string();
-                    break;
-                case 8:
-                    message.options = google.protobuf.FieldOptions.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.number = reader.int32();
+                        break;
+                    }
+                case 4: {
+                        message.label = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.type = reader.int32();
+                        break;
+                    }
+                case 6: {
+                        message.typeName = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.extendee = reader.string();
+                        break;
+                    }
+                case 7: {
+                        message.defaultValue = reader.string();
+                        break;
+                    }
+                case 9: {
+                        message.oneofIndex = reader.int32();
+                        break;
+                    }
+                case 10: {
+                        message.jsonName = reader.string();
+                        break;
+                    }
+                case 8: {
+                        message.options = google.protobuf.FieldOptions.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -8724,10 +8837,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FieldDescriptorProto {
+        static decodeDelimited(reader: $Reader|Uint8Array): FieldDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -8795,7 +8908,7 @@ export namespace google.protobuf {
                 if (!$util.isString(message.jsonName))
                     return "jsonName: string expected";
             if (message.options != null && message.hasOwnProperty("options")) {
-                var error = google.protobuf.FieldOptions.verify(message.options);
+                let error = google.protobuf.FieldOptions.verify(message.options);
                 if (error)
                     return "options." + error;
             }
@@ -8811,7 +8924,7 @@ export namespace google.protobuf {
         static fromObject(object): IFieldDescriptorProto {
             if (object instanceof google.protobuf.FieldDescriptorProto)
                 return object;
-            var message = new google.protobuf.FieldDescriptorProto();
+            let message = new google.protobuf.FieldDescriptorProto();
             if (object.name != null)
                 message.name = String(object.name);
             if (object.number != null)
@@ -8928,7 +9041,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IFieldDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFieldDescriptorProto, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.name = "";
@@ -8969,7 +9082,7 @@ export namespace google.protobuf {
          * Converts this FieldDescriptorProto to JSON.
          */
         toJSON() {
-            return FieldDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
+            return FieldDescriptorProto.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -9036,7 +9149,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IOneofDescriptorProto) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9052,10 +9165,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified OneofDescriptorProto message. Does not implicitly {@link OneofDescriptorProto.verify|verify} messages.
-         * @param message OneofDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IOneofDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOneofDescriptorProto, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -9067,10 +9180,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified OneofDescriptorProto message, length delimited. Does not implicitly {@link OneofDescriptorProto.verify|verify} messages.
-         * @param message OneofDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IOneofDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOneofDescriptorProto, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -9083,19 +9196,21 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OneofDescriptorProto {
+        static decode(reader: $Reader|Uint8Array, length?: number): OneofDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.OneofDescriptorProto();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.OneofDescriptorProto();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 2:
-                    message.options = google.protobuf.OneofOptions.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.options = google.protobuf.OneofOptions.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9110,10 +9225,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OneofDescriptorProto {
+        static decodeDelimited(reader: $Reader|Uint8Array): OneofDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -9130,7 +9245,7 @@ export namespace google.protobuf {
                 if (!$util.isString(message.name))
                     return "name: string expected";
             if (message.options != null && message.hasOwnProperty("options")) {
-                var error = google.protobuf.OneofOptions.verify(message.options);
+                let error = google.protobuf.OneofOptions.verify(message.options);
                 if (error)
                     return "options." + error;
             }
@@ -9146,7 +9261,7 @@ export namespace google.protobuf {
         static fromObject(object): IOneofDescriptorProto {
             if (object instanceof google.protobuf.OneofDescriptorProto)
                 return object;
-            var message = new google.protobuf.OneofDescriptorProto();
+            let message = new google.protobuf.OneofDescriptorProto();
             if (object.name != null)
                 message.name = String(object.name);
             if (object.options != null) {
@@ -9163,7 +9278,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IOneofDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOneofDescriptorProto, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.name = "";
@@ -9180,7 +9295,7 @@ export namespace google.protobuf {
          * Converts this OneofDescriptorProto to JSON.
          */
         toJSON() {
-            return OneofDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
+            return OneofDescriptorProto.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -9219,7 +9334,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IEnumDescriptorProto) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9235,16 +9350,16 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified EnumDescriptorProto message. Does not implicitly {@link EnumDescriptorProto.verify|verify} messages.
-         * @param message EnumDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IEnumDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumDescriptorProto, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
             if (message.value != null && message.value.length)
-                for (var i = 0; i < message.value.length; ++i)
+                for (let i = 0; i < message.value.length; ++i)
                     google.protobuf.EnumValueDescriptorProto.encode(message.value[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.options != null && Object.hasOwnProperty.call(message, "options"))
                 google.protobuf.EnumOptions.encode(message.options, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
@@ -9253,10 +9368,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified EnumDescriptorProto message, length delimited. Does not implicitly {@link EnumDescriptorProto.verify|verify} messages.
-         * @param message EnumDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IEnumDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumDescriptorProto, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -9269,24 +9384,27 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumDescriptorProto {
+        static decode(reader: $Reader|Uint8Array, length?: number): EnumDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumDescriptorProto();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumDescriptorProto();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 2:
-                    if (!(message.value && message.value.length))
-                        message.value = [];
-                    message.value.push(google.protobuf.EnumValueDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 3:
-                    message.options = google.protobuf.EnumOptions.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.value && message.value.length))
+                            message.value = [];
+                        message.value.push(google.protobuf.EnumValueDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 3: {
+                        message.options = google.protobuf.EnumOptions.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9301,10 +9419,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumDescriptorProto {
+        static decodeDelimited(reader: $Reader|Uint8Array): EnumDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -9323,14 +9441,14 @@ export namespace google.protobuf {
             if (message.value != null && message.hasOwnProperty("value")) {
                 if (!Array.isArray(message.value))
                     return "value: array expected";
-                for (var i = 0; i < message.value.length; ++i) {
-                    var error = google.protobuf.EnumValueDescriptorProto.verify(message.value[i]);
+                for (let i = 0; i < message.value.length; ++i) {
+                    let error = google.protobuf.EnumValueDescriptorProto.verify(message.value[i]);
                     if (error)
                         return "value." + error;
                 }
             }
             if (message.options != null && message.hasOwnProperty("options")) {
-                var error = google.protobuf.EnumOptions.verify(message.options);
+                let error = google.protobuf.EnumOptions.verify(message.options);
                 if (error)
                     return "options." + error;
             }
@@ -9346,14 +9464,14 @@ export namespace google.protobuf {
         static fromObject(object): IEnumDescriptorProto {
             if (object instanceof google.protobuf.EnumDescriptorProto)
                 return object;
-            var message = new google.protobuf.EnumDescriptorProto();
+            let message = new google.protobuf.EnumDescriptorProto();
             if (object.name != null)
                 message.name = String(object.name);
             if (object.value) {
                 if (!Array.isArray(object.value))
                     throw TypeError(".google.protobuf.EnumDescriptorProto.value: array expected");
                 message.value = [];
-                for (var i = 0; i < object.value.length; ++i) {
+                for (let i = 0; i < object.value.length; ++i) {
                     if (typeof object.value[i] !== "object")
                         throw TypeError(".google.protobuf.EnumDescriptorProto.value: object expected");
                     message.value[i] = google.protobuf.EnumValueDescriptorProto.fromObject(object.value[i]);
@@ -9373,7 +9491,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IEnumDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumDescriptorProto, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.value = [];
@@ -9385,7 +9503,7 @@ export namespace google.protobuf {
                 object.name = message.name;
             if (message.value && message.value.length) {
                 object.value = [];
-                for (var j = 0; j < message.value.length; ++j)
+                for (let j = 0; j < message.value.length; ++j)
                     object.value[j] = google.protobuf.EnumValueDescriptorProto.toObject(message.value[j], options);
             }
             if (message.options != null && message.hasOwnProperty("options"))
@@ -9397,7 +9515,7 @@ export namespace google.protobuf {
          * Converts this EnumDescriptorProto to JSON.
          */
         toJSON() {
-            return EnumDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
+            return EnumDescriptorProto.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -9438,7 +9556,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IEnumValueDescriptorProto) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9454,10 +9572,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified EnumValueDescriptorProto message. Does not implicitly {@link EnumValueDescriptorProto.verify|verify} messages.
-         * @param message EnumValueDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IEnumValueDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumValueDescriptorProto, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -9471,10 +9589,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified EnumValueDescriptorProto message, length delimited. Does not implicitly {@link EnumValueDescriptorProto.verify|verify} messages.
-         * @param message EnumValueDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IEnumValueDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumValueDescriptorProto, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -9487,22 +9605,25 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumValueDescriptorProto {
+        static decode(reader: $Reader|Uint8Array, length?: number): EnumValueDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumValueDescriptorProto();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumValueDescriptorProto();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 2:
-                    message.number = reader.int32();
-                    break;
-                case 3:
-                    message.options = google.protobuf.EnumValueOptions.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.number = reader.int32();
+                        break;
+                    }
+                case 3: {
+                        message.options = google.protobuf.EnumValueOptions.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9517,10 +9638,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumValueDescriptorProto {
+        static decodeDelimited(reader: $Reader|Uint8Array): EnumValueDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -9540,7 +9661,7 @@ export namespace google.protobuf {
                 if (!$util.isInteger(message.number))
                     return "number: integer expected";
             if (message.options != null && message.hasOwnProperty("options")) {
-                var error = google.protobuf.EnumValueOptions.verify(message.options);
+                let error = google.protobuf.EnumValueOptions.verify(message.options);
                 if (error)
                     return "options." + error;
             }
@@ -9556,7 +9677,7 @@ export namespace google.protobuf {
         static fromObject(object): IEnumValueDescriptorProto {
             if (object instanceof google.protobuf.EnumValueDescriptorProto)
                 return object;
-            var message = new google.protobuf.EnumValueDescriptorProto();
+            let message = new google.protobuf.EnumValueDescriptorProto();
             if (object.name != null)
                 message.name = String(object.name);
             if (object.number != null)
@@ -9575,7 +9696,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IEnumValueDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumValueDescriptorProto, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.name = "";
@@ -9595,7 +9716,7 @@ export namespace google.protobuf {
          * Converts this EnumValueDescriptorProto to JSON.
          */
         toJSON() {
-            return EnumValueDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
+            return EnumValueDescriptorProto.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -9634,7 +9755,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IServiceDescriptorProto) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9650,16 +9771,16 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified ServiceDescriptorProto message. Does not implicitly {@link ServiceDescriptorProto.verify|verify} messages.
-         * @param message ServiceDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IServiceDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IServiceDescriptorProto, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
             if (message.method != null && message.method.length)
-                for (var i = 0; i < message.method.length; ++i)
+                for (let i = 0; i < message.method.length; ++i)
                     google.protobuf.MethodDescriptorProto.encode(message.method[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.options != null && Object.hasOwnProperty.call(message, "options"))
                 google.protobuf.ServiceOptions.encode(message.options, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
@@ -9668,10 +9789,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified ServiceDescriptorProto message, length delimited. Does not implicitly {@link ServiceDescriptorProto.verify|verify} messages.
-         * @param message ServiceDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IServiceDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IServiceDescriptorProto, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -9684,24 +9805,27 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ServiceDescriptorProto {
+        static decode(reader: $Reader|Uint8Array, length?: number): ServiceDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.ServiceDescriptorProto();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.ServiceDescriptorProto();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 2:
-                    if (!(message.method && message.method.length))
-                        message.method = [];
-                    message.method.push(google.protobuf.MethodDescriptorProto.decode(reader, reader.uint32()));
-                    break;
-                case 3:
-                    message.options = google.protobuf.ServiceOptions.decode(reader, reader.uint32());
-                    break;
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        if (!(message.method && message.method.length))
+                            message.method = [];
+                        message.method.push(google.protobuf.MethodDescriptorProto.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 3: {
+                        message.options = google.protobuf.ServiceOptions.decode(reader, reader.uint32());
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9716,10 +9840,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ServiceDescriptorProto {
+        static decodeDelimited(reader: $Reader|Uint8Array): ServiceDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -9738,14 +9862,14 @@ export namespace google.protobuf {
             if (message.method != null && message.hasOwnProperty("method")) {
                 if (!Array.isArray(message.method))
                     return "method: array expected";
-                for (var i = 0; i < message.method.length; ++i) {
-                    var error = google.protobuf.MethodDescriptorProto.verify(message.method[i]);
+                for (let i = 0; i < message.method.length; ++i) {
+                    let error = google.protobuf.MethodDescriptorProto.verify(message.method[i]);
                     if (error)
                         return "method." + error;
                 }
             }
             if (message.options != null && message.hasOwnProperty("options")) {
-                var error = google.protobuf.ServiceOptions.verify(message.options);
+                let error = google.protobuf.ServiceOptions.verify(message.options);
                 if (error)
                     return "options." + error;
             }
@@ -9761,14 +9885,14 @@ export namespace google.protobuf {
         static fromObject(object): IServiceDescriptorProto {
             if (object instanceof google.protobuf.ServiceDescriptorProto)
                 return object;
-            var message = new google.protobuf.ServiceDescriptorProto();
+            let message = new google.protobuf.ServiceDescriptorProto();
             if (object.name != null)
                 message.name = String(object.name);
             if (object.method) {
                 if (!Array.isArray(object.method))
                     throw TypeError(".google.protobuf.ServiceDescriptorProto.method: array expected");
                 message.method = [];
-                for (var i = 0; i < object.method.length; ++i) {
+                for (let i = 0; i < object.method.length; ++i) {
                     if (typeof object.method[i] !== "object")
                         throw TypeError(".google.protobuf.ServiceDescriptorProto.method: object expected");
                     message.method[i] = google.protobuf.MethodDescriptorProto.fromObject(object.method[i]);
@@ -9788,7 +9912,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IServiceDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IServiceDescriptorProto, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.method = [];
@@ -9800,7 +9924,7 @@ export namespace google.protobuf {
                 object.name = message.name;
             if (message.method && message.method.length) {
                 object.method = [];
-                for (var j = 0; j < message.method.length; ++j)
+                for (let j = 0; j < message.method.length; ++j)
                     object.method[j] = google.protobuf.MethodDescriptorProto.toObject(message.method[j], options);
             }
             if (message.options != null && message.hasOwnProperty("options"))
@@ -9812,7 +9936,7 @@ export namespace google.protobuf {
          * Converts this ServiceDescriptorProto to JSON.
          */
         toJSON() {
-            return ServiceDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
+            return ServiceDescriptorProto.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -9859,7 +9983,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IMethodDescriptorProto) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9875,10 +9999,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified MethodDescriptorProto message. Does not implicitly {@link MethodDescriptorProto.verify|verify} messages.
-         * @param message MethodDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IMethodDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IMethodDescriptorProto, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -9898,10 +10022,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified MethodDescriptorProto message, length delimited. Does not implicitly {@link MethodDescriptorProto.verify|verify} messages.
-         * @param message MethodDescriptorProtomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IMethodDescriptorProto, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IMethodDescriptorProto, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -9914,31 +10038,37 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MethodDescriptorProto {
+        static decode(reader: $Reader|Uint8Array, length?: number): MethodDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MethodDescriptorProto();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MethodDescriptorProto();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.name = reader.string();
-                    break;
-                case 2:
-                    message.inputType = reader.string();
-                    break;
-                case 3:
-                    message.outputType = reader.string();
-                    break;
-                case 4:
-                    message.options = google.protobuf.MethodOptions.decode(reader, reader.uint32());
-                    break;
-                case 5:
-                    message.clientStreaming = reader.bool();
-                    break;
-                case 6:
-                    message.serverStreaming = reader.bool();
-                    break;
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.inputType = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.outputType = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.options = google.protobuf.MethodOptions.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        message.clientStreaming = reader.bool();
+                        break;
+                    }
+                case 6: {
+                        message.serverStreaming = reader.bool();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -9953,10 +10083,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MethodDescriptorProto {
+        static decodeDelimited(reader: $Reader|Uint8Array): MethodDescriptorProto {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -9979,7 +10109,7 @@ export namespace google.protobuf {
                 if (!$util.isString(message.outputType))
                     return "outputType: string expected";
             if (message.options != null && message.hasOwnProperty("options")) {
-                var error = google.protobuf.MethodOptions.verify(message.options);
+                let error = google.protobuf.MethodOptions.verify(message.options);
                 if (error)
                     return "options." + error;
             }
@@ -10001,7 +10131,7 @@ export namespace google.protobuf {
         static fromObject(object): IMethodDescriptorProto {
             if (object instanceof google.protobuf.MethodDescriptorProto)
                 return object;
-            var message = new google.protobuf.MethodDescriptorProto();
+            let message = new google.protobuf.MethodDescriptorProto();
             if (object.name != null)
                 message.name = String(object.name);
             if (object.inputType != null)
@@ -10026,7 +10156,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IMethodDescriptorProto, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IMethodDescriptorProto, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.name = "";
@@ -10055,7 +10185,7 @@ export namespace google.protobuf {
          * Converts this MethodDescriptorProto to JSON.
          */
         toJSON() {
-            return MethodDescriptorProto.toObject(this, $protobuf.util.toJSONOptions);
+            return MethodDescriptorProto.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -10118,7 +10248,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IFileOptions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -10134,10 +10264,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified FileOptions message. Does not implicitly {@link FileOptions.verify|verify} messages.
-         * @param message FileOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IFileOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFileOptions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.javaPackage != null && Object.hasOwnProperty.call(message, "javaPackage"))
@@ -10169,17 +10299,17 @@ export namespace google.protobuf {
             if (message.csharpNamespace != null && Object.hasOwnProperty.call(message, "csharpNamespace"))
                 writer.uint32(/* id 37, wireType 2 =*/298).string(message.csharpNamespace);
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
-                for (var i = 0; i < message.uninterpretedOption.length; ++i)
+                for (let i = 0; i < message.uninterpretedOption.length; ++i)
                     google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified FileOptions message, length delimited. Does not implicitly {@link FileOptions.verify|verify} messages.
-         * @param message FileOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IFileOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFileOptions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -10192,60 +10322,75 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FileOptions {
+        static decode(reader: $Reader|Uint8Array, length?: number): FileOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileOptions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FileOptions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.javaPackage = reader.string();
-                    break;
-                case 8:
-                    message.javaOuterClassname = reader.string();
-                    break;
-                case 10:
-                    message.javaMultipleFiles = reader.bool();
-                    break;
-                case 20:
-                    message.javaGenerateEqualsAndHash = reader.bool();
-                    break;
-                case 27:
-                    message.javaStringCheckUtf8 = reader.bool();
-                    break;
-                case 9:
-                    message.optimizeFor = reader.int32();
-                    break;
-                case 11:
-                    message.goPackage = reader.string();
-                    break;
-                case 16:
-                    message.ccGenericServices = reader.bool();
-                    break;
-                case 17:
-                    message.javaGenericServices = reader.bool();
-                    break;
-                case 18:
-                    message.pyGenericServices = reader.bool();
-                    break;
-                case 23:
-                    message.deprecated = reader.bool();
-                    break;
-                case 31:
-                    message.ccEnableArenas = reader.bool();
-                    break;
-                case 36:
-                    message.objcClassPrefix = reader.string();
-                    break;
-                case 37:
-                    message.csharpNamespace = reader.string();
-                    break;
-                case 999:
-                    if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                        message.uninterpretedOption = [];
-                    message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                    break;
+                case 1: {
+                        message.javaPackage = reader.string();
+                        break;
+                    }
+                case 8: {
+                        message.javaOuterClassname = reader.string();
+                        break;
+                    }
+                case 10: {
+                        message.javaMultipleFiles = reader.bool();
+                        break;
+                    }
+                case 20: {
+                        message.javaGenerateEqualsAndHash = reader.bool();
+                        break;
+                    }
+                case 27: {
+                        message.javaStringCheckUtf8 = reader.bool();
+                        break;
+                    }
+                case 9: {
+                        message.optimizeFor = reader.int32();
+                        break;
+                    }
+                case 11: {
+                        message.goPackage = reader.string();
+                        break;
+                    }
+                case 16: {
+                        message.ccGenericServices = reader.bool();
+                        break;
+                    }
+                case 17: {
+                        message.javaGenericServices = reader.bool();
+                        break;
+                    }
+                case 18: {
+                        message.pyGenericServices = reader.bool();
+                        break;
+                    }
+                case 23: {
+                        message.deprecated = reader.bool();
+                        break;
+                    }
+                case 31: {
+                        message.ccEnableArenas = reader.bool();
+                        break;
+                    }
+                case 36: {
+                        message.objcClassPrefix = reader.string();
+                        break;
+                    }
+                case 37: {
+                        message.csharpNamespace = reader.string();
+                        break;
+                    }
+                case 999: {
+                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                            message.uninterpretedOption = [];
+                        message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10260,10 +10405,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FileOptions {
+        static decodeDelimited(reader: $Reader|Uint8Array): FileOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -10327,8 +10472,8 @@ export namespace google.protobuf {
             if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                 if (!Array.isArray(message.uninterpretedOption))
                     return "uninterpretedOption: array expected";
-                for (var i = 0; i < message.uninterpretedOption.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
+                for (let i = 0; i < message.uninterpretedOption.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
                     if (error)
                         return "uninterpretedOption." + error;
                 }
@@ -10345,7 +10490,7 @@ export namespace google.protobuf {
         static fromObject(object): IFileOptions {
             if (object instanceof google.protobuf.FileOptions)
                 return object;
-            var message = new google.protobuf.FileOptions();
+            let message = new google.protobuf.FileOptions();
             if (object.javaPackage != null)
                 message.javaPackage = String(object.javaPackage);
             if (object.javaOuterClassname != null)
@@ -10390,7 +10535,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.uninterpretedOption))
                     throw TypeError(".google.protobuf.FileOptions.uninterpretedOption: array expected");
                 message.uninterpretedOption = [];
-                for (var i = 0; i < object.uninterpretedOption.length; ++i) {
+                for (let i = 0; i < object.uninterpretedOption.length; ++i) {
                     if (typeof object.uninterpretedOption[i] !== "object")
                         throw TypeError(".google.protobuf.FileOptions.uninterpretedOption: object expected");
                     message.uninterpretedOption[i] = google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
@@ -10405,7 +10550,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IFileOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFileOptions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -10455,7 +10600,7 @@ export namespace google.protobuf {
                 object.csharpNamespace = message.csharpNamespace;
             if (message.uninterpretedOption && message.uninterpretedOption.length) {
                 object.uninterpretedOption = [];
-                for (var j = 0; j < message.uninterpretedOption.length; ++j)
+                for (let j = 0; j < message.uninterpretedOption.length; ++j)
                     object.uninterpretedOption[j] = google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
             }
             return object;
@@ -10465,7 +10610,7 @@ export namespace google.protobuf {
          * Converts this FileOptions to JSON.
          */
         toJSON() {
-            return FileOptions.toObject(this, $protobuf.util.toJSONOptions);
+            return FileOptions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -10519,7 +10664,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IMessageOptions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -10535,10 +10680,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified MessageOptions message. Does not implicitly {@link MessageOptions.verify|verify} messages.
-         * @param message MessageOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IMessageOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IMessageOptions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.messageSetWireFormat != null && Object.hasOwnProperty.call(message, "messageSetWireFormat"))
@@ -10550,17 +10695,17 @@ export namespace google.protobuf {
             if (message.mapEntry != null && Object.hasOwnProperty.call(message, "mapEntry"))
                 writer.uint32(/* id 7, wireType 0 =*/56).bool(message.mapEntry);
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
-                for (var i = 0; i < message.uninterpretedOption.length; ++i)
+                for (let i = 0; i < message.uninterpretedOption.length; ++i)
                     google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified MessageOptions message, length delimited. Does not implicitly {@link MessageOptions.verify|verify} messages.
-         * @param message MessageOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IMessageOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IMessageOptions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -10573,30 +10718,35 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MessageOptions {
+        static decode(reader: $Reader|Uint8Array, length?: number): MessageOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MessageOptions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MessageOptions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.messageSetWireFormat = reader.bool();
-                    break;
-                case 2:
-                    message.noStandardDescriptorAccessor = reader.bool();
-                    break;
-                case 3:
-                    message.deprecated = reader.bool();
-                    break;
-                case 7:
-                    message.mapEntry = reader.bool();
-                    break;
-                case 999:
-                    if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                        message.uninterpretedOption = [];
-                    message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                    break;
+                case 1: {
+                        message.messageSetWireFormat = reader.bool();
+                        break;
+                    }
+                case 2: {
+                        message.noStandardDescriptorAccessor = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.deprecated = reader.bool();
+                        break;
+                    }
+                case 7: {
+                        message.mapEntry = reader.bool();
+                        break;
+                    }
+                case 999: {
+                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                            message.uninterpretedOption = [];
+                        message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10611,10 +10761,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MessageOptions {
+        static decodeDelimited(reader: $Reader|Uint8Array): MessageOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -10642,8 +10792,8 @@ export namespace google.protobuf {
             if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                 if (!Array.isArray(message.uninterpretedOption))
                     return "uninterpretedOption: array expected";
-                for (var i = 0; i < message.uninterpretedOption.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
+                for (let i = 0; i < message.uninterpretedOption.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
                     if (error)
                         return "uninterpretedOption." + error;
                 }
@@ -10660,7 +10810,7 @@ export namespace google.protobuf {
         static fromObject(object): IMessageOptions {
             if (object instanceof google.protobuf.MessageOptions)
                 return object;
-            var message = new google.protobuf.MessageOptions();
+            let message = new google.protobuf.MessageOptions();
             if (object.messageSetWireFormat != null)
                 message.messageSetWireFormat = Boolean(object.messageSetWireFormat);
             if (object.noStandardDescriptorAccessor != null)
@@ -10673,7 +10823,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.uninterpretedOption))
                     throw TypeError(".google.protobuf.MessageOptions.uninterpretedOption: array expected");
                 message.uninterpretedOption = [];
-                for (var i = 0; i < object.uninterpretedOption.length; ++i) {
+                for (let i = 0; i < object.uninterpretedOption.length; ++i) {
                     if (typeof object.uninterpretedOption[i] !== "object")
                         throw TypeError(".google.protobuf.MessageOptions.uninterpretedOption: object expected");
                     message.uninterpretedOption[i] = google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
@@ -10688,7 +10838,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IMessageOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IMessageOptions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -10708,7 +10858,7 @@ export namespace google.protobuf {
                 object.mapEntry = message.mapEntry;
             if (message.uninterpretedOption && message.uninterpretedOption.length) {
                 object.uninterpretedOption = [];
-                for (var j = 0; j < message.uninterpretedOption.length; ++j)
+                for (let j = 0; j < message.uninterpretedOption.length; ++j)
                     object.uninterpretedOption[j] = google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
             }
             return object;
@@ -10718,7 +10868,7 @@ export namespace google.protobuf {
          * Converts this MessageOptions to JSON.
          */
         toJSON() {
-            return MessageOptions.toObject(this, $protobuf.util.toJSONOptions);
+            return MessageOptions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -10767,7 +10917,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IFieldOptions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -10783,10 +10933,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified FieldOptions message. Does not implicitly {@link FieldOptions.verify|verify} messages.
-         * @param message FieldOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IFieldOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IFieldOptions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.ctype != null && Object.hasOwnProperty.call(message, "ctype"))
@@ -10802,17 +10952,17 @@ export namespace google.protobuf {
             if (message.weak != null && Object.hasOwnProperty.call(message, "weak"))
                 writer.uint32(/* id 10, wireType 0 =*/80).bool(message.weak);
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
-                for (var i = 0; i < message.uninterpretedOption.length; ++i)
+                for (let i = 0; i < message.uninterpretedOption.length; ++i)
                     google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified FieldOptions message, length delimited. Does not implicitly {@link FieldOptions.verify|verify} messages.
-         * @param message FieldOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IFieldOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IFieldOptions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -10825,36 +10975,43 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): FieldOptions {
+        static decode(reader: $Reader|Uint8Array, length?: number): FieldOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FieldOptions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.FieldOptions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.ctype = reader.int32();
-                    break;
-                case 2:
-                    message.packed = reader.bool();
-                    break;
-                case 6:
-                    message.jstype = reader.int32();
-                    break;
-                case 5:
-                    message.lazy = reader.bool();
-                    break;
-                case 3:
-                    message.deprecated = reader.bool();
-                    break;
-                case 10:
-                    message.weak = reader.bool();
-                    break;
-                case 999:
-                    if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                        message.uninterpretedOption = [];
-                    message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                    break;
+                case 1: {
+                        message.ctype = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.packed = reader.bool();
+                        break;
+                    }
+                case 6: {
+                        message.jstype = reader.int32();
+                        break;
+                    }
+                case 5: {
+                        message.lazy = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.deprecated = reader.bool();
+                        break;
+                    }
+                case 10: {
+                        message.weak = reader.bool();
+                        break;
+                    }
+                case 999: {
+                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                            message.uninterpretedOption = [];
+                        message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -10869,10 +11026,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): FieldOptions {
+        static decodeDelimited(reader: $Reader|Uint8Array): FieldOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -10918,8 +11075,8 @@ export namespace google.protobuf {
             if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                 if (!Array.isArray(message.uninterpretedOption))
                     return "uninterpretedOption: array expected";
-                for (var i = 0; i < message.uninterpretedOption.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
+                for (let i = 0; i < message.uninterpretedOption.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
                     if (error)
                         return "uninterpretedOption." + error;
                 }
@@ -10936,7 +11093,7 @@ export namespace google.protobuf {
         static fromObject(object): IFieldOptions {
             if (object instanceof google.protobuf.FieldOptions)
                 return object;
-            var message = new google.protobuf.FieldOptions();
+            let message = new google.protobuf.FieldOptions();
             switch (object.ctype) {
             case "STRING":
             case 0:
@@ -10977,7 +11134,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.uninterpretedOption))
                     throw TypeError(".google.protobuf.FieldOptions.uninterpretedOption: array expected");
                 message.uninterpretedOption = [];
-                for (var i = 0; i < object.uninterpretedOption.length; ++i) {
+                for (let i = 0; i < object.uninterpretedOption.length; ++i) {
                     if (typeof object.uninterpretedOption[i] !== "object")
                         throw TypeError(".google.protobuf.FieldOptions.uninterpretedOption: object expected");
                     message.uninterpretedOption[i] = google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
@@ -10992,7 +11149,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IFieldOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IFieldOptions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -11018,7 +11175,7 @@ export namespace google.protobuf {
                 object.weak = message.weak;
             if (message.uninterpretedOption && message.uninterpretedOption.length) {
                 object.uninterpretedOption = [];
-                for (var j = 0; j < message.uninterpretedOption.length; ++j)
+                for (let j = 0; j < message.uninterpretedOption.length; ++j)
                     object.uninterpretedOption[j] = google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
             }
             return object;
@@ -11028,7 +11185,7 @@ export namespace google.protobuf {
          * Converts this FieldOptions to JSON.
          */
         toJSON() {
-            return FieldOptions.toObject(this, $protobuf.util.toJSONOptions);
+            return FieldOptions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -11080,7 +11237,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IOneofOptions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11096,24 +11253,24 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified OneofOptions message. Does not implicitly {@link OneofOptions.verify|verify} messages.
-         * @param message OneofOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IOneofOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IOneofOptions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
-                for (var i = 0; i < message.uninterpretedOption.length; ++i)
+                for (let i = 0; i < message.uninterpretedOption.length; ++i)
                     google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified OneofOptions message, length delimited. Does not implicitly {@link OneofOptions.verify|verify} messages.
-         * @param message OneofOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IOneofOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IOneofOptions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -11126,18 +11283,19 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): OneofOptions {
+        static decode(reader: $Reader|Uint8Array, length?: number): OneofOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.OneofOptions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.OneofOptions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 999:
-                    if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                        message.uninterpretedOption = [];
-                    message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                    break;
+                case 999: {
+                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                            message.uninterpretedOption = [];
+                        message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11152,10 +11310,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): OneofOptions {
+        static decodeDelimited(reader: $Reader|Uint8Array): OneofOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -11171,8 +11329,8 @@ export namespace google.protobuf {
             if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                 if (!Array.isArray(message.uninterpretedOption))
                     return "uninterpretedOption: array expected";
-                for (var i = 0; i < message.uninterpretedOption.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
+                for (let i = 0; i < message.uninterpretedOption.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
                     if (error)
                         return "uninterpretedOption." + error;
                 }
@@ -11189,12 +11347,12 @@ export namespace google.protobuf {
         static fromObject(object): IOneofOptions {
             if (object instanceof google.protobuf.OneofOptions)
                 return object;
-            var message = new google.protobuf.OneofOptions();
+            let message = new google.protobuf.OneofOptions();
             if (object.uninterpretedOption) {
                 if (!Array.isArray(object.uninterpretedOption))
                     throw TypeError(".google.protobuf.OneofOptions.uninterpretedOption: array expected");
                 message.uninterpretedOption = [];
-                for (var i = 0; i < object.uninterpretedOption.length; ++i) {
+                for (let i = 0; i < object.uninterpretedOption.length; ++i) {
                     if (typeof object.uninterpretedOption[i] !== "object")
                         throw TypeError(".google.protobuf.OneofOptions.uninterpretedOption: object expected");
                     message.uninterpretedOption[i] = google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
@@ -11209,13 +11367,13 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IOneofOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IOneofOptions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
             if (message.uninterpretedOption && message.uninterpretedOption.length) {
                 object.uninterpretedOption = [];
-                for (var j = 0; j < message.uninterpretedOption.length; ++j)
+                for (let j = 0; j < message.uninterpretedOption.length; ++j)
                     object.uninterpretedOption[j] = google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
             }
             return object;
@@ -11225,7 +11383,7 @@ export namespace google.protobuf {
          * Converts this OneofOptions to JSON.
          */
         toJSON() {
-            return OneofOptions.toObject(this, $protobuf.util.toJSONOptions);
+            return OneofOptions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -11268,7 +11426,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IEnumOptions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11284,10 +11442,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified EnumOptions message. Does not implicitly {@link EnumOptions.verify|verify} messages.
-         * @param message EnumOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IEnumOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumOptions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.allowAlias != null && Object.hasOwnProperty.call(message, "allowAlias"))
@@ -11295,7 +11453,7 @@ export namespace google.protobuf {
             if (message.deprecated != null && Object.hasOwnProperty.call(message, "deprecated"))
                 writer.uint32(/* id 3, wireType 0 =*/24).bool(message.deprecated);
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
-                for (var i = 0; i < message.uninterpretedOption.length; ++i)
+                for (let i = 0; i < message.uninterpretedOption.length; ++i)
                     google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
             if (message[".jspb.test.IsExtension.simpleOption"] != null && Object.hasOwnProperty.call(message, ".jspb.test.IsExtension.simpleOption"))
                 writer.uint32(/* id 42113038, wireType 2 =*/336904306).string(message[".jspb.test.IsExtension.simpleOption"]);
@@ -11304,10 +11462,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified EnumOptions message, length delimited. Does not implicitly {@link EnumOptions.verify|verify} messages.
-         * @param message EnumOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IEnumOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumOptions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -11320,27 +11478,31 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumOptions {
+        static decode(reader: $Reader|Uint8Array, length?: number): EnumOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumOptions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumOptions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 2:
-                    message.allowAlias = reader.bool();
-                    break;
-                case 3:
-                    message.deprecated = reader.bool();
-                    break;
-                case 999:
-                    if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                        message.uninterpretedOption = [];
-                    message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                    break;
-                case 42113038:
-                    message[".jspb.test.IsExtension.simpleOption"] = reader.string();
-                    break;
+                case 2: {
+                        message.allowAlias = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.deprecated = reader.bool();
+                        break;
+                    }
+                case 999: {
+                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                            message.uninterpretedOption = [];
+                        message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 42113038: {
+                        message[".jspb.test.IsExtension.simpleOption"] = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11355,10 +11517,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumOptions {
+        static decodeDelimited(reader: $Reader|Uint8Array): EnumOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -11380,8 +11542,8 @@ export namespace google.protobuf {
             if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                 if (!Array.isArray(message.uninterpretedOption))
                     return "uninterpretedOption: array expected";
-                for (var i = 0; i < message.uninterpretedOption.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
+                for (let i = 0; i < message.uninterpretedOption.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
                     if (error)
                         return "uninterpretedOption." + error;
                 }
@@ -11401,7 +11563,7 @@ export namespace google.protobuf {
         static fromObject(object): IEnumOptions {
             if (object instanceof google.protobuf.EnumOptions)
                 return object;
-            var message = new google.protobuf.EnumOptions();
+            let message = new google.protobuf.EnumOptions();
             if (object.allowAlias != null)
                 message.allowAlias = Boolean(object.allowAlias);
             if (object.deprecated != null)
@@ -11410,7 +11572,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.uninterpretedOption))
                     throw TypeError(".google.protobuf.EnumOptions.uninterpretedOption: array expected");
                 message.uninterpretedOption = [];
-                for (var i = 0; i < object.uninterpretedOption.length; ++i) {
+                for (let i = 0; i < object.uninterpretedOption.length; ++i) {
                     if (typeof object.uninterpretedOption[i] !== "object")
                         throw TypeError(".google.protobuf.EnumOptions.uninterpretedOption: object expected");
                     message.uninterpretedOption[i] = google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
@@ -11427,7 +11589,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IEnumOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumOptions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -11442,7 +11604,7 @@ export namespace google.protobuf {
                 object.deprecated = message.deprecated;
             if (message.uninterpretedOption && message.uninterpretedOption.length) {
                 object.uninterpretedOption = [];
-                for (var j = 0; j < message.uninterpretedOption.length; ++j)
+                for (let j = 0; j < message.uninterpretedOption.length; ++j)
                     object.uninterpretedOption[j] = google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
             }
             if (message[".jspb.test.IsExtension.simpleOption"] != null && message.hasOwnProperty(".jspb.test.IsExtension.simpleOption"))
@@ -11454,7 +11616,7 @@ export namespace google.protobuf {
          * Converts this EnumOptions to JSON.
          */
         toJSON() {
-            return EnumOptions.toObject(this, $protobuf.util.toJSONOptions);
+            return EnumOptions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -11493,7 +11655,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IEnumValueOptions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11509,26 +11671,26 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified EnumValueOptions message. Does not implicitly {@link EnumValueOptions.verify|verify} messages.
-         * @param message EnumValueOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IEnumValueOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IEnumValueOptions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.deprecated != null && Object.hasOwnProperty.call(message, "deprecated"))
                 writer.uint32(/* id 1, wireType 0 =*/8).bool(message.deprecated);
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
-                for (var i = 0; i < message.uninterpretedOption.length; ++i)
+                for (let i = 0; i < message.uninterpretedOption.length; ++i)
                     google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified EnumValueOptions message, length delimited. Does not implicitly {@link EnumValueOptions.verify|verify} messages.
-         * @param message EnumValueOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IEnumValueOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IEnumValueOptions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -11541,21 +11703,23 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): EnumValueOptions {
+        static decode(reader: $Reader|Uint8Array, length?: number): EnumValueOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumValueOptions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.EnumValueOptions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.deprecated = reader.bool();
-                    break;
-                case 999:
-                    if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                        message.uninterpretedOption = [];
-                    message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                    break;
+                case 1: {
+                        message.deprecated = reader.bool();
+                        break;
+                    }
+                case 999: {
+                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                            message.uninterpretedOption = [];
+                        message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11570,10 +11734,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): EnumValueOptions {
+        static decodeDelimited(reader: $Reader|Uint8Array): EnumValueOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -11592,8 +11756,8 @@ export namespace google.protobuf {
             if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                 if (!Array.isArray(message.uninterpretedOption))
                     return "uninterpretedOption: array expected";
-                for (var i = 0; i < message.uninterpretedOption.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
+                for (let i = 0; i < message.uninterpretedOption.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
                     if (error)
                         return "uninterpretedOption." + error;
                 }
@@ -11610,14 +11774,14 @@ export namespace google.protobuf {
         static fromObject(object): IEnumValueOptions {
             if (object instanceof google.protobuf.EnumValueOptions)
                 return object;
-            var message = new google.protobuf.EnumValueOptions();
+            let message = new google.protobuf.EnumValueOptions();
             if (object.deprecated != null)
                 message.deprecated = Boolean(object.deprecated);
             if (object.uninterpretedOption) {
                 if (!Array.isArray(object.uninterpretedOption))
                     throw TypeError(".google.protobuf.EnumValueOptions.uninterpretedOption: array expected");
                 message.uninterpretedOption = [];
-                for (var i = 0; i < object.uninterpretedOption.length; ++i) {
+                for (let i = 0; i < object.uninterpretedOption.length; ++i) {
                     if (typeof object.uninterpretedOption[i] !== "object")
                         throw TypeError(".google.protobuf.EnumValueOptions.uninterpretedOption: object expected");
                     message.uninterpretedOption[i] = google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
@@ -11632,7 +11796,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IEnumValueOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IEnumValueOptions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -11642,7 +11806,7 @@ export namespace google.protobuf {
                 object.deprecated = message.deprecated;
             if (message.uninterpretedOption && message.uninterpretedOption.length) {
                 object.uninterpretedOption = [];
-                for (var j = 0; j < message.uninterpretedOption.length; ++j)
+                for (let j = 0; j < message.uninterpretedOption.length; ++j)
                     object.uninterpretedOption[j] = google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
             }
             return object;
@@ -11652,7 +11816,7 @@ export namespace google.protobuf {
          * Converts this EnumValueOptions to JSON.
          */
         toJSON() {
-            return EnumValueOptions.toObject(this, $protobuf.util.toJSONOptions);
+            return EnumValueOptions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -11691,7 +11855,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IServiceOptions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11707,26 +11871,26 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified ServiceOptions message. Does not implicitly {@link ServiceOptions.verify|verify} messages.
-         * @param message ServiceOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IServiceOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IServiceOptions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.deprecated != null && Object.hasOwnProperty.call(message, "deprecated"))
                 writer.uint32(/* id 33, wireType 0 =*/264).bool(message.deprecated);
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
-                for (var i = 0; i < message.uninterpretedOption.length; ++i)
+                for (let i = 0; i < message.uninterpretedOption.length; ++i)
                     google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified ServiceOptions message, length delimited. Does not implicitly {@link ServiceOptions.verify|verify} messages.
-         * @param message ServiceOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IServiceOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IServiceOptions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -11739,21 +11903,23 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): ServiceOptions {
+        static decode(reader: $Reader|Uint8Array, length?: number): ServiceOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.ServiceOptions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.ServiceOptions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 33:
-                    message.deprecated = reader.bool();
-                    break;
-                case 999:
-                    if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                        message.uninterpretedOption = [];
-                    message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                    break;
+                case 33: {
+                        message.deprecated = reader.bool();
+                        break;
+                    }
+                case 999: {
+                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                            message.uninterpretedOption = [];
+                        message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11768,10 +11934,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): ServiceOptions {
+        static decodeDelimited(reader: $Reader|Uint8Array): ServiceOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -11790,8 +11956,8 @@ export namespace google.protobuf {
             if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                 if (!Array.isArray(message.uninterpretedOption))
                     return "uninterpretedOption: array expected";
-                for (var i = 0; i < message.uninterpretedOption.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
+                for (let i = 0; i < message.uninterpretedOption.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
                     if (error)
                         return "uninterpretedOption." + error;
                 }
@@ -11808,14 +11974,14 @@ export namespace google.protobuf {
         static fromObject(object): IServiceOptions {
             if (object instanceof google.protobuf.ServiceOptions)
                 return object;
-            var message = new google.protobuf.ServiceOptions();
+            let message = new google.protobuf.ServiceOptions();
             if (object.deprecated != null)
                 message.deprecated = Boolean(object.deprecated);
             if (object.uninterpretedOption) {
                 if (!Array.isArray(object.uninterpretedOption))
                     throw TypeError(".google.protobuf.ServiceOptions.uninterpretedOption: array expected");
                 message.uninterpretedOption = [];
-                for (var i = 0; i < object.uninterpretedOption.length; ++i) {
+                for (let i = 0; i < object.uninterpretedOption.length; ++i) {
                     if (typeof object.uninterpretedOption[i] !== "object")
                         throw TypeError(".google.protobuf.ServiceOptions.uninterpretedOption: object expected");
                     message.uninterpretedOption[i] = google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
@@ -11830,7 +11996,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IServiceOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IServiceOptions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -11840,7 +12006,7 @@ export namespace google.protobuf {
                 object.deprecated = message.deprecated;
             if (message.uninterpretedOption && message.uninterpretedOption.length) {
                 object.uninterpretedOption = [];
-                for (var j = 0; j < message.uninterpretedOption.length; ++j)
+                for (let j = 0; j < message.uninterpretedOption.length; ++j)
                     object.uninterpretedOption[j] = google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
             }
             return object;
@@ -11850,7 +12016,7 @@ export namespace google.protobuf {
          * Converts this ServiceOptions to JSON.
          */
         toJSON() {
-            return ServiceOptions.toObject(this, $protobuf.util.toJSONOptions);
+            return ServiceOptions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -11891,7 +12057,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IMethodOptions) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11907,10 +12073,10 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified MethodOptions message. Does not implicitly {@link MethodOptions.verify|verify} messages.
-         * @param message MethodOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IMethodOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IMethodOptions, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.deprecated != null && Object.hasOwnProperty.call(message, "deprecated"))
@@ -11918,17 +12084,17 @@ export namespace google.protobuf {
             if (message.idempotencyLevel != null && Object.hasOwnProperty.call(message, "idempotencyLevel"))
                 writer.uint32(/* id 34, wireType 0 =*/272).int32(message.idempotencyLevel);
             if (message.uninterpretedOption != null && message.uninterpretedOption.length)
-                for (var i = 0; i < message.uninterpretedOption.length; ++i)
+                for (let i = 0; i < message.uninterpretedOption.length; ++i)
                     google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified MethodOptions message, length delimited. Does not implicitly {@link MethodOptions.verify|verify} messages.
-         * @param message MethodOptionsmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IMethodOptions, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IMethodOptions, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -11941,24 +12107,27 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): MethodOptions {
+        static decode(reader: $Reader|Uint8Array, length?: number): MethodOptions {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MethodOptions();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.MethodOptions();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 33:
-                    message.deprecated = reader.bool();
-                    break;
-                case 34:
-                    message.idempotencyLevel = reader.int32();
-                    break;
-                case 999:
-                    if (!(message.uninterpretedOption && message.uninterpretedOption.length))
-                        message.uninterpretedOption = [];
-                    message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                    break;
+                case 33: {
+                        message.deprecated = reader.bool();
+                        break;
+                    }
+                case 34: {
+                        message.idempotencyLevel = reader.int32();
+                        break;
+                    }
+                case 999: {
+                        if (!(message.uninterpretedOption && message.uninterpretedOption.length))
+                            message.uninterpretedOption = [];
+                        message.uninterpretedOption.push(google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -11973,10 +12142,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): MethodOptions {
+        static decodeDelimited(reader: $Reader|Uint8Array): MethodOptions {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -12004,8 +12173,8 @@ export namespace google.protobuf {
             if (message.uninterpretedOption != null && message.hasOwnProperty("uninterpretedOption")) {
                 if (!Array.isArray(message.uninterpretedOption))
                     return "uninterpretedOption: array expected";
-                for (var i = 0; i < message.uninterpretedOption.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
+                for (let i = 0; i < message.uninterpretedOption.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.verify(message.uninterpretedOption[i]);
                     if (error)
                         return "uninterpretedOption." + error;
                 }
@@ -12022,7 +12191,7 @@ export namespace google.protobuf {
         static fromObject(object): IMethodOptions {
             if (object instanceof google.protobuf.MethodOptions)
                 return object;
-            var message = new google.protobuf.MethodOptions();
+            let message = new google.protobuf.MethodOptions();
             if (object.deprecated != null)
                 message.deprecated = Boolean(object.deprecated);
             switch (object.idempotencyLevel) {
@@ -12043,7 +12212,7 @@ export namespace google.protobuf {
                 if (!Array.isArray(object.uninterpretedOption))
                     throw TypeError(".google.protobuf.MethodOptions.uninterpretedOption: array expected");
                 message.uninterpretedOption = [];
-                for (var i = 0; i < object.uninterpretedOption.length; ++i) {
+                for (let i = 0; i < object.uninterpretedOption.length; ++i) {
                     if (typeof object.uninterpretedOption[i] !== "object")
                         throw TypeError(".google.protobuf.MethodOptions.uninterpretedOption: object expected");
                     message.uninterpretedOption[i] = google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
@@ -12058,7 +12227,7 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IMethodOptions, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IMethodOptions, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.uninterpretedOption = [];
@@ -12072,7 +12241,7 @@ export namespace google.protobuf {
                 object.idempotencyLevel = options.enums === String ? google.protobuf.MethodOptions.IdempotencyLevel[message.idempotencyLevel] : message.idempotencyLevel;
             if (message.uninterpretedOption && message.uninterpretedOption.length) {
                 object.uninterpretedOption = [];
-                for (var j = 0; j < message.uninterpretedOption.length; ++j)
+                for (let j = 0; j < message.uninterpretedOption.length; ++j)
                     object.uninterpretedOption[j] = google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
             }
             return object;
@@ -12082,7 +12251,7 @@ export namespace google.protobuf {
          * Converts this MethodOptions to JSON.
          */
         toJSON() {
-            return MethodOptions.toObject(this, $protobuf.util.toJSONOptions);
+            return MethodOptions.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -12115,8 +12284,8 @@ export namespace google.protobuf {
     export interface IUninterpretedOption {
         name?: google.protobuf.UninterpretedOption.INamePart[];
         identifierValue?: string;
-        positiveIntValue?: (number|$protobuf.Long);
-        negativeIntValue?: (number|$protobuf.Long);
+        positiveIntValue?: (number|$Long);
+        negativeIntValue?: (number|$Long);
         doubleValue?: number;
         stringValue?: Uint8Array;
         aggregateValue?: string;
@@ -12128,8 +12297,8 @@ export namespace google.protobuf {
     export class UninterpretedOption implements IUninterpretedOption {
         name?: google.protobuf.UninterpretedOption.INamePart[];
         identifierValue?: string;
-        positiveIntValue?: (number|$protobuf.Long);
-        negativeIntValue?: (number|$protobuf.Long);
+        positiveIntValue?: (number|$Long);
+        negativeIntValue?: (number|$Long);
         doubleValue?: number;
         stringValue?: Uint8Array;
         aggregateValue?: string;
@@ -12140,7 +12309,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IUninterpretedOption) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -12156,14 +12325,14 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified UninterpretedOption message. Does not implicitly {@link UninterpretedOption.verify|verify} messages.
-         * @param message UninterpretedOptionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IUninterpretedOption, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IUninterpretedOption, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && message.name.length)
-                for (var i = 0; i < message.name.length; ++i)
+                for (let i = 0; i < message.name.length; ++i)
                     google.protobuf.UninterpretedOption.NamePart.encode(message.name[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.identifierValue != null && Object.hasOwnProperty.call(message, "identifierValue"))
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.identifierValue);
@@ -12182,10 +12351,10 @@ export namespace google.protobuf {
 
         /**
          * Encodes the specified UninterpretedOption message, length delimited. Does not implicitly {@link UninterpretedOption.verify|verify} messages.
-         * @param message UninterpretedOptionmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IUninterpretedOption, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IUninterpretedOption, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -12198,36 +12367,43 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): UninterpretedOption {
+        static decode(reader: $Reader|Uint8Array, length?: number): UninterpretedOption {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.UninterpretedOption();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.UninterpretedOption();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 2:
-                    if (!(message.name && message.name.length))
-                        message.name = [];
-                    message.name.push(google.protobuf.UninterpretedOption.NamePart.decode(reader, reader.uint32()));
-                    break;
-                case 3:
-                    message.identifierValue = reader.string();
-                    break;
-                case 4:
-                    message.positiveIntValue = reader.uint64();
-                    break;
-                case 5:
-                    message.negativeIntValue = reader.int64();
-                    break;
-                case 6:
-                    message.doubleValue = reader.double();
-                    break;
-                case 7:
-                    message.stringValue = reader.bytes();
-                    break;
-                case 8:
-                    message.aggregateValue = reader.string();
-                    break;
+                case 2: {
+                        if (!(message.name && message.name.length))
+                            message.name = [];
+                        message.name.push(google.protobuf.UninterpretedOption.NamePart.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 3: {
+                        message.identifierValue = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.positiveIntValue = reader.uint64();
+                        break;
+                    }
+                case 5: {
+                        message.negativeIntValue = reader.int64();
+                        break;
+                    }
+                case 6: {
+                        message.doubleValue = reader.double();
+                        break;
+                    }
+                case 7: {
+                        message.stringValue = reader.bytes();
+                        break;
+                    }
+                case 8: {
+                        message.aggregateValue = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -12242,10 +12418,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): UninterpretedOption {
+        static decodeDelimited(reader: $Reader|Uint8Array): UninterpretedOption {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -12261,8 +12437,8 @@ export namespace google.protobuf {
             if (message.name != null && message.hasOwnProperty("name")) {
                 if (!Array.isArray(message.name))
                     return "name: array expected";
-                for (var i = 0; i < message.name.length; ++i) {
-                    var error = google.protobuf.UninterpretedOption.NamePart.verify(message.name[i]);
+                for (let i = 0; i < message.name.length; ++i) {
+                    let error = google.protobuf.UninterpretedOption.NamePart.verify(message.name[i]);
                     if (error)
                         return "name." + error;
                 }
@@ -12297,12 +12473,12 @@ export namespace google.protobuf {
         static fromObject(object): IUninterpretedOption {
             if (object instanceof google.protobuf.UninterpretedOption)
                 return object;
-            var message = new google.protobuf.UninterpretedOption();
+            let message = new google.protobuf.UninterpretedOption();
             if (object.name) {
                 if (!Array.isArray(object.name))
                     throw TypeError(".google.protobuf.UninterpretedOption.name: array expected");
                 message.name = [];
-                for (var i = 0; i < object.name.length; ++i) {
+                for (let i = 0; i < object.name.length; ++i) {
                     if (typeof object.name[i] !== "object")
                         throw TypeError(".google.protobuf.UninterpretedOption.name: object expected");
                     message.name[i] = google.protobuf.UninterpretedOption.NamePart.fromObject(object.name[i]);
@@ -12311,23 +12487,9 @@ export namespace google.protobuf {
             if (object.identifierValue != null)
                 message.identifierValue = String(object.identifierValue);
             if (object.positiveIntValue != null)
-                if ($util.Long)
-                    (message.positiveIntValue = ($util.Long as any).fromValue(object.positiveIntValue)).unsigned = true;
-                else if (typeof object.positiveIntValue === "string")
-                    message.positiveIntValue = parseInt(object.positiveIntValue, 10);
-                else if (typeof object.positiveIntValue === "number")
-                    message.positiveIntValue = object.positiveIntValue;
-                else if (typeof object.positiveIntValue === "object")
-                    message.positiveIntValue = new $util.LongBits(object.positiveIntValue).toNumber(true);
+                message.positiveIntValue = $util.longValue(object.positiveIntValue, true);
             if (object.negativeIntValue != null)
-                if ($util.Long)
-                    (message.negativeIntValue = ($util.Long as any).fromValue(object.negativeIntValue)).unsigned = false;
-                else if (typeof object.negativeIntValue === "string")
-                    message.negativeIntValue = parseInt(object.negativeIntValue, 10);
-                else if (typeof object.negativeIntValue === "number")
-                    message.negativeIntValue = object.negativeIntValue;
-                else if (typeof object.negativeIntValue === "object")
-                    message.negativeIntValue = new $util.LongBits(object.negativeIntValue).toNumber();
+                message.negativeIntValue = $util.longValue(object.negativeIntValue, false);
             if (object.doubleValue != null)
                 message.doubleValue = Number(object.doubleValue);
             if (object.stringValue != null)
@@ -12346,19 +12508,19 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IUninterpretedOption, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IUninterpretedOption, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.name = [];
             if (options.defaults) {
                 object.identifierValue = "";
                 if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
+                    let long = new $util.Long(0, 0, true);
                     object.positiveIntValue = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.positiveIntValue = options.longs === String ? "0" : 0;
                 if ($util.Long) {
-                    var long = new $util.Long(0, 0, false);
+                    let long = new $util.Long(0, 0, false);
                     object.negativeIntValue = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.negativeIntValue = options.longs === String ? "0" : 0;
@@ -12374,7 +12536,7 @@ export namespace google.protobuf {
             }
             if (message.name && message.name.length) {
                 object.name = [];
-                for (var j = 0; j < message.name.length; ++j)
+                for (let j = 0; j < message.name.length; ++j)
                     object.name[j] = google.protobuf.UninterpretedOption.NamePart.toObject(message.name[j], options);
             }
             if (message.identifierValue != null && message.hasOwnProperty("identifierValue"))
@@ -12402,7 +12564,7 @@ export namespace google.protobuf {
          * Converts this UninterpretedOption to JSON.
          */
         toJSON() {
-            return UninterpretedOption.toObject(this, $protobuf.util.toJSONOptions);
+            return UninterpretedOption.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -12442,7 +12604,7 @@ export namespace google.protobuf {
              */
             constructor(properties?: INamePart) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -12458,10 +12620,10 @@ export namespace google.protobuf {
             // #region encode
             /**
              * Encodes the specified NamePart message. Does not implicitly {@link NamePart.verify|verify} messages.
-             * @param message NamePartmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: INamePart, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: INamePart, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.namePart);
@@ -12471,10 +12633,10 @@ export namespace google.protobuf {
 
             /**
              * Encodes the specified NamePart message, length delimited. Does not implicitly {@link NamePart.verify|verify} messages.
-             * @param message NamePartmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: INamePart, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: INamePart, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -12487,19 +12649,21 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): NamePart {
+            static decode(reader: $Reader|Uint8Array, length?: number): NamePart {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.UninterpretedOption.NamePart();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.UninterpretedOption.NamePart();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.namePart = reader.string();
-                        break;
-                    case 2:
-                        message.isExtension = reader.bool();
-                        break;
+                    case 1: {
+                            message.namePart = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.isExtension = reader.bool();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -12518,10 +12682,10 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): NamePart {
+            static decodeDelimited(reader: $Reader|Uint8Array): NamePart {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -12550,7 +12714,7 @@ export namespace google.protobuf {
             static fromObject(object): INamePart {
                 if (object instanceof google.protobuf.UninterpretedOption.NamePart)
                     return object;
-                var message = new google.protobuf.UninterpretedOption.NamePart();
+                let message = new google.protobuf.UninterpretedOption.NamePart();
                 if (object.namePart != null)
                     message.namePart = String(object.namePart);
                 if (object.isExtension != null)
@@ -12564,7 +12728,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: INamePart, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: INamePart, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.defaults) {
                     object.namePart = "";
@@ -12581,7 +12745,7 @@ export namespace google.protobuf {
              * Converts this NamePart to JSON.
              */
             toJSON() {
-                return NamePart.toObject(this, $protobuf.util.toJSONOptions);
+                return NamePart.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -12618,7 +12782,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: ISourceCodeInfo) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -12634,24 +12798,24 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified SourceCodeInfo message. Does not implicitly {@link SourceCodeInfo.verify|verify} messages.
-         * @param message SourceCodeInfomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ISourceCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISourceCodeInfo, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.location != null && message.location.length)
-                for (var i = 0; i < message.location.length; ++i)
+                for (let i = 0; i < message.location.length; ++i)
                     google.protobuf.SourceCodeInfo.Location.encode(message.location[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified SourceCodeInfo message, length delimited. Does not implicitly {@link SourceCodeInfo.verify|verify} messages.
-         * @param message SourceCodeInfomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ISourceCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISourceCodeInfo, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -12664,18 +12828,19 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): SourceCodeInfo {
+        static decode(reader: $Reader|Uint8Array, length?: number): SourceCodeInfo {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.SourceCodeInfo();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.SourceCodeInfo();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    if (!(message.location && message.location.length))
-                        message.location = [];
-                    message.location.push(google.protobuf.SourceCodeInfo.Location.decode(reader, reader.uint32()));
-                    break;
+                case 1: {
+                        if (!(message.location && message.location.length))
+                            message.location = [];
+                        message.location.push(google.protobuf.SourceCodeInfo.Location.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -12690,10 +12855,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): SourceCodeInfo {
+        static decodeDelimited(reader: $Reader|Uint8Array): SourceCodeInfo {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -12709,8 +12874,8 @@ export namespace google.protobuf {
             if (message.location != null && message.hasOwnProperty("location")) {
                 if (!Array.isArray(message.location))
                     return "location: array expected";
-                for (var i = 0; i < message.location.length; ++i) {
-                    var error = google.protobuf.SourceCodeInfo.Location.verify(message.location[i]);
+                for (let i = 0; i < message.location.length; ++i) {
+                    let error = google.protobuf.SourceCodeInfo.Location.verify(message.location[i]);
                     if (error)
                         return "location." + error;
                 }
@@ -12727,12 +12892,12 @@ export namespace google.protobuf {
         static fromObject(object): ISourceCodeInfo {
             if (object instanceof google.protobuf.SourceCodeInfo)
                 return object;
-            var message = new google.protobuf.SourceCodeInfo();
+            let message = new google.protobuf.SourceCodeInfo();
             if (object.location) {
                 if (!Array.isArray(object.location))
                     throw TypeError(".google.protobuf.SourceCodeInfo.location: array expected");
                 message.location = [];
-                for (var i = 0; i < object.location.length; ++i) {
+                for (let i = 0; i < object.location.length; ++i) {
                     if (typeof object.location[i] !== "object")
                         throw TypeError(".google.protobuf.SourceCodeInfo.location: object expected");
                     message.location[i] = google.protobuf.SourceCodeInfo.Location.fromObject(object.location[i]);
@@ -12747,13 +12912,13 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ISourceCodeInfo, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISourceCodeInfo, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.location = [];
             if (message.location && message.location.length) {
                 object.location = [];
-                for (var j = 0; j < message.location.length; ++j)
+                for (let j = 0; j < message.location.length; ++j)
                     object.location[j] = google.protobuf.SourceCodeInfo.Location.toObject(message.location[j], options);
             }
             return object;
@@ -12763,7 +12928,7 @@ export namespace google.protobuf {
          * Converts this SourceCodeInfo to JSON.
          */
         toJSON() {
-            return SourceCodeInfo.toObject(this, $protobuf.util.toJSONOptions);
+            return SourceCodeInfo.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -12809,7 +12974,7 @@ export namespace google.protobuf {
              */
             constructor(properties?: ILocation) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -12825,21 +12990,21 @@ export namespace google.protobuf {
             // #region encode
             /**
              * Encodes the specified Location message. Does not implicitly {@link Location.verify|verify} messages.
-             * @param message Locationmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: ILocation, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: ILocation, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.path != null && message.path.length) {
                     writer.uint32(/* id 1, wireType 2 =*/10).fork();
-                    for (var i = 0; i < message.path.length; ++i)
+                    for (let i = 0; i < message.path.length; ++i)
                         writer.int32(message.path[i]);
                     writer.ldelim();
                 }
                 if (message.span != null && message.span.length) {
                     writer.uint32(/* id 2, wireType 2 =*/18).fork();
-                    for (var i = 0; i < message.span.length; ++i)
+                    for (let i = 0; i < message.span.length; ++i)
                         writer.int32(message.span[i]);
                     writer.ldelim();
                 }
@@ -12848,17 +13013,17 @@ export namespace google.protobuf {
                 if (message.trailingComments != null && Object.hasOwnProperty.call(message, "trailingComments"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.trailingComments);
                 if (message.leadingDetachedComments != null && message.leadingDetachedComments.length)
-                    for (var i = 0; i < message.leadingDetachedComments.length; ++i)
+                    for (let i = 0; i < message.leadingDetachedComments.length; ++i)
                         writer.uint32(/* id 6, wireType 2 =*/50).string(message.leadingDetachedComments[i]);
                 return writer;
             }
 
             /**
              * Encodes the specified Location message, length delimited. Does not implicitly {@link Location.verify|verify} messages.
-             * @param message Locationmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: ILocation, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: ILocation, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -12871,44 +13036,49 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Location {
+            static decode(reader: $Reader|Uint8Array, length?: number): Location {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.SourceCodeInfo.Location();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.SourceCodeInfo.Location();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        if (!(message.path && message.path.length))
-                            message.path = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                    case 1: {
+                            if (!(message.path && message.path.length))
+                                message.path = [];
+                            if ((tag & 7) === 2) {
+                                let end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.path.push(reader.int32());
+                            } else
                                 message.path.push(reader.int32());
-                        } else
-                            message.path.push(reader.int32());
-                        break;
-                    case 2:
-                        if (!(message.span && message.span.length))
-                            message.span = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                            break;
+                        }
+                    case 2: {
+                            if (!(message.span && message.span.length))
+                                message.span = [];
+                            if ((tag & 7) === 2) {
+                                let end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.span.push(reader.int32());
+                            } else
                                 message.span.push(reader.int32());
-                        } else
-                            message.span.push(reader.int32());
-                        break;
-                    case 3:
-                        message.leadingComments = reader.string();
-                        break;
-                    case 4:
-                        message.trailingComments = reader.string();
-                        break;
-                    case 6:
-                        if (!(message.leadingDetachedComments && message.leadingDetachedComments.length))
-                            message.leadingDetachedComments = [];
-                        message.leadingDetachedComments.push(reader.string());
-                        break;
+                            break;
+                        }
+                    case 3: {
+                            message.leadingComments = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.trailingComments = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            if (!(message.leadingDetachedComments && message.leadingDetachedComments.length))
+                                message.leadingDetachedComments = [];
+                            message.leadingDetachedComments.push(reader.string());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -12923,10 +13093,10 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Location {
+            static decodeDelimited(reader: $Reader|Uint8Array): Location {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -12942,14 +13112,14 @@ export namespace google.protobuf {
                 if (message.path != null && message.hasOwnProperty("path")) {
                     if (!Array.isArray(message.path))
                         return "path: array expected";
-                    for (var i = 0; i < message.path.length; ++i)
+                    for (let i = 0; i < message.path.length; ++i)
                         if (!$util.isInteger(message.path[i]))
                             return "path: integer[] expected";
                 }
                 if (message.span != null && message.hasOwnProperty("span")) {
                     if (!Array.isArray(message.span))
                         return "span: array expected";
-                    for (var i = 0; i < message.span.length; ++i)
+                    for (let i = 0; i < message.span.length; ++i)
                         if (!$util.isInteger(message.span[i]))
                             return "span: integer[] expected";
                 }
@@ -12962,7 +13132,7 @@ export namespace google.protobuf {
                 if (message.leadingDetachedComments != null && message.hasOwnProperty("leadingDetachedComments")) {
                     if (!Array.isArray(message.leadingDetachedComments))
                         return "leadingDetachedComments: array expected";
-                    for (var i = 0; i < message.leadingDetachedComments.length; ++i)
+                    for (let i = 0; i < message.leadingDetachedComments.length; ++i)
                         if (!$util.isString(message.leadingDetachedComments[i]))
                             return "leadingDetachedComments: string[] expected";
                 }
@@ -12978,19 +13148,19 @@ export namespace google.protobuf {
             static fromObject(object): ILocation {
                 if (object instanceof google.protobuf.SourceCodeInfo.Location)
                     return object;
-                var message = new google.protobuf.SourceCodeInfo.Location();
+                let message = new google.protobuf.SourceCodeInfo.Location();
                 if (object.path) {
                     if (!Array.isArray(object.path))
                         throw TypeError(".google.protobuf.SourceCodeInfo.Location.path: array expected");
                     message.path = [];
-                    for (var i = 0; i < object.path.length; ++i)
+                    for (let i = 0; i < object.path.length; ++i)
                         message.path[i] = object.path[i] | 0;
                 }
                 if (object.span) {
                     if (!Array.isArray(object.span))
                         throw TypeError(".google.protobuf.SourceCodeInfo.Location.span: array expected");
                     message.span = [];
-                    for (var i = 0; i < object.span.length; ++i)
+                    for (let i = 0; i < object.span.length; ++i)
                         message.span[i] = object.span[i] | 0;
                 }
                 if (object.leadingComments != null)
@@ -13001,7 +13171,7 @@ export namespace google.protobuf {
                     if (!Array.isArray(object.leadingDetachedComments))
                         throw TypeError(".google.protobuf.SourceCodeInfo.Location.leadingDetachedComments: array expected");
                     message.leadingDetachedComments = [];
-                    for (var i = 0; i < object.leadingDetachedComments.length; ++i)
+                    for (let i = 0; i < object.leadingDetachedComments.length; ++i)
                         message.leadingDetachedComments[i] = String(object.leadingDetachedComments[i]);
                 }
                 return message;
@@ -13013,7 +13183,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: ILocation, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: ILocation, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.arrays || options.defaults) {
                     object.path = [];
@@ -13026,12 +13196,12 @@ export namespace google.protobuf {
                 }
                 if (message.path && message.path.length) {
                     object.path = [];
-                    for (var j = 0; j < message.path.length; ++j)
+                    for (let j = 0; j < message.path.length; ++j)
                         object.path[j] = message.path[j];
                 }
                 if (message.span && message.span.length) {
                     object.span = [];
-                    for (var j = 0; j < message.span.length; ++j)
+                    for (let j = 0; j < message.span.length; ++j)
                         object.span[j] = message.span[j];
                 }
                 if (message.leadingComments != null && message.hasOwnProperty("leadingComments"))
@@ -13040,7 +13210,7 @@ export namespace google.protobuf {
                     object.trailingComments = message.trailingComments;
                 if (message.leadingDetachedComments && message.leadingDetachedComments.length) {
                     object.leadingDetachedComments = [];
-                    for (var j = 0; j < message.leadingDetachedComments.length; ++j)
+                    for (let j = 0; j < message.leadingDetachedComments.length; ++j)
                         object.leadingDetachedComments[j] = message.leadingDetachedComments[j];
                 }
                 return object;
@@ -13050,7 +13220,7 @@ export namespace google.protobuf {
              * Converts this Location to JSON.
              */
             toJSON() {
-                return Location.toObject(this, $protobuf.util.toJSONOptions);
+                return Location.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -13093,7 +13263,7 @@ export namespace google.protobuf {
          */
         constructor(properties?: IGeneratedCodeInfo) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -13109,24 +13279,24 @@ export namespace google.protobuf {
         // #region encode
         /**
          * Encodes the specified GeneratedCodeInfo message. Does not implicitly {@link GeneratedCodeInfo.verify|verify} messages.
-         * @param message GeneratedCodeInfomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IGeneratedCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IGeneratedCodeInfo, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.annotation != null && message.annotation.length)
-                for (var i = 0; i < message.annotation.length; ++i)
+                for (let i = 0; i < message.annotation.length; ++i)
                     google.protobuf.GeneratedCodeInfo.Annotation.encode(message.annotation[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         }
 
         /**
          * Encodes the specified GeneratedCodeInfo message, length delimited. Does not implicitly {@link GeneratedCodeInfo.verify|verify} messages.
-         * @param message GeneratedCodeInfomessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IGeneratedCodeInfo, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IGeneratedCodeInfo, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -13139,18 +13309,19 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): GeneratedCodeInfo {
+        static decode(reader: $Reader|Uint8Array, length?: number): GeneratedCodeInfo {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.GeneratedCodeInfo();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.GeneratedCodeInfo();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    if (!(message.annotation && message.annotation.length))
-                        message.annotation = [];
-                    message.annotation.push(google.protobuf.GeneratedCodeInfo.Annotation.decode(reader, reader.uint32()));
-                    break;
+                case 1: {
+                        if (!(message.annotation && message.annotation.length))
+                            message.annotation = [];
+                        message.annotation.push(google.protobuf.GeneratedCodeInfo.Annotation.decode(reader, reader.uint32()));
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -13165,10 +13336,10 @@ export namespace google.protobuf {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): GeneratedCodeInfo {
+        static decodeDelimited(reader: $Reader|Uint8Array): GeneratedCodeInfo {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -13184,8 +13355,8 @@ export namespace google.protobuf {
             if (message.annotation != null && message.hasOwnProperty("annotation")) {
                 if (!Array.isArray(message.annotation))
                     return "annotation: array expected";
-                for (var i = 0; i < message.annotation.length; ++i) {
-                    var error = google.protobuf.GeneratedCodeInfo.Annotation.verify(message.annotation[i]);
+                for (let i = 0; i < message.annotation.length; ++i) {
+                    let error = google.protobuf.GeneratedCodeInfo.Annotation.verify(message.annotation[i]);
                     if (error)
                         return "annotation." + error;
                 }
@@ -13202,12 +13373,12 @@ export namespace google.protobuf {
         static fromObject(object): IGeneratedCodeInfo {
             if (object instanceof google.protobuf.GeneratedCodeInfo)
                 return object;
-            var message = new google.protobuf.GeneratedCodeInfo();
+            let message = new google.protobuf.GeneratedCodeInfo();
             if (object.annotation) {
                 if (!Array.isArray(object.annotation))
                     throw TypeError(".google.protobuf.GeneratedCodeInfo.annotation: array expected");
                 message.annotation = [];
-                for (var i = 0; i < object.annotation.length; ++i) {
+                for (let i = 0; i < object.annotation.length; ++i) {
                     if (typeof object.annotation[i] !== "object")
                         throw TypeError(".google.protobuf.GeneratedCodeInfo.annotation: object expected");
                     message.annotation[i] = google.protobuf.GeneratedCodeInfo.Annotation.fromObject(object.annotation[i]);
@@ -13222,13 +13393,13 @@ export namespace google.protobuf {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IGeneratedCodeInfo, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IGeneratedCodeInfo, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.arrays || options.defaults)
                 object.annotation = [];
             if (message.annotation && message.annotation.length) {
                 object.annotation = [];
-                for (var j = 0; j < message.annotation.length; ++j)
+                for (let j = 0; j < message.annotation.length; ++j)
                     object.annotation[j] = google.protobuf.GeneratedCodeInfo.Annotation.toObject(message.annotation[j], options);
             }
             return object;
@@ -13238,7 +13409,7 @@ export namespace google.protobuf {
          * Converts this GeneratedCodeInfo to JSON.
          */
         toJSON() {
-            return GeneratedCodeInfo.toObject(this, $protobuf.util.toJSONOptions);
+            return GeneratedCodeInfo.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -13282,7 +13453,7 @@ export namespace google.protobuf {
              */
             constructor(properties?: IAnnotation) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -13298,15 +13469,15 @@ export namespace google.protobuf {
             // #region encode
             /**
              * Encodes the specified Annotation message. Does not implicitly {@link Annotation.verify|verify} messages.
-             * @param message Annotationmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encode(message: IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encode(message: IAnnotation, writer?: $Writer): $Writer {
                 if (!writer)
                     writer = $Writer.create();
                 if (message.path != null && message.path.length) {
                     writer.uint32(/* id 1, wireType 2 =*/10).fork();
-                    for (var i = 0; i < message.path.length; ++i)
+                    for (let i = 0; i < message.path.length; ++i)
                         writer.int32(message.path[i]);
                     writer.ldelim();
                 }
@@ -13321,10 +13492,10 @@ export namespace google.protobuf {
 
             /**
              * Encodes the specified Annotation message, length delimited. Does not implicitly {@link Annotation.verify|verify} messages.
-             * @param message Annotationmessage or plain object to encode
-             * @param writer Writer to encode to
+             * @param message message or plain object to encode
+             * @param writer to encode to
              */
-            static encodeDelimited(message: IAnnotation, writer?: $protobuf.Writer): $protobuf.Writer {
+            static encodeDelimited(message: IAnnotation, writer?: $Writer): $Writer {
                 return this.encode(message, writer).ldelim();
             }
             // #endregion
@@ -13337,32 +13508,36 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Annotation {
+            static decode(reader: $Reader|Uint8Array, length?: number): Annotation {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.GeneratedCodeInfo.Annotation();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new google.protobuf.GeneratedCodeInfo.Annotation();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        if (!(message.path && message.path.length))
-                            message.path = [];
-                        if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
-                            while (reader.pos < end2)
+                    case 1: {
+                            if (!(message.path && message.path.length))
+                                message.path = [];
+                            if ((tag & 7) === 2) {
+                                let end2 = reader.uint32() + reader.pos;
+                                while (reader.pos < end2)
+                                    message.path.push(reader.int32());
+                            } else
                                 message.path.push(reader.int32());
-                        } else
-                            message.path.push(reader.int32());
-                        break;
-                    case 2:
-                        message.sourceFile = reader.string();
-                        break;
-                    case 3:
-                        message.begin = reader.int32();
-                        break;
-                    case 4:
-                        message.end = reader.int32();
-                        break;
+                            break;
+                        }
+                    case 2: {
+                            message.sourceFile = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.begin = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message.end = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -13377,10 +13552,10 @@ export namespace google.protobuf {
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Annotation {
+            static decodeDelimited(reader: $Reader|Uint8Array): Annotation {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
-                return this.decode(reader, (reader as $protobuf.Reader).uint32());
+                return this.decode(reader, (reader as $Reader).uint32());
             }
             // #endregion
 
@@ -13396,7 +13571,7 @@ export namespace google.protobuf {
                 if (message.path != null && message.hasOwnProperty("path")) {
                     if (!Array.isArray(message.path))
                         return "path: array expected";
-                    for (var i = 0; i < message.path.length; ++i)
+                    for (let i = 0; i < message.path.length; ++i)
                         if (!$util.isInteger(message.path[i]))
                             return "path: integer[] expected";
                 }
@@ -13421,12 +13596,12 @@ export namespace google.protobuf {
             static fromObject(object): IAnnotation {
                 if (object instanceof google.protobuf.GeneratedCodeInfo.Annotation)
                     return object;
-                var message = new google.protobuf.GeneratedCodeInfo.Annotation();
+                let message = new google.protobuf.GeneratedCodeInfo.Annotation();
                 if (object.path) {
                     if (!Array.isArray(object.path))
                         throw TypeError(".google.protobuf.GeneratedCodeInfo.Annotation.path: array expected");
                     message.path = [];
-                    for (var i = 0; i < object.path.length; ++i)
+                    for (let i = 0; i < object.path.length; ++i)
                         message.path[i] = object.path[i] | 0;
                 }
                 if (object.sourceFile != null)
@@ -13444,7 +13619,7 @@ export namespace google.protobuf {
              * @param optionsConversion options
              * @returns Plain object
              */
-            static toObject(message: IAnnotation, options: $protobuf.IConversionOptions = {}) {
+            static toObject(message: IAnnotation, options: $IConversionOptions = {}) {
                 let object: any = {};
                 if (options.arrays || options.defaults)
                     object.path = [];
@@ -13455,7 +13630,7 @@ export namespace google.protobuf {
                 }
                 if (message.path && message.path.length) {
                     object.path = [];
-                    for (var j = 0; j < message.path.length; ++j)
+                    for (let j = 0; j < message.path.length; ++j)
                         object.path[j] = message.path[j];
                 }
                 if (message.sourceFile != null && message.hasOwnProperty("sourceFile"))
@@ -13471,7 +13646,7 @@ export namespace google.protobuf {
              * Converts this Annotation to JSON.
              */
             toJSON() {
-                return Annotation.toObject(this, $protobuf.util.toJSONOptions);
+                return Annotation.toObject(this, $util.toJSONOptions);
             };
             // #endregion
 
@@ -13544,7 +13719,7 @@ export class Package implements IPackage {
      */
     constructor(properties?: IPackage) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -13560,10 +13735,10 @@ export class Package implements IPackage {
     // #region encode
     /**
      * Encodes the specified Package message. Does not implicitly {@link Package.verify|verify} messages.
-     * @param message Packagemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IPackage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IPackage, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.name != null && Object.hasOwnProperty.call(message, "name"))
@@ -13583,26 +13758,26 @@ export class Package implements IPackage {
         if (message.homepage != null && Object.hasOwnProperty.call(message, "homepage"))
             writer.uint32(/* id 8, wireType 2 =*/66).string(message.homepage);
         if (message.keywords != null && message.keywords.length)
-            for (var i = 0; i < message.keywords.length; ++i)
+            for (let i = 0; i < message.keywords.length; ++i)
                 writer.uint32(/* id 9, wireType 2 =*/74).string(message.keywords[i]);
         if (message.main != null && Object.hasOwnProperty.call(message, "main"))
             writer.uint32(/* id 10, wireType 2 =*/82).string(message.main);
         if (message.bin != null && Object.hasOwnProperty.call(message, "bin"))
-            for (var keys = Object.keys(message.bin), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.bin), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 11, wireType 2 =*/90).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.bin[keys[i]]).ldelim();
         if (message.scripts != null && Object.hasOwnProperty.call(message, "scripts"))
-            for (var keys = Object.keys(message.scripts), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.scripts), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 12, wireType 2 =*/98).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.scripts[keys[i]]).ldelim();
         if (message.dependencies != null && Object.hasOwnProperty.call(message, "dependencies"))
-            for (var keys = Object.keys(message.dependencies), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.dependencies), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 13, wireType 2 =*/106).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.dependencies[keys[i]]).ldelim();
         if (message.devDependencies != null && Object.hasOwnProperty.call(message, "devDependencies"))
-            for (var keys = Object.keys(message.devDependencies), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.devDependencies), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 15, wireType 2 =*/122).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.devDependencies[keys[i]]).ldelim();
         if (message.types != null && Object.hasOwnProperty.call(message, "types"))
             writer.uint32(/* id 17, wireType 2 =*/138).string(message.types);
         if (message.cliDependencies != null && message.cliDependencies.length)
-            for (var i = 0; i < message.cliDependencies.length; ++i)
+            for (let i = 0; i < message.cliDependencies.length; ++i)
                 writer.uint32(/* id 18, wireType 2 =*/146).string(message.cliDependencies[i]);
         if (message.versionScheme != null && Object.hasOwnProperty.call(message, "versionScheme"))
             writer.uint32(/* id 19, wireType 2 =*/154).string(message.versionScheme);
@@ -13611,10 +13786,10 @@ export class Package implements IPackage {
 
     /**
      * Encodes the specified Package message, length delimited. Does not implicitly {@link Package.verify|verify} messages.
-     * @param message Packagemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IPackage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IPackage, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -13627,144 +13802,161 @@ export class Package implements IPackage {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Package {
+    static decode(reader: $Reader|Uint8Array, length?: number): Package {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Package(), key, value;
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Package(), key, value;
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.name = reader.string();
-                break;
-            case 2:
-                message.version = reader.string();
-                break;
-            case 19:
-                message.versionScheme = reader.string();
-                break;
-            case 3:
-                message.description = reader.string();
-                break;
-            case 4:
-                message.author = reader.string();
-                break;
-            case 5:
-                message.license = reader.string();
-                break;
-            case 6:
-                message.repository = Package.Repository.decode(reader, reader.uint32());
-                break;
-            case 7:
-                message.bugs = reader.string();
-                break;
-            case 8:
-                message.homepage = reader.string();
-                break;
-            case 9:
-                if (!(message.keywords && message.keywords.length))
-                    message.keywords = [];
-                message.keywords.push(reader.string());
-                break;
-            case 10:
-                message.main = reader.string();
-                break;
-            case 11:
-                if (message.bin === $util.emptyObject || !message.bin)
-                    message.bin = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 1: {
+                    message.name = reader.string();
+                    break;
                 }
-                message.bin[key] = value;
-                break;
-            case 12:
-                if (message.scripts === $util.emptyObject || !message.scripts)
-                    message.scripts = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 2: {
+                    message.version = reader.string();
+                    break;
                 }
-                message.scripts[key] = value;
-                break;
-            case 13:
-                if (message.dependencies === $util.emptyObject || !message.dependencies)
-                    message.dependencies = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 19: {
+                    message.versionScheme = reader.string();
+                    break;
                 }
-                message.dependencies[key] = value;
-                break;
-            case 15:
-                if (message.devDependencies === $util.emptyObject || !message.devDependencies)
-                    message.devDependencies = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 3: {
+                    message.description = reader.string();
+                    break;
                 }
-                message.devDependencies[key] = value;
-                break;
-            case 17:
-                message.types = reader.string();
-                break;
-            case 18:
-                if (!(message.cliDependencies && message.cliDependencies.length))
-                    message.cliDependencies = [];
-                message.cliDependencies.push(reader.string());
-                break;
+            case 4: {
+                    message.author = reader.string();
+                    break;
+                }
+            case 5: {
+                    message.license = reader.string();
+                    break;
+                }
+            case 6: {
+                    message.repository = Package.Repository.decode(reader, reader.uint32());
+                    break;
+                }
+            case 7: {
+                    message.bugs = reader.string();
+                    break;
+                }
+            case 8: {
+                    message.homepage = reader.string();
+                    break;
+                }
+            case 9: {
+                    if (!(message.keywords && message.keywords.length))
+                        message.keywords = [];
+                    message.keywords.push(reader.string());
+                    break;
+                }
+            case 10: {
+                    message.main = reader.string();
+                    break;
+                }
+            case 11: {
+                    if (message.bin === $util.emptyObject || !message.bin)
+                        message.bin = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = "";
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.bin[key] = value;
+                    break;
+                }
+            case 12: {
+                    if (message.scripts === $util.emptyObject || !message.scripts)
+                        message.scripts = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = "";
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.scripts[key] = value;
+                    break;
+                }
+            case 13: {
+                    if (message.dependencies === $util.emptyObject || !message.dependencies)
+                        message.dependencies = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = "";
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.dependencies[key] = value;
+                    break;
+                }
+            case 15: {
+                    if (message.devDependencies === $util.emptyObject || !message.devDependencies)
+                        message.devDependencies = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = "";
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.devDependencies[key] = value;
+                    break;
+                }
+            case 17: {
+                    message.types = reader.string();
+                    break;
+                }
+            case 18: {
+                    if (!(message.cliDependencies && message.cliDependencies.length))
+                        message.cliDependencies = [];
+                    message.cliDependencies.push(reader.string());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -13779,10 +13971,10 @@ export class Package implements IPackage {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Package {
+    static decodeDelimited(reader: $Reader|Uint8Array): Package {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -13814,7 +14006,7 @@ export class Package implements IPackage {
             if (!$util.isString(message.license))
                 return "license: string expected";
         if (message.repository != null && message.hasOwnProperty("repository")) {
-            var error = Package.Repository.verify(message.repository);
+            let error = Package.Repository.verify(message.repository);
             if (error)
                 return "repository." + error;
         }
@@ -13827,7 +14019,7 @@ export class Package implements IPackage {
         if (message.keywords != null && message.hasOwnProperty("keywords")) {
             if (!Array.isArray(message.keywords))
                 return "keywords: array expected";
-            for (var i = 0; i < message.keywords.length; ++i)
+            for (let i = 0; i < message.keywords.length; ++i)
                 if (!$util.isString(message.keywords[i]))
                     return "keywords: string[] expected";
         }
@@ -13837,32 +14029,32 @@ export class Package implements IPackage {
         if (message.bin != null && message.hasOwnProperty("bin")) {
             if (!$util.isObject(message.bin))
                 return "bin: object expected";
-            var key = Object.keys(message.bin);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.bin);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.bin[key[i]]))
                     return "bin: string{k:string} expected";
         }
         if (message.scripts != null && message.hasOwnProperty("scripts")) {
             if (!$util.isObject(message.scripts))
                 return "scripts: object expected";
-            var key = Object.keys(message.scripts);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.scripts);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.scripts[key[i]]))
                     return "scripts: string{k:string} expected";
         }
         if (message.dependencies != null && message.hasOwnProperty("dependencies")) {
             if (!$util.isObject(message.dependencies))
                 return "dependencies: object expected";
-            var key = Object.keys(message.dependencies);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.dependencies);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.dependencies[key[i]]))
                     return "dependencies: string{k:string} expected";
         }
         if (message.devDependencies != null && message.hasOwnProperty("devDependencies")) {
             if (!$util.isObject(message.devDependencies))
                 return "devDependencies: object expected";
-            var key = Object.keys(message.devDependencies);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.devDependencies);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isString(message.devDependencies[key[i]]))
                     return "devDependencies: string{k:string} expected";
         }
@@ -13872,7 +14064,7 @@ export class Package implements IPackage {
         if (message.cliDependencies != null && message.hasOwnProperty("cliDependencies")) {
             if (!Array.isArray(message.cliDependencies))
                 return "cliDependencies: array expected";
-            for (var i = 0; i < message.cliDependencies.length; ++i)
+            for (let i = 0; i < message.cliDependencies.length; ++i)
                 if (!$util.isString(message.cliDependencies[i]))
                     return "cliDependencies: string[] expected";
         }
@@ -13888,7 +14080,7 @@ export class Package implements IPackage {
     static fromObject(object): IPackage {
         if (object instanceof Package)
             return object;
-        var message = new Package();
+        let message = new Package();
         if (object.name != null)
             message.name = String(object.name);
         if (object.version != null)
@@ -13914,7 +14106,7 @@ export class Package implements IPackage {
             if (!Array.isArray(object.keywords))
                 throw TypeError(".Package.keywords: array expected");
             message.keywords = [];
-            for (var i = 0; i < object.keywords.length; ++i)
+            for (let i = 0; i < object.keywords.length; ++i)
                 message.keywords[i] = String(object.keywords[i]);
         }
         if (object.main != null)
@@ -13923,28 +14115,28 @@ export class Package implements IPackage {
             if (typeof object.bin !== "object")
                 throw TypeError(".Package.bin: object expected");
             message.bin = {};
-            for (var keys = Object.keys(object.bin), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.bin), i = 0; i < keys.length; ++i)
                 message.bin[keys[i]] = String(object.bin[keys[i]]);
         }
         if (object.scripts) {
             if (typeof object.scripts !== "object")
                 throw TypeError(".Package.scripts: object expected");
             message.scripts = {};
-            for (var keys = Object.keys(object.scripts), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.scripts), i = 0; i < keys.length; ++i)
                 message.scripts[keys[i]] = String(object.scripts[keys[i]]);
         }
         if (object.dependencies) {
             if (typeof object.dependencies !== "object")
                 throw TypeError(".Package.dependencies: object expected");
             message.dependencies = {};
-            for (var keys = Object.keys(object.dependencies), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.dependencies), i = 0; i < keys.length; ++i)
                 message.dependencies[keys[i]] = String(object.dependencies[keys[i]]);
         }
         if (object.devDependencies) {
             if (typeof object.devDependencies !== "object")
                 throw TypeError(".Package.devDependencies: object expected");
             message.devDependencies = {};
-            for (var keys = Object.keys(object.devDependencies), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(object.devDependencies), i = 0; i < keys.length; ++i)
                 message.devDependencies[keys[i]] = String(object.devDependencies[keys[i]]);
         }
         if (object.types != null)
@@ -13953,7 +14145,7 @@ export class Package implements IPackage {
             if (!Array.isArray(object.cliDependencies))
                 throw TypeError(".Package.cliDependencies: array expected");
             message.cliDependencies = [];
-            for (var i = 0; i < object.cliDependencies.length; ++i)
+            for (let i = 0; i < object.cliDependencies.length; ++i)
                 message.cliDependencies[i] = String(object.cliDependencies[i]);
         }
         return message;
@@ -13965,7 +14157,7 @@ export class Package implements IPackage {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IPackage, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IPackage, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults) {
             object.keywords = [];
@@ -14008,37 +14200,37 @@ export class Package implements IPackage {
             object.homepage = message.homepage;
         if (message.keywords && message.keywords.length) {
             object.keywords = [];
-            for (var j = 0; j < message.keywords.length; ++j)
+            for (let j = 0; j < message.keywords.length; ++j)
                 object.keywords[j] = message.keywords[j];
         }
         if (message.main != null && message.hasOwnProperty("main"))
             object.main = message.main;
-        var keys2;
+        let keys2;
         if (message.bin && (keys2 = Object.keys(message.bin)).length) {
             object.bin = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.bin[keys2[j]] = message.bin[keys2[j]];
         }
         if (message.scripts && (keys2 = Object.keys(message.scripts)).length) {
             object.scripts = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.scripts[keys2[j]] = message.scripts[keys2[j]];
         }
         if (message.dependencies && (keys2 = Object.keys(message.dependencies)).length) {
             object.dependencies = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.dependencies[keys2[j]] = message.dependencies[keys2[j]];
         }
         if (message.devDependencies && (keys2 = Object.keys(message.devDependencies)).length) {
             object.devDependencies = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 object.devDependencies[keys2[j]] = message.devDependencies[keys2[j]];
         }
         if (message.types != null && message.hasOwnProperty("types"))
             object.types = message.types;
         if (message.cliDependencies && message.cliDependencies.length) {
             object.cliDependencies = [];
-            for (var j = 0; j < message.cliDependencies.length; ++j)
+            for (let j = 0; j < message.cliDependencies.length; ++j)
                 object.cliDependencies[j] = message.cliDependencies[j];
         }
         if (message.versionScheme != null && message.hasOwnProperty("versionScheme"))
@@ -14050,7 +14242,7 @@ export class Package implements IPackage {
      * Converts this Package to JSON.
      */
     toJSON() {
-        return Package.toObject(this, $protobuf.util.toJSONOptions);
+        return Package.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
@@ -14100,7 +14292,7 @@ export namespace Package {
          */
         constructor(properties?: IRepository) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -14116,10 +14308,10 @@ export namespace Package {
         // #region encode
         /**
          * Encodes the specified Repository message. Does not implicitly {@link Repository.verify|verify} messages.
-         * @param message Repositorymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: IRepository, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             if (message.type != null && Object.hasOwnProperty.call(message, "type"))
@@ -14131,10 +14323,10 @@ export namespace Package {
 
         /**
          * Encodes the specified Repository message, length delimited. Does not implicitly {@link Repository.verify|verify} messages.
-         * @param message Repositorymessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: IRepository, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: IRepository, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -14147,19 +14339,21 @@ export namespace Package {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Repository {
+        static decode(reader: $Reader|Uint8Array, length?: number): Repository {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new Package.Repository();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new Package.Repository();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
-                case 1:
-                    message.type = reader.string();
-                    break;
-                case 2:
-                    message.url = reader.string();
-                    break;
+                case 1: {
+                        message.type = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.url = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -14174,10 +14368,10 @@ export namespace Package {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Repository {
+        static decodeDelimited(reader: $Reader|Uint8Array): Repository {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -14208,7 +14402,7 @@ export namespace Package {
         static fromObject(object): IRepository {
             if (object instanceof Package.Repository)
                 return object;
-            var message = new Package.Repository();
+            let message = new Package.Repository();
             if (object.type != null)
                 message.type = String(object.type);
             if (object.url != null)
@@ -14222,7 +14416,7 @@ export namespace Package {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: IRepository, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: IRepository, options: $IConversionOptions = {}) {
             let object: any = {};
             if (options.defaults) {
                 object.type = "";
@@ -14239,7 +14433,7 @@ export namespace Package {
          * Converts this Repository to JSON.
          */
         toJSON() {
-            return Repository.toObject(this, $protobuf.util.toJSONOptions);
+            return Repository.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 
@@ -14276,7 +14470,7 @@ export namespace aaaa.b {
          */
         constructor(properties?: ISomething) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -14292,10 +14486,10 @@ export namespace aaaa.b {
         // #region encode
         /**
          * Encodes the specified Something message. Does not implicitly {@link Something.verify|verify} messages.
-         * @param message Somethingmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encode(message: ISomething, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encode(message: ISomething, writer?: $Writer): $Writer {
             if (!writer)
                 writer = $Writer.create();
             return writer;
@@ -14303,10 +14497,10 @@ export namespace aaaa.b {
 
         /**
          * Encodes the specified Something message, length delimited. Does not implicitly {@link Something.verify|verify} messages.
-         * @param message Somethingmessage or plain object to encode
-         * @param writer Writer to encode to
+         * @param message message or plain object to encode
+         * @param writer to encode to
          */
-        static encodeDelimited(message: ISomething, writer?: $protobuf.Writer): $protobuf.Writer {
+        static encodeDelimited(message: ISomething, writer?: $Writer): $Writer {
             return this.encode(message, writer).ldelim();
         }
         // #endregion
@@ -14319,12 +14513,12 @@ export namespace aaaa.b {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Something {
+        static decode(reader: $Reader|Uint8Array, length?: number): Something {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new aaaa.b.Something();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new aaaa.b.Something();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 switch (tag >>> 3) {
                 default:
                     reader.skipType(tag & 7);
@@ -14340,10 +14534,10 @@ export namespace aaaa.b {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Something {
+        static decodeDelimited(reader: $Reader|Uint8Array): Something {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
-            return this.decode(reader, (reader as $protobuf.Reader).uint32());
+            return this.decode(reader, (reader as $Reader).uint32());
         }
         // #endregion
 
@@ -14377,7 +14571,7 @@ export namespace aaaa.b {
          * @param optionsConversion options
          * @returns Plain object
          */
-        static toObject(message: ISomething, options: $protobuf.IConversionOptions = {}) {
+        static toObject(message: ISomething, options: $IConversionOptions = {}) {
             return {};
         }
 
@@ -14385,7 +14579,7 @@ export namespace aaaa.b {
          * Converts this Something to JSON.
          */
         toJSON() {
-            return Something.toObject(this, $protobuf.util.toJSONOptions);
+            return Something.toObject(this, $util.toJSONOptions);
         };
         // #endregion
 

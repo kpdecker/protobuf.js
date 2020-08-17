@@ -1,20 +1,16 @@
-import * as $protobuf from "../../minimal";
-
-
-// Common aliases
-const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+import { Long as $Long, Writer as $Writer, Reader as $Reader, util as $util, IConversionOptions as $IConversionOptions } from "../../minimal";
 
 /** Properties of a Message. */
 export interface IMessage {
     stringVal?: string;
     stringRepeated?: string[];
-    uint64Val?: (number|$protobuf.Long);
-    uint64Repeated?: (number|$protobuf.Long)[];
+    uint64Val?: (number|$Long);
+    uint64Repeated?: (number|$Long)[];
     bytesVal?: Uint8Array;
     bytesRepeated?: Uint8Array[];
     enumVal?: Message.SomeEnum;
     enumRepeated?: Message.SomeEnum[];
-    int64Map?: {[key: string]: (number|$protobuf.Long)};
+    int64Map?: {[key: string]: (number|$Long)};
 }
 
 /**
@@ -23,13 +19,13 @@ export interface IMessage {
 export class Message implements IMessage {
     stringVal?: string;
     stringRepeated?: string[];
-    uint64Val?: (number|$protobuf.Long);
-    uint64Repeated?: (number|$protobuf.Long)[];
+    uint64Val?: (number|$Long);
+    uint64Repeated?: (number|$Long)[];
     bytesVal?: Uint8Array;
     bytesRepeated?: Uint8Array[];
     enumVal?: Message.SomeEnum;
     enumRepeated?: Message.SomeEnum[];
-    int64Map?: {[key: string]: (number|$protobuf.Long)};
+    int64Map?: {[key: string]: (number|$Long)};
 
     // #region create
     /**
@@ -37,7 +33,7 @@ export class Message implements IMessage {
      */
     constructor(properties?: IMessage) {
         if (properties)
-            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -53,50 +49,50 @@ export class Message implements IMessage {
     // #region encode
     /**
      * Encodes the specified Message message. Does not implicitly {@link Message.verify|verify} messages.
-     * @param message Messagemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encode(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encode(message: IMessage, writer?: $Writer): $Writer {
         if (!writer)
             writer = $Writer.create();
         if (message.stringVal != null && Object.hasOwnProperty.call(message, "stringVal"))
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.stringVal);
         if (message.stringRepeated != null && message.stringRepeated.length)
-            for (var i = 0; i < message.stringRepeated.length; ++i)
+            for (let i = 0; i < message.stringRepeated.length; ++i)
                 writer.uint32(/* id 2, wireType 2 =*/18).string(message.stringRepeated[i]);
         if (message.uint64Val != null && Object.hasOwnProperty.call(message, "uint64Val"))
             writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.uint64Val);
         if (message.uint64Repeated != null && message.uint64Repeated.length) {
             writer.uint32(/* id 4, wireType 2 =*/34).fork();
-            for (var i = 0; i < message.uint64Repeated.length; ++i)
+            for (let i = 0; i < message.uint64Repeated.length; ++i)
                 writer.uint64(message.uint64Repeated[i]);
             writer.ldelim();
         }
         if (message.bytesVal != null && Object.hasOwnProperty.call(message, "bytesVal"))
             writer.uint32(/* id 5, wireType 2 =*/42).bytes(message.bytesVal);
         if (message.bytesRepeated != null && message.bytesRepeated.length)
-            for (var i = 0; i < message.bytesRepeated.length; ++i)
+            for (let i = 0; i < message.bytesRepeated.length; ++i)
                 writer.uint32(/* id 6, wireType 2 =*/50).bytes(message.bytesRepeated[i]);
         if (message.enumVal != null && Object.hasOwnProperty.call(message, "enumVal"))
             writer.uint32(/* id 7, wireType 0 =*/56).int32(message.enumVal);
         if (message.enumRepeated != null && message.enumRepeated.length) {
             writer.uint32(/* id 8, wireType 2 =*/66).fork();
-            for (var i = 0; i < message.enumRepeated.length; ++i)
+            for (let i = 0; i < message.enumRepeated.length; ++i)
                 writer.int32(message.enumRepeated[i]);
             writer.ldelim();
         }
         if (message.int64Map != null && Object.hasOwnProperty.call(message, "int64Map"))
-            for (var keys = Object.keys(message.int64Map), i = 0; i < keys.length; ++i)
+            for (let keys = Object.keys(message.int64Map), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 9, wireType 2 =*/74).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 0 =*/16).int64(message.int64Map[keys[i]]).ldelim();
         return writer;
     }
 
     /**
      * Encodes the specified Message message, length delimited. Does not implicitly {@link Message.verify|verify} messages.
-     * @param message Messagemessage or plain object to encode
-     * @param writer Writer to encode to
+     * @param message message or plain object to encode
+     * @param writer to encode to
      */
-    static encodeDelimited(message: IMessage, writer?: $protobuf.Writer): $protobuf.Writer {
+    static encodeDelimited(message: IMessage, writer?: $Writer): $Writer {
         return this.encode(message, writer).ldelim();
     }
     // #endregion
@@ -109,77 +105,86 @@ export class Message implements IMessage {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decode(reader: $protobuf.Reader|Uint8Array, length?: number): Message {
+    static decode(reader: $Reader|Uint8Array, length?: number): Message {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        var end = length === undefined ? reader.len : reader.pos + length, message = new Message(), key, value;
+        let end = length === undefined ? reader.len : reader.pos + length, message = new Message(), key, value;
         while (reader.pos < end) {
-            var tag = reader.uint32();
+            let tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.stringVal = reader.string();
-                break;
-            case 2:
-                if (!(message.stringRepeated && message.stringRepeated.length))
-                    message.stringRepeated = [];
-                message.stringRepeated.push(reader.string());
-                break;
-            case 3:
-                message.uint64Val = reader.uint64();
-                break;
-            case 4:
-                if (!(message.uint64Repeated && message.uint64Repeated.length))
-                    message.uint64Repeated = [];
-                if ((tag & 7) === 2) {
-                    var end2 = reader.uint32() + reader.pos;
-                    while (reader.pos < end2)
-                        message.uint64Repeated.push(reader.uint64());
-                } else
-                    message.uint64Repeated.push(reader.uint64());
-                break;
-            case 5:
-                message.bytesVal = reader.bytes();
-                break;
-            case 6:
-                if (!(message.bytesRepeated && message.bytesRepeated.length))
-                    message.bytesRepeated = [];
-                message.bytesRepeated.push(reader.bytes());
-                break;
-            case 7:
-                message.enumVal = reader.int32();
-                break;
-            case 8:
-                if (!(message.enumRepeated && message.enumRepeated.length))
-                    message.enumRepeated = [];
-                if ((tag & 7) === 2) {
-                    var end2 = reader.uint32() + reader.pos;
-                    while (reader.pos < end2)
-                        message.enumRepeated.push(reader.int32());
-                } else
-                    message.enumRepeated.push(reader.int32());
-                break;
-            case 9:
-                if (message.int64Map === $util.emptyObject || !message.int64Map)
-                    message.int64Map = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = 0;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.int64();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 1: {
+                    message.stringVal = reader.string();
+                    break;
                 }
-                message.int64Map[key] = value;
-                break;
+            case 2: {
+                    if (!(message.stringRepeated && message.stringRepeated.length))
+                        message.stringRepeated = [];
+                    message.stringRepeated.push(reader.string());
+                    break;
+                }
+            case 3: {
+                    message.uint64Val = reader.uint64();
+                    break;
+                }
+            case 4: {
+                    if (!(message.uint64Repeated && message.uint64Repeated.length))
+                        message.uint64Repeated = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.uint64Repeated.push(reader.uint64());
+                    } else
+                        message.uint64Repeated.push(reader.uint64());
+                    break;
+                }
+            case 5: {
+                    message.bytesVal = reader.bytes();
+                    break;
+                }
+            case 6: {
+                    if (!(message.bytesRepeated && message.bytesRepeated.length))
+                        message.bytesRepeated = [];
+                    message.bytesRepeated.push(reader.bytes());
+                    break;
+                }
+            case 7: {
+                    message.enumVal = reader.int32();
+                    break;
+                }
+            case 8: {
+                    if (!(message.enumRepeated && message.enumRepeated.length))
+                        message.enumRepeated = [];
+                    if ((tag & 7) === 2) {
+                        let end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.enumRepeated.push(reader.int32());
+                    } else
+                        message.enumRepeated.push(reader.int32());
+                    break;
+                }
+            case 9: {
+                    if (message.int64Map === $util.emptyObject || !message.int64Map)
+                        message.int64Map = {};
+                    let end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = 0;
+                    while (reader.pos < end2) {
+                        let tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.int64();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.int64Map[key] = value;
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -194,10 +199,10 @@ export class Message implements IMessage {
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    static decodeDelimited(reader: $protobuf.Reader|Uint8Array): Message {
+    static decodeDelimited(reader: $Reader|Uint8Array): Message {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
-        return this.decode(reader, (reader as $protobuf.Reader).uint32());
+        return this.decode(reader, (reader as $Reader).uint32());
     }
     // #endregion
 
@@ -216,7 +221,7 @@ export class Message implements IMessage {
         if (message.stringRepeated != null && message.hasOwnProperty("stringRepeated")) {
             if (!Array.isArray(message.stringRepeated))
                 return "stringRepeated: array expected";
-            for (var i = 0; i < message.stringRepeated.length; ++i)
+            for (let i = 0; i < message.stringRepeated.length; ++i)
                 if (!$util.isString(message.stringRepeated[i]))
                     return "stringRepeated: string[] expected";
         }
@@ -226,7 +231,7 @@ export class Message implements IMessage {
         if (message.uint64Repeated != null && message.hasOwnProperty("uint64Repeated")) {
             if (!Array.isArray(message.uint64Repeated))
                 return "uint64Repeated: array expected";
-            for (var i = 0; i < message.uint64Repeated.length; ++i)
+            for (let i = 0; i < message.uint64Repeated.length; ++i)
                 if (!$util.isInteger(message.uint64Repeated[i]) && !(message.uint64Repeated[i] && $util.isInteger(message.uint64Repeated[i].low) && $util.isInteger(message.uint64Repeated[i].high)))
                     return "uint64Repeated: integer|Long[] expected";
         }
@@ -236,7 +241,7 @@ export class Message implements IMessage {
         if (message.bytesRepeated != null && message.hasOwnProperty("bytesRepeated")) {
             if (!Array.isArray(message.bytesRepeated))
                 return "bytesRepeated: array expected";
-            for (var i = 0; i < message.bytesRepeated.length; ++i)
+            for (let i = 0; i < message.bytesRepeated.length; ++i)
                 if (!(message.bytesRepeated[i] && typeof message.bytesRepeated[i].length === "number" || $util.isString(message.bytesRepeated[i])))
                     return "bytesRepeated: buffer[] expected";
         }
@@ -251,7 +256,7 @@ export class Message implements IMessage {
         if (message.enumRepeated != null && message.hasOwnProperty("enumRepeated")) {
             if (!Array.isArray(message.enumRepeated))
                 return "enumRepeated: array expected";
-            for (var i = 0; i < message.enumRepeated.length; ++i)
+            for (let i = 0; i < message.enumRepeated.length; ++i)
                 switch (message.enumRepeated[i]) {
                 default:
                     return "enumRepeated: enum value[] expected";
@@ -263,8 +268,8 @@ export class Message implements IMessage {
         if (message.int64Map != null && message.hasOwnProperty("int64Map")) {
             if (!$util.isObject(message.int64Map))
                 return "int64Map: object expected";
-            var key = Object.keys(message.int64Map);
-            for (var i = 0; i < key.length; ++i)
+            let key = Object.keys(message.int64Map);
+            for (let i = 0; i < key.length; ++i)
                 if (!$util.isInteger(message.int64Map[key[i]]) && !(message.int64Map[key[i]] && $util.isInteger(message.int64Map[key[i]].low) && $util.isInteger(message.int64Map[key[i]].high)))
                     return "int64Map: integer|Long{k:string} expected";
         }
@@ -280,38 +285,24 @@ export class Message implements IMessage {
     static fromObject(object): IMessage {
         if (object instanceof Message)
             return object;
-        var message = new Message();
+        let message = new Message();
         if (object.stringVal != null)
             message.stringVal = String(object.stringVal);
         if (object.stringRepeated) {
             if (!Array.isArray(object.stringRepeated))
                 throw TypeError(".Message.stringRepeated: array expected");
             message.stringRepeated = [];
-            for (var i = 0; i < object.stringRepeated.length; ++i)
+            for (let i = 0; i < object.stringRepeated.length; ++i)
                 message.stringRepeated[i] = String(object.stringRepeated[i]);
         }
         if (object.uint64Val != null)
-            if ($util.Long)
-                (message.uint64Val = ($util.Long as any).fromValue(object.uint64Val)).unsigned = true;
-            else if (typeof object.uint64Val === "string")
-                message.uint64Val = parseInt(object.uint64Val, 10);
-            else if (typeof object.uint64Val === "number")
-                message.uint64Val = object.uint64Val;
-            else if (typeof object.uint64Val === "object")
-                message.uint64Val = new $util.LongBits(object.uint64Val).toNumber(true);
+            message.uint64Val = $util.longValue(object.uint64Val, true);
         if (object.uint64Repeated) {
             if (!Array.isArray(object.uint64Repeated))
                 throw TypeError(".Message.uint64Repeated: array expected");
             message.uint64Repeated = [];
-            for (var i = 0; i < object.uint64Repeated.length; ++i)
-                if ($util.Long)
-                    (message.uint64Repeated[i] = ($util.Long as any).fromValue(object.uint64Repeated[i])).unsigned = true;
-                else if (typeof object.uint64Repeated[i] === "string")
-                    message.uint64Repeated[i] = parseInt(object.uint64Repeated[i], 10);
-                else if (typeof object.uint64Repeated[i] === "number")
-                    message.uint64Repeated[i] = object.uint64Repeated[i];
-                else if (typeof object.uint64Repeated[i] === "object")
-                    message.uint64Repeated[i] = new $util.LongBits(object.uint64Repeated[i]).toNumber(true);
+            for (let i = 0; i < object.uint64Repeated.length; ++i)
+                message.uint64Repeated[i] = $util.longValue(object.uint64Repeated[i], true);
         }
         if (object.bytesVal != null)
             if (typeof object.bytesVal === "string")
@@ -322,7 +313,7 @@ export class Message implements IMessage {
             if (!Array.isArray(object.bytesRepeated))
                 throw TypeError(".Message.bytesRepeated: array expected");
             message.bytesRepeated = [];
-            for (var i = 0; i < object.bytesRepeated.length; ++i)
+            for (let i = 0; i < object.bytesRepeated.length; ++i)
                 if (typeof object.bytesRepeated[i] === "string")
                     $util.base64.decode(object.bytesRepeated[i], message.bytesRepeated[i] = $util.newBuffer($util.base64.length(object.bytesRepeated[i])), 0);
                 else if (object.bytesRepeated[i].length)
@@ -342,7 +333,7 @@ export class Message implements IMessage {
             if (!Array.isArray(object.enumRepeated))
                 throw TypeError(".Message.enumRepeated: array expected");
             message.enumRepeated = [];
-            for (var i = 0; i < object.enumRepeated.length; ++i)
+            for (let i = 0; i < object.enumRepeated.length; ++i)
                 switch (object.enumRepeated[i]) {
                 default:
                 case "ONE":
@@ -359,15 +350,8 @@ export class Message implements IMessage {
             if (typeof object.int64Map !== "object")
                 throw TypeError(".Message.int64Map: object expected");
             message.int64Map = {};
-            for (var keys = Object.keys(object.int64Map), i = 0; i < keys.length; ++i)
-                if ($util.Long)
-                    (message.int64Map[keys[i]] = ($util.Long as any).fromValue(object.int64Map[keys[i]])).unsigned = false;
-                else if (typeof object.int64Map[keys[i]] === "string")
-                    message.int64Map[keys[i]] = parseInt(object.int64Map[keys[i]], 10);
-                else if (typeof object.int64Map[keys[i]] === "number")
-                    message.int64Map[keys[i]] = object.int64Map[keys[i]];
-                else if (typeof object.int64Map[keys[i]] === "object")
-                    message.int64Map[keys[i]] = new $util.LongBits(object.int64Map[keys[i]]).toNumber();
+            for (let keys = Object.keys(object.int64Map), i = 0; i < keys.length; ++i)
+                message.int64Map[keys[i]] = $util.longValue(object.int64Map[keys[i]], false);
         }
         return message;
     }
@@ -378,7 +362,7 @@ export class Message implements IMessage {
      * @param optionsConversion options
      * @returns Plain object
      */
-    static toObject(message: IMessage, options: $protobuf.IConversionOptions = {}) {
+    static toObject(message: IMessage, options: $IConversionOptions = {}) {
         let object: any = {};
         if (options.arrays || options.defaults) {
             object.stringRepeated = [];
@@ -391,7 +375,7 @@ export class Message implements IMessage {
         if (options.defaults) {
             object.stringVal = "";
             if ($util.Long) {
-                var long = new $util.Long(0, 0, true);
+                let long = new $util.Long(0, 0, true);
                 object.uint64Val = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
             } else
                 object.uint64Val = options.longs === String ? "0" : 0;
@@ -408,7 +392,7 @@ export class Message implements IMessage {
             object.stringVal = message.stringVal;
         if (message.stringRepeated && message.stringRepeated.length) {
             object.stringRepeated = [];
-            for (var j = 0; j < message.stringRepeated.length; ++j)
+            for (let j = 0; j < message.stringRepeated.length; ++j)
                 object.stringRepeated[j] = message.stringRepeated[j];
         }
         if (message.uint64Val != null && message.hasOwnProperty("uint64Val"))
@@ -418,7 +402,7 @@ export class Message implements IMessage {
                 object.uint64Val = options.longs === String ? $util.Long.prototype.toString.call(message.uint64Val) : options.longs === Number ? new $util.LongBits(message.uint64Val).toNumber(true) : message.uint64Val;
         if (message.uint64Repeated && message.uint64Repeated.length) {
             object.uint64Repeated = [];
-            for (var j = 0; j < message.uint64Repeated.length; ++j)
+            for (let j = 0; j < message.uint64Repeated.length; ++j)
                 if (typeof message.uint64Repeated[j] === "number")
                     object.uint64Repeated[j] = options.longs === String ? String(message.uint64Repeated[j]) : message.uint64Repeated[j];
                 else
@@ -428,20 +412,20 @@ export class Message implements IMessage {
             object.bytesVal = options.bytes === String ? $util.base64.encode(message.bytesVal, 0, message.bytesVal.length) : options.bytes === Array ? Array.prototype.slice.call(message.bytesVal) : message.bytesVal;
         if (message.bytesRepeated && message.bytesRepeated.length) {
             object.bytesRepeated = [];
-            for (var j = 0; j < message.bytesRepeated.length; ++j)
+            for (let j = 0; j < message.bytesRepeated.length; ++j)
                 object.bytesRepeated[j] = options.bytes === String ? $util.base64.encode(message.bytesRepeated[j], 0, message.bytesRepeated[j].length) : options.bytes === Array ? Array.prototype.slice.call(message.bytesRepeated[j]) : message.bytesRepeated[j];
         }
         if (message.enumVal != null && message.hasOwnProperty("enumVal"))
             object.enumVal = options.enums === String ? Message.SomeEnum[message.enumVal] : message.enumVal;
         if (message.enumRepeated && message.enumRepeated.length) {
             object.enumRepeated = [];
-            for (var j = 0; j < message.enumRepeated.length; ++j)
+            for (let j = 0; j < message.enumRepeated.length; ++j)
                 object.enumRepeated[j] = options.enums === String ? Message.SomeEnum[message.enumRepeated[j]] : message.enumRepeated[j];
         }
-        var keys2;
+        let keys2;
         if (message.int64Map && (keys2 = Object.keys(message.int64Map)).length) {
             object.int64Map = {};
-            for (var j = 0; j < keys2.length; ++j)
+            for (let j = 0; j < keys2.length; ++j)
                 if (typeof message.int64Map[keys2[j]] === "number")
                     object.int64Map[keys2[j]] = options.longs === String ? String(message.int64Map[keys2[j]]) : message.int64Map[keys2[j]];
                 else
@@ -454,7 +438,7 @@ export class Message implements IMessage {
      * Converts this Message to JSON.
      */
     toJSON() {
-        return Message.toObject(this, $protobuf.util.toJSONOptions);
+        return Message.toObject(this, $util.toJSONOptions);
     };
     // #endregion
 
