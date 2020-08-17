@@ -408,8 +408,8 @@ function buildFunction(type, functionName, gen) {
         defineImport("protobufjs", "Long", "$Long");
         return "($Long as any).fromValue";
       })
-      .replace(/var object = \{\}/g, "let object: any = {}")
-      .replace(/var properties = \{\}/g, "let properties: any = {}");
+      .replace(/let object = \{\}/g, "let object: any = {}")
+      .replace(/let properties = \{\}/g, "let properties: any = {}");
 
     var lines = code.split(/\n/g);
     lines.slice(1, lines.length - 1).forEach(function (line) {
