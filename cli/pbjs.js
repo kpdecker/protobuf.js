@@ -330,6 +330,9 @@ exports.main = function main(args, callback) {
                 nodes.forEach(function (node) {
                     if (node instanceof protobuf.Service) {
                         // Pull services into their own file.
+                        util.traverse(node, function (obj) {
+                            obj.filename = rpcFileRoot.name;
+                        });
                         rpcFileRoot.add(node);
                     } else if (node instanceof protobuf.Type || !(node instanceof protobuf.Namespace)) {
                         fileRoot.add(node);
@@ -342,7 +345,9 @@ exports.main = function main(args, callback) {
                             .forEach(function (childNode) {
                                 if (childNode instanceof protobuf.Service) {
                                     // Pull services into their own file.
-                                    childNode.filename = rpcFileRoot.name;
+                                    util.traverse(childNode, function(obj) {
+                                        obj.filename = rpcFileRoot.name;
+                                    });
                                     rpcFileRoot.add(childNode);
                                 } else {
                                     fileRoot.add(childNode);

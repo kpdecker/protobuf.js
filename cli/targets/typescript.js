@@ -816,17 +816,11 @@ function buildService(service) {
   service.methodsArray.forEach(function (method) {
     method.resolve();
     var lcName = protobuf.util.lcFirst(method.name);
+    var requestCtor = typeName(method.resolvedRequestType, false, method);
+    var responseCtor = typeName(method.resolvedResponseType, false, method);
     push("");
-    push(
-      `(this.${lcName} as any).requestCtor = ${exportName(
-        method.resolvedRequestType
-      )};`
-    );
-    push(
-      `(this.${lcName} as any).responseCtor = ${exportName(
-        method.resolvedResponseType
-      )};`
-    );
+    push(`(this.${lcName} as any).requestCtor = ${requestCtor};`);
+    push(`(this.${lcName} as any).responseCtor = ${responseCtor};`);
     push(`(this.${lcName} as any).requestStream = ${method.requestStream};`);
     push(`(this.${lcName} as any).responseStream = ${method.responseStream};`);
   });
