@@ -21,6 +21,12 @@ function genValuePartial_equals(gen, field, fieldIndex, prop, index) {
     switch (field.type) {
       case "double":
       case "float":
+        if (index) {
+          gen("a%s && b%s && (a%s%s === b%s%s || (a%s%s != null && b%s%s != null && Math.abs(a%s%s - b%s%s) < Number.EPSILON))", prop, prop, prop, index, prop, index, prop, index, prop, index, prop, index, prop, index);
+        } else {
+          gen('(a%s===b%s || (a%s != null && b%s != null && Math.abs(a%s - b%s) < Number.EPSILON))', prop, prop, prop, prop, prop, prop);
+        }
+        break;
       case "uint32":
       case "fixed32":
       case "int32":

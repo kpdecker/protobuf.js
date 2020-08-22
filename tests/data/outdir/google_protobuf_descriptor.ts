@@ -5426,7 +5426,7 @@ export class UninterpretedOption implements IUninterpretedOption {
             return true;
         return !!a.name && !!b.name && a.name.length === b.name.length && !a.name.find(function (aValue, i) {
             return UninterpretedOption.NamePart.equals(a.name && a.name[i], b.name && b.name[i]);
-        }) && a.identifierValue === b.identifierValue && $util.longEquals(a.positiveIntValue, b.positiveIntValue) && $util.longEquals(a.negativeIntValue, b.negativeIntValue) && a.doubleValue === b.doubleValue && $util.bytesEquals(a.stringValue, b.stringValue) && a.aggregateValue === b.aggregateValue;
+        }) && a.identifierValue === b.identifierValue && $util.longEquals(a.positiveIntValue, b.positiveIntValue) && $util.longEquals(a.negativeIntValue, b.negativeIntValue) && (a.doubleValue === b.doubleValue || a.doubleValue != null && b.doubleValue != null && Math.abs(a.doubleValue - b.doubleValue) < Number.EPSILON) && $util.bytesEquals(a.stringValue, b.stringValue) && a.aggregateValue === b.aggregateValue;
     }
     // #endregion
 }

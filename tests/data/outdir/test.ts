@@ -3394,11 +3394,11 @@ export class FloatingPointFields implements IFloatingPointFields {
             return a === b;
         if (a === b)
             return true;
-        return a.optionalFloatField === b.optionalFloatField && a.requiredFloatField === b.requiredFloatField && (!!a.repeatedFloatField && !!b.repeatedFloatField && a.repeatedFloatField.length === b.repeatedFloatField.length && !a.repeatedFloatField.find(function (aValue, i) {
-            return (a.repeatedFloatField && a.repeatedFloatField[i]) === (b.repeatedFloatField && b.repeatedFloatField[i]);
-        })) && a.defaultFloatField === b.defaultFloatField && a.optionalDoubleField === b.optionalDoubleField && a.requiredDoubleField === b.requiredDoubleField && (!!a.repeatedDoubleField && !!b.repeatedDoubleField && a.repeatedDoubleField.length === b.repeatedDoubleField.length && !a.repeatedDoubleField.find(function (aValue, i) {
-            return (a.repeatedDoubleField && a.repeatedDoubleField[i]) === (b.repeatedDoubleField && b.repeatedDoubleField[i]);
-        })) && a.defaultDoubleField === b.defaultDoubleField;
+        return (a.optionalFloatField === b.optionalFloatField || a.optionalFloatField != null && b.optionalFloatField != null && Math.abs(a.optionalFloatField - b.optionalFloatField) < Number.EPSILON) && (a.requiredFloatField === b.requiredFloatField || a.requiredFloatField != null && b.requiredFloatField != null && Math.abs(a.requiredFloatField - b.requiredFloatField) < Number.EPSILON) && (!!a.repeatedFloatField && !!b.repeatedFloatField && a.repeatedFloatField.length === b.repeatedFloatField.length && !a.repeatedFloatField.find(function (aValue, i) {
+            return a.repeatedFloatField && b.repeatedFloatField && (a.repeatedFloatField[i] === b.repeatedFloatField[i] || a.repeatedFloatField[i] != null && b.repeatedFloatField[i] != null && Math.abs(a.repeatedFloatField[i] - b.repeatedFloatField[i]) < Number.EPSILON);
+        })) && (a.defaultFloatField === b.defaultFloatField || a.defaultFloatField != null && b.defaultFloatField != null && Math.abs(a.defaultFloatField - b.defaultFloatField) < Number.EPSILON) && (a.optionalDoubleField === b.optionalDoubleField || a.optionalDoubleField != null && b.optionalDoubleField != null && Math.abs(a.optionalDoubleField - b.optionalDoubleField) < Number.EPSILON) && (a.requiredDoubleField === b.requiredDoubleField || a.requiredDoubleField != null && b.requiredDoubleField != null && Math.abs(a.requiredDoubleField - b.requiredDoubleField) < Number.EPSILON) && (!!a.repeatedDoubleField && !!b.repeatedDoubleField && a.repeatedDoubleField.length === b.repeatedDoubleField.length && !a.repeatedDoubleField.find(function (aValue, i) {
+            return a.repeatedDoubleField && b.repeatedDoubleField && (a.repeatedDoubleField[i] === b.repeatedDoubleField[i] || a.repeatedDoubleField[i] != null && b.repeatedDoubleField[i] != null && Math.abs(a.repeatedDoubleField[i] - b.repeatedDoubleField[i]) < Number.EPSILON);
+        })) && (a.defaultDoubleField === b.defaultDoubleField || a.defaultDoubleField != null && b.defaultDoubleField != null && Math.abs(a.defaultDoubleField - b.defaultDoubleField) < Number.EPSILON);
     }
     // #endregion
 }
@@ -6512,7 +6512,7 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         }) && $util.mapEquals(a.mapStringBool, b.mapStringBool, function (keyName) {
             return !!b.mapStringBool && (!(keyName in b.mapStringBool) && (a.mapStringBool && a.mapStringBool[keyName]) === (b.mapStringBool && b.mapStringBool[keyName]));
         }) && $util.mapEquals(a.mapStringDouble, b.mapStringDouble, function (keyName) {
-            return !!b.mapStringDouble && (!(keyName in b.mapStringDouble) && (a.mapStringDouble && a.mapStringDouble[keyName]) === (b.mapStringDouble && b.mapStringDouble[keyName]));
+            return !!b.mapStringDouble && (!(keyName in b.mapStringDouble) && a.mapStringDouble && b.mapStringDouble && (a.mapStringDouble[keyName] === b.mapStringDouble[keyName] || a.mapStringDouble[keyName] != null && b.mapStringDouble[keyName] != null && Math.abs(a.mapStringDouble[keyName] - b.mapStringDouble[keyName]) < Number.EPSILON));
         }) && $util.mapEquals(a.mapStringEnum, b.mapStringEnum, function (keyName) {
             return !!b.mapStringEnum && (!(keyName in b.mapStringEnum) && (a.mapStringEnum && a.mapStringEnum[keyName]) === (b.mapStringEnum && b.mapStringEnum[keyName]));
         }) && $util.mapEquals(a.mapStringMsg, b.mapStringMsg, function (keyName) {
