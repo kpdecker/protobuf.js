@@ -862,7 +862,8 @@ function buildService(service) {
       push(
         `async ${escapeName(lcName)}(request: ${typeName(
           method.resolvedRequestType,
-          !config.forceMessage
+          !config.forceMessage,
+          service
         )}): Promise<${exportName(method.resolvedResponseType)}> {`
       );
       ++indent;
@@ -887,7 +888,8 @@ function buildService(service) {
       push(
         `async ${escapeName(lcName)}(request: ${typeName(
           method.resolvedRequestType,
-          !config.forceMessage
+          !config.forceMessage,
+          service
         )}): Promise<Stream.Readable> {`
       );
       ++indent;
@@ -907,7 +909,9 @@ function buildService(service) {
         `async ${escapeName(
           lcName
         )}(callback: (err?: Error, response?: ${typeName(
-          method.resolvedResponseType
+          method.resolvedResponseType,
+          !config.forceMessage,
+          service
         )}) => void): Promise<Stream.Writable> {`
       );
       ++indent;
