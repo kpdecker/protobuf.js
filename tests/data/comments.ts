@@ -355,4 +355,4 @@ export enum Test3 {
     THREE = 3,
     FOUR = 4,
 }
-;
+

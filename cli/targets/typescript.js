@@ -77,7 +77,7 @@ function static_target(root, options, callback) {
       })
       .join("\n")}
 
-${out};
+${out}
 `;
     var finalOutput = out;
     return setImmediate(function () {

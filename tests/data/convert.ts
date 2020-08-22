@@ -473,4 +473,4 @@ export namespace Message {
     }
 
 }
-;
+

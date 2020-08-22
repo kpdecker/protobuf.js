@@ -141,4 +141,4 @@ export class Something implements ISomething {
     }
     // #endregion
 }
-;
+

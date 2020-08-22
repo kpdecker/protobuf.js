@@ -367,7 +367,10 @@ exports.main = function main(args, callback) {
                     if (err) {
                         throw err;
                     }
-                    fs.writeFileSync(outName, output, { encoding: "utf8" });
+
+                    if (output.trim()) {
+                        fs.writeFileSync(outName, output, { encoding: "utf8" });
+                    }
 
                     if (rpcFileRoot.nestedArray.length) {
                         target(rpcFileRoot, argv, function targetCallback(err, output) {
