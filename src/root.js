@@ -43,14 +43,16 @@ function Root(options) {
  * Loads a namespace descriptor into a root namespace.
  * @param {INamespace} json Nameespace descriptor
  * @param {Root} [root] Root namespace, defaults to create a new one if omitted
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Root} Root namespace
  */
-Root.fromJSON = function fromJSON(json, root) {
+Root.fromJSON = function fromJSON(json, root, filename) {
     if (!root)
         root = new Root();
     if (json.options)
         root.setOptions(json.options);
-    return root.addJSON(json.nested);
+    root.filename = filename;
+    return root.addJSON(json.nested, filename);
 };
 
 /**
@@ -124,7 +126,7 @@ Root.prototype.load = function load(filename, options, callback) {
                 source = JSON.parse(source);
 
             if (!util.isString(source))
-                self.setOptions(source.options).addJSON(source.nested);
+                self.setOptions(source.options).addJSON(source.nested, filename);
             else {
                 parse.filename = referenced;
                 var parsed = parse(source, self, options),
@@ -158,12 +160,12 @@ Root.prototype.load = function load(filename, options, callback) {
         // Shortcut bundled definitions
         if (filename in common) {
             if (sync)
-                process(filename, common[filename], referenced);
+                process(filename.replace(/\//g, '_'), common[filename], referenced);
             else {
                 ++queued;
                 setTimeout(function() {
                     --queued;
-                    process(filename, common[filename], referenced);
+                    process(filename.replace(/\//g, '_'), common[filename], referenced);
                 });
             }
             return;

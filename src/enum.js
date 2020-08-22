@@ -83,12 +83,14 @@ function Enum(name, values, options, comment, comments) {
  * Constructs an enum from an enum descriptor.
  * @param {string} name Enum name
  * @param {IEnum} json Enum descriptor
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Enum} Created enum
  * @throws {TypeError} If arguments are invalid
  */
-Enum.fromJSON = function fromJSON(name, json) {
+Enum.fromJSON = function fromJSON(name, json, filename) {
     var enm = new Enum(name, json.values, json.options, json.comment, json.comments);
     enm.reserved = json.reserved;
+    enm.filename = filename;
     return enm;
 };
 

@@ -223,7 +223,7 @@ exports.main = function main(args, callback) {
                     protobuf.parse(source, root, parseOptions);
                 } else {
                     var json = JSON.parse(source);
-                    root.setOptions(json.options).addJSON(json);
+                    root.setOptions(json.options).addJSON(json, "-");
                 }
                 callTarget();
             } catch (err) {

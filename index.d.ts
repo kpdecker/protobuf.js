@@ -183,10 +183,11 @@ export class Enum extends ReflectionObject {
      * Constructs an enum from an enum descriptor.
      * @param name Enum name
      * @param json Enum descriptor
+     * @param [filename] Optional filename to associate with this object.
      * @returns Created enum
      * @throws {TypeError} If arguments are invalid
      */
-    public static fromJSON(name: string, json: IEnum): Enum;
+    public static fromJSON(name: string, json: IEnum, filename?: string): Enum;
 
     /**
      * Converts this enum to an enum descriptor.
@@ -683,10 +684,11 @@ export class Namespace extends NamespaceBase {
      * Constructs a namespace from JSON.
      * @param name Namespace name
      * @param json JSON object
+     * @param [filename] Optional filename to associate with this object.
      * @returns Created namespace
      * @throws {TypeError} If arguments are invalid
      */
-    public static fromJSON(name: string, json: { [k: string]: any }): Namespace;
+    public static fromJSON(name: string, json: { [k: string]: any }, filename?: string): Namespace;
 
     /**
      * Converts an array of reflection objects to JSON.
@@ -732,9 +734,10 @@ export abstract class NamespaceBase extends ReflectionObject {
     /**
      * Adds nested objects to this namespace from nested object descriptors.
      * @param nestedJson Any nested object descriptors
+     * @param [filename] Optional filename to associate with this object.
      * @returns `this`
      */
-    public addJSON(nestedJson: { [k: string]: AnyNestedObject }): Namespace;
+    public addJSON(nestedJson: { [k: string]: AnyNestedObject }, filename?: string): Namespace;
 
     /**
      * Gets the nested object of the specified name.
@@ -1250,9 +1253,10 @@ export class Root extends NamespaceBase {
      * Loads a namespace descriptor into a root namespace.
      * @param json Nameespace descriptor
      * @param [root] Root namespace, defaults to create a new one if omitted
+     * @param [filename] Optional filename to associate with this object.
      * @returns Root namespace
      */
-    public static fromJSON(json: INamespace, root?: Root): Root;
+    public static fromJSON(json: INamespace, root?: Root, filename?: string): Root;
 
     /**
      * Resolves the path of an imported file, relative to the importing origin.
@@ -1403,10 +1407,11 @@ export class Service extends NamespaceBase {
      * Constructs a service from a service descriptor.
      * @param name Service name
      * @param json Service descriptor
+     * @param [filename] Optional filename to associate with this object.
      * @returns Created service
      * @throws {TypeError} If arguments are invalid
      */
-    public static fromJSON(name: string, json: IService): Service;
+    public static fromJSON(name: string, json: IService, filename?: string): Service;
 
     /**
      * Converts this service to a service descriptor.
@@ -1557,9 +1562,10 @@ export class Type extends NamespaceBase {
      * Creates a message type from a message type descriptor.
      * @param name Message name
      * @param json Message type descriptor
+     * @param [filename] Optional filename to associate with this object.
      * @returns Created message type
      */
-    public static fromJSON(name: string, json: IType): Type;
+    public static fromJSON(name: string, json: IType, filename?: string): Type;
 
     /**
      * Converts this message type to a message type descriptor.

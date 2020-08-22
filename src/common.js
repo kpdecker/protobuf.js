@@ -26,7 +26,7 @@ var commonRe = /\/|\./;
 function common(name, json) {
     if (!commonRe.test(name)) {
         name = "google/protobuf/" + name + ".proto";
-        json = { nested: { google: { nested: { protobuf: { nested: json } } } } };
+        json = { nested: { 'google.protobuf': { nested: json } } };
     }
     common[name] = json;
 }

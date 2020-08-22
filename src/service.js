@@ -46,18 +46,20 @@ function Service(name, options) {
  * Constructs a service from a service descriptor.
  * @param {string} name Service name
  * @param {IService} json Service descriptor
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Service} Created service
  * @throws {TypeError} If arguments are invalid
  */
-Service.fromJSON = function fromJSON(name, json) {
+Service.fromJSON = function fromJSON(name, json, filename) {
     var service = new Service(name, json.options);
     /* istanbul ignore else */
     if (json.methods)
         for (var names = Object.keys(json.methods), i = 0; i < names.length; ++i)
-            service.add(Method.fromJSON(names[i], json.methods[names[i]]));
+            service.add(Method.fromJSON(names[i], json.methods[names[i]], filename));
     if (json.nested)
-        service.addJSON(json.nested);
+        service.addJSON(json.nested, filename);
     service.comment = json.comment;
+    service.filename = filename;
     return service;
 };
 

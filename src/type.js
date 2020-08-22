@@ -232,10 +232,12 @@ Type.prototype.clearCache = function clearCache() {
  * Creates a message type from a message type descriptor.
  * @param {string} name Message name
  * @param {IType} json Message type descriptor
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Type} Created message type
  */
-Type.fromJSON = function fromJSON(name, json) {
+Type.fromJSON = function fromJSON(name, json, filename) {
     var type = new Type(name, json.options);
+    type.filename = filename;
     type.extensions = json.extensions;
     type.reserved = json.reserved;
     var names = Object.keys(json.fields),
@@ -244,11 +246,11 @@ Type.fromJSON = function fromJSON(name, json) {
         type.add(
             ( typeof json.fields[names[i]].keyType !== "undefined"
             ? MapField.fromJSON
-            : Field.fromJSON )(names[i], json.fields[names[i]])
+            : Field.fromJSON )(names[i], json.fields[names[i]], filename)
         );
     if (json.oneofs)
         for (names = Object.keys(json.oneofs), i = 0; i < names.length; ++i)
-            type.add(OneOf.fromJSON(names[i], json.oneofs[names[i]]));
+            type.add(OneOf.fromJSON(names[i], json.oneofs[names[i]], filename));
     if (json.nested)
         for (names = Object.keys(json.nested), i = 0; i < names.length; ++i) {
             var nested = json.nested[names[i]];
@@ -261,7 +263,7 @@ Type.fromJSON = function fromJSON(name, json) {
                 ? Enum.fromJSON
                 : nested.methods !== undefined
                 ? Service.fromJSON
-                : Namespace.fromJSON )(names[i], nested)
+                : Namespace.fromJSON )(names[i], nested, filename)
             );
         }
     if (json.extensions && json.extensions.length)

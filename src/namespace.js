@@ -28,11 +28,14 @@ var Type,    // cyclic
  * @function
  * @param {string} name Namespace name
  * @param {Object.<string,*>} json JSON object
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Namespace} Created namespace
  * @throws {TypeError} If arguments are invalid
  */
-Namespace.fromJSON = function fromJSON(name, json) {
-    return new Namespace(name, json.options).addJSON(json.nested);
+Namespace.fromJSON = function fromJSON(name, json, filename) {
+    var ns = new Namespace(name, json.options).addJSON(json.nested, filename);
+    ns.filename = filename;
+    return ns;
 };
 
 /**
@@ -162,25 +165,31 @@ Namespace.prototype.toJSON = function toJSON(toJSONOptions) {
 /**
  * Adds nested objects to this namespace from nested object descriptors.
  * @param {Object.<string,AnyNestedObject>} nestedJson Any nested object descriptors
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Namespace} `this`
  */
-Namespace.prototype.addJSON = function addJSON(nestedJson) {
+Namespace.prototype.addJSON = function addJSON(nestedJson, filename) {
     var ns = this;
     /* istanbul ignore else */
     if (nestedJson) {
         for (var names = Object.keys(nestedJson), i = 0, nested; i < names.length; ++i) {
             nested = nestedJson[names[i]];
-            ns.add( // most to least likely
-                ( nested.fields !== undefined
+
+            // most to least likely
+            var fromJSON = nested.fields !== undefined
                 ? Type.fromJSON
                 : nested.values !== undefined
                 ? Enum.fromJSON
                 : nested.methods !== undefined
                 ? Service.fromJSON
                 : nested.id !== undefined
-                ? Field.fromJSON
-                : Namespace.fromJSON )(names[i], nested)
-            );
+                && Field.fromJSON;
+
+            if (fromJSON) {
+                ns.add(fromJSON(names[i], nested, filename));
+            } else {
+                ns.define(names[i], nested.nested, filename);
+            }
         }
     }
     return this;
@@ -355,8 +364,9 @@ Namespace.prototype.define = function define(path, json, filename) {
         ptr.filename = filename;
         ptr.filenames = [ filename ];
     }
-    if (json)
-        ptr.addJSON(json);
+    if (json) {
+      ptr.addJSON(json, filename);
+    }
     return ptr;
 };
 
