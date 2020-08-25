@@ -21,6 +21,8 @@ protobuf.rpc          = require("./rpc");
 protobuf.roots        = require("./roots");
 protobuf.configure    = configure;
 
+protobuf.Long = protobuf.util.Long;
+
 /* istanbul ignore next */
 /**
  * Reconfigures the library according to the environment.

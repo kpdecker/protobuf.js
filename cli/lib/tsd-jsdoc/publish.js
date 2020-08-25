@@ -543,7 +543,7 @@ function handleClass(element, parent) {
         handleFunction(element, parent, true);
 
     // properties
-    if (is_interface && element.properties)
+    if (element.properties)
         element.properties.forEach(function(property) {
             writeProperty(property);
         });
