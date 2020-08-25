@@ -329,6 +329,8 @@ exports.main = function main(args, callback) {
 
                 nodes.forEach(function (node) {
                     if (node instanceof protobuf.Service) {
+                        node.fullName = node.fullName;
+
                         // Pull services into their own file.
                         util.traverse(node, function (obj) {
                             obj.filename = rpcFileRoot.name;
@@ -344,6 +346,7 @@ exports.main = function main(args, callback) {
                             })
                             .forEach(function (childNode) {
                                 if (childNode instanceof protobuf.Service) {
+                                    childNode.originalFullName = childNode.fullName;
                                     // Pull services into their own file.
                                     util.traverse(childNode, function(obj) {
                                         obj.filename = rpcFileRoot.name;

@@ -819,6 +819,7 @@ function buildService(service) {
     var requestCtor = typeName(method.resolvedRequestType, false, method);
     var responseCtor = typeName(method.resolvedResponseType, false, method);
     push("");
+    push(`(this.${lcName} as any).serviceName = ${JSON.stringify(service.originalFullName.replace(/^\./, ''))};`);
     push(`(this.${lcName} as any).requestCtor = ${requestCtor};`);
     push(`(this.${lcName} as any).responseCtor = ${responseCtor};`);
     push(`(this.${lcName} as any).requestStream = ${method.requestStream};`);
