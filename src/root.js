@@ -160,12 +160,12 @@ Root.prototype.load = function load(filename, options, callback) {
         // Shortcut bundled definitions
         if (filename in common) {
             if (sync)
-                process(filename.replace(/\//g, '_'), common[filename], referenced);
+                process(filename.replace(/\//g, "_"), common[filename], referenced);
             else {
                 ++queued;
                 setTimeout(function() {
                     --queued;
-                    process(filename.replace(/\//g, '_'), common[filename], referenced);
+                    process(filename.replace(/\//g, "_"), common[filename], referenced);
                 });
             }
             return;
