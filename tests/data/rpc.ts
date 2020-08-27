@@ -10,6 +10,7 @@ export class MyService extends $rpc.Service {
     constructor(rpcImpl: $RPCImpl, requestDelimited: boolean = false, responseDelimited: boolean = false) {
         super(rpcImpl, requestDelimited, responseDelimited);
 
+        (this.myMethod as any).serviceName = "MyService";
         (this.myMethod as any).requestCtor = MyRequest;
         (this.myMethod as any).responseCtor = MyResponse;
         (this.myMethod as any).requestStream = undefined;

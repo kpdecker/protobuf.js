@@ -225,6 +225,7 @@ exports.main = function main(args, callback) {
                     var json = JSON.parse(source);
                     root.setOptions(json.options).addJSON(json, "-");
                 }
+                mapServiceName(root);
                 callTarget();
             } catch (err) {
                 if (callback) {
@@ -239,6 +240,7 @@ exports.main = function main(args, callback) {
     } else {
         try {
             root.loadSync(files, parseOptions).resolveAll(); // sync is deterministic while async is not
+            mapServiceName(root);
             if (argv.sparse)
                 sparsify(root);
             callTarget();
@@ -265,6 +267,16 @@ exports.main = function main(args, callback) {
         // also mark an extension field's extended type, but not its (other) fields
         if (tobj.extensionField)
             tobj.extensionField.parent.referenced = true;
+    }
+
+    function mapServiceName(root) {
+      // Ensure that we have access to the full name, if the services are moved
+      // into an rpc file.
+      util.traverse(root, function (node) {
+        if (node instanceof protobuf.Service) {
+          node.originalFullName = node.fullName;
+        }
+      });
     }
 
     function sparsify(root) {
@@ -329,8 +341,6 @@ exports.main = function main(args, callback) {
 
                 nodes.forEach(function (node) {
                     if (node instanceof protobuf.Service) {
-                        node.fullName = node.fullName;
-
                         // Pull services into their own file.
                         util.traverse(node, function (obj) {
                             obj.filename = rpcFileRoot.name;
@@ -346,7 +356,6 @@ exports.main = function main(args, callback) {
                             })
                             .forEach(function (childNode) {
                                 if (childNode instanceof protobuf.Service) {
-                                    childNode.originalFullName = childNode.fullName;
                                     // Pull services into their own file.
                                     util.traverse(childNode, function(obj) {
                                         obj.filename = rpcFileRoot.name;

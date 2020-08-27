@@ -33,7 +33,10 @@ var fs   = require("fs"),
     var callback =
       !outDir &&
       function (err, output) {
-        if (err) throw err;
+        if (err) {
+            process.stderr.write('pbjs: ' + file + ' faild\n');
+            throw err;
+        }
         fs.writeFileSync(out, output);
         process.stdout.write('pbjs: ' + file + ' -> ' + out + '\n');
         try {
