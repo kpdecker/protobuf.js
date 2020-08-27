@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v8.0.1 (c) 2016, daniel wirtz
- * compiled tue, 18 aug 2020 21:40:26 utc
+ * protobuf.js v8.1.0 (c) 2016, daniel wirtz
+ * compiled thu, 27 aug 2020 16:20:08 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -846,6 +846,8 @@ protobuf.util         = require(15);
 protobuf.rpc          = require(12);
 protobuf.roots        = require(11);
 protobuf.configure    = configure;
+
+protobuf.Long = protobuf.util.Long;
 
 /* istanbul ignore next */
 /**
@@ -1962,7 +1964,7 @@ util.Array = typeof Uint8Array !== "undefined" ? Uint8Array /* istanbul ignore n
 /**
  * Any compatible Long instance.
  * This is a minimal stand-alone definition of a Long instance. The actual type is that exported by long.js.
- * @interface Long
+ * @class Long
  * @property {number} low Low bits
  * @property {number} high High bits
  * @property {boolean} unsigned Whether unsigned or not

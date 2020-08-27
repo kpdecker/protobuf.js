@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v8.0.1 (c) 2016, daniel wirtz
- * compiled tue, 18 aug 2020 21:40:26 utc
+ * protobuf.js v8.1.0 (c) 2016, daniel wirtz
+ * compiled thu, 27 aug 2020 16:20:08 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -2025,12 +2025,14 @@ function Enum(name, values, options, comment, comments) {
  * Constructs an enum from an enum descriptor.
  * @param {string} name Enum name
  * @param {IEnum} json Enum descriptor
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Enum} Created enum
  * @throws {TypeError} If arguments are invalid
  */
-Enum.fromJSON = function fromJSON(name, json) {
+Enum.fromJSON = function fromJSON(name, json, filename) {
     var enm = new Enum(name, json.values, json.options, json.comment, json.comments);
     enm.reserved = json.reserved;
+    enm.filename = filename;
     return enm;
 };
 
@@ -2156,6 +2158,12 @@ function genValuePartial_equals(gen, field, fieldIndex, prop, index) {
     switch (field.type) {
       case "double":
       case "float":
+        if (index) {
+          gen("a%s && b%s && (a%s%s === b%s%s || (a%s%s != null && b%s%s != null && Math.abs(a%s%s - b%s%s) < Number.EPSILON))", prop, prop, prop, index, prop, index, prop, index, prop, index, prop, index, prop, index);
+        } else {
+          gen("(a%s===b%s || (a%s != null && b%s != null && Math.abs(a%s - b%s) < Number.EPSILON))", prop, prop, prop, prop, prop, prop);
+        }
+        break;
       case "uint32":
       case "fixed32":
       case "int32":
@@ -2778,6 +2786,8 @@ protobuf.rpc          = require(30);
 protobuf.roots        = require(29);
 protobuf.configure    = configure;
 
+protobuf.Long = protobuf.util.Long;
+
 /* istanbul ignore next */
 /**
  * Reconfigures the library according to the environment.
@@ -3244,11 +3254,14 @@ var Type,    // cyclic
  * @function
  * @param {string} name Namespace name
  * @param {Object.<string,*>} json JSON object
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Namespace} Created namespace
  * @throws {TypeError} If arguments are invalid
  */
-Namespace.fromJSON = function fromJSON(name, json) {
-    return new Namespace(name, json.options).addJSON(json.nested);
+Namespace.fromJSON = function fromJSON(name, json, filename) {
+    var ns = new Namespace(name, json.options).addJSON(json.nested, filename);
+    ns.filename = filename;
+    return ns;
 };
 
 /**
@@ -3378,25 +3391,31 @@ Namespace.prototype.toJSON = function toJSON(toJSONOptions) {
 /**
  * Adds nested objects to this namespace from nested object descriptors.
  * @param {Object.<string,AnyNestedObject>} nestedJson Any nested object descriptors
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Namespace} `this`
  */
-Namespace.prototype.addJSON = function addJSON(nestedJson) {
+Namespace.prototype.addJSON = function addJSON(nestedJson, filename) {
     var ns = this;
     /* istanbul ignore else */
     if (nestedJson) {
         for (var names = Object.keys(nestedJson), i = 0, nested; i < names.length; ++i) {
             nested = nestedJson[names[i]];
-            ns.add( // most to least likely
-                ( nested.fields !== undefined
+
+            // most to least likely
+            var fromJSON = nested.fields !== undefined
                 ? Type.fromJSON
                 : nested.values !== undefined
                 ? Enum.fromJSON
                 : nested.methods !== undefined
                 ? Service.fromJSON
                 : nested.id !== undefined
-                ? Field.fromJSON
-                : Namespace.fromJSON )(names[i], nested)
-            );
+                && Field.fromJSON;
+
+            if (fromJSON) {
+                ns.add(fromJSON(names[i], nested, filename));
+            } else {
+                ns.define(names[i], nested.nested, filename);
+            }
         }
     }
     return this;
@@ -3571,8 +3590,9 @@ Namespace.prototype.define = function define(path, json, filename) {
         ptr.filename = filename;
         ptr.filenames = [ filename ];
     }
-    if (json)
-        ptr.addJSON(json);
+    if (json) {
+      ptr.addJSON(json, filename);
+    }
     return ptr;
 };
 
@@ -4671,14 +4691,16 @@ function Root(options) {
  * Loads a namespace descriptor into a root namespace.
  * @param {INamespace} json Nameespace descriptor
  * @param {Root} [root] Root namespace, defaults to create a new one if omitted
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Root} Root namespace
  */
-Root.fromJSON = function fromJSON(json, root) {
+Root.fromJSON = function fromJSON(json, root, filename) {
     if (!root)
         root = new Root();
     if (json.options)
         root.setOptions(json.options);
-    return root.addJSON(json.nested);
+    root.filename = filename;
+    return root.addJSON(json.nested, filename);
 };
 
 /**
@@ -4752,7 +4774,7 @@ Root.prototype.load = function load(filename, options, callback) {
                 source = JSON.parse(source);
 
             if (!util.isString(source))
-                self.setOptions(source.options).addJSON(source.nested);
+                self.setOptions(source.options).addJSON(source.nested, filename);
             else {
                 parse.filename = referenced;
                 var parsed = parse(source, self, options),
@@ -4786,12 +4808,12 @@ Root.prototype.load = function load(filename, options, callback) {
         // Shortcut bundled definitions
         if (filename in common) {
             if (sync)
-                process(filename, common[filename], referenced);
+                process(filename.replace(/\//g, "_"), common[filename], referenced);
             else {
                 ++queued;
                 setTimeout(function() {
                     --queued;
-                    process(filename, common[filename], referenced);
+                    process(filename.replace(/\//g, "_"), common[filename], referenced);
                 });
             }
             return;
@@ -5245,18 +5267,20 @@ function Service(name, options) {
  * Constructs a service from a service descriptor.
  * @param {string} name Service name
  * @param {IService} json Service descriptor
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Service} Created service
  * @throws {TypeError} If arguments are invalid
  */
-Service.fromJSON = function fromJSON(name, json) {
+Service.fromJSON = function fromJSON(name, json, filename) {
     var service = new Service(name, json.options);
     /* istanbul ignore else */
     if (json.methods)
         for (var names = Object.keys(json.methods), i = 0; i < names.length; ++i)
-            service.add(Method.fromJSON(names[i], json.methods[names[i]]));
+            service.add(Method.fromJSON(names[i], json.methods[names[i]], filename));
     if (json.nested)
-        service.addJSON(json.nested);
+        service.addJSON(json.nested, filename);
     service.comment = json.comment;
+    service.filename = filename;
     return service;
 };
 
@@ -5603,10 +5627,12 @@ Type.prototype.clearCache = function clearCache() {
  * Creates a message type from a message type descriptor.
  * @param {string} name Message name
  * @param {IType} json Message type descriptor
+ * @param {string} [filename] Optional filename to associate with this object.
  * @returns {Type} Created message type
  */
-Type.fromJSON = function fromJSON(name, json) {
+Type.fromJSON = function fromJSON(name, json, filename) {
     var type = new Type(name, json.options);
+    type.filename = filename;
     type.extensions = json.extensions;
     type.reserved = json.reserved;
     var names = Object.keys(json.fields),
@@ -5615,11 +5641,11 @@ Type.fromJSON = function fromJSON(name, json) {
         type.add(
             ( typeof json.fields[names[i]].keyType !== "undefined"
             ? MapField.fromJSON
-            : Field.fromJSON )(names[i], json.fields[names[i]])
+            : Field.fromJSON )(names[i], json.fields[names[i]], filename)
         );
     if (json.oneofs)
         for (names = Object.keys(json.oneofs), i = 0; i < names.length; ++i)
-            type.add(OneOf.fromJSON(names[i], json.oneofs[names[i]]));
+            type.add(OneOf.fromJSON(names[i], json.oneofs[names[i]], filename));
     if (json.nested)
         for (names = Object.keys(json.nested), i = 0; i < names.length; ++i) {
             var nested = json.nested[names[i]];
@@ -5632,7 +5658,7 @@ Type.fromJSON = function fromJSON(name, json) {
                 ? Enum.fromJSON
                 : nested.methods !== undefined
                 ? Service.fromJSON
-                : Namespace.fromJSON )(names[i], nested)
+                : Namespace.fromJSON )(names[i], nested, filename)
             );
         }
     if (json.extensions && json.extensions.length)
@@ -6813,7 +6839,7 @@ util.Array = typeof Uint8Array !== "undefined" ? Uint8Array /* istanbul ignore n
 /**
  * Any compatible Long instance.
  * This is a minimal stand-alone definition of a Long instance. The actual type is that exported by long.js.
- * @interface Long
+ * @class Long
  * @property {number} low Low bits
  * @property {number} high High bits
  * @property {boolean} unsigned Whether unsigned or not
