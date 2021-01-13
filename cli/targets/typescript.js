@@ -895,13 +895,7 @@ function buildService(service) {
       );
       ++indent;
       push(
-        "return (this.rpcCall as any)(this." +
-          escapeName(lcName) +
-          ", " +
-          exportName(method.resolvedRequestType) +
-          ", " +
-          exportName(method.resolvedResponseType) +
-          ", request);"
+        `return (this.rpcImpl as any)(this.${escapeName(lcName)}, request);`
       );
       --indent;
     } else if (method.requestStream && !method.responseStream) {
