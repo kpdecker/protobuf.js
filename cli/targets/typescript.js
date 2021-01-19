@@ -935,6 +935,8 @@ function buildEnum(enm) {
   ++indent;
   Object.keys(enm.values).forEach(function (key) {
     var valueId = enm.values[key];
+    if (key.toLowerCase().startsWith(enm.name.toLowerCase() + '_'))
+      key = key.slice(enm.name.length + 1);
     var val = config.forceEnumString ? JSON.stringify(key) : valueId;
     push(key + " = " + val + ",");
   });
