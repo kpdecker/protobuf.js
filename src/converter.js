@@ -149,7 +149,7 @@ function genValuePartial_toObject(gen, field, fieldIndex, prop) {
     /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
     if (field.resolvedType) {
         if (field.resolvedType instanceof Enum) gen
-            ("d%s=o.enums===String?types[%i].values[m%s]:m%s", prop, fieldIndex, prop, prop);
+            ("d%s=m%s", prop, prop);
         else gen
             ("d%s=types[%i].toObject(m%s,o)", prop, fieldIndex, prop);
     } else {
