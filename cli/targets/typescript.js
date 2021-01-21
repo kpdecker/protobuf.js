@@ -880,19 +880,33 @@ function buildService(service) {
       );
       --indent;
     } else if (method.requestStream && method.responseStream) {
-      imports.stream = { $asType: true, Stream: "default" };
-      push(`async ${escapeName(lcName)}(): Promise<Stream.Duplex> {`);
+      imports['@grpc/grpc-js'] = { $asType: true, grpc: 'default' };
+      push(
+        `async ${escapeName(
+          lcName
+        )}(): Promise<grpc.ClientDuplexStream<${typeName(
+          method.resolvedRequestType,
+          !config.forceMessage,
+          service
+        )}, ${typeName(
+          method.resolvedResponseType,
+          !config.forceMessage,
+          service
+        )}>> {`
+      );
       ++indent;
       push("return (this.rpcImpl as any)(this." + escapeName(lcName) + ");");
       --indent;
     } else if (!method.requestStream && method.responseStream) {
-      imports.stream = { $asType: true, Stream: "default" };
+      imports['@grpc/grpc-js'] = { $asType: true, grpc: 'default' };
       push(
         `async ${escapeName(lcName)}(request: ${typeName(
           method.resolvedRequestType,
           !config.forceMessage,
           service
-        )}): Promise<Stream.Readable> {`
+        )}): Promise<grpc.ClientReadableStream<${
+          typeName(method.resolvedResponseType, !config.forceMessage, service)
+        }>> {`
       );
       ++indent;
       push(
@@ -900,7 +914,7 @@ function buildService(service) {
       );
       --indent;
     } else if (method.requestStream && !method.responseStream) {
-      imports.stream = { $asType: true, Stream: "default" };
+      imports['@grpc/grpc-js'] = { $asType: true, grpc: 'default' };
       push(
         `async ${escapeName(
           lcName
@@ -908,7 +922,11 @@ function buildService(service) {
           method.resolvedResponseType,
           !config.forceMessage,
           service
-        )}) => void): Promise<Stream.Writable> {`
+        )}) => void): Promise<grpc.ClientWriteableStream<${typeName(
+          method.resolvedRequestType,
+          !config.forceMessage,
+          service
+        )}>> {`
       );
       ++indent;
       push(
