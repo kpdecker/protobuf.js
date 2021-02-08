@@ -1,9 +1,6 @@
 "use strict";
 var util = exports;
 
-// used to return a Promise where callback is omitted
-util.asPromise = require("@protobufjs/aspromise");
-
 // converts to / from base64 encoded strings
 util.base64 = require("@protobufjs/base64");
 

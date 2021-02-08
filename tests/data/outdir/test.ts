@@ -296,7 +296,7 @@ export class EnumContainer implements IEnumContainer {
         if (options.defaults)
             object.outerEnum = 1;
         if (message.outerEnum != null && message.hasOwnProperty("outerEnum"))
-            object.outerEnum = options.enums === String ? OuterEnum[message.outerEnum] : message.outerEnum;
+            object.outerEnum = message.outerEnum;
         return object;
     }
 
@@ -3045,7 +3045,7 @@ export class DefaultValues implements IDefaultValues {
             else
                 object.intField = options.longs === String ? $util.Long.prototype.toString.call(message.intField) : options.longs === Number ? new $util.LongBits(message.intField).toNumber() : message.intField;
         if (message.enumField != null && message.hasOwnProperty("enumField"))
-            object.enumField = options.enums === String ? DefaultValues.Enum[message.enumField] : message.enumField;
+            object.enumField = message.enumField;
         if (message.emptyField != null && message.hasOwnProperty("emptyField"))
             object.emptyField = message.emptyField;
         if (message.bytesField != null && message.hasOwnProperty("bytesField"))
@@ -6454,7 +6454,7 @@ export class TestMapFieldsNoBinary implements ITestMapFieldsNoBinary {
         if (message.mapStringEnum && (keys2 = Object.keys(message.mapStringEnum)).length) {
             object.mapStringEnum = {};
             for (let j = 0; j < keys2.length; ++j)
-                object.mapStringEnum[keys2[j]] = options.enums === String ? MapValueEnumNoBinary[message.mapStringEnum[keys2[j]]] : message.mapStringEnum[keys2[j]];
+                object.mapStringEnum[keys2[j]] = message.mapStringEnum[keys2[j]];
         }
         if (message.mapStringMsg && (keys2 = Object.keys(message.mapStringMsg)).length) {
             object.mapStringMsg = {};

@@ -382,9 +382,9 @@ $root.jspb = (function() {
                     options = {};
                 var object = {};
                 if (options.defaults)
-                    object.outerEnum = options.enums === String ? "FOO" : 1;
+                    object.outerEnum = 1;
                 if (message.outerEnum != null && message.hasOwnProperty("outerEnum"))
-                    object.outerEnum = options.enums === String ? $root.jspb.test.OuterEnum[message.outerEnum] : message.outerEnum;
+                    object.outerEnum = message.outerEnum;
                 return object;
             };
 
@@ -3600,7 +3600,7 @@ $root.jspb = (function() {
                         object.intField = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
                         object.intField = options.longs === String ? "11" : 11;
-                    object.enumField = options.enums === String ? "E1" : 13;
+                    object.enumField = 13;
                     object.emptyField = "";
                     if (options.bytes === String)
                         object.bytesField = "moo";
@@ -3624,7 +3624,7 @@ $root.jspb = (function() {
                     else
                         object.intField = options.longs === String ? $util.Long.prototype.toString.call(message.intField) : options.longs === Number ? new $util.LongBits(message.intField).toNumber() : message.intField;
                 if (message.enumField != null && message.hasOwnProperty("enumField"))
-                    object.enumField = options.enums === String ? $root.jspb.test.DefaultValues.Enum[message.enumField] : message.enumField;
+                    object.enumField = message.enumField;
                 if (message.emptyField != null && message.hasOwnProperty("emptyField"))
                     object.emptyField = message.emptyField;
                 if (message.bytesField != null && message.hasOwnProperty("bytesField"))
@@ -7647,7 +7647,7 @@ $root.jspb = (function() {
                 if (message.mapStringEnum && (keys2 = Object.keys(message.mapStringEnum)).length) {
                     object.mapStringEnum = {};
                     for (var j = 0; j < keys2.length; ++j)
-                        object.mapStringEnum[keys2[j]] = options.enums === String ? $root.jspb.test.MapValueEnumNoBinary[message.mapStringEnum[keys2[j]]] : message.mapStringEnum[keys2[j]];
+                        object.mapStringEnum[keys2[j]] = message.mapStringEnum[keys2[j]];
                 }
                 if (message.mapStringMsg && (keys2 = Object.keys(message.mapStringMsg)).length) {
                     object.mapStringMsg = {};
@@ -10675,8 +10675,8 @@ $root.google = (function() {
                     object.name = "";
                     object.extendee = "";
                     object.number = 0;
-                    object.label = options.enums === String ? "LABEL_OPTIONAL" : 1;
-                    object.type = options.enums === String ? "TYPE_DOUBLE" : 1;
+                    object.label = 1;
+                    object.type = 1;
                     object.typeName = "";
                     object.defaultValue = "";
                     object.options = null;
@@ -10690,9 +10690,9 @@ $root.google = (function() {
                 if (message.number != null && message.hasOwnProperty("number"))
                     object.number = message.number;
                 if (message.label != null && message.hasOwnProperty("label"))
-                    object.label = options.enums === String ? $root.google.protobuf.FieldDescriptorProto.Label[message.label] : message.label;
+                    object.label = message.label;
                 if (message.type != null && message.hasOwnProperty("type"))
-                    object.type = options.enums === String ? $root.google.protobuf.FieldDescriptorProto.Type[message.type] : message.type;
+                    object.type = message.type;
                 if (message.typeName != null && message.hasOwnProperty("typeName"))
                     object.typeName = message.typeName;
                 if (message.defaultValue != null && message.hasOwnProperty("defaultValue"))
@@ -12557,7 +12557,7 @@ $root.google = (function() {
                 if (options.defaults) {
                     object.javaPackage = "";
                     object.javaOuterClassname = "";
-                    object.optimizeFor = options.enums === String ? "SPEED" : 1;
+                    object.optimizeFor = 1;
                     object.javaMultipleFiles = false;
                     object.goPackage = "";
                     object.ccGenericServices = false;
@@ -12575,7 +12575,7 @@ $root.google = (function() {
                 if (message.javaOuterClassname != null && message.hasOwnProperty("javaOuterClassname"))
                     object.javaOuterClassname = message.javaOuterClassname;
                 if (message.optimizeFor != null && message.hasOwnProperty("optimizeFor"))
-                    object.optimizeFor = options.enums === String ? $root.google.protobuf.FileOptions.OptimizeMode[message.optimizeFor] : message.optimizeFor;
+                    object.optimizeFor = message.optimizeFor;
                 if (message.javaMultipleFiles != null && message.hasOwnProperty("javaMultipleFiles"))
                     object.javaMultipleFiles = message.javaMultipleFiles;
                 if (message.goPackage != null && message.hasOwnProperty("goPackage"))
@@ -13281,15 +13281,15 @@ $root.google = (function() {
                 if (options.arrays || options.defaults)
                     object.uninterpretedOption = [];
                 if (options.defaults) {
-                    object.ctype = options.enums === String ? "STRING" : 0;
+                    object.ctype = 0;
                     object.packed = false;
                     object.deprecated = false;
                     object.lazy = false;
-                    object.jstype = options.enums === String ? "JS_NORMAL" : 0;
+                    object.jstype = 0;
                     object.weak = false;
                 }
                 if (message.ctype != null && message.hasOwnProperty("ctype"))
-                    object.ctype = options.enums === String ? $root.google.protobuf.FieldOptions.CType[message.ctype] : message.ctype;
+                    object.ctype = message.ctype;
                 if (message.packed != null && message.hasOwnProperty("packed"))
                     object.packed = message.packed;
                 if (message.deprecated != null && message.hasOwnProperty("deprecated"))
@@ -13297,7 +13297,7 @@ $root.google = (function() {
                 if (message.lazy != null && message.hasOwnProperty("lazy"))
                     object.lazy = message.lazy;
                 if (message.jstype != null && message.hasOwnProperty("jstype"))
-                    object.jstype = options.enums === String ? $root.google.protobuf.FieldOptions.JSType[message.jstype] : message.jstype;
+                    object.jstype = message.jstype;
                 if (message.weak != null && message.hasOwnProperty("weak"))
                     object.weak = message.weak;
                 if (message.uninterpretedOption && message.uninterpretedOption.length) {
@@ -14551,12 +14551,12 @@ $root.google = (function() {
                     object.uninterpretedOption = [];
                 if (options.defaults) {
                     object.deprecated = false;
-                    object.idempotencyLevel = options.enums === String ? "IDEMPOTENCY_UNKNOWN" : 0;
+                    object.idempotencyLevel = 0;
                 }
                 if (message.deprecated != null && message.hasOwnProperty("deprecated"))
                     object.deprecated = message.deprecated;
                 if (message.idempotencyLevel != null && message.hasOwnProperty("idempotencyLevel"))
-                    object.idempotencyLevel = options.enums === String ? $root.google.protobuf.MethodOptions.IdempotencyLevel[message.idempotencyLevel] : message.idempotencyLevel;
+                    object.idempotencyLevel = message.idempotencyLevel;
                 if (message.uninterpretedOption && message.uninterpretedOption.length) {
                     object.uninterpretedOption = [];
                     for (var j = 0; j < message.uninterpretedOption.length; ++j)
@@ -16226,6 +16226,190 @@ $root.google = (function() {
     return google;
 })();
 
+$root.aaaa = (function() {
+
+    /**
+     * Namespace aaaa.
+     * @exports aaaa
+     * @namespace
+     */
+    var aaaa = {};
+
+    aaaa.b = (function() {
+
+        /**
+         * Namespace b.
+         * @memberof aaaa
+         * @namespace
+         */
+        var b = {};
+
+        b.Something = (function() {
+
+            /**
+             * Properties of a Something.
+             * @memberof aaaa.b
+             * @interface ISomething
+             */
+
+            /**
+             * Constructs a new Something.
+             * @memberof aaaa.b
+             * @classdesc Represents a Something.
+             * @implements ISomething
+             * @constructor
+             * @param {aaaa.b.ISomething=} [properties] Properties to set
+             */
+            function Something(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Creates a new Something instance using the specified properties.
+             * @function create
+             * @memberof aaaa.b.Something
+             * @static
+             * @param {aaaa.b.ISomething=} [properties] Properties to set
+             * @returns {aaaa.b.Something} Something instance
+             */
+            Something.create = function create(properties) {
+                return new Something(properties);
+            };
+
+            /**
+             * Encodes the specified Something message. Does not implicitly {@link aaaa.b.Something.verify|verify} messages.
+             * @function encode
+             * @memberof aaaa.b.Something
+             * @static
+             * @param {aaaa.b.ISomething} message Something message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Something.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Something message, length delimited. Does not implicitly {@link aaaa.b.Something.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof aaaa.b.Something
+             * @static
+             * @param {aaaa.b.ISomething} message Something message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Something.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a Something message from the specified reader or buffer.
+             * @function decode
+             * @memberof aaaa.b.Something
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {aaaa.b.Something} Something
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Something.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.aaaa.b.Something();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a Something message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof aaaa.b.Something
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {aaaa.b.Something} Something
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Something.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a Something message.
+             * @function verify
+             * @memberof aaaa.b.Something
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Something.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                return null;
+            };
+
+            /**
+             * Creates a Something message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof aaaa.b.Something
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {aaaa.b.Something} Something
+             */
+            Something.fromObject = function fromObject(object) {
+                if (object instanceof $root.aaaa.b.Something)
+                    return object;
+                return new $root.aaaa.b.Something();
+            };
+
+            /**
+             * Creates a plain object from a Something message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof aaaa.b.Something
+             * @static
+             * @param {aaaa.b.Something} message Something
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Something.toObject = function toObject() {
+                return {};
+            };
+
+            /**
+             * Converts this Something to JSON.
+             * @function toJSON
+             * @memberof aaaa.b.Something
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Something.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return Something;
+        })();
+
+        return b;
+    })();
+
+    return aaaa;
+})();
+
 $root.Package = (function() {
 
     /**
@@ -17165,190 +17349,6 @@ $root.Package = (function() {
     })();
 
     return Package;
-})();
-
-$root.aaaa = (function() {
-
-    /**
-     * Namespace aaaa.
-     * @exports aaaa
-     * @namespace
-     */
-    var aaaa = {};
-
-    aaaa.b = (function() {
-
-        /**
-         * Namespace b.
-         * @memberof aaaa
-         * @namespace
-         */
-        var b = {};
-
-        b.Something = (function() {
-
-            /**
-             * Properties of a Something.
-             * @memberof aaaa.b
-             * @interface ISomething
-             */
-
-            /**
-             * Constructs a new Something.
-             * @memberof aaaa.b
-             * @classdesc Represents a Something.
-             * @implements ISomething
-             * @constructor
-             * @param {aaaa.b.ISomething=} [properties] Properties to set
-             */
-            function Something(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * Creates a new Something instance using the specified properties.
-             * @function create
-             * @memberof aaaa.b.Something
-             * @static
-             * @param {aaaa.b.ISomething=} [properties] Properties to set
-             * @returns {aaaa.b.Something} Something instance
-             */
-            Something.create = function create(properties) {
-                return new Something(properties);
-            };
-
-            /**
-             * Encodes the specified Something message. Does not implicitly {@link aaaa.b.Something.verify|verify} messages.
-             * @function encode
-             * @memberof aaaa.b.Something
-             * @static
-             * @param {aaaa.b.ISomething} message Something message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Something.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                return writer;
-            };
-
-            /**
-             * Encodes the specified Something message, length delimited. Does not implicitly {@link aaaa.b.Something.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof aaaa.b.Something
-             * @static
-             * @param {aaaa.b.ISomething} message Something message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Something.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a Something message from the specified reader or buffer.
-             * @function decode
-             * @memberof aaaa.b.Something
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {aaaa.b.Something} Something
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Something.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.aaaa.b.Something();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a Something message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof aaaa.b.Something
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {aaaa.b.Something} Something
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Something.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a Something message.
-             * @function verify
-             * @memberof aaaa.b.Something
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            Something.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                return null;
-            };
-
-            /**
-             * Creates a Something message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof aaaa.b.Something
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {aaaa.b.Something} Something
-             */
-            Something.fromObject = function fromObject(object) {
-                if (object instanceof $root.aaaa.b.Something)
-                    return object;
-                return new $root.aaaa.b.Something();
-            };
-
-            /**
-             * Creates a plain object from a Something message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof aaaa.b.Something
-             * @static
-             * @param {aaaa.b.Something} message Something
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            Something.toObject = function toObject() {
-                return {};
-            };
-
-            /**
-             * Converts this Something to JSON.
-             * @function toJSON
-             * @memberof aaaa.b.Something
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            Something.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            return Something;
-        })();
-
-        return b;
-    })();
-
-    return aaaa;
 })();
 
 module.exports = $root;

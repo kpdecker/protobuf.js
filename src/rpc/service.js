@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = Service;
 
-var util = require('../util/minimal');
+var util = require("../util/minimal");
 
 // Extends EventEmitter
 (Service.prototype = Object.create(
@@ -42,8 +42,8 @@ var util = require('../util/minimal');
  * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
  */
 function Service(rpcImpl, requestDelimited, responseDelimited) {
-  if (typeof rpcImpl !== 'function')
-    throw TypeError('rpcImpl must be a function');
+  if (typeof rpcImpl !== "function")
+    throw TypeError("rpcImpl must be a function");
 
   util.EventEmitter.call(this);
 
@@ -77,7 +77,7 @@ Service.prototype.end = function end(endedByRPC) {
       // signal end to rpcImpl
       this.rpcImpl(null, null, null);
     this.rpcImpl = null;
-    this.emit('end').off();
+    this.emit("end").off();
   }
   return this;
 };

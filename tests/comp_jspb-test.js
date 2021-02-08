@@ -1,30 +1,28 @@
-var tape = require("tape");
-var protobuf  = require("..");
+var tape = require('tape');
+var protobuf = require('..');
 
-tape.test("jspb test proto", function(test) {
-    var existingRoot = new protobuf.Root();
-    protobuf.load("tests/data/test.proto", existingRoot, function(err, root) {
-        if (err)
-            return test.fail(err.message);
+tape.test('jspb test proto', async function (test) {
+  var existingRoot = new protobuf.Root();
+  try {
+    const root = await protobuf.load('tests/data/test.proto', existingRoot);
 
-        test.pass("should parse without errors");
-        test.equal(root, existingRoot, "should reuse existing root");
+    test.pass('should parse without errors');
+    test.equal(root, existingRoot, 'should reuse existing root');
 
-        test.doesNotThrow(function() {
-            root.resolveAll();
-            traverse(root);
-        }, "should resolve all types and generate code for them without errors");
+    test.doesNotThrow(function () {
+      root.resolveAll();
+      traverse(root);
+    }, 'should resolve all types and generate code for them without errors');
 
-        test.end();
-    });
-
+    test.end();
+  } catch (err) {
+    return test.fail(err.message);
+  }
 });
 
 function traverse(ns) {
-    ns.nestedArray.forEach(function(nested) {
-        if (nested instanceof protobuf.Type)
-            nested.setup();
-        if (nested instanceof protobuf.Namespace)
-            traverse(nested);
-    });
+  ns.nestedArray.forEach(function (nested) {
+    if (nested instanceof protobuf.Type) nested.setup();
+    if (nested instanceof protobuf.Namespace) traverse(nested);
+  });
 }

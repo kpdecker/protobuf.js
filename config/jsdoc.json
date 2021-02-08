@@ -5,7 +5,6 @@
     "source": {
         "include": [
             "./src/",
-            "./lib/aspromise/index.js",
             "./lib/base64/index.js",
             "./lib/codegen/index.js",
             "./lib/eventemitter/index.js",

@@ -416,11 +416,11 @@ export class Message implements IMessage {
                 object.bytesRepeated[j] = options.bytes === String ? $util.base64.encode(message.bytesRepeated[j], 0, message.bytesRepeated[j].length) : options.bytes === Array ? Array.prototype.slice.call(message.bytesRepeated[j]) : message.bytesRepeated[j];
         }
         if (message.enumVal != null && message.hasOwnProperty("enumVal"))
-            object.enumVal = options.enums === String ? Message.SomeEnum[message.enumVal] : message.enumVal;
+            object.enumVal = message.enumVal;
         if (message.enumRepeated && message.enumRepeated.length) {
             object.enumRepeated = [];
             for (let j = 0; j < message.enumRepeated.length; ++j)
-                object.enumRepeated[j] = options.enums === String ? Message.SomeEnum[message.enumRepeated[j]] : message.enumRepeated[j];
+                object.enumRepeated[j] = message.enumRepeated[j];
         }
         let keys2;
         if (message.int64Map && (keys2 = Object.keys(message.int64Map)).length) {

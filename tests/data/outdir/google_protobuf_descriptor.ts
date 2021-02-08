@@ -1909,9 +1909,9 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
         if (message.number != null && message.hasOwnProperty("number"))
             object.number = message.number;
         if (message.label != null && message.hasOwnProperty("label"))
-            object.label = options.enums === String ? FieldDescriptorProto.Label[message.label] : message.label;
+            object.label = message.label;
         if (message.type != null && message.hasOwnProperty("type"))
-            object.type = options.enums === String ? FieldDescriptorProto.Type[message.type] : message.type;
+            object.type = message.type;
         if (message.typeName != null && message.hasOwnProperty("typeName"))
             object.typeName = message.typeName;
         if (message.defaultValue != null && message.hasOwnProperty("defaultValue"))
@@ -1949,30 +1949,30 @@ export class FieldDescriptorProto implements IFieldDescriptorProto {
 
 export namespace FieldDescriptorProto {
     export enum Type {
-        TYPE_DOUBLE = 1,
-        TYPE_FLOAT = 2,
-        TYPE_INT64 = 3,
-        TYPE_UINT64 = 4,
-        TYPE_INT32 = 5,
-        TYPE_FIXED64 = 6,
-        TYPE_FIXED32 = 7,
-        TYPE_BOOL = 8,
-        TYPE_STRING = 9,
-        TYPE_GROUP = 10,
-        TYPE_MESSAGE = 11,
-        TYPE_BYTES = 12,
-        TYPE_UINT32 = 13,
-        TYPE_ENUM = 14,
-        TYPE_SFIXED32 = 15,
-        TYPE_SFIXED64 = 16,
-        TYPE_SINT32 = 17,
-        TYPE_SINT64 = 18,
+        DOUBLE = 1,
+        FLOAT = 2,
+        INT64 = 3,
+        UINT64 = 4,
+        INT32 = 5,
+        FIXED64 = 6,
+        FIXED32 = 7,
+        BOOL = 8,
+        STRING = 9,
+        GROUP = 10,
+        MESSAGE = 11,
+        BYTES = 12,
+        UINT32 = 13,
+        ENUM = 14,
+        SFIXED32 = 15,
+        SFIXED64 = 16,
+        SINT32 = 17,
+        SINT64 = 18,
     }
 
     export enum Label {
-        LABEL_OPTIONAL = 1,
-        LABEL_REQUIRED = 2,
-        LABEL_REPEATED = 3,
+        OPTIONAL = 1,
+        REQUIRED = 2,
+        REPEATED = 3,
     }
 
 }
@@ -3422,7 +3422,7 @@ export class FileOptions implements IFileOptions {
         if (message.javaOuterClassname != null && message.hasOwnProperty("javaOuterClassname"))
             object.javaOuterClassname = message.javaOuterClassname;
         if (message.optimizeFor != null && message.hasOwnProperty("optimizeFor"))
-            object.optimizeFor = options.enums === String ? FileOptions.OptimizeMode[message.optimizeFor] : message.optimizeFor;
+            object.optimizeFor = message.optimizeFor;
         if (message.javaMultipleFiles != null && message.hasOwnProperty("javaMultipleFiles"))
             object.javaMultipleFiles = message.javaMultipleFiles;
         if (message.goPackage != null && message.hasOwnProperty("goPackage"))
@@ -4009,7 +4009,7 @@ export class FieldOptions implements IFieldOptions {
             object.weak = false;
         }
         if (message.ctype != null && message.hasOwnProperty("ctype"))
-            object.ctype = options.enums === String ? FieldOptions.CType[message.ctype] : message.ctype;
+            object.ctype = message.ctype;
         if (message.packed != null && message.hasOwnProperty("packed"))
             object.packed = message.packed;
         if (message.deprecated != null && message.hasOwnProperty("deprecated"))
@@ -4017,7 +4017,7 @@ export class FieldOptions implements IFieldOptions {
         if (message.lazy != null && message.hasOwnProperty("lazy"))
             object.lazy = message.lazy;
         if (message.jstype != null && message.hasOwnProperty("jstype"))
-            object.jstype = options.enums === String ? FieldOptions.JSType[message.jstype] : message.jstype;
+            object.jstype = message.jstype;
         if (message.weak != null && message.hasOwnProperty("weak"))
             object.weak = message.weak;
         if (message.uninterpretedOption && message.uninterpretedOption.length) {
@@ -5085,7 +5085,7 @@ export class MethodOptions implements IMethodOptions {
         if (message.deprecated != null && message.hasOwnProperty("deprecated"))
             object.deprecated = message.deprecated;
         if (message.idempotencyLevel != null && message.hasOwnProperty("idempotencyLevel"))
-            object.idempotencyLevel = options.enums === String ? MethodOptions.IdempotencyLevel[message.idempotencyLevel] : message.idempotencyLevel;
+            object.idempotencyLevel = message.idempotencyLevel;
         if (message.uninterpretedOption && message.uninterpretedOption.length) {
             object.uninterpretedOption = [];
             for (let j = 0; j < message.uninterpretedOption.length; ++j)

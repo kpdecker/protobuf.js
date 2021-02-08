@@ -236,7 +236,7 @@ converter.toObject = function toObject(mtype, isTypescript) {
             var field = normalFields[i],
                 prop  = util.safeProp(field.name);
             if (field.resolvedType instanceof Enum && !isTypescript) gen
-        ("d%s=o.enums===String?%j:%j", prop, field.resolvedType.valuesById[field.typeDefault], field.typeDefault);
+        ("d%s=%j", prop, field.typeDefault);
             else if (field.long) gen
         ("if(util.Long){")
             ("var n=new util.Long(%i,%i,%j)", field.typeDefault.low, field.typeDefault.high, field.typeDefault.unsigned)

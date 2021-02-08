@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v9.0.0 (c) 2016, daniel wirtz
- * compiled mon, 08 feb 2021 16:57:26 utc
+ * protobuf.js v10.0.0 (c) 2016, daniel wirtz
+ * compiled mon, 08 feb 2021 23:09:59 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -38,60 +38,6 @@
         module.exports = protobuf;
 
 })/* end of prelude */({1:[function(require,module,exports){
-"use strict";
-module.exports = asPromise;
-
-/**
- * Callback as used by {@link util.asPromise}.
- * @typedef asPromiseCallback
- * @type {function}
- * @param {Error|null} error Error, if any
- * @param {...*} params Additional arguments
- * @returns {undefined}
- */
-
-/**
- * Returns a promise from a node-style callback function.
- * @memberof util
- * @param {asPromiseCallback} fn Function to call
- * @param {*} ctx Function context
- * @param {...*} params Function arguments
- * @returns {Promise<*>} Promisified function
- */
-function asPromise(fn, ctx/*, varargs */) {
-    var params  = new Array(arguments.length - 1),
-        offset  = 0,
-        index   = 2,
-        pending = true;
-    while (index < arguments.length)
-        params[offset++] = arguments[index++];
-    return new Promise(function executor(resolve, reject) {
-        params[offset] = function callback(err/*, varargs */) {
-            if (pending) {
-                pending = false;
-                if (err)
-                    reject(err);
-                else {
-                    var params = new Array(arguments.length - 1),
-                        offset = 0;
-                    while (offset < params.length)
-                        params[offset++] = arguments[offset];
-                    resolve.apply(null, params);
-                }
-            }
-        };
-        try {
-            fn.apply(ctx || null, params);
-        } catch (err) {
-            if (pending) {
-                pending = false;
-                reject(err);
-            }
-        }
-    });
-}
-
-},{}],2:[function(require,module,exports){
 "use strict";
 
 /**
@@ -232,7 +178,7 @@ base64.test = function test(string) {
     return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(string);
 };
 
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 "use strict";
 module.exports = EventEmitter;
 
@@ -310,7 +256,7 @@ EventEmitter.prototype.emit = function emit(evt) {
     return this;
 };
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 "use strict";
 
 module.exports = factory(factory);
@@ -647,7 +593,7 @@ function readUintBE(buf, pos) {
           | buf[pos + 3]) >>> 0;
 }
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 module.exports = inquire;
 
@@ -666,7 +612,7 @@ function inquire(moduleName) {
     return null;
 }
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 module.exports = pool;
 
@@ -716,7 +662,7 @@ function pool(alloc, slice, size) {
     };
 }
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 /**
@@ -823,7 +769,7 @@ utf8.write = function utf8_write(string, buffer, offset) {
     return offset - start;
 };
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 var protobuf = exports;
 
@@ -836,15 +782,15 @@ var protobuf = exports;
 protobuf.build = "minimal";
 
 // Serialization
-protobuf.Writer       = require(16);
-protobuf.BufferWriter = require(17);
-protobuf.Reader       = require(9);
-protobuf.BufferReader = require(10);
+protobuf.Writer       = require(15);
+protobuf.BufferWriter = require(16);
+protobuf.Reader       = require(8);
+protobuf.BufferReader = require(9);
 
 // Utility
-protobuf.util         = require(15);
-protobuf.rpc          = require(12);
-protobuf.roots        = require(11);
+protobuf.util         = require(14);
+protobuf.rpc          = require(11);
+protobuf.roots        = require(10);
 protobuf.configure    = configure;
 
 protobuf.Long = protobuf.util.Long;
@@ -863,11 +809,11 @@ function configure() {
 // Set up buffer utility according to the environment
 configure();
 
-},{"10":10,"11":11,"12":12,"15":15,"16":16,"17":17,"9":9}],9:[function(require,module,exports){
+},{"10":10,"11":11,"14":14,"15":15,"16":16,"8":8,"9":9}],8:[function(require,module,exports){
 "use strict";
 module.exports = Reader;
 
-var util      = require(15);
+var util      = require(14);
 
 var BufferReader; // cyclic
 
@@ -1276,15 +1222,15 @@ Reader._configure = function(BufferReader_) {
     });
 };
 
-},{"15":15}],10:[function(require,module,exports){
+},{"14":14}],9:[function(require,module,exports){
 "use strict";
 module.exports = BufferReader;
 
 // extends Reader
-var Reader = require(9);
+var Reader = require(8);
 (BufferReader.prototype = Object.create(Reader.prototype)).constructor = BufferReader;
 
-var util = require(15);
+var util = require(14);
 
 /**
  * Constructs a new buffer reader instance.
@@ -1329,7 +1275,7 @@ BufferReader.prototype.string = function read_string_buffer() {
 
 BufferReader._configure();
 
-},{"15":15,"9":9}],11:[function(require,module,exports){
+},{"14":14,"8":8}],10:[function(require,module,exports){
 "use strict";
 module.exports = {};
 
@@ -1349,7 +1295,7 @@ module.exports = {};
  * var root = protobuf.roots["myroot"];
  */
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
 /**
@@ -1385,13 +1331,13 @@ var rpc = exports;
  * @returns {undefined}
  */
 
-rpc.Service = require(13);
+rpc.Service = require(12);
 
-},{"13":13}],13:[function(require,module,exports){
-'use strict';
+},{"12":12}],12:[function(require,module,exports){
+"use strict";
 module.exports = Service;
 
-var util = require(15);
+var util = require(14);
 
 // Extends EventEmitter
 (Service.prototype = Object.create(
@@ -1432,8 +1378,8 @@ var util = require(15);
  * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
  */
 function Service(rpcImpl, requestDelimited, responseDelimited) {
-  if (typeof rpcImpl !== 'function')
-    throw TypeError('rpcImpl must be a function');
+  if (typeof rpcImpl !== "function")
+    throw TypeError("rpcImpl must be a function");
 
   util.EventEmitter.call(this);
 
@@ -1467,16 +1413,16 @@ Service.prototype.end = function end(endedByRPC) {
       // signal end to rpcImpl
       this.rpcImpl(null, null, null);
     this.rpcImpl = null;
-    this.emit('end').off();
+    this.emit("end").off();
   }
   return this;
 };
 
-},{"15":15}],14:[function(require,module,exports){
+},{"14":14}],13:[function(require,module,exports){
 "use strict";
 module.exports = LongBits;
 
-var util = require(15);
+var util = require(14);
 
 /**
  * Constructs new long bits.
@@ -1679,33 +1625,30 @@ LongBits.prototype.length = function length() {
          : part2 < 128 ? 9 : 10;
 };
 
-},{"15":15}],15:[function(require,module,exports){
+},{"14":14}],14:[function(require,module,exports){
 "use strict";
 var util = exports;
 
-// used to return a Promise where callback is omitted
-util.asPromise = require(1);
-
 // converts to / from base64 encoded strings
-util.base64 = require(2);
+util.base64 = require(1);
 
 // base class of rpc.Service
-util.EventEmitter = require(3);
+util.EventEmitter = require(2);
 
 // float handling accross browsers
-util.float = require(4);
+util.float = require(3);
 
 // requires modules optionally and hides the call from bundlers
-util.inquire = require(5);
+util.inquire = require(4);
 
 // converts to / from utf8 encoded strings
-util.utf8 = require(7);
+util.utf8 = require(6);
 
 // provides a node-like buffer pool in the browser
-util.pool = require(6);
+util.pool = require(5);
 
 // utility to work with the low and high bits of a 64 bit value
-util.LongBits = require(14);
+util.LongBits = require(13);
 
 /**
  * Whether running within node or not.
@@ -2183,11 +2126,11 @@ util._configure = function() {
         };
 };
 
-},{"1":1,"14":14,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7}],16:[function(require,module,exports){
+},{"1":1,"13":13,"2":2,"3":3,"4":4,"5":5,"6":6}],15:[function(require,module,exports){
 "use strict";
 module.exports = Writer;
 
-var util      = require(15);
+var util      = require(14);
 
 var BufferWriter; // cyclic
 
@@ -2657,15 +2600,15 @@ Writer._configure = function(BufferWriter_) {
     BufferWriter._configure();
 };
 
-},{"15":15}],17:[function(require,module,exports){
+},{"14":14}],16:[function(require,module,exports){
 "use strict";
 module.exports = BufferWriter;
 
 // extends Writer
-var Writer = require(16);
+var Writer = require(15);
 (BufferWriter.prototype = Object.create(Writer.prototype)).constructor = BufferWriter;
 
-var util = require(15);
+var util = require(14);
 
 /**
  * Constructs a new buffer writer instance.
@@ -2744,7 +2687,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 
 BufferWriter._configure();
 
-},{"15":15,"16":16}]},{},[8])
+},{"14":14,"15":15}]},{},[7])
 
 })();
 //# sourceMappingURL=protobuf.js.map

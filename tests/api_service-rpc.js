@@ -16,7 +16,7 @@ service MyService {\
   };\
 }";
 
-tape.test("reflected services", function(test) {
+tape.test("reflected services call", function(test) {
     var root = protobuf.parse(proto).root;
 
     var myservice = root.lookup("myservice").resolveAll(),
@@ -29,70 +29,55 @@ tape.test("reflected services", function(test) {
         MyService.create();
     }, TypeError, "should throw if rpcImpl is not specified");
 
-    function rpcImpl(method, requestData, callback) {
+    async function rpcImpl(method, requestData) {
         if (requestData) {
             test.equal(method, DoSomething, "rpcImpl should reference the correct method");
-            test.ok(callback, "rpcImpl should provide a callback");
-            setTimeout(function() {
-                callback(null, DoSomethingResponse.create());
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    resolve(DoSomethingResponse.create());
+                });
             });
         } else {
-            test.equal(method, null, "rpcImpl should not reference a method when closed");
-            test.equal(callback, null, "rpcImpl should not provide a callback when closed");
+            test.equal(method, null, "rpcImpl stream not implemented");
         }
     }
 
     var service = MyService.create(rpcImpl);
 
-    test.throws(function() {
-        service.doSomething();
-    }, TypeError, "should throw if request is not specified");
-
-    test.test(test.name + " - should propagate errors from rpcImpl", function(test) {
+    test.test(test.name + " - should propagate errors from rpcImpl", async function(test) {
         var err = Error();
-        var service2 = MyService.create(function(method, requestData, callback) { callback(err); });
+        var service2 = MyService.create(function() { return Promise.reject(err); });
         var count = 0;
         service2.on("error", function(err2) {
             test.equal(err2, err, "should emit the exact error");
             if (++count === 2)
                 test.end();
         });
-        service2.doSomething({}, function(err2) {
+        try {
+            await service2.doSomething({});
+        } catch (err2) {
             test.equal(err2, err, "should return the exact error");
             if (++count === 2)
                 test.end();
-        });
+        }
     });
 
-    test.test(test.name + " - should catch errors within rpcImpl", function(test) {
+    test.test(test.name + " - should catch errors within rpcImpl", async function(test) {
         var err = Error();
-        var service2 = MyService.create(function(method, requestData, callback) { throw err; });
+        var service2 = MyService.create(function() { throw err; });
         var count = 0;
         service2.on("error", function(err2) {
             test.equal(err2, err, "should emit the exact error");
             if (++count === 2)
                 test.end();
         });
-        service2.doSomething({}, function(err2) {
+        try {
+            await service2.doSomething({});
+        } catch (err2) {
             test.equal(err2, err, "should return the exact error");
             if (++count === 2)
                 test.end();
-        });
-    });
-
-    test.test(test.name + " - should return errors from decoding", function(test) {
-        var service2 = MyService.create(function(method, requestData, callback) { callback(null, protobuf.util.newBuffer(0) ); }, true, true);
-        var count = 0;
-        service2.on("error", function(err2) {
-            test.ok(err2, "should emit the error");
-            if (++count === 2)
-                test.end();
-        });
-        service2.doSomething({}, function(err2) {
-            test.ok(err2, "should return the error");
-            if (++count === 2)
-                test.end();
-        });
+        }
     });
 
     var dataEmitted = false;

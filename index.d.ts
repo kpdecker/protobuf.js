@@ -434,16 +434,6 @@ export function load(filename: (string|string[]), callback: LoadCallback): void;
  */
 export function load(filename: (string|string[]), root?: Root): Promise<Root>;
 
-/**
- * Synchronously loads one or multiple .proto or preprocessed .json files into a common root namespace (node only).
- * @param filename One or multiple files to load
- * @param [root] Root namespace, defaults to create a new one if omitted.
- * @returns Root namespace
- * @throws {Error} If synchronous fetching is not supported (i.e. in browsers) or if a file's syntax is invalid
- * @see {@link Root#loadSync}
- */
-export function loadSync(filename: (string|string[]), root?: Root): Root;
-
 /** Build type, one of `"full"`, `"light"` or `"minimal"`. */
 export const build: string;
 
@@ -1271,41 +1261,17 @@ export class Root extends NamespaceBase {
      * Fetch content from file path or url
      * This method exists so you can override it with your own logic.
      * @param path File path or url
-     * @param callback Callback function
+     * @returns Promise
      */
-    public fetch(path: string, callback: FetchCallback): void;
+    public fetch(path: string): Promise<(string|Uint8Array)>;
 
     /**
      * Loads one or multiple .proto or preprocessed .json files into this root namespace and calls the callback.
      * @param filename Names of one or multiple files to load
-     * @param options Parse options
-     * @param callback Callback function
-     */
-    public load(filename: (string|string[]), options: IParseOptions, callback: LoadCallback): void;
-
-    /**
-     * Loads one or multiple .proto or preprocessed .json files into this root namespace and calls the callback.
-     * @param filename Names of one or multiple files to load
-     * @param callback Callback function
-     */
-    public load(filename: (string|string[]), callback: LoadCallback): void;
-
-    /**
-     * Loads one or multiple .proto or preprocessed .json files into this root namespace and returns a promise.
-     * @param filename Names of one or multiple files to load
-     * @param [options] Parse options. Defaults to {@link parse.defaults} when omitted.
+     * @param [options] Parse options
      * @returns Promise
      */
     public load(filename: (string|string[]), options?: IParseOptions): Promise<Root>;
-
-    /**
-     * Synchronously loads one or multiple .proto or preprocessed .json files into this root namespace (node only).
-     * @param filename Names of one or multiple files to load
-     * @param [options] Parse options. Defaults to {@link parse.defaults} when omitted.
-     * @returns Root namespace
-     * @throws {Error} If synchronous fetching is not supported (i.e. in browsers) or if a file's syntax is invalid
-     */
-    public loadSync(filename: (string|string[]), options?: IParseOptions): Root;
 }
 
 /**
@@ -2229,15 +2195,6 @@ export namespace util {
     /** Decorator root (TypeScript). */
     let decorateRoot: Root;
 
-    /**
-     * Returns a promise from a node-style callback function.
-     * @param fn Function to call
-     * @param ctx Function context
-     * @param params Function arguments
-     * @returns Promisified function
-     */
-    function asPromise(fn: asPromiseCallback, ctx: any, ...params: any[]): Promise<any>;
-
     /** A minimal base64 implementation for number arrays. */
     namespace base64 {
 
@@ -2400,24 +2357,9 @@ export namespace util {
      * Fetches the contents of a file.
      * @param filename File path or url
      * @param options Fetch options
-     * @param callback Callback function
-     */
-    function fetch(filename: string, options: IFetchOptions, callback: FetchCallback): void;
-
-    /**
-     * Fetches the contents of a file.
-     * @param path File path or url
-     * @param callback Callback function
-     */
-    function fetch(path: string, callback: FetchCallback): void;
-
-    /**
-     * Fetches the contents of a file.
-     * @param path File path or url
-     * @param [options] Fetch options
      * @returns Promise
      */
-    function fetch(path: string, options?: IFetchOptions): Promise<(string|Uint8Array)>;
+    function fetch(filename: string, options: IFetchOptions): Promise<(string|Uint8Array)>;
 
     /**
      * Requires a module only if available.
@@ -2715,13 +2657,6 @@ export class BufferWriter extends Writer {
 }
 
 /**
- * Callback as used by {@link util.asPromise}.
- * @param error Error, if any
- * @param params Additional arguments
- */
-type asPromiseCallback = (error: (Error|null), ...params: any[]) => void;
-
-/**
  * Appends code to the function's body or finishes generation.
  * @param [formatStringOrScope] Format string or, to finish the function, an object of additional scope variables, if any
  * @param [formatParams] Format parameters
@@ -2735,13 +2670,6 @@ type Codegen = (formatStringOrScope?: (string|{ [k: string]: any }), ...formatPa
  * @param args Arguments
  */
 type EventEmitterListener = (...args: any[]) => void;
-
-/**
- * Node-style callback as used by {@link util.fetch}.
- * @param error Error, if any, otherwise `null`
- * @param [contents] File contents, if there hasn't been an error
- */
-type FetchCallback = (error: Error, contents?: string) => void;
 
 /** Options as used by {@link util.fetch}. */
 export interface IFetchOptions {

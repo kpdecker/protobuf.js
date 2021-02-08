@@ -1,26 +1,39 @@
-var tape = require("tape");
+var tape = require('tape');
 
-var protobuf = require(".."),
-    util = protobuf.util;
+var protobuf = require('..'),
+  util = protobuf.util;
 
-tape.test("bench.proto and bench.json", function(test) {
-    test.plan(4);
-    protobuf.load("bench/data/bench.proto", undefined, function(err, root) { // no require.resolve to support browsers
-        if (err)
-            return test.fail(err.message);
+tape.test('bench.proto and bench.json', async function (test) {
+  test.plan(4);
+  try {
+    const root = await protobuf.load('bench/data/bench.proto');
 
-        var Test = root.lookup("Test");
+    var Test = root.lookup('Test');
 
-        var data = require("../bench/data/bench.json");
+    var data = require('../bench/data/bench.json');
 
-        test.equal(Test.verify(data), null, "should verify our test data");
-        test.equal(Test.ctor.verify(data), null, "should verify our test data (static)");
+    test.equal(Test.verify(data), null, 'should verify our test data');
+    test.equal(
+      Test.ctor.verify(data),
+      null,
+      'should verify our test data (static)'
+    );
 
-        var decoded = Test.decode(Test.encode(data).finish());
-        test.deepEqual(decoded, data, "should reproduce the original data when encoded and decoded again");
+    var decoded = Test.decode(Test.encode(data).finish());
+    test.deepEqual(
+      decoded,
+      data,
+      'should reproduce the original data when encoded and decoded again'
+    );
 
-        test.deepEqual(Test.toObject(decoded), data, "should convert back to the original object");
+    test.deepEqual(
+      Test.toObject(decoded),
+      data,
+      'should convert back to the original object'
+    );
 
-        test.end();
-    });
+    test.end();
+  } catch (err) {
+    throw test.fail(err.message);
+  }
 });

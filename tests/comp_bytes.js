@@ -48,7 +48,7 @@ CustomBuffer.prototype.slice = function (start, end) {
     return CustomBuffer.toCustom(this.slice(start, end));
 }
 
-tape.test("configure a custom encoder/decoder for bytes", function(test) {
+tape.test("configure a custom encoder/decoder for bytes", async function(test) {
     var oldBuffer = protobuf.util.Buffer;
 
     protobuf.util.Buffer = CustomBuffer;

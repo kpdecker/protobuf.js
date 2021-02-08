@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v9.0.0 (c) 2016, daniel wirtz
- * compiled mon, 08 feb 2021 16:57:26 utc
+ * protobuf.js v10.0.0 (c) 2016, daniel wirtz
+ * compiled mon, 08 feb 2021 23:09:59 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -39,59 +39,99 @@
 
 })/* end of prelude */({1:[function(require,module,exports){
 "use strict";
-module.exports = asPromise;
+module.exports = fetch;
+
+var inquire = require(6);
+
+var fs = inquire("fs");
 
 /**
- * Callback as used by {@link util.asPromise}.
- * @typedef asPromiseCallback
- * @type {function}
- * @param {Error|null} error Error, if any
- * @param {...*} params Additional arguments
- * @returns {undefined}
+ * Options as used by {@link util.fetch}.
+ * @interface IFetchOptions
+ * @property {boolean} [binary=false] Whether expecting a binary response
+ * @property {boolean} [xhr=false] If `true`, forces the use of XMLHttpRequest
  */
 
 /**
- * Returns a promise from a node-style callback function.
+ * Fetches the contents of a file.
  * @memberof util
- * @param {asPromiseCallback} fn Function to call
- * @param {*} ctx Function context
- * @param {...*} params Function arguments
- * @returns {Promise<*>} Promisified function
+ * @param {string} filename File path or url
+ * @param {IFetchOptions} options Fetch options
+ * @returns {Promise<string|Uint8Array>} Promise
  */
-function asPromise(fn, ctx/*, varargs */) {
-    var params  = new Array(arguments.length - 1),
-        offset  = 0,
-        index   = 2,
-        pending = true;
-    while (index < arguments.length)
-        params[offset++] = arguments[index++];
-    return new Promise(function executor(resolve, reject) {
-        params[offset] = function callback(err/*, varargs */) {
-            if (pending) {
-                pending = false;
-                if (err)
-                    reject(err);
-                else {
-                    var params = new Array(arguments.length - 1),
-                        offset = 0;
-                    while (offset < params.length)
-                        params[offset++] = arguments[offset];
-                    resolve.apply(null, params);
-                }
-            }
-        };
-        try {
-            fn.apply(ctx || null, params);
-        } catch (err) {
-            if (pending) {
-                pending = false;
-                reject(err);
-            }
+function fetch(filename, options) {
+  if (!options) options = {};
+
+  return new Promise(function (resolve, reject) {
+    function callback(err, data) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    }
+    // if a node-like filesystem is present, try it first but fall back to XHR if nothing is found.
+    if (!options.xhr && fs && fs.readFile)
+      return fs.readFile(
+        filename,
+        function fetchReadFileCallback(err, contents) {
+          return err && typeof XMLHttpRequest !== "undefined"
+            ? fetch.xhr(filename, options, callback)
+            : err
+            ? callback(err)
+            : callback(
+                null,
+                options.binary ? contents : contents.toString("utf8")
+              );
         }
-    });
+      );
+
+    // use the XHR version otherwise.
+    return fetch.xhr(filename, options, callback);
+  });
 }
 
-},{}],2:[function(require,module,exports){
+/**/
+fetch.xhr = function fetch_xhr(filename, options, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange /* works everywhere */ = function fetchOnReadyStateChange() {
+    if (xhr.readyState !== 4) return undefined;
+
+    // local cors security errors return status 0 / empty string, too. afaik this cannot be
+    // reliably distinguished from an actually empty file for security reasons. feel free
+    // to send a pull request if you are aware of a solution.
+    if (xhr.status !== 0 && xhr.status !== 200)
+      return callback(Error("status " + xhr.status));
+
+    // if binary data is expected, make sure that some sort of array is returned, even if
+    // ArrayBuffers are not supported. the binary string fallback, however, is unsafe.
+    if (options.binary) {
+      var buffer = xhr.response;
+      if (!buffer) {
+        buffer = [];
+        for (var i = 0; i < xhr.responseText.length; ++i)
+          buffer.push(xhr.responseText.charCodeAt(i) & 255);
+      }
+      return callback(
+        null,
+        typeof Uint8Array !== "undefined" ? new Uint8Array(buffer) : buffer
+      );
+    }
+    return callback(null, xhr.responseText);
+  };
+
+  if (options.binary) {
+    // ref: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Sending_and_Receiving_Binary_Data#Receiving_binary_data_in_older_browsers
+    if ("overrideMimeType" in xhr)
+      xhr.overrideMimeType("text/plain; charset=x-user-defined");
+    xhr.responseType = "arraybuffer";
+  }
+
+  xhr.open("GET", filename);
+  xhr.send();
+};
+
+},{"6":6}],2:[function(require,module,exports){
 "use strict";
 
 /**
@@ -412,123 +452,6 @@ EventEmitter.prototype.emit = function emit(evt) {
 };
 
 },{}],5:[function(require,module,exports){
-"use strict";
-module.exports = fetch;
-
-var asPromise = require(1),
-    inquire   = require(7);
-
-var fs = inquire("fs");
-
-/**
- * Node-style callback as used by {@link util.fetch}.
- * @typedef FetchCallback
- * @type {function}
- * @param {?Error} error Error, if any, otherwise `null`
- * @param {string} [contents] File contents, if there hasn't been an error
- * @returns {undefined}
- */
-
-/**
- * Options as used by {@link util.fetch}.
- * @typedef FetchOptions
- * @type {Object}
- * @property {boolean} [binary=false] Whether expecting a binary response
- * @property {boolean} [xhr=false] If `true`, forces the use of XMLHttpRequest
- */
-
-/**
- * Fetches the contents of a file.
- * @memberof util
- * @param {string} filename File path or url
- * @param {FetchOptions} options Fetch options
- * @param {FetchCallback} callback Callback function
- * @returns {undefined}
- */
-function fetch(filename, options, callback) {
-    if (typeof options === "function") {
-        callback = options;
-        options = {};
-    } else if (!options)
-        options = {};
-
-    if (!callback)
-        return asPromise(fetch, this, filename, options); // eslint-disable-line no-invalid-this
-
-    // if a node-like filesystem is present, try it first but fall back to XHR if nothing is found.
-    if (!options.xhr && fs && fs.readFile)
-        return fs.readFile(filename, function fetchReadFileCallback(err, contents) {
-            return err && typeof XMLHttpRequest !== "undefined"
-                ? fetch.xhr(filename, options, callback)
-                : err
-                ? callback(err)
-                : callback(null, options.binary ? contents : contents.toString("utf8"));
-        });
-
-    // use the XHR version otherwise.
-    return fetch.xhr(filename, options, callback);
-}
-
-/**
- * Fetches the contents of a file.
- * @name util.fetch
- * @function
- * @param {string} path File path or url
- * @param {FetchCallback} callback Callback function
- * @returns {undefined}
- * @variation 2
- */
-
-/**
- * Fetches the contents of a file.
- * @name util.fetch
- * @function
- * @param {string} path File path or url
- * @param {FetchOptions} [options] Fetch options
- * @returns {Promise<string|Uint8Array>} Promise
- * @variation 3
- */
-
-/**/
-fetch.xhr = function fetch_xhr(filename, options, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange /* works everywhere */ = function fetchOnReadyStateChange() {
-
-        if (xhr.readyState !== 4)
-            return undefined;
-
-        // local cors security errors return status 0 / empty string, too. afaik this cannot be
-        // reliably distinguished from an actually empty file for security reasons. feel free
-        // to send a pull request if you are aware of a solution.
-        if (xhr.status !== 0 && xhr.status !== 200)
-            return callback(Error("status " + xhr.status));
-
-        // if binary data is expected, make sure that some sort of array is returned, even if
-        // ArrayBuffers are not supported. the binary string fallback, however, is unsafe.
-        if (options.binary) {
-            var buffer = xhr.response;
-            if (!buffer) {
-                buffer = [];
-                for (var i = 0; i < xhr.responseText.length; ++i)
-                    buffer.push(xhr.responseText.charCodeAt(i) & 255);
-            }
-            return callback(null, typeof Uint8Array !== "undefined" ? new Uint8Array(buffer) : buffer);
-        }
-        return callback(null, xhr.responseText);
-    };
-
-    if (options.binary) {
-        // ref: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Sending_and_Receiving_Binary_Data#Receiving_binary_data_in_older_browsers
-        if ("overrideMimeType" in xhr)
-            xhr.overrideMimeType("text/plain; charset=x-user-defined");
-        xhr.responseType = "arraybuffer";
-    }
-
-    xhr.open("GET", filename);
-    xhr.send();
-};
-
-},{"1":1,"7":7}],6:[function(require,module,exports){
 "use strict";
 
 module.exports = factory(factory);
@@ -865,7 +788,7 @@ function readUintBE(buf, pos) {
           | buf[pos + 3]) >>> 0;
 }
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 module.exports = inquire;
 
@@ -884,7 +807,7 @@ function inquire(moduleName) {
     return null;
 }
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 /**
@@ -951,7 +874,7 @@ path.resolve = function resolve(originPath, includePath, alreadyNormalized) {
     return (originPath = originPath.replace(/(?:\/|^)[^/]+$/, "")).length ? normalize(originPath + "/" + includePath) : includePath;
 };
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 module.exports = pool;
 
@@ -1001,7 +924,7 @@ function pool(alloc, slice, size) {
     };
 }
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 /**
@@ -1108,7 +1031,7 @@ utf8.write = function utf8_write(string, buffer, offset) {
     return offset - start;
 };
 
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 // .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
 // backported and transplited with Babel, with backwards-compat fixes
 
@@ -1412,7 +1335,7 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 /**
  * Runtime message from/to plain object converters.
@@ -1420,8 +1343,8 @@ var substr = 'ab'.substr(-1) === 'b'
  */
 var converter = exports;
 
-var Enum = require(15),
-    util = require(35);
+var Enum = require(14),
+    util = require(34);
 
 /**
  * Generates a partial value fromObject conveter.
@@ -1651,7 +1574,7 @@ converter.toObject = function toObject(mtype, isTypescript) {
             var field = normalFields[i],
                 prop  = util.safeProp(field.name);
             if (field.resolvedType instanceof Enum && !isTypescript) gen
-        ("d%s=o.enums===String?%j:%j", prop, field.resolvedType.valuesById[field.typeDefault], field.typeDefault);
+        ("d%s=%j", prop, field.typeDefault);
             else if (field.long) gen
         ("if(util.Long){")
             ("var n=new util.Long(%i,%i,%j)", field.typeDefault.low, field.typeDefault.high, field.typeDefault.unsigned)
@@ -1706,13 +1629,13 @@ converter.toObject = function toObject(mtype, isTypescript) {
     /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
 };
 
-},{"15":15,"35":35}],13:[function(require,module,exports){
+},{"14":14,"34":34}],12:[function(require,module,exports){
 "use strict";
 module.exports = decoder;
 
-var Enum    = require(15),
-    types   = require(34),
-    util    = require(35);
+var Enum    = require(14),
+    types   = require(33),
+    util    = require(34);
 
 function missing(field) {
     return "missing required '" + field.name + "'";
@@ -1837,13 +1760,13 @@ function decoder(mtype) {
     /* eslint-enable no-unexpected-multiline */
 }
 
-},{"15":15,"34":34,"35":35}],14:[function(require,module,exports){
+},{"14":14,"33":33,"34":34}],13:[function(require,module,exports){
 "use strict";
 module.exports = encoder;
 
-var Enum     = require(15),
-    types    = require(34),
-    util     = require(35);
+var Enum     = require(14),
+    types    = require(33),
+    util     = require(34);
 
 /**
  * Generates a partial message type encoder.
@@ -1939,16 +1862,16 @@ function encoder(mtype) {
     /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
 }
 
-},{"15":15,"34":34,"35":35}],15:[function(require,module,exports){
+},{"14":14,"33":33,"34":34}],14:[function(require,module,exports){
 "use strict";
 module.exports = Enum;
 
 // extends ReflectionObject
-var ReflectionObject = require(24);
+var ReflectionObject = require(23);
 ((Enum.prototype = Object.create(ReflectionObject.prototype)).constructor = Enum).className = "Enum";
 
-var Namespace = require(23),
-    util = require(35);
+var Namespace = require(22),
+    util = require(34);
 
 /**
  * Constructs a new enum instance.
@@ -2129,11 +2052,11 @@ Enum.prototype.isReservedName = function isReservedName(name) {
     return Namespace.isReservedName(this.reserved, name);
 };
 
-},{"23":23,"24":24,"35":35}],16:[function(require,module,exports){
+},{"22":22,"23":23,"34":34}],15:[function(require,module,exports){
 "use strict";
 
-var Enum = require(15),
-    util = require(35);
+var Enum = require(14),
+    util = require(34);
 
 function genValuePartial_equals(gen, field, fieldIndex, prop, index) {
   index = index || "";
@@ -2277,17 +2200,17 @@ module.exports = function equals(mtype) {
   /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
 };
 
-},{"15":15,"35":35}],17:[function(require,module,exports){
+},{"14":14,"34":34}],16:[function(require,module,exports){
 "use strict";
 module.exports = Field;
 
 // extends ReflectionObject
-var ReflectionObject = require(24);
+var ReflectionObject = require(23);
 ((Field.prototype = Object.create(ReflectionObject.prototype)).constructor = Field).className = "Field";
 
-var Enum  = require(15),
-    types = require(34),
-    util  = require(35);
+var Enum  = require(14),
+    types = require(33),
+    util  = require(34);
 
 var Type; // cyclic
 
@@ -2650,9 +2573,9 @@ Field._configure = function configure(Type_) {
     Type = Type_;
 };
 
-},{"15":15,"24":24,"34":34,"35":35}],18:[function(require,module,exports){
+},{"14":14,"23":23,"33":33,"34":34}],17:[function(require,module,exports){
 "use strict";
-var protobuf = module.exports = require(19);
+var protobuf = module.exports = require(18);
 
 protobuf.build = "light";
 
@@ -2674,12 +2597,11 @@ protobuf.build = "light";
  * @see {@link Root#load}
  */
 function load(filename, root, callback) {
-    if (typeof root === "function") {
-        callback = root;
-        root = new protobuf.Root();
-    } else if (!root)
-        root = new protobuf.Root();
-    return root.load(filename, callback);
+  if (typeof root === "function") {
+    callback = root;
+    root = new protobuf.Root();
+  } else if (!root) root = new protobuf.Root();
+  return root.load(filename, callback);
 }
 
 /**
@@ -2708,48 +2630,32 @@ function load(filename, root, callback) {
 
 protobuf.load = load;
 
-/**
- * Synchronously loads one or multiple .proto or preprocessed .json files into a common root namespace (node only).
- * @param {string|string[]} filename One or multiple files to load
- * @param {Root} [root] Root namespace, defaults to create a new one if omitted.
- * @returns {Root} Root namespace
- * @throws {Error} If synchronous fetching is not supported (i.e. in browsers) or if a file's syntax is invalid
- * @see {@link Root#loadSync}
- */
-function loadSync(filename, root) {
-    if (!root)
-        root = new protobuf.Root();
-    return root.loadSync(filename);
-}
-
-protobuf.loadSync = loadSync;
-
 // Serialization
-protobuf.encoder          = require(14);
-protobuf.decoder          = require(13);
-protobuf.verifier         = require(38);
-protobuf.converter        = require(12);
+protobuf.encoder = require(13);
+protobuf.decoder = require(12);
+protobuf.verifier = require(37);
+protobuf.converter = require(11);
 
 // Reflection
-protobuf.ReflectionObject = require(24);
-protobuf.Namespace        = require(23);
-protobuf.Root             = require(28);
-protobuf.Enum             = require(15);
-protobuf.Type             = require(33);
-protobuf.Field            = require(17);
-protobuf.OneOf            = require(25);
-protobuf.MapField         = require(20);
-protobuf.Service          = require(32);
-protobuf.Method           = require(22);
+protobuf.ReflectionObject = require(23);
+protobuf.Namespace = require(22);
+protobuf.Root = require(27);
+protobuf.Enum = require(14);
+protobuf.Type = require(32);
+protobuf.Field = require(16);
+protobuf.OneOf = require(24);
+protobuf.MapField = require(19);
+protobuf.Service = require(31);
+protobuf.Method = require(21);
 
 // Runtime
-protobuf.Message          = require(21);
-protobuf.wrappers         = require(39);
+protobuf.Message = require(20);
+protobuf.wrappers = require(38);
 
 // Utility
-protobuf.equals           = require(16);
-protobuf.types            = require(34);
-protobuf.util             = require(35);
+protobuf.equals = require(15);
+protobuf.types = require(33);
+protobuf.util = require(34);
 
 // Set up possibly cyclic reflection dependencies
 protobuf.ReflectionObject._configure(protobuf.Root);
@@ -2757,7 +2663,7 @@ protobuf.Namespace._configure(protobuf.Type, protobuf.Service, protobuf.Enum);
 protobuf.Root._configure(protobuf.Type);
 protobuf.Field._configure(protobuf.Type);
 
-},{"12":12,"13":13,"14":14,"15":15,"16":16,"17":17,"19":19,"20":20,"21":21,"22":22,"23":23,"24":24,"25":25,"28":28,"32":32,"33":33,"34":34,"35":35,"38":38,"39":39}],19:[function(require,module,exports){
+},{"11":11,"12":12,"13":13,"14":14,"15":15,"16":16,"18":18,"19":19,"20":20,"21":21,"22":22,"23":23,"24":24,"27":27,"31":31,"32":32,"33":33,"34":34,"37":37,"38":38}],18:[function(require,module,exports){
 "use strict";
 var protobuf = exports;
 
@@ -2770,15 +2676,15 @@ var protobuf = exports;
 protobuf.build = "minimal";
 
 // Serialization
-protobuf.Writer       = require(40);
-protobuf.BufferWriter = require(41);
-protobuf.Reader       = require(26);
-protobuf.BufferReader = require(27);
+protobuf.Writer       = require(39);
+protobuf.BufferWriter = require(40);
+protobuf.Reader       = require(25);
+protobuf.BufferReader = require(26);
 
 // Utility
-protobuf.util         = require(37);
-protobuf.rpc          = require(30);
-protobuf.roots        = require(29);
+protobuf.util         = require(36);
+protobuf.rpc          = require(29);
+protobuf.roots        = require(28);
 protobuf.configure    = configure;
 
 protobuf.Long = protobuf.util.Long;
@@ -2797,16 +2703,16 @@ function configure() {
 // Set up buffer utility according to the environment
 configure();
 
-},{"26":26,"27":27,"29":29,"30":30,"37":37,"40":40,"41":41}],20:[function(require,module,exports){
+},{"25":25,"26":26,"28":28,"29":29,"36":36,"39":39,"40":40}],19:[function(require,module,exports){
 "use strict";
 module.exports = MapField;
 
 // extends Field
-var Field = require(17);
+var Field = require(16);
 ((MapField.prototype = Object.create(Field.prototype)).constructor = MapField).className = "MapField";
 
-var types   = require(34),
-    util    = require(35);
+var types   = require(33),
+    util    = require(34);
 
 /**
  * Constructs a new map field instance.
@@ -2925,11 +2831,11 @@ MapField.d = function decorateMapField(fieldId, fieldKeyType, fieldValueType) {
     };
 };
 
-},{"17":17,"34":34,"35":35}],21:[function(require,module,exports){
+},{"16":16,"33":33,"34":34}],20:[function(require,module,exports){
 "use strict";
 module.exports = Message;
 
-var util = require(37);
+var util = require(36);
 
 /**
  * Constructs a new message instance.
@@ -3065,15 +2971,15 @@ Message.prototype.toJSON = function toJSON() {
 };
 
 /*eslint-enable valid-jsdoc*/
-},{"37":37}],22:[function(require,module,exports){
+},{"36":36}],21:[function(require,module,exports){
 "use strict";
 module.exports = Method;
 
 // extends ReflectionObject
-var ReflectionObject = require(24);
+var ReflectionObject = require(23);
 ((Method.prototype = Object.create(ReflectionObject.prototype)).constructor = Method).className = "Method";
 
-var util = require(35);
+var util = require(34);
 
 /**
  * Constructs a new service method instance.
@@ -3218,16 +3124,16 @@ Method.prototype.resolve = function resolve() {
     return ReflectionObject.prototype.resolve.call(this);
 };
 
-},{"24":24,"35":35}],23:[function(require,module,exports){
+},{"23":23,"34":34}],22:[function(require,module,exports){
 "use strict";
 module.exports = Namespace;
 
 // extends ReflectionObject
-var ReflectionObject = require(24);
+var ReflectionObject = require(23);
 ((Namespace.prototype = Object.create(ReflectionObject.prototype)).constructor = Namespace).className = "Namespace";
 
-var Field    = require(17),
-    util     = require(35);
+var Field    = require(16),
+    util     = require(34);
 
 var Type,    // cyclic
     Service,
@@ -3724,13 +3630,13 @@ Namespace._configure = function(Type_, Service_, Enum_) {
     Enum    = Enum_;
 };
 
-},{"17":17,"24":24,"35":35}],24:[function(require,module,exports){
+},{"16":16,"23":23,"34":34}],23:[function(require,module,exports){
 "use strict";
 module.exports = ReflectionObject;
 
 ReflectionObject.className = "ReflectionObject";
 
-var util = require(35);
+var util = require(34);
 
 var Root; // cyclic
 
@@ -3969,16 +3875,16 @@ ReflectionObject._configure = function(Root_) {
     Root = Root_;
 };
 
-},{"35":35}],25:[function(require,module,exports){
+},{"34":34}],24:[function(require,module,exports){
 "use strict";
 module.exports = OneOf;
 
 // extends ReflectionObject
-var ReflectionObject = require(24);
+var ReflectionObject = require(23);
 ((OneOf.prototype = Object.create(ReflectionObject.prototype)).constructor = OneOf).className = "OneOf";
 
-var Field = require(17),
-    util  = require(35);
+var Field = require(16),
+    util  = require(34);
 
 /**
  * Constructs a new oneof instance.
@@ -4174,11 +4080,11 @@ OneOf.d = function decorateOneOf() {
     };
 };
 
-},{"17":17,"24":24,"35":35}],26:[function(require,module,exports){
+},{"16":16,"23":23,"34":34}],25:[function(require,module,exports){
 "use strict";
 module.exports = Reader;
 
-var util      = require(37);
+var util      = require(36);
 
 var BufferReader; // cyclic
 
@@ -4587,15 +4493,15 @@ Reader._configure = function(BufferReader_) {
     });
 };
 
-},{"37":37}],27:[function(require,module,exports){
+},{"36":36}],26:[function(require,module,exports){
 "use strict";
 module.exports = BufferReader;
 
 // extends Reader
-var Reader = require(26);
+var Reader = require(25);
 (BufferReader.prototype = Object.create(Reader.prototype)).constructor = BufferReader;
 
-var util = require(37);
+var util = require(36);
 
 /**
  * Constructs a new buffer reader instance.
@@ -4640,24 +4546,26 @@ BufferReader.prototype.string = function read_string_buffer() {
 
 BufferReader._configure();
 
-},{"26":26,"37":37}],28:[function(require,module,exports){
+},{"25":25,"36":36}],27:[function(require,module,exports){
 "use strict";
 module.exports = Root;
 
-var Path = require(11);
+var Path = require(10);
 
 // extends Namespace
-var Namespace = require(23);
-((Root.prototype = Object.create(Namespace.prototype)).constructor = Root).className = "Root";
+var Namespace = require(22);
+((Root.prototype = Object.create(
+  Namespace.prototype
+)).constructor = Root).className = "Root";
 
-var Field   = require(17),
-    Enum    = require(15),
-    OneOf   = require(25),
-    util    = require(35);
+var Field = require(16),
+  Enum = require(14),
+  OneOf = require(24),
+  util = require(34);
 
-var Type,   // cyclic
-    parse,  // might be excluded
-    common; // "
+var Type, // cyclic
+  parse, // might be excluded
+  common; // "
 
 /**
  * Constructs a new root namespace instance.
@@ -4667,19 +4575,19 @@ var Type,   // cyclic
  * @param {Object.<string,*>} [options] Top level options
  */
 function Root(options) {
-    Namespace.call(this, "", options);
+  Namespace.call(this, "", options);
 
-    /**
-     * Deferred extension fields.
-     * @type {Field[]}
-     */
-    this.deferred = [];
+  /**
+   * Deferred extension fields.
+   * @type {Field[]}
+   */
+  this.deferred = [];
 
-    /**
-     * Resolved file names of loaded files.
-     * @type {string[]}
-     */
-    this.files = [];
+  /**
+   * Resolved file names of loaded files.
+   * @type {string[]}
+   */
+  this.files = [];
 }
 
 /**
@@ -4690,12 +4598,10 @@ function Root(options) {
  * @returns {Root} Root namespace
  */
 Root.fromJSON = function fromJSON(json, root, filename) {
-    if (!root)
-        root = new Root();
-    if (json.options)
-        root.setOptions(json.options);
-    root.filename = filename;
-    return root.addJSON(json.nested, filename);
+  if (!root) root = new Root();
+  if (json.options) root.setOptions(json.options);
+  root.filename = filename;
+  return root.addJSON(json.nested, filename);
 };
 
 /**
@@ -4713,198 +4619,161 @@ Root.prototype.resolvePath = util.path.resolve;
  * This method exists so you can override it with your own logic.
  * @function
  * @param {string} path File path or url
- * @param {FetchCallback} callback Callback function
- * @returns {undefined}
+ * @returns {Promise<string|Uint8Array>} Promise
  */
 Root.prototype.fetch = util.fetch;
-
-// A symbol-like function to safely signal synchronous loading
-/* istanbul ignore next */
-function SYNC() {} // eslint-disable-line no-empty-function
 
 /**
  * Loads one or multiple .proto or preprocessed .json files into this root namespace and calls the callback.
  * @param {string|string[]} filename Names of one or multiple files to load
- * @param {IParseOptions} options Parse options
- * @param {LoadCallback} callback Callback function
- * @returns {undefined}
+ * @param {IParseOptions} [options] Parse options
+ * @returns {Promise<Root>} Promise
  */
-Root.prototype.load = function load(filename, options, callback) {
-    if (typeof options === "function") {
-        callback = options;
-        options = undefined;
-    }
-    var self = this;
-    if (!callback)
-        return util.asPromise(load, self, filename, options);
+Root.prototype.load = function load(filename, options) {
+  var self = this;
+  if (!options) {
+    options = {};
+  }
 
-    var sync = callback === SYNC; // undocumented
-
+  return new Promise(function (resolve, reject) {
     // Finishes loading by calling the callback (exactly once)
     function finish(err, root) {
-        /* istanbul ignore if */
-        if (!callback)
-            return;
-        var cb = callback;
-        callback = null;
-        if (sync)
-            throw err;
-        cb(err, root);
+      if (err) {
+        reject(err);
+      } else {
+        resolve(root);
+      }
     }
 
     // Bundled definition existence checking
     function getBundledFileName(filename) {
-        var idx = filename.lastIndexOf("google/protobuf/");
-        if (idx > -1) {
-            var altname = filename.substring(idx);
-            if (altname in common) return altname;
-        }
-        return null;
+      var idx = filename.lastIndexOf("google/protobuf/");
+      if (idx > -1) {
+        var altname = filename.substring(idx);
+        if (altname in common) return altname;
+      }
+      return null;
     }
 
     // Processes a single file
     function process(filename, source, referenced) {
-        try {
-            if (util.isString(source) && source.charAt(0) === "{")
-                source = JSON.parse(source);
+      try {
+        if (util.isString(source) && source.charAt(0) === "{")
+          source = JSON.parse(source);
 
-            if (!util.isString(source))
-                self.setOptions(source.options).addJSON(source.nested, filename);
-            else {
-                parse.filename = referenced;
-                var parsed = parse(source, self, options),
-                    resolved,
-                    i = 0;
-                if (parsed.imports)
-                    for (; i < parsed.imports.length; ++i)
-                        if (resolved = getBundledFileName(parsed.imports[i]) || self.resolvePath(filename, parsed.imports[i]))
-                            fetch(resolved, false, parsed.imports[i].replace(/\//g, "_"));
-                if (parsed.weakImports)
-                    for (i = 0; i < parsed.weakImports.length; ++i)
-                        if (resolved = getBundledFileName(parsed.weakImports[i]) || self.resolvePath(filename, parsed.weakImports[i]))
-                            fetch(resolved, true, parsed.weakImports[i].replace(/\//g, "_"));
-            }
-        } catch (err) {
-            finish(err);
+        if (!util.isString(source))
+          self.setOptions(source.options).addJSON(source.nested, filename);
+        else {
+          parse.filename = referenced;
+          var parsed = parse(source, self, options),
+            resolved,
+            i = 0;
+          if (parsed.imports)
+            for (; i < parsed.imports.length; ++i)
+              if (
+                resolved =
+                  getBundledFileName(parsed.imports[i]) ||
+                  self.resolvePath(filename, parsed.imports[i])
+              )
+                fetch(resolved, false, parsed.imports[i].replace(/\//g, "_"));
+          if (parsed.weakImports)
+            for (i = 0; i < parsed.weakImports.length; ++i)
+              if (
+                resolved =
+                  getBundledFileName(parsed.weakImports[i]) ||
+                  self.resolvePath(filename, parsed.weakImports[i])
+              )
+                fetch(
+                  resolved,
+                  true,
+                  parsed.weakImports[i].replace(/\//g, "_")
+                );
         }
-        if (!sync && !queued)
-            finish(null, self); // only once anyway
+      } catch (err) {
+        finish(err);
+      }
+      if (!options.sync && !queued) finish(null, self); // only once anyway
     }
 
     // Fetches a single file
     function fetch(filename, weak, referenced) {
-        referenced = referenced || filename;
+      referenced = referenced || filename;
 
-        // Skip if already loaded / attempted
-        if (self.files.indexOf(referenced) > -1)
-            return;
-        self.files.push(referenced);
+      // Skip if already loaded / attempted
+      if (self.files.indexOf(referenced) > -1) return;
+      self.files.push(referenced);
 
-        // Shortcut bundled definitions
-        if (filename in common) {
-            if (sync)
-                process(filename.replace(/\//g, "_"), common[filename], referenced);
-            else {
-                ++queued;
-                setTimeout(function() {
-                    --queued;
-                    process(filename.replace(/\//g, "_"), common[filename], referenced);
-                });
-            }
-            return;
+      // Shortcut bundled definitions
+      if (filename in common) {
+        if (options.sync)
+          process(filename.replace(/\//g, "_"), common[filename], referenced);
+        else {
+          ++queued;
+          setTimeout(function () {
+            --queued;
+            process(filename.replace(/\//g, "_"), common[filename], referenced);
+          });
         }
+        return;
+      }
 
-        // Otherwise fetch from disk or network
-        if (sync) {
-            var source;
-            try {
-                source = util.fs.readFileSync(filename).toString("utf8");
-            } catch (err) {
-                if (!weak)
-                    finish(err);
-                return;
-            }
+      // Otherwise fetch from disk or network
+      if (options.sync) {
+        var source;
+        try {
+          source = util.fs.readFileSync(filename).toString("utf8");
+        } catch (err) {
+          if (!weak) finish(err);
+          return;
+        }
+        process(filename, source, referenced);
+      } else {
+        ++queued;
+        self.fetch(filename).then(
+          function (source) {
+            --queued;
             process(filename, source, referenced);
-        } else {
-            ++queued;
-            self.fetch(filename, function(err, source) {
-                --queued;
-                /* istanbul ignore if */
-                if (!callback)
-                    return; // terminated meanwhile
-                if (err) {
-                    /* istanbul ignore else */
-                    if (!weak)
-                        finish(err);
-                    else if (!queued) // can't be covered reliably
-                        finish(null, self);
-                    return;
-                }
-                process(filename, source, referenced);
-            });
-        }
+          },
+          function (err) {
+            --queued;
+            /* istanbul ignore else */
+            if (!weak) finish(err);
+            else if (!queued)
+              // can't be covered reliably
+              finish(null, self);
+          }
+        );
+      }
     }
     var queued = 0;
 
     // Assembling the root namespace doesn't require working type
     // references anymore, so we can load everything in parallel
-    if (util.isString(filename))
-        filename = [ filename ];
+    if (util.isString(filename)) filename = [filename];
     for (var i = 0, resolved; i < filename.length; ++i)
-        if (resolved = self.resolvePath("", filename[i]))
-            fetch(resolved, false, Path.basename(filename[i]));
+      if (resolved = self.resolvePath("", filename[i]))
+        fetch(resolved, false, Path.basename(filename[i]));
 
-    if (sync)
-        return self;
-    if (!queued)
-        finish(null, self);
+    if (options.sync) return self;
+    if (!queued) finish(null, self);
     return undefined;
-};
-// function load(filename:string, options:IParseOptions, callback:LoadCallback):undefined
-
-/**
- * Loads one or multiple .proto or preprocessed .json files into this root namespace and calls the callback.
- * @function Root#load
- * @param {string|string[]} filename Names of one or multiple files to load
- * @param {LoadCallback} callback Callback function
- * @returns {undefined}
- * @variation 2
- */
-// function load(filename:string, callback:LoadCallback):undefined
-
-/**
- * Loads one or multiple .proto or preprocessed .json files into this root namespace and returns a promise.
- * @function Root#load
- * @param {string|string[]} filename Names of one or multiple files to load
- * @param {IParseOptions} [options] Parse options. Defaults to {@link parse.defaults} when omitted.
- * @returns {Promise<Root>} Promise
- * @variation 3
- */
-// function load(filename:string, [options:IParseOptions]):Promise<Root>
-
-/**
- * Synchronously loads one or multiple .proto or preprocessed .json files into this root namespace (node only).
- * @function Root#loadSync
- * @param {string|string[]} filename Names of one or multiple files to load
- * @param {IParseOptions} [options] Parse options. Defaults to {@link parse.defaults} when omitted.
- * @returns {Root} Root namespace
- * @throws {Error} If synchronous fetching is not supported (i.e. in browsers) or if a file's syntax is invalid
- */
-Root.prototype.loadSync = function loadSync(filename, options) {
-    if (!util.isNode)
-        throw Error("not supported");
-    return this.load(filename, options, SYNC);
+  });
 };
 
 /**
  * @override
  */
 Root.prototype.resolveAll = function resolveAll() {
-    if (this.deferred.length)
-        throw Error("unresolvable extensions: " + this.deferred.map(function(field) {
+  if (this.deferred.length)
+    throw Error(
+      "unresolvable extensions: " +
+        this.deferred
+          .map(function (field) {
             return "'extend " + field.extend + "' in " + field.parent.fullName;
-        }).join(", "));
-    return Namespace.prototype.resolveAll.call(this);
+          })
+          .join(", ")
+    );
+  return Namespace.prototype.resolveAll.call(this);
 };
 
 // only uppercased (and thus conflict-free) children are exposed, see below
@@ -4919,15 +4788,22 @@ var exposeRe = /^[A-Z]/;
  * @ignore
  */
 function tryHandleExtension(root, field) {
-    var extendedType = field.parent.lookup(field.extend);
-    if (extendedType) {
-        var sisterField = new Field(field.fullName, field.id, field.type, field.rule, undefined, field.options);
-        sisterField.declaringField = field;
-        field.extensionField = sisterField;
-        extendedType.add(sisterField);
-        return true;
-    }
-    return false;
+  var extendedType = field.parent.lookup(field.extend);
+  if (extendedType) {
+    var sisterField = new Field(
+      field.fullName,
+      field.id,
+      field.type,
+      field.rule,
+      undefined,
+      field.options
+    );
+    sisterField.declaringField = field;
+    field.extensionField = sisterField;
+    extendedType.add(sisterField);
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -4937,34 +4813,34 @@ function tryHandleExtension(root, field) {
  * @private
  */
 Root.prototype._handleAdd = function _handleAdd(object) {
-    if (object instanceof Field) {
+  if (object instanceof Field) {
+    if (
+      /* an extension field (implies not part of a oneof) */ object.extend !==
+        undefined &&
+      /* not already handled */ !object.extensionField
+    )
+      if (!tryHandleExtension(this, object)) this.deferred.push(object);
+  } else if (object instanceof Enum) {
+    if (exposeRe.test(object.name)) object.parent[object.name] = object.values; // expose enum values as property of its parent
+  } else if (!(object instanceof OneOf)) {
+    /* everything else is a namespace */ if (object instanceof Type)
+      // Try to handle any deferred extensions
+      for (var i = 0; i < this.deferred.length; )
+        if (tryHandleExtension(this, this.deferred[i]))
+          this.deferred.splice(i, 1);
+        else ++i;
+    for (
+      var j = 0;
+      j < /* initializes */ object.nestedArray.length;
+      ++j // recurse into the namespace
+    )
+      this._handleAdd(object._nestedArray[j]);
+    if (exposeRe.test(object.name)) object.parent[object.name] = object; // expose namespace as property of its parent
+  }
 
-        if (/* an extension field (implies not part of a oneof) */ object.extend !== undefined && /* not already handled */ !object.extensionField)
-            if (!tryHandleExtension(this, object))
-                this.deferred.push(object);
-
-    } else if (object instanceof Enum) {
-
-        if (exposeRe.test(object.name))
-            object.parent[object.name] = object.values; // expose enum values as property of its parent
-
-    } else if (!(object instanceof OneOf)) /* everything else is a namespace */ {
-
-        if (object instanceof Type) // Try to handle any deferred extensions
-            for (var i = 0; i < this.deferred.length;)
-                if (tryHandleExtension(this, this.deferred[i]))
-                    this.deferred.splice(i, 1);
-                else
-                    ++i;
-        for (var j = 0; j < /* initializes */ object.nestedArray.length; ++j) // recurse into the namespace
-            this._handleAdd(object._nestedArray[j]);
-        if (exposeRe.test(object.name))
-            object.parent[object.name] = object; // expose namespace as property of its parent
-    }
-
-    // The above also adds uppercased (and thus conflict-free) nested types, services and enums as
-    // properties of namespaces just like static code does. This allows using a .d.ts generated for
-    // a static module with reflection-based solutions where the condition is met.
+  // The above also adds uppercased (and thus conflict-free) nested types, services and enums as
+  // properties of namespaces just like static code does. This allows using a .d.ts generated for
+  // a static module with reflection-based solutions where the condition is met.
 };
 
 /**
@@ -4974,44 +4850,41 @@ Root.prototype._handleAdd = function _handleAdd(object) {
  * @private
  */
 Root.prototype._handleRemove = function _handleRemove(object) {
-    if (object instanceof Field) {
-
-        if (/* an extension field */ object.extend !== undefined) {
-            if (/* already handled */ object.extensionField) { // remove its sister field
-                object.extensionField.parent.remove(object.extensionField);
-                object.extensionField = null;
-            } else { // cancel the extension
-                var index = this.deferred.indexOf(object);
-                /* istanbul ignore else */
-                if (index > -1)
-                    this.deferred.splice(index, 1);
-            }
-        }
-
-    } else if (object instanceof Enum) {
-
-        if (exposeRe.test(object.name))
-            delete object.parent[object.name]; // unexpose enum values
-
-    } else if (object instanceof Namespace) {
-
-        for (var i = 0; i < /* initializes */ object.nestedArray.length; ++i) // recurse into the namespace
-            this._handleRemove(object._nestedArray[i]);
-
-        if (exposeRe.test(object.name))
-            delete object.parent[object.name]; // unexpose namespaces
-
+  if (object instanceof Field) {
+    if (/* an extension field */ object.extend !== undefined) {
+      if (/* already handled */ object.extensionField) {
+        // remove its sister field
+        object.extensionField.parent.remove(object.extensionField);
+        object.extensionField = null;
+      } else {
+        // cancel the extension
+        var index = this.deferred.indexOf(object);
+        /* istanbul ignore else */
+        if (index > -1) this.deferred.splice(index, 1);
+      }
     }
+  } else if (object instanceof Enum) {
+    if (exposeRe.test(object.name)) delete object.parent[object.name]; // unexpose enum values
+  } else if (object instanceof Namespace) {
+    for (
+      var i = 0;
+      i < /* initializes */ object.nestedArray.length;
+      ++i // recurse into the namespace
+    )
+      this._handleRemove(object._nestedArray[i]);
+
+    if (exposeRe.test(object.name)) delete object.parent[object.name]; // unexpose namespaces
+  }
 };
 
 // Sets up cyclic dependencies (called in index-light)
-Root._configure = function(Type_, parse_, common_) {
-    Type   = Type_;
-    parse  = parse_;
-    common = common_;
+Root._configure = function (Type_, parse_, common_) {
+  Type = Type_;
+  parse = parse_;
+  common = common_;
 };
 
-},{"11":11,"15":15,"17":17,"23":23,"25":25,"35":35}],29:[function(require,module,exports){
+},{"10":10,"14":14,"16":16,"22":22,"24":24,"34":34}],28:[function(require,module,exports){
 "use strict";
 module.exports = {};
 
@@ -5031,7 +4904,7 @@ module.exports = {};
  * var root = protobuf.roots["myroot"];
  */
 
-},{}],30:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 "use strict";
 
 /**
@@ -5067,13 +4940,13 @@ var rpc = exports;
  * @returns {undefined}
  */
 
-rpc.Service = require(31);
+rpc.Service = require(30);
 
-},{"31":31}],31:[function(require,module,exports){
-'use strict';
+},{"30":30}],30:[function(require,module,exports){
+"use strict";
 module.exports = Service;
 
-var util = require(37);
+var util = require(36);
 
 // Extends EventEmitter
 (Service.prototype = Object.create(
@@ -5114,8 +4987,8 @@ var util = require(37);
  * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
  */
 function Service(rpcImpl, requestDelimited, responseDelimited) {
-  if (typeof rpcImpl !== 'function')
-    throw TypeError('rpcImpl must be a function');
+  if (typeof rpcImpl !== "function")
+    throw TypeError("rpcImpl must be a function");
 
   util.EventEmitter.call(this);
 
@@ -5149,22 +5022,24 @@ Service.prototype.end = function end(endedByRPC) {
       // signal end to rpcImpl
       this.rpcImpl(null, null, null);
     this.rpcImpl = null;
-    this.emit('end').off();
+    this.emit("end").off();
   }
   return this;
 };
 
-},{"37":37}],32:[function(require,module,exports){
+},{"36":36}],31:[function(require,module,exports){
 "use strict";
 module.exports = Service;
 
 // extends Namespace
-var Namespace = require(23);
-((Service.prototype = Object.create(Namespace.prototype)).constructor = Service).className = "Service";
+var Namespace = require(22);
+((Service.prototype = Object.create(
+  Namespace.prototype
+)).constructor = Service).className = "Service";
 
-var Method = require(22),
-    util   = require(35),
-    rpc    = require(30);
+var Method = require(21),
+  util = require(34),
+  rpc = require(29);
 
 /**
  * Constructs a new service instance.
@@ -5176,20 +5051,20 @@ var Method = require(22),
  * @throws {TypeError} If arguments are invalid
  */
 function Service(name, options) {
-    Namespace.call(this, name, options);
+  Namespace.call(this, name, options);
 
-    /**
-     * Service methods.
-     * @type {Object.<string,Method>}
-     */
-    this.methods = {}; // toJSON, marker
+  /**
+   * Service methods.
+   * @type {Object.<string,Method>}
+   */
+  this.methods = {}; // toJSON, marker
 
-    /**
-     * Cached methods as an array.
-     * @type {Method[]|null}
-     * @private
-     */
-    this._methodsArray = null;
+  /**
+   * Cached methods as an array.
+   * @type {Method[]|null}
+   * @private
+   */
+  this._methodsArray = null;
 }
 
 /**
@@ -5208,16 +5083,15 @@ function Service(name, options) {
  * @throws {TypeError} If arguments are invalid
  */
 Service.fromJSON = function fromJSON(name, json, filename) {
-    var service = new Service(name, json.options);
-    /* istanbul ignore else */
-    if (json.methods)
-        for (var names = Object.keys(json.methods), i = 0; i < names.length; ++i)
-            service.add(Method.fromJSON(names[i], json.methods[names[i]], filename));
-    if (json.nested)
-        service.addJSON(json.nested, filename);
-    service.comment = json.comment;
-    service.filename = filename;
-    return service;
+  var service = new Service(name, json.options);
+  /* istanbul ignore else */
+  if (json.methods)
+    for (var names = Object.keys(json.methods), i = 0; i < names.length; ++i)
+      service.add(Method.fromJSON(names[i], json.methods[names[i]], filename));
+  if (json.nested) service.addJSON(json.nested, filename);
+  service.comment = json.comment;
+  service.filename = filename;
+  return service;
 };
 
 /**
@@ -5226,14 +5100,21 @@ Service.fromJSON = function fromJSON(name, json, filename) {
  * @returns {IService} Service descriptor
  */
 Service.prototype.toJSON = function toJSON(toJSONOptions) {
-    var inherited = Namespace.prototype.toJSON.call(this, toJSONOptions);
-    var keepComments = toJSONOptions ? Boolean(toJSONOptions.keepComments) : false;
-    return util.toObject([
-        "options" , inherited && inherited.options || undefined,
-        "methods" , Namespace.arrayToJSON(this.methodsArray, toJSONOptions) || /* istanbul ignore next */ {},
-        "nested"  , inherited && inherited.nested || undefined,
-        "comment" , keepComments ? this.comment : undefined
-    ]);
+  var inherited = Namespace.prototype.toJSON.call(this, toJSONOptions);
+  var keepComments = toJSONOptions
+    ? Boolean(toJSONOptions.keepComments)
+    : false;
+  return util.toObject([
+    "options",
+    inherited && inherited.options || undefined,
+    "methods",
+    Namespace.arrayToJSON(this.methodsArray, toJSONOptions) ||
+      /* istanbul ignore next */ {},
+    "nested",
+    inherited && inherited.nested || undefined,
+    "comment",
+    keepComments ? this.comment : undefined,
+  ]);
 };
 
 /**
@@ -5243,69 +5124,70 @@ Service.prototype.toJSON = function toJSON(toJSONOptions) {
  * @readonly
  */
 Object.defineProperty(Service.prototype, "methodsArray", {
-    get: function() {
-        return this._methodsArray || (this._methodsArray = util.toArray(this.methods));
-    }
+  get: function () {
+    return (
+      this._methodsArray || (this._methodsArray = util.toArray(this.methods))
+    );
+  },
 });
 
 Service.prototype.clearCache = function clearCache() {
-    this._methodsArray = null;
-    return Namespace.prototype.clearCache.call(this);
+  this._methodsArray = null;
+  return Namespace.prototype.clearCache.call(this);
 };
 
 Service.prototype._loadPathMap = function _loadPathMap() {
-    var pathMap = Namespace.prototype._loadPathMap.call(this);
-    pathMap.children = pathMap.children.concat(this.methodsArray.map(function (method) {
-        return {
-            name: method.name,
-            node: method
-        };
-    }));
-    return pathMap;
+  var pathMap = Namespace.prototype._loadPathMap.call(this);
+  pathMap.children = pathMap.children.concat(
+    this.methodsArray.map(function (method) {
+      return {
+        name: method.name,
+        node: method,
+      };
+    })
+  );
+  return pathMap;
 };
 
 /**
  * @override
  */
 Service.prototype.resolveAll = function resolveAll() {
-    var methods = this.methodsArray;
-    for (var i = 0; i < methods.length; ++i)
-        methods[i].resolve();
-    return Namespace.prototype.resolve.call(this);
+  var methods = this.methodsArray;
+  for (var i = 0; i < methods.length; ++i) methods[i].resolve();
+  return Namespace.prototype.resolve.call(this);
 };
 
 /**
  * @override
  */
 Service.prototype.add = function add(object) {
+  /* istanbul ignore if */
+  if (this.get(object.name))
+    throw Error("duplicate name '" + object.name + "' in " + this);
 
-    /* istanbul ignore if */
-    if (this.get(object.name))
-        throw Error("duplicate name '" + object.name + "' in " + this);
-
-    if (object instanceof Method) {
-        this.methods[object.name] = object;
-        object.parent = this;
-        return this.clearCache();
-    }
-    return Namespace.prototype.add.call(this, object);
+  if (object instanceof Method) {
+    this.methods[object.name] = object;
+    object.parent = this;
+    return this.clearCache();
+  }
+  return Namespace.prototype.add.call(this, object);
 };
 
 /**
  * @override
  */
 Service.prototype.remove = function remove(object) {
-    if (object instanceof Method) {
+  if (object instanceof Method) {
+    /* istanbul ignore if */
+    if (this.methods[object.name] !== object)
+      throw Error(object + " is not a member of " + this);
 
-        /* istanbul ignore if */
-        if (this.methods[object.name] !== object)
-            throw Error(object + " is not a member of " + this);
-
-        delete this.methods[object.name];
-        object.parent = null;
-        return this.clearCache();
-    }
-    return Namespace.prototype.remove.call(this, object);
+    delete this.methods[object.name];
+    object.parent = null;
+    return this.clearCache();
+  }
+  return Namespace.prototype.remove.call(this, object);
 };
 
 /**
@@ -5315,41 +5197,63 @@ Service.prototype.remove = function remove(object) {
  * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
  * @returns {rpc.Service} RPC service. Useful where requests and/or responses are streamed.
  */
-Service.prototype.create = function create(rpcImpl, requestDelimited, responseDelimited) {
-    var rpcService = new rpc.Service(rpcImpl, requestDelimited, responseDelimited);
-    for (var i = 0, method; i < /* initializes */ this.methodsArray.length; ++i) {
-        var methodName = util.lcFirst((method = this._methodsArray[i]).resolve().name).replace(/[^$\w_]/g, "");
-        rpcService[methodName] = util.codegen(["r","c"], util.isReserved(methodName) ? methodName + "_" : methodName)("return this.rpcCall(m,q,s,r,c)")({
-            m: method,
-            q: method.resolvedRequestType.ctor,
-            s: method.resolvedResponseType.ctor
-        });
+Service.prototype.create = function create(
+  rpcImpl,
+  requestDelimited,
+  responseDelimited
+) {
+  var rpcService = new rpc.Service(
+    rpcImpl,
+    requestDelimited,
+    responseDelimited
+  );
+  for (var i = 0, method; i < /* initializes */ this.methodsArray.length; ++i) {
+    var methodName = util
+      .lcFirst((method = this._methodsArray[i]).resolve().name)
+      .replace(/[^$\w_]/g, "");
+    methodName = util.isReserved(methodName) ? methodName + "_" : methodName;
+
+    if (method.requestStream) {
+      rpcService[methodName] = util.codegen(
+        [],
+        methodName
+      )("return this.rpcImpl(m)")({
+        m: method,
+      });
+    } else {
+      rpcService[methodName] = util.codegen(
+        ["r"],
+        methodName
+      )("return this.rpcImpl(m,r)")({
+        m: method,
+      });
     }
-    return rpcService;
+  }
+  return rpcService;
 };
 
-},{"22":22,"23":23,"30":30,"35":35}],33:[function(require,module,exports){
+},{"21":21,"22":22,"29":29,"34":34}],32:[function(require,module,exports){
 "use strict";
 module.exports = Type;
 
 // extends Namespace
-var Namespace = require(23);
+var Namespace = require(22);
 ((Type.prototype = Object.create(Namespace.prototype)).constructor = Type).className = "Type";
 
-var Enum      = require(15),
-    OneOf     = require(25),
-    Field     = require(17),
-    MapField  = require(20),
-    Service   = require(32),
-    Message   = require(21),
-    Reader    = require(26),
-    Writer    = require(40),
-    util      = require(35),
-    encoder   = require(14),
-    decoder   = require(13),
-    verifier  = require(38),
-    converter = require(12),
-    wrappers  = require(39);
+var Enum      = require(14),
+    OneOf     = require(24),
+    Field     = require(16),
+    MapField  = require(19),
+    Service   = require(31),
+    Message   = require(20),
+    Reader    = require(25),
+    Writer    = require(39),
+    util      = require(34),
+    encoder   = require(13),
+    decoder   = require(12),
+    verifier  = require(37),
+    converter = require(11),
+    wrappers  = require(38);
 
 /**
  * Constructs a new reflected message type instance.
@@ -5932,7 +5836,7 @@ Type.d = function decorateType(typeName) {
     };
 };
 
-},{"12":12,"13":13,"14":14,"15":15,"17":17,"20":20,"21":21,"23":23,"25":25,"26":26,"32":32,"35":35,"38":38,"39":39,"40":40}],34:[function(require,module,exports){
+},{"11":11,"12":12,"13":13,"14":14,"16":16,"19":19,"20":20,"22":22,"24":24,"25":25,"31":31,"34":34,"37":37,"38":38,"39":39}],33:[function(require,module,exports){
 "use strict";
 
 /**
@@ -5941,7 +5845,7 @@ Type.d = function decorateType(typeName) {
  */
 var types = exports;
 
-var util = require(35);
+var util = require(34);
 
 var s = [
     "double",   // 0
@@ -6130,23 +6034,23 @@ types.packed = bake([
     /* bool     */ 0
 ]);
 
-},{"35":35}],35:[function(require,module,exports){
+},{"34":34}],34:[function(require,module,exports){
 "use strict";
 
 /**
  * Various utility functions.
  * @namespace
  */
-var util = module.exports = require(37);
+var util = module.exports = require(36);
 
-var roots = require(29);
+var roots = require(28);
 
 var Type, // cyclic
-    Enum;
+  Enum;
 
 util.codegen = require(3);
-util.fetch   = require(5);
-util.path    = require(8);
+util.fetch = require(1);
+util.path = require(7);
 
 /**
  * Node's fs module if available.
@@ -6160,15 +6064,14 @@ util.fs = util.inquire("fs");
  * @returns {Array.<*>} Converted array
  */
 util.toArray = function toArray(object) {
-    if (object) {
-        var keys  = Object.keys(object),
-            array = new Array(keys.length),
-            index = 0;
-        while (index < keys.length)
-            array[index] = object[keys[index++]];
-        return array;
-    }
-    return [];
+  if (object) {
+    var keys = Object.keys(object),
+      array = new Array(keys.length),
+      index = 0;
+    while (index < keys.length) array[index] = object[keys[index++]];
+    return array;
+  }
+  return [];
 };
 
 /**
@@ -6177,19 +6080,18 @@ util.toArray = function toArray(object) {
  * @returns {Object.<string,*>} Converted object
  */
 util.toObject = function toObject(array) {
-    var object = {},
-        index  = 0;
-    while (index < array.length) {
-        var key = array[index++],
-            val = array[index++];
-        if (val !== undefined)
-            object[key] = val;
-    }
-    return object;
+  var object = {},
+    index = 0;
+  while (index < array.length) {
+    var key = array[index++],
+      val = array[index++];
+    if (val !== undefined) object[key] = val;
+  }
+  return object;
 };
 
 var safePropBackslashRe = /\\/g,
-    safePropQuoteRe     = /"/g;
+  safePropQuoteRe = /"/g;
 
 /**
  * Tests whether the specified name is a reserved word in JS.
@@ -6197,7 +6099,9 @@ var safePropBackslashRe = /\\/g,
  * @returns {boolean} `true` if reserved, otherwise `false`
  */
 util.isReserved = function isReserved(name) {
-    return /^(?:do|if|in|for|let|new|try|var|case|else|enum|eval|false|null|this|true|void|with|break|catch|class|const|super|throw|while|yield|delete|export|import|public|return|static|switch|typeof|default|extends|finally|package|private|continue|debugger|function|arguments|interface|protected|implements|instanceof)$/.test(name);
+  return /^(?:do|if|in|for|let|new|try|var|case|else|enum|eval|false|null|this|true|void|with|break|catch|class|const|super|throw|while|yield|delete|export|import|public|return|static|switch|typeof|default|extends|finally|package|private|continue|debugger|function|arguments|interface|protected|implements|instanceof)$/.test(
+    name
+  );
 };
 
 /**
@@ -6206,9 +6110,15 @@ util.isReserved = function isReserved(name) {
  * @returns {string} Safe accessor
  */
 util.safeProp = function safeProp(prop) {
-    if (!/^[$\w_]+$/.test(prop) || util.isReserved(prop))
-        return "[\"" + prop.replace(safePropBackslashRe, "\\\\").replace(safePropQuoteRe, "\\\"") + "\"]";
-    return "." + prop;
+  if (!/^[$\w_]+$/.test(prop) || util.isReserved(prop))
+    return (
+      "[\"" +
+      prop
+        .replace(safePropBackslashRe, "\\\\")
+        .replace(safePropQuoteRe, "\\\"") +
+      "\"]"
+    );
+  return "." + prop;
 };
 
 /**
@@ -6217,7 +6127,7 @@ util.safeProp = function safeProp(prop) {
  * @returns {string} Converted string
  */
 util.ucFirst = function ucFirst(str) {
-    return str.charAt(0).toUpperCase() + str.substring(1);
+  return str.charAt(0).toUpperCase() + str.substring(1);
 };
 
 var camelCaseRe = /_([a-z])/g;
@@ -6228,9 +6138,12 @@ var camelCaseRe = /_([a-z])/g;
  * @returns {string} Converted string
  */
 util.camelCase = function camelCase(str) {
-    return str.substring(0, 1)
-         + str.substring(1)
-               .replace(camelCaseRe, function($0, $1) { return $1.toUpperCase(); });
+  return (
+    str.substring(0, 1) +
+    str.substring(1).replace(camelCaseRe, function ($0, $1) {
+      return $1.toUpperCase();
+    })
+  );
 };
 
 /**
@@ -6240,7 +6153,7 @@ util.camelCase = function camelCase(str) {
  * @returns {number} Comparison value
  */
 util.compareFieldsById = function compareFieldsById(a, b) {
-    return a.id - b.id;
+  return a.id - b.id;
 };
 
 /**
@@ -6252,27 +6165,28 @@ util.compareFieldsById = function compareFieldsById(a, b) {
  * @property {Root} root Decorators root
  */
 util.decorateType = function decorateType(ctor, typeName) {
-
-    /* istanbul ignore if */
-    if (ctor.$type) {
-        if (typeName && ctor.$type.name !== typeName) {
-            util.decorateRoot.remove(ctor.$type);
-            ctor.$type.name = typeName;
-            util.decorateRoot.add(ctor.$type);
-        }
-        return ctor.$type;
+  /* istanbul ignore if */
+  if (ctor.$type) {
+    if (typeName && ctor.$type.name !== typeName) {
+      util.decorateRoot.remove(ctor.$type);
+      ctor.$type.name = typeName;
+      util.decorateRoot.add(ctor.$type);
     }
+    return ctor.$type;
+  }
 
-    /* istanbul ignore next */
-    if (!Type)
-        Type = require(33);
+  /* istanbul ignore next */
+  if (!Type) Type = require(32);
 
-    var type = new Type(typeName || ctor.name);
-    util.decorateRoot.add(type);
-    type.ctor = ctor; // sets up .encode, .decode etc.
-    Object.defineProperty(ctor, "$type", { value: type, enumerable: false });
-    Object.defineProperty(ctor.prototype, "$type", { value: type, enumerable: false });
-    return type;
+  var type = new Type(typeName || ctor.name);
+  util.decorateRoot.add(type);
+  type.ctor = ctor; // sets up .encode, .decode etc.
+  Object.defineProperty(ctor, "$type", { value: type, enumerable: false });
+  Object.defineProperty(ctor.prototype, "$type", {
+    value: type,
+    enumerable: false,
+  });
+  return type;
 };
 
 var decorateEnumIndex = 0;
@@ -6283,21 +6197,17 @@ var decorateEnumIndex = 0;
  * @returns {Enum} Reflected enum
  */
 util.decorateEnum = function decorateEnum(object) {
+  /* istanbul ignore if */
+  if (object.$type) return object.$type;
 
-    /* istanbul ignore if */
-    if (object.$type)
-        return object.$type;
+  /* istanbul ignore next */
+  if (!Enum) Enum = require(14);
 
-    /* istanbul ignore next */
-    if (!Enum)
-        Enum = require(15);
-
-    var enm = new Enum("Enum" + decorateEnumIndex++, object);
-    util.decorateRoot.add(enm);
-    Object.defineProperty(object, "$type", { value: enm, enumerable: false });
-    return enm;
+  var enm = new Enum("Enum" + decorateEnumIndex++, object);
+  util.decorateRoot.add(enm);
+  Object.defineProperty(object, "$type", { value: enm, enumerable: false });
+  return enm;
 };
-
 
 /**
  * Sets the value of a property by property path. If a value already exists, it is turned to an array
@@ -6307,26 +6217,23 @@ util.decorateEnum = function decorateEnum(object) {
  * @returns {Object.<string,*>} Destination object
  */
 util.setProperty = function setProperty(dst, path, value) {
-    function setProp(dst, path, value) {
-        var part = path.shift();
-        if (path.length > 0) {
-            dst[part] = setProp(dst[part] || {}, path, value);
-        } else {
-            var prevValue = dst[part];
-            if (prevValue)
-                value = [].concat(prevValue).concat(value);
-            dst[part] = value;
-        }
-        return dst;
+  function setProp(dst, path, value) {
+    var part = path.shift();
+    if (path.length > 0) {
+      dst[part] = setProp(dst[part] || {}, path, value);
+    } else {
+      var prevValue = dst[part];
+      if (prevValue) value = [].concat(prevValue).concat(value);
+      dst[part] = value;
     }
+    return dst;
+  }
 
-    if (typeof dst !== "object")
-        throw TypeError("dst must be an object");
-    if (!path)
-        throw TypeError("path must be specified");
+  if (typeof dst !== "object") throw TypeError("dst must be an object");
+  if (!path) throw TypeError("path must be specified");
 
-    path = path.split(".");
-    return setProp(dst, path, value);
+  path = path.split(".");
+  return setProp(dst, path, value);
 };
 
 /**
@@ -6336,16 +6243,18 @@ util.setProperty = function setProperty(dst, path, value) {
  * @readonly
  */
 Object.defineProperty(util, "decorateRoot", {
-    get: function() {
-        return roots["decorated"] || (roots["decorated"] = new (require(28))());
-    }
+  get: function () {
+    return (
+      roots["decorated"] || (roots["decorated"] = new (require(27))())
+    );
+  },
 });
 
-},{"15":15,"28":28,"29":29,"3":3,"33":33,"37":37,"5":5,"8":8}],36:[function(require,module,exports){
+},{"1":1,"14":14,"27":27,"28":28,"3":3,"32":32,"36":36,"7":7}],35:[function(require,module,exports){
 "use strict";
 module.exports = LongBits;
 
-var util = require(37);
+var util = require(36);
 
 /**
  * Constructs new long bits.
@@ -6548,12 +6457,9 @@ LongBits.prototype.length = function length() {
          : part2 < 128 ? 9 : 10;
 };
 
-},{"37":37}],37:[function(require,module,exports){
+},{"36":36}],36:[function(require,module,exports){
 "use strict";
 var util = exports;
-
-// used to return a Promise where callback is omitted
-util.asPromise = require(1);
 
 // converts to / from base64 encoded strings
 util.base64 = require(2);
@@ -6562,19 +6468,19 @@ util.base64 = require(2);
 util.EventEmitter = require(4);
 
 // float handling accross browsers
-util.float = require(6);
+util.float = require(5);
 
 // requires modules optionally and hides the call from bundlers
-util.inquire = require(7);
+util.inquire = require(6);
 
 // converts to / from utf8 encoded strings
-util.utf8 = require(10);
+util.utf8 = require(9);
 
 // provides a node-like buffer pool in the browser
-util.pool = require(9);
+util.pool = require(8);
 
 // utility to work with the low and high bits of a 64 bit value
-util.LongBits = require(36);
+util.LongBits = require(35);
 
 /**
  * Whether running within node or not.
@@ -7052,12 +6958,12 @@ util._configure = function() {
         };
 };
 
-},{"1":1,"10":10,"2":2,"36":36,"4":4,"6":6,"7":7,"9":9}],38:[function(require,module,exports){
+},{"2":2,"35":35,"4":4,"5":5,"6":6,"8":8,"9":9}],37:[function(require,module,exports){
 "use strict";
 module.exports = verifier;
 
-var Enum      = require(15),
-    util      = require(35);
+var Enum      = require(14),
+    util      = require(34);
 
 function invalid(field, expected) {
     return field.name + ": " + expected + (field.repeated && expected !== "array" ? "[]" : field.map && expected !== "object" ? "{k:"+field.keyType+"}" : "") + " expected";
@@ -7230,7 +7136,7 @@ function verifier(mtype) {
     ("return null");
     /* eslint-enable no-unexpected-multiline */
 }
-},{"15":15,"35":35}],39:[function(require,module,exports){
+},{"14":14,"34":34}],38:[function(require,module,exports){
 "use strict";
 
 /**
@@ -7240,7 +7146,7 @@ function verifier(mtype) {
  */
 var wrappers = exports;
 
-var Message = require(21);
+var Message = require(20);
 
 /**
  * From object converter part of an {@link IWrapper}.
@@ -7334,11 +7240,11 @@ wrappers[".google.protobuf.Any"] = {
     }
 };
 
-},{"21":21}],40:[function(require,module,exports){
+},{"20":20}],39:[function(require,module,exports){
 "use strict";
 module.exports = Writer;
 
-var util      = require(37);
+var util      = require(36);
 
 var BufferWriter; // cyclic
 
@@ -7808,15 +7714,15 @@ Writer._configure = function(BufferWriter_) {
     BufferWriter._configure();
 };
 
-},{"37":37}],41:[function(require,module,exports){
+},{"36":36}],40:[function(require,module,exports){
 "use strict";
 module.exports = BufferWriter;
 
 // extends Writer
-var Writer = require(40);
+var Writer = require(39);
 (BufferWriter.prototype = Object.create(Writer.prototype)).constructor = BufferWriter;
 
-var util = require(37);
+var util = require(36);
 
 /**
  * Constructs a new buffer writer instance.
@@ -7895,7 +7801,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
 
 BufferWriter._configure();
 
-},{"37":37,"40":40}]},{},[18])
+},{"36":36,"39":39}]},{},[17])
 
 })();
 //# sourceMappingURL=protobuf.js.map

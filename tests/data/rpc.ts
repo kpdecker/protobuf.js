@@ -11,6 +11,7 @@ export class MyService extends $rpc.Service {
         super(rpcImpl, requestDelimited, responseDelimited);
 
         (this.myMethod as any).serviceName = "MyService";
+        (this.myMethod as any).remoteName = "MyMethod";
         (this.myMethod as any).requestCtor = MyRequest;
         (this.myMethod as any).responseCtor = MyResponse;
         (this.myMethod as any).requestStream = undefined;
@@ -30,7 +31,7 @@ export class MyService extends $rpc.Service {
     };
 
     async myMethod(request: IMyRequest): Promise<MyResponse> {
-        return (this.rpcCall as any)(this.myMethod, MyRequest, MyResponse, request);
+        return (this.rpcImpl as any)(this.myMethod, request);
     }
 }
 

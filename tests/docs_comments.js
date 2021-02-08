@@ -2,11 +2,10 @@ var tape = require("tape");
 
 var protobuf = require("..");
 
-tape.test("proto comments", function(test) {
+tape.test("proto comments", async function(test) {
     test.plan(10);
-    protobuf.load("tests/data/comments.proto", function(err, root) {
-        if (err)
-            throw test.fail(err.message);
+    try {
+        const root = await protobuf.load("tests/data/comments.proto");
 
         test.equal(root.lookup("Test1").comment, "Message\nwith\na\ncomment.", "should parse /**-blocks");
         test.equal(root.lookup("Test2").comment, null, "should not parse //-blocks");
@@ -22,17 +21,16 @@ tape.test("proto comments", function(test) {
         test.equal(root.lookup("Test3").comments.FOUR, "Other value with a comment.", "should not confuse previous trailing comments with comments for the next field");
 
         test.end();
-    });
+    } catch (err) {
+        throw test.fail(err.message);
+    }
 });
 
-tape.test("proto comments with trailing comment preferred", function(test) {
+tape.test("proto comments with trailing comment preferred", async function(test) {
     test.plan(10);
     var options = {preferTrailingComment: true};
-    var root = new protobuf.Root();
-    root.load("tests/data/comments.proto", options, function(err, root) {
-        if (err)
-            throw test.fail(err.message);
-
+    try {
+        const root = await new protobuf.Root().load("tests/data/comments.proto", options);
         test.equal(root.lookup("Test1").comment, "Message\nwith\na\ncomment.", "should parse /**-blocks");
         test.equal(root.lookup("Test2").comment, null, "should not parse //-blocks");
         test.equal(root.lookup("Test3").comment, null, "should not parse /*-blocks");
@@ -47,5 +45,7 @@ tape.test("proto comments with trailing comment preferred", function(test) {
         test.equal(root.lookup("Test3").comments.FOUR, "Other value with a comment.", "should not confuse previous trailing comments with comments for the next field");
 
         test.end();
-    });
+    } catch (err) {
+        throw test.fail(err.message);
+    }
 });

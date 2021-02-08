@@ -889,7 +889,7 @@ $root.vector_tile = (function() {
                         object.id = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
                         object.id = options.longs === String ? "0" : 0;
-                    object.type = options.enums === String ? "UNKNOWN" : 0;
+                    object.type = 0;
                 }
                 if (message.id != null && message.hasOwnProperty("id"))
                     if (typeof message.id === "number")
@@ -902,7 +902,7 @@ $root.vector_tile = (function() {
                         object.tags[j] = message.tags[j];
                 }
                 if (message.type != null && message.hasOwnProperty("type"))
-                    object.type = options.enums === String ? $root.vector_tile.Tile.GeomType[message.type] : message.type;
+                    object.type = message.type;
                 if (message.geometry && message.geometry.length) {
                     object.geometry = [];
                     for (var j = 0; j < message.geometry.length; ++j)
