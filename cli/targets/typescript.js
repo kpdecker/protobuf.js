@@ -870,13 +870,7 @@ function buildService(service) {
       );
       ++indent;
       push(
-        "return (this.rpcCall as any)(this." +
-          escapeName(lcName) +
-          ", " +
-          exportName(method.resolvedRequestType) +
-          ", " +
-          exportName(method.resolvedResponseType) +
-          ", request);"
+        `return (this.rpcImpl as any)(this.${escapeName(lcName)}, request);`
       );
       --indent;
     } else if (method.requestStream && method.responseStream) {
@@ -918,26 +912,18 @@ function buildService(service) {
       push(
         `async ${escapeName(
           lcName
-        )}(callback: (err?: Error, response?: ${typeName(
-          method.resolvedResponseType,
-          !config.forceMessage,
-          service
-        )}) => void): Promise<grpc.ClientWriteableStream<${typeName(
+        )}(): {requestStream: Promise<grpc.ClientWriteableStream<${typeName(
           method.resolvedRequestType,
           !config.forceMessage,
           service
-        )}>> {`
+        )}>>, response: Promise<${typeName(
+          method.resolvedResponseType,
+          !config.forceMessage,
+          service
+        )}>} {`
       );
       ++indent;
-      push(
-        "return (this.rpcCall as any)(this." +
-          escapeName(lcName) +
-          ", " +
-          exportName(method.resolvedRequestType) +
-          ", " +
-          exportName(method.resolvedResponseType) +
-          ", undefined, callback);"
-      );
+      push("return (this.rpcImpl as any)(this." + escapeName(lcName) + ");");
       --indent;
     }
     push("}");
