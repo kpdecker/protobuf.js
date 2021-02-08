@@ -4,7 +4,7 @@
  * Various utility functions.
  * @namespace
  */
-var util = module.exports = require("./util/minimal");
+var util = (module.exports = require("./util/minimal"));
 
 var roots = require("./roots");
 
@@ -12,7 +12,7 @@ var Type, // cyclic
   Enum;
 
 util.codegen = require("@protobufjs/codegen");
-util.fetch = require("../lib/fetch");
+util.fetch = require("./fetch");
 util.path = require("@protobufjs/path");
 
 /**
@@ -75,11 +75,11 @@ util.isReserved = function isReserved(name) {
 util.safeProp = function safeProp(prop) {
   if (!/^[$\w_]+$/.test(prop) || util.isReserved(prop))
     return (
-      "[\"" +
+      '["' +
       prop
         .replace(safePropBackslashRe, "\\\\")
-        .replace(safePropQuoteRe, "\\\"") +
-      "\"]"
+        .replace(safePropQuoteRe, '\\"') +
+      '"]'
     );
   return "." + prop;
 };

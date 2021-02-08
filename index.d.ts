@@ -241,6 +241,16 @@ export interface IEnum {
     options?: { [k: string]: any };
 }
 
+/** Options as used by {@link util.fetch}. */
+export interface IFetchOptions {
+
+    /** Whether expecting a binary response */
+    binary?: boolean;
+
+    /** If `true`, forces the use of XMLHttpRequest */
+    xhr?: boolean;
+}
+
 /** Reflected message field. */
 export class Field extends FieldBase {
 
@@ -1841,6 +1851,14 @@ type OneOfSetter = (value: (any|undefined)) => void;
 /** Various utility functions. */
 export namespace util {
 
+    /**
+     * Fetches the contents of a file.
+     * @param filename File path or url
+     * @param options Fetch options
+     * @returns Promise
+     */
+    function fetch(filename: string, options: IFetchOptions): Promise<(string|Uint8Array)>;
+
     /** Helper class for working with the low and high bits of a 64 bit value. */
     class LongBits {
 
@@ -2285,82 +2303,6 @@ export namespace util {
         public emit(evt: string, ...args: any[]): this;
     }
 
-    /** Reads / writes floats / doubles from / to buffers. */
-    namespace float {
-
-        /**
-         * Writes a 32 bit float to a buffer using little endian byte order.
-         * @param val Value to write
-         * @param buf Target buffer
-         * @param pos Target buffer offset
-         */
-        function writeFloatLE(val: number, buf: Uint8Array, pos: number): void;
-
-        /**
-         * Writes a 32 bit float to a buffer using big endian byte order.
-         * @param val Value to write
-         * @param buf Target buffer
-         * @param pos Target buffer offset
-         */
-        function writeFloatBE(val: number, buf: Uint8Array, pos: number): void;
-
-        /**
-         * Reads a 32 bit float from a buffer using little endian byte order.
-         * @param buf Source buffer
-         * @param pos Source buffer offset
-         * @returns Value read
-         */
-        function readFloatLE(buf: Uint8Array, pos: number): number;
-
-        /**
-         * Reads a 32 bit float from a buffer using big endian byte order.
-         * @param buf Source buffer
-         * @param pos Source buffer offset
-         * @returns Value read
-         */
-        function readFloatBE(buf: Uint8Array, pos: number): number;
-
-        /**
-         * Writes a 64 bit double to a buffer using little endian byte order.
-         * @param val Value to write
-         * @param buf Target buffer
-         * @param pos Target buffer offset
-         */
-        function writeDoubleLE(val: number, buf: Uint8Array, pos: number): void;
-
-        /**
-         * Writes a 64 bit double to a buffer using big endian byte order.
-         * @param val Value to write
-         * @param buf Target buffer
-         * @param pos Target buffer offset
-         */
-        function writeDoubleBE(val: number, buf: Uint8Array, pos: number): void;
-
-        /**
-         * Reads a 64 bit double from a buffer using little endian byte order.
-         * @param buf Source buffer
-         * @param pos Source buffer offset
-         * @returns Value read
-         */
-        function readDoubleLE(buf: Uint8Array, pos: number): number;
-
-        /**
-         * Reads a 64 bit double from a buffer using big endian byte order.
-         * @param buf Source buffer
-         * @param pos Source buffer offset
-         * @returns Value read
-         */
-        function readDoubleBE(buf: Uint8Array, pos: number): number;
-    }
-
-    /**
-     * Fetches the contents of a file.
-     * @param filename File path or url
-     * @param options Fetch options
-     * @returns Promise
-     */
-    function fetch(filename: string, options: IFetchOptions): Promise<(string|Uint8Array)>;
-
     /**
      * Requires a module only if available.
      * @param moduleName Module to require
@@ -2670,16 +2612,6 @@ type Codegen = (formatStringOrScope?: (string|{ [k: string]: any }), ...formatPa
  * @param args Arguments
  */
 type EventEmitterListener = (...args: any[]) => void;
-
-/** Options as used by {@link util.fetch}. */
-export interface IFetchOptions {
-
-    /** Whether expecting a binary response */
-    binary?: boolean;
-
-    /** If `true`, forces the use of XMLHttpRequest */
-    xhr?: boolean;
-}
 
 /**
  * An allocator as used by {@link util.pool}.

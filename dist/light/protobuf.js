@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v10.0.0 (c) 2016, daniel wirtz
- * compiled mon, 08 feb 2021 23:09:59 utc
+ * protobuf.js v10.0.1 (c) 2016, daniel wirtz
+ * compiled mon, 08 feb 2021 23:20:23 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -38,100 +38,6 @@
         module.exports = protobuf;
 
 })/* end of prelude */({1:[function(require,module,exports){
-"use strict";
-module.exports = fetch;
-
-var inquire = require(6);
-
-var fs = inquire("fs");
-
-/**
- * Options as used by {@link util.fetch}.
- * @interface IFetchOptions
- * @property {boolean} [binary=false] Whether expecting a binary response
- * @property {boolean} [xhr=false] If `true`, forces the use of XMLHttpRequest
- */
-
-/**
- * Fetches the contents of a file.
- * @memberof util
- * @param {string} filename File path or url
- * @param {IFetchOptions} options Fetch options
- * @returns {Promise<string|Uint8Array>} Promise
- */
-function fetch(filename, options) {
-  if (!options) options = {};
-
-  return new Promise(function (resolve, reject) {
-    function callback(err, data) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    }
-    // if a node-like filesystem is present, try it first but fall back to XHR if nothing is found.
-    if (!options.xhr && fs && fs.readFile)
-      return fs.readFile(
-        filename,
-        function fetchReadFileCallback(err, contents) {
-          return err && typeof XMLHttpRequest !== "undefined"
-            ? fetch.xhr(filename, options, callback)
-            : err
-            ? callback(err)
-            : callback(
-                null,
-                options.binary ? contents : contents.toString("utf8")
-              );
-        }
-      );
-
-    // use the XHR version otherwise.
-    return fetch.xhr(filename, options, callback);
-  });
-}
-
-/**/
-fetch.xhr = function fetch_xhr(filename, options, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange /* works everywhere */ = function fetchOnReadyStateChange() {
-    if (xhr.readyState !== 4) return undefined;
-
-    // local cors security errors return status 0 / empty string, too. afaik this cannot be
-    // reliably distinguished from an actually empty file for security reasons. feel free
-    // to send a pull request if you are aware of a solution.
-    if (xhr.status !== 0 && xhr.status !== 200)
-      return callback(Error("status " + xhr.status));
-
-    // if binary data is expected, make sure that some sort of array is returned, even if
-    // ArrayBuffers are not supported. the binary string fallback, however, is unsafe.
-    if (options.binary) {
-      var buffer = xhr.response;
-      if (!buffer) {
-        buffer = [];
-        for (var i = 0; i < xhr.responseText.length; ++i)
-          buffer.push(xhr.responseText.charCodeAt(i) & 255);
-      }
-      return callback(
-        null,
-        typeof Uint8Array !== "undefined" ? new Uint8Array(buffer) : buffer
-      );
-    }
-    return callback(null, xhr.responseText);
-  };
-
-  if (options.binary) {
-    // ref: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Sending_and_Receiving_Binary_Data#Receiving_binary_data_in_older_browsers
-    if ("overrideMimeType" in xhr)
-      xhr.overrideMimeType("text/plain; charset=x-user-defined");
-    xhr.responseType = "arraybuffer";
-  }
-
-  xhr.open("GET", filename);
-  xhr.send();
-};
-
-},{"6":6}],2:[function(require,module,exports){
 "use strict";
 
 /**
@@ -272,7 +178,7 @@ base64.test = function test(string) {
     return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(string);
 };
 
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 "use strict";
 module.exports = codegen;
 
@@ -373,7 +279,7 @@ function codegen(functionParams, functionName) {
  */
 codegen.verbose = false;
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 "use strict";
 module.exports = EventEmitter;
 
@@ -451,7 +357,7 @@ EventEmitter.prototype.emit = function emit(evt) {
     return this;
 };
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 
 module.exports = factory(factory);
@@ -788,7 +694,7 @@ function readUintBE(buf, pos) {
           | buf[pos + 3]) >>> 0;
 }
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 module.exports = inquire;
 
@@ -807,7 +713,7 @@ function inquire(moduleName) {
     return null;
 }
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 /**
@@ -874,7 +780,7 @@ path.resolve = function resolve(originPath, includePath, alreadyNormalized) {
     return (originPath = originPath.replace(/(?:\/|^)[^/]+$/, "")).length ? normalize(originPath + "/" + includePath) : includePath;
 };
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 module.exports = pool;
 
@@ -924,7 +830,7 @@ function pool(alloc, slice, size) {
     };
 }
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 /**
@@ -1031,7 +937,7 @@ utf8.write = function utf8_write(string, buffer, offset) {
     return offset - start;
 };
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
 // backported and transplited with Babel, with backwards-compat fixes
 
@@ -1335,7 +1241,7 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 /**
  * Runtime message from/to plain object converters.
@@ -1343,7 +1249,7 @@ var substr = 'ab'.substr(-1) === 'b'
  */
 var converter = exports;
 
-var Enum = require(14),
+var Enum = require(13),
     util = require(34);
 
 /**
@@ -1629,11 +1535,11 @@ converter.toObject = function toObject(mtype, isTypescript) {
     /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
 };
 
-},{"14":14,"34":34}],12:[function(require,module,exports){
+},{"13":13,"34":34}],11:[function(require,module,exports){
 "use strict";
 module.exports = decoder;
 
-var Enum    = require(14),
+var Enum    = require(13),
     types   = require(33),
     util    = require(34);
 
@@ -1760,11 +1666,11 @@ function decoder(mtype) {
     /* eslint-enable no-unexpected-multiline */
 }
 
-},{"14":14,"33":33,"34":34}],13:[function(require,module,exports){
+},{"13":13,"33":33,"34":34}],12:[function(require,module,exports){
 "use strict";
 module.exports = encoder;
 
-var Enum     = require(14),
+var Enum     = require(13),
     types    = require(33),
     util     = require(34);
 
@@ -1862,7 +1768,7 @@ function encoder(mtype) {
     /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
 }
 
-},{"14":14,"33":33,"34":34}],14:[function(require,module,exports){
+},{"13":13,"33":33,"34":34}],13:[function(require,module,exports){
 "use strict";
 module.exports = Enum;
 
@@ -2052,10 +1958,10 @@ Enum.prototype.isReservedName = function isReservedName(name) {
     return Namespace.isReservedName(this.reserved, name);
 };
 
-},{"22":22,"23":23,"34":34}],15:[function(require,module,exports){
+},{"22":22,"23":23,"34":34}],14:[function(require,module,exports){
 "use strict";
 
-var Enum = require(14),
+var Enum = require(13),
     util = require(34);
 
 function genValuePartial_equals(gen, field, fieldIndex, prop, index) {
@@ -2200,7 +2106,101 @@ module.exports = function equals(mtype) {
   /* eslint-enable no-unexpected-multiline, block-scoped-var, no-redeclare */
 };
 
-},{"14":14,"34":34}],16:[function(require,module,exports){
+},{"13":13,"34":34}],15:[function(require,module,exports){
+"use strict";
+module.exports = fetch;
+
+var inquire = require(5);
+
+var fs = inquire("fs");
+
+/**
+ * Options as used by {@link util.fetch}.
+ * @interface IFetchOptions
+ * @property {boolean} [binary=false] Whether expecting a binary response
+ * @property {boolean} [xhr=false] If `true`, forces the use of XMLHttpRequest
+ */
+
+/**
+ * Fetches the contents of a file.
+ * @memberof util
+ * @param {string} filename File path or url
+ * @param {IFetchOptions} options Fetch options
+ * @returns {Promise<string|Uint8Array>} Promise
+ */
+function fetch(filename, options) {
+  if (!options) options = {};
+
+  return new Promise(function (resolve, reject) {
+    function callback(err, data) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    }
+    // if a node-like filesystem is present, try it first but fall back to XHR if nothing is found.
+    if (!options.xhr && fs && fs.readFile)
+      return fs.readFile(
+        filename,
+        function fetchReadFileCallback(err, contents) {
+          return err && typeof XMLHttpRequest !== "undefined"
+            ? fetch.xhr(filename, options, callback)
+            : err
+            ? callback(err)
+            : callback(
+                null,
+                options.binary ? contents : contents.toString("utf8")
+              );
+        }
+      );
+
+    // use the XHR version otherwise.
+    return fetch.xhr(filename, options, callback);
+  });
+}
+
+/**/
+fetch.xhr = function fetch_xhr(filename, options, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange /* works everywhere */ = function fetchOnReadyStateChange() {
+    if (xhr.readyState !== 4) return undefined;
+
+    // local cors security errors return status 0 / empty string, too. afaik this cannot be
+    // reliably distinguished from an actually empty file for security reasons. feel free
+    // to send a pull request if you are aware of a solution.
+    if (xhr.status !== 0 && xhr.status !== 200)
+      return callback(Error("status " + xhr.status));
+
+    // if binary data is expected, make sure that some sort of array is returned, even if
+    // ArrayBuffers are not supported. the binary string fallback, however, is unsafe.
+    if (options.binary) {
+      var buffer = xhr.response;
+      if (!buffer) {
+        buffer = [];
+        for (var i = 0; i < xhr.responseText.length; ++i)
+          buffer.push(xhr.responseText.charCodeAt(i) & 255);
+      }
+      return callback(
+        null,
+        typeof Uint8Array !== "undefined" ? new Uint8Array(buffer) : buffer
+      );
+    }
+    return callback(null, xhr.responseText);
+  };
+
+  if (options.binary) {
+    // ref: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Sending_and_Receiving_Binary_Data#Receiving_binary_data_in_older_browsers
+    if ("overrideMimeType" in xhr)
+      xhr.overrideMimeType("text/plain; charset=x-user-defined");
+    xhr.responseType = "arraybuffer";
+  }
+
+  xhr.open("GET", filename);
+  xhr.send();
+};
+
+},{"5":5}],16:[function(require,module,exports){
 "use strict";
 module.exports = Field;
 
@@ -2208,7 +2208,7 @@ module.exports = Field;
 var ReflectionObject = require(23);
 ((Field.prototype = Object.create(ReflectionObject.prototype)).constructor = Field).className = "Field";
 
-var Enum  = require(14),
+var Enum  = require(13),
     types = require(33),
     util  = require(34);
 
@@ -2573,7 +2573,7 @@ Field._configure = function configure(Type_) {
     Type = Type_;
 };
 
-},{"14":14,"23":23,"33":33,"34":34}],17:[function(require,module,exports){
+},{"13":13,"23":23,"33":33,"34":34}],17:[function(require,module,exports){
 "use strict";
 var protobuf = module.exports = require(18);
 
@@ -2631,16 +2631,16 @@ function load(filename, root, callback) {
 protobuf.load = load;
 
 // Serialization
-protobuf.encoder = require(13);
-protobuf.decoder = require(12);
+protobuf.encoder = require(12);
+protobuf.decoder = require(11);
 protobuf.verifier = require(37);
-protobuf.converter = require(11);
+protobuf.converter = require(10);
 
 // Reflection
 protobuf.ReflectionObject = require(23);
 protobuf.Namespace = require(22);
 protobuf.Root = require(27);
-protobuf.Enum = require(14);
+protobuf.Enum = require(13);
 protobuf.Type = require(32);
 protobuf.Field = require(16);
 protobuf.OneOf = require(24);
@@ -2653,7 +2653,7 @@ protobuf.Message = require(20);
 protobuf.wrappers = require(38);
 
 // Utility
-protobuf.equals = require(15);
+protobuf.equals = require(14);
 protobuf.types = require(33);
 protobuf.util = require(34);
 
@@ -2663,7 +2663,7 @@ protobuf.Namespace._configure(protobuf.Type, protobuf.Service, protobuf.Enum);
 protobuf.Root._configure(protobuf.Type);
 protobuf.Field._configure(protobuf.Type);
 
-},{"11":11,"12":12,"13":13,"14":14,"15":15,"16":16,"18":18,"19":19,"20":20,"21":21,"22":22,"23":23,"24":24,"27":27,"31":31,"32":32,"33":33,"34":34,"37":37,"38":38}],18:[function(require,module,exports){
+},{"10":10,"11":11,"12":12,"13":13,"14":14,"16":16,"18":18,"19":19,"20":20,"21":21,"22":22,"23":23,"24":24,"27":27,"31":31,"32":32,"33":33,"34":34,"37":37,"38":38}],18:[function(require,module,exports){
 "use strict";
 var protobuf = exports;
 
@@ -4550,7 +4550,7 @@ BufferReader._configure();
 "use strict";
 module.exports = Root;
 
-var Path = require(10);
+var Path = require(9);
 
 // extends Namespace
 var Namespace = require(22);
@@ -4559,7 +4559,7 @@ var Namespace = require(22);
 )).constructor = Root).className = "Root";
 
 var Field = require(16),
-  Enum = require(14),
+  Enum = require(13),
   OneOf = require(24),
   util = require(34);
 
@@ -4884,7 +4884,7 @@ Root._configure = function (Type_, parse_, common_) {
   common = common_;
 };
 
-},{"10":10,"14":14,"16":16,"22":22,"24":24,"34":34}],28:[function(require,module,exports){
+},{"13":13,"16":16,"22":22,"24":24,"34":34,"9":9}],28:[function(require,module,exports){
 "use strict";
 module.exports = {};
 
@@ -5240,7 +5240,7 @@ module.exports = Type;
 var Namespace = require(22);
 ((Type.prototype = Object.create(Namespace.prototype)).constructor = Type).className = "Type";
 
-var Enum      = require(14),
+var Enum      = require(13),
     OneOf     = require(24),
     Field     = require(16),
     MapField  = require(19),
@@ -5249,10 +5249,10 @@ var Enum      = require(14),
     Reader    = require(25),
     Writer    = require(39),
     util      = require(34),
-    encoder   = require(13),
-    decoder   = require(12),
+    encoder   = require(12),
+    decoder   = require(11),
     verifier  = require(37),
-    converter = require(11),
+    converter = require(10),
     wrappers  = require(38);
 
 /**
@@ -5836,7 +5836,7 @@ Type.d = function decorateType(typeName) {
     };
 };
 
-},{"11":11,"12":12,"13":13,"14":14,"16":16,"19":19,"20":20,"22":22,"24":24,"25":25,"31":31,"34":34,"37":37,"38":38,"39":39}],33:[function(require,module,exports){
+},{"10":10,"11":11,"12":12,"13":13,"16":16,"19":19,"20":20,"22":22,"24":24,"25":25,"31":31,"34":34,"37":37,"38":38,"39":39}],33:[function(require,module,exports){
 "use strict";
 
 /**
@@ -6041,16 +6041,16 @@ types.packed = bake([
  * Various utility functions.
  * @namespace
  */
-var util = module.exports = require(36);
+var util = (module.exports = require(36));
 
 var roots = require(28);
 
 var Type, // cyclic
   Enum;
 
-util.codegen = require(3);
-util.fetch = require(1);
-util.path = require(7);
+util.codegen = require(2);
+util.fetch = require(15);
+util.path = require(6);
 
 /**
  * Node's fs module if available.
@@ -6112,11 +6112,11 @@ util.isReserved = function isReserved(name) {
 util.safeProp = function safeProp(prop) {
   if (!/^[$\w_]+$/.test(prop) || util.isReserved(prop))
     return (
-      "[\"" +
+      '["' +
       prop
         .replace(safePropBackslashRe, "\\\\")
-        .replace(safePropQuoteRe, "\\\"") +
-      "\"]"
+        .replace(safePropQuoteRe, '\\"') +
+      '"]'
     );
   return "." + prop;
 };
@@ -6201,7 +6201,7 @@ util.decorateEnum = function decorateEnum(object) {
   if (object.$type) return object.$type;
 
   /* istanbul ignore next */
-  if (!Enum) Enum = require(14);
+  if (!Enum) Enum = require(13);
 
   var enm = new Enum("Enum" + decorateEnumIndex++, object);
   util.decorateRoot.add(enm);
@@ -6250,7 +6250,7 @@ Object.defineProperty(util, "decorateRoot", {
   },
 });
 
-},{"1":1,"14":14,"27":27,"28":28,"3":3,"32":32,"36":36,"7":7}],35:[function(require,module,exports){
+},{"13":13,"15":15,"2":2,"27":27,"28":28,"32":32,"36":36,"6":6}],35:[function(require,module,exports){
 "use strict";
 module.exports = LongBits;
 
@@ -6462,22 +6462,22 @@ LongBits.prototype.length = function length() {
 var util = exports;
 
 // converts to / from base64 encoded strings
-util.base64 = require(2);
+util.base64 = require(1);
 
 // base class of rpc.Service
-util.EventEmitter = require(4);
+util.EventEmitter = require(3);
 
 // float handling accross browsers
-util.float = require(5);
+util.float = require(4);
 
 // requires modules optionally and hides the call from bundlers
-util.inquire = require(6);
+util.inquire = require(5);
 
 // converts to / from utf8 encoded strings
-util.utf8 = require(9);
+util.utf8 = require(8);
 
 // provides a node-like buffer pool in the browser
-util.pool = require(8);
+util.pool = require(7);
 
 // utility to work with the low and high bits of a 64 bit value
 util.LongBits = require(35);
@@ -6958,11 +6958,11 @@ util._configure = function() {
         };
 };
 
-},{"2":2,"35":35,"4":4,"5":5,"6":6,"8":8,"9":9}],37:[function(require,module,exports){
+},{"1":1,"3":3,"35":35,"4":4,"5":5,"7":7,"8":8}],37:[function(require,module,exports){
 "use strict";
 module.exports = verifier;
 
-var Enum      = require(14),
+var Enum      = require(13),
     util      = require(34);
 
 function invalid(field, expected) {
@@ -7136,7 +7136,7 @@ function verifier(mtype) {
     ("return null");
     /* eslint-enable no-unexpected-multiline */
 }
-},{"14":14,"34":34}],38:[function(require,module,exports){
+},{"13":13,"34":34}],38:[function(require,module,exports){
 "use strict";
 
 /**
