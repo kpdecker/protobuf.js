@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v8.1.0 (c) 2016, daniel wirtz
- * compiled thu, 27 aug 2020 16:20:08 utc
+ * protobuf.js v9.0.0 (c) 2016, daniel wirtz
+ * compiled mon, 08 feb 2021 16:57:26 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -1965,7 +1965,7 @@ function genValuePartial_toObject(gen, field, fieldIndex, prop) {
     /* eslint-disable no-unexpected-multiline, block-scoped-var, no-redeclare */
     if (field.resolvedType) {
         if (field.resolvedType instanceof Enum) gen
-            ("d%s=o.enums===String?types[%i].values[m%s]:m%s", prop, fieldIndex, prop, prop);
+            ("d%s=m%s", prop, prop);
         else gen
             ("d%s=types[%i].toObject(m%s,o)", prop, fieldIndex, prop);
     } else {
@@ -2406,8 +2406,6 @@ function Enum(name, values, options, comment, comments) {
         for (var keys = Object.keys(values), i = 0; i < keys.length; ++i) {
             var originalKey = keys[i];
             var key = originalKey;
-            if (key.startsWith(this.name + "_"))
-                key = key.slice(this.name.length + 1);
 
             if (typeof values[originalKey] === "number") { // use forward entries only
                 this.valuesById[ this.values[key] = values[originalKey] ] = key;
@@ -2479,9 +2477,6 @@ Enum.prototype.add = function add(name, id, comment) {
 
     if (this.isReservedName(name))
         throw Error("name '" + name + "' is reserved in " + this);
-
-    if (name.startsWith(this.name + "_"))
-        name = name.slice(this.name.length + 1);
 
     if (this.valuesById[id] !== undefined) {
         if (!(this.options && this.options.allow_alias))
@@ -6295,13 +6290,15 @@ var rpc = exports;
 rpc.Service = require(34);
 
 },{"34":34}],34:[function(require,module,exports){
-"use strict";
+'use strict';
 module.exports = Service;
 
 var util = require(41);
 
 // Extends EventEmitter
-(Service.prototype = Object.create(util.EventEmitter.prototype)).constructor = Service;
+(Service.prototype = Object.create(
+  util.EventEmitter.prototype
+)).constructor = Service;
 
 /**
  * A service method callback as used by {@link rpc.ServiceMethod|ServiceMethod}.
@@ -6337,91 +6334,29 @@ var util = require(41);
  * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
  */
 function Service(rpcImpl, requestDelimited, responseDelimited) {
+  if (typeof rpcImpl !== 'function')
+    throw TypeError('rpcImpl must be a function');
 
-    if (typeof rpcImpl !== "function")
-        throw TypeError("rpcImpl must be a function");
+  util.EventEmitter.call(this);
 
-    util.EventEmitter.call(this);
+  /**
+   * RPC implementation. Becomes `null` once the service is ended.
+   * @type {RPCImpl|null}
+   */
+  this.rpcImpl = rpcImpl;
 
-    /**
-     * RPC implementation. Becomes `null` once the service is ended.
-     * @type {RPCImpl|null}
-     */
-    this.rpcImpl = rpcImpl;
+  /**
+   * Whether requests are length-delimited.
+   * @type {boolean}
+   */
+  this.requestDelimited = Boolean(requestDelimited);
 
-    /**
-     * Whether requests are length-delimited.
-     * @type {boolean}
-     */
-    this.requestDelimited = Boolean(requestDelimited);
-
-    /**
-     * Whether responses are length-delimited.
-     * @type {boolean}
-     */
-    this.responseDelimited = Boolean(responseDelimited);
+  /**
+   * Whether responses are length-delimited.
+   * @type {boolean}
+   */
+  this.responseDelimited = Boolean(responseDelimited);
 }
-
-/**
- * Calls a service method through {@link rpc.Service#rpcImpl|rpcImpl}.
- * @param {Method|rpc.ServiceMethod<TReq,TRes>} method Reflected or static method
- * @param {Constructor<TReq>} requestCtor Request constructor
- * @param {Constructor<TRes>} responseCtor Response constructor
- * @param {TReq|Properties<TReq>} request Request message or plain object
- * @param {rpc.ServiceMethodCallback<TRes>} callback Service callback
- * @returns {undefined}
- * @template TReq extends Message<TReq>
- * @template TRes extends Message<TRes>
- */
-Service.prototype.rpcCall = function rpcCall(method, requestCtor, responseCtor, request, callback) {
-
-    if (!request)
-        throw TypeError("request must be specified");
-
-    var self = this;
-    if (!callback)
-        return util.asPromise(rpcCall, self, method, requestCtor, responseCtor, request);
-
-    if (!self.rpcImpl) {
-        setTimeout(function() { callback(Error("already ended")); }, 0);
-        return undefined;
-    }
-
-    try {
-        return self.rpcImpl(
-            method,
-            requestCtor[self.requestDelimited ? "encodeDelimited" : "encode"](request).finish(),
-            function rpcCallback(err, response) {
-
-                if (err) {
-                    self.emit("error", err, method);
-                    return callback(err);
-                }
-
-                if (response === null) {
-                    self.end(/* endedByRPC */ true);
-                    return undefined;
-                }
-
-                if (!(response instanceof responseCtor)) {
-                    try {
-                        response = responseCtor[self.responseDelimited ? "decodeDelimited" : "decode"](response);
-                    } catch (err) {
-                        self.emit("error", err, method);
-                        return callback(err);
-                    }
-                }
-
-                self.emit("data", response, method);
-                return callback(null, response);
-            }
-        );
-    } catch (err) {
-        self.emit("error", err, method);
-        setTimeout(function() { callback(err); }, 0);
-        return undefined;
-    }
-};
 
 /**
  * Ends this service and emits the `end` event.
@@ -6429,13 +6364,14 @@ Service.prototype.rpcCall = function rpcCall(method, requestCtor, responseCtor, 
  * @returns {rpc.Service} `this`
  */
 Service.prototype.end = function end(endedByRPC) {
-    if (this.rpcImpl) {
-        if (!endedByRPC) // signal end to rpcImpl
-            this.rpcImpl(null, null, null);
-        this.rpcImpl = null;
-        this.emit("end").off();
-    }
-    return this;
+  if (this.rpcImpl) {
+    if (!endedByRPC)
+      // signal end to rpcImpl
+      this.rpcImpl(null, null, null);
+    this.rpcImpl = null;
+    this.emit('end').off();
+  }
+  return this;
 };
 
 },{"41":41}],35:[function(require,module,exports){
@@ -7578,7 +7514,6 @@ Type.prototype.fromObject = function fromObject(object) {
  * @property {Function} [longs] Long conversion type.
  * Valid values are `String` and `Number` (the global types).
  * Defaults to copy the present value, which is a possibly unsafe number without and a {@link Long} with a long library.
- * @property {Function} [enums] Enum value conversion type.
  * Only valid value is `String` (the global type).
  * Defaults to copy the present value, which is the numeric id.
  * @property {Function} [bytes] Bytes value conversion type.
@@ -8716,7 +8651,6 @@ util.oneOfSetter = function setOneOf(fieldNames) {
  */
 util.toJSONOptions = {
     longs: String,
-    enums: String,
     bytes: String,
     json: true
 };

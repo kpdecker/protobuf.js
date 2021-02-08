@@ -1356,16 +1356,6 @@ export namespace rpc {
         public responseDelimited: boolean;
 
         /**
-         * Calls a service method through {@link rpc.Service#rpcImpl|rpcImpl}.
-         * @param method Reflected or static method
-         * @param requestCtor Request constructor
-         * @param responseCtor Response constructor
-         * @param request Request message or plain object
-         * @param callback Service callback
-         */
-        public rpcCall<TReq extends Message<TReq>, TRes extends Message<TRes>>(method: (Method|rpc.ServiceMethod<TReq, TRes>), requestCtor: Constructor<TReq>, responseCtor: Constructor<TRes>, request: (TReq|Properties<TReq>), callback: rpc.ServiceMethodCallback<TRes>): void;
-
-        /**
          * Ends this service and emits the `end` event.
          * @param [endedByRPC=false] Whether the service has been ended by the RPC implementation.
          * @returns `this`
@@ -1710,15 +1700,10 @@ export interface IConversionOptions {
      * Long conversion type.
      * Valid values are `String` and `Number` (the global types).
      * Defaults to copy the present value, which is a possibly unsafe number without and a {@link Long} with a long library.
-     */
-    longs?: Function;
-
-    /**
-     * Enum value conversion type.
      * Only valid value is `String` (the global type).
      * Defaults to copy the present value, which is the numeric id.
      */
-    enums?: Function;
+    longs?: Function;
 
     /**
      * Bytes value conversion type.
