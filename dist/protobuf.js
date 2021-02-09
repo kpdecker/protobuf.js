@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v10.0.1 (c) 2016, daniel wirtz
- * compiled mon, 08 feb 2021 23:20:23 utc
+ * protobuf.js v10.0.2 (c) 2016, daniel wirtz
+ * compiled tue, 09 feb 2021 00:14:28 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -5856,15 +5856,6 @@ Root.prototype.load = function load(filename, options) {
   }
 
   return new Promise(function (resolve, reject) {
-    // Finishes loading by calling the callback (exactly once)
-    function finish(err, root) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(root);
-      }
-    }
-
     // Bundled definition existence checking
     function getBundledFileName(filename) {
       var idx = filename.lastIndexOf("google/protobuf/");
@@ -5891,17 +5882,17 @@ Root.prototype.load = function load(filename, options) {
           if (parsed.imports)
             for (; i < parsed.imports.length; ++i)
               if (
-                resolved =
+                (resolved =
                   getBundledFileName(parsed.imports[i]) ||
-                  self.resolvePath(filename, parsed.imports[i])
+                  self.resolvePath(filename, parsed.imports[i]))
               )
                 fetch(resolved, false, parsed.imports[i].replace(/\//g, "_"));
           if (parsed.weakImports)
             for (i = 0; i < parsed.weakImports.length; ++i)
               if (
-                resolved =
+                (resolved =
                   getBundledFileName(parsed.weakImports[i]) ||
-                  self.resolvePath(filename, parsed.weakImports[i])
+                  self.resolvePath(filename, parsed.weakImports[i]))
               )
                 fetch(
                   resolved,
@@ -5910,9 +5901,8 @@ Root.prototype.load = function load(filename, options) {
                 );
         }
       } catch (err) {
-        finish(err);
+        reject(err);
       }
-      if (!options.sync && !queued) finish(null, self); // only once anyway
     }
 
     // Fetches a single file
@@ -5925,58 +5915,29 @@ Root.prototype.load = function load(filename, options) {
 
       // Shortcut bundled definitions
       if (filename in common) {
-        if (options.sync)
-          process(filename.replace(/\//g, "_"), common[filename], referenced);
-        else {
-          ++queued;
-          setTimeout(function () {
-            --queued;
-            process(filename.replace(/\//g, "_"), common[filename], referenced);
-          });
-        }
+        process(filename.replace(/\//g, "_"), common[filename], referenced);
         return;
       }
 
       // Otherwise fetch from disk or network
-      if (options.sync) {
-        var source;
-        try {
-          source = util.fs.readFileSync(filename).toString("utf8");
-        } catch (err) {
-          if (!weak) finish(err);
-          return;
-        }
-        process(filename, source, referenced);
-      } else {
-        ++queued;
-        self.fetch(filename).then(
-          function (source) {
-            --queued;
-            process(filename, source, referenced);
-          },
-          function (err) {
-            --queued;
-            /* istanbul ignore else */
-            if (!weak) finish(err);
-            else if (!queued)
-              // can't be covered reliably
-              finish(null, self);
-          }
-        );
+      var source;
+      try {
+        source = util.fs.readFileSync(filename).toString("utf8");
+      } catch (err) {
+        if (!weak) reject(err);
+        return;
       }
+      process(filename, source, referenced);
     }
-    var queued = 0;
 
     // Assembling the root namespace doesn't require working type
     // references anymore, so we can load everything in parallel
     if (util.isString(filename)) filename = [filename];
     for (var i = 0, resolved; i < filename.length; ++i)
-      if (resolved = self.resolvePath("", filename[i]))
+      if ((resolved = self.resolvePath("", filename[i])))
         fetch(resolved, false, Path.basename(filename[i]));
 
-    if (options.sync) return self;
-    if (!queued) finish(null, self);
-    return undefined;
+    resolve(self);
   });
 };
 
