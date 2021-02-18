@@ -177,7 +177,7 @@ exports.main = function main(args, callback) {
         var normOrigin = protobuf.util.path.normalize(origin),
             normTarget = protobuf.util.path.normalize(target);
         if (!normOrigin)
-            mainFiles.push(normTarget);
+            mainFiles.push(path.basename(normTarget));
 
         var resolved = protobuf.util.path.resolve(normOrigin, normTarget, true);
         var idx = resolved.lastIndexOf("google/protobuf/");
@@ -256,15 +256,6 @@ exports.main = function main(args, callback) {
 
     function markReferenced(tobj) {
         tobj.referenced = true;
-        // also mark a type's fields and oneofs
-        if (tobj.fieldsArray)
-            tobj.fieldsArray.forEach(function(fobj) {
-                fobj.referenced = true;
-            });
-        if (tobj.oneofsArray)
-            tobj.oneofsArray.forEach(function(oobj) {
-                oobj.referenced = true;
-            });
         // also mark an extension field's extended type, but not its (other) fields
         if (tobj.extensionField)
             tobj.extensionField.parent.referenced = true;

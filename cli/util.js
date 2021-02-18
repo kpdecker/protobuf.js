@@ -65,6 +65,17 @@ exports.traverse = function traverse(current, fn) {
 
 exports.traverseResolved = function traverseResolved(current, fn) {
     fn(current);
+
+    if (current.fieldsArray) {
+        current.fieldsArray.forEach(function (field) {
+            traverseResolved(field, fn);
+        });
+    }
+    if (current.oneofsArray) {
+        current.oneofsArray.forEach(function (oneof) {
+            traverseResolved(oneof, fn);
+        });
+    }
     if (current.resolvedType)
         traverseResolved(current.resolvedType, fn);
     if (current.resolvedKeyType)
